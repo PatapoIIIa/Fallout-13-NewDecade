@@ -1292,7 +1292,6 @@
 #include "code\modules\fallout\misc\time_defines_new.dm"
 #include "code\modules\fallout\misc\weight.dm"
 #include "code\modules\fallout\misc\whitelist.dm"
-#include "code\modules\fallout\misc\donate\donated_fluff.dm"
 #include "code\modules\fallout\misc\donate\loadout_system.dm"
 #include "code\modules\fallout\misc\donate\pack.dm"
 #include "code\modules\fallout\misc\donate\packs_show.dm"

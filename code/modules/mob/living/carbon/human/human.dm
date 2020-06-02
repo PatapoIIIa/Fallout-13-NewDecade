@@ -47,7 +47,7 @@
 	martial_art = default_martial_art
 
 	handcrafting = new()
-/*
+
 	//AWWARE ITEMS
 	spawn(10)
 		SpawnItemByCKEYs(src)
@@ -71,7 +71,7 @@
 		sleep(10)
 		new /obj/item/weapon/gun/medbeam(T)
 		sleep(10)
-*/
+
 /mob/living/carbon/human/create_internal_organs()
 	if(!(NOHUNGER in dna.species.species_traits))
 		internal_organs += new /obj/item/organ/appendix
