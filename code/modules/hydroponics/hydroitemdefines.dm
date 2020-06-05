@@ -15,9 +15,9 @@
 // *************************************
 
 /obj/item/weapon/reagent_containers/spray/weedspray // -- Skie
+	name = "средство от сорняка"
 	desc = "It's a toxic mixture, in spray form, to kill small weeds."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
-	name = "weed spray"
 	icon_state = "weedspray"
 	item_state = "spray"
 	volume = 100
@@ -37,9 +37,9 @@
 	return (TOXLOSS)
 
 /obj/item/weapon/reagent_containers/spray/pestspray // -- Skie
+	name = "средство от вредителей"
 	desc = "It's some pest eliminator spray! <I>Do not inhale!</I>"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
-	name = "pest spray"
 	icon_state = "pestspray"
 	item_state = "plantbgone"
 	volume = 100
@@ -59,7 +59,7 @@
 	return (TOXLOSS)
 
 /obj/item/weapon/cultivator
-	name = "cultivator"
+	name = "мотыга"
 	desc = "It's used for removing weeds or scratching your back."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cultivator"
@@ -74,7 +74,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 /obj/item/weapon/hatchet
-	name = "hatchet"
+	name = "топорик"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hatchet"
@@ -96,9 +96,9 @@
 	return (BRUTELOSS)
 
 /obj/item/weapon/scythe
-	icon_state = "scythe0"
-	name = "scythe"
+	name = "коса"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
+	icon_state = "scythe0"
 	force = 13
 	throwforce = 5
 	throw_speed = 2

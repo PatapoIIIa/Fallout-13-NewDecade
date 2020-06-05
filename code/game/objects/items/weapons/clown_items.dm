@@ -10,8 +10,8 @@
  */
 
 /obj/item/weapon/soap
-	name = "soap"
-	desc = "A cheap bar of soap. Doesn't smell."
+	name = "мыло"
+	desc = "Дешевое мыло на века. Пахнет мятой, даже спустя 200 лет."
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "soap"
@@ -23,16 +23,16 @@
 	var/cleanspeed = 50 //slower than mop
 
 /obj/item/weapon/soap/nanotrasen
-	desc = "A Nanotrasen brand bar of soap. Smells of plasma."
+	desc = "Мыло от Волт-Тек, пахнет... ураном?"
 	icon_state = "soapnt"
 
 /obj/item/weapon/soap/homemade
-	desc = "A homemade bar of soap. Smells of... well...."
+	desc = "Домашнее мыло. Пахнет... Ну..."
 	icon_state = "soapgibs"
 	cleanspeed = 45 // a little faster to reward chemists for going to the effort
 
 /obj/item/weapon/soap/deluxe
-	desc = "A deluxe Waffle Co. brand bar of soap. Smells of high-class luxury."
+	desc = "Мыло Де-Люкс. Брендовое мыло из Франции, что можно понять по небольшой метке на самом мыле, оно сделано очень качественно и всё еще источает аромат лаванды."
 	icon_state = "soapdeluxe"
 	cleanspeed = 40 //same speed as mop because deluxe -- captain gets one of these
 

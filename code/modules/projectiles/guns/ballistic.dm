@@ -230,7 +230,7 @@
 
 /obj/item/weapon/suppressor
 	name = "глушитель"
-	desc = "A universal syndicate small-arms suppressor for maximum espionage."
+	desc = "Универсальный глушитель для любого типа оружия."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_SMALL

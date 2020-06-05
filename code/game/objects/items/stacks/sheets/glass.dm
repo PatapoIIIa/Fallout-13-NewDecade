@@ -111,7 +111,7 @@ var/global/list/datum/stack_recipe/reinforced_glass_recipes = list ( \
 
 /obj/item/weapon/shard
 	name = "осколок"
-	desc = "A nasty looking shard of glass."
+	desc = "Выглядит опасно и остро. Очень остро..."
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "large"
 	w_class = WEIGHT_CLASS_TINY
@@ -199,8 +199,8 @@ var/global/list/datum/stack_recipe/reinforced_glass_recipes = list ( \
 				H.apply_damage(5, BRUTE, picked_def_zone)
 				if(cooldown < world.time - 10) //cooldown to avoid message spam.
 					if(!H.incapacitated())
-						H.visible_message("<span class='danger'>[H] steps in the broken glass!</span>", \
-								"<span class='userdanger'>You step in the broken glass!</span>")
+						H.visible_message("<span class='danger'>[H] наступает на битое стекло!</span>", \
+								"<span class='userdanger'>Вы наступили на битое стекло!</span>")
 					else
 						H.visible_message("<span class='danger'>[H] slides on the broken glass!</span>", \
 								"<span class='userdanger'>You slide on the broken glass!</span>")

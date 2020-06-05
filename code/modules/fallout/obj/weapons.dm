@@ -217,7 +217,7 @@
 	max_integrity = 200
 
 /obj/item/weapon/twohanded/legionspear
-	name = "legionspear"
+	name = "копьё лангира"
 	desc = "A haphazardly-constructed, yet still deadly weapon of an ancient design."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "legionspear0"
@@ -238,7 +238,7 @@
 	max_integrity = 200
 
 /obj/item/weapon/spear
-	name = "throwing spear"
+	name = "метательное копьё"
 	desc = "Крайне смертоносное оружие, с допотопным дизайном."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "spear"
@@ -284,8 +284,8 @@
 	price = 350
 
 /obj/item/weapon/twohanded/sledgehammer
-	name = "sledgehammer"
-	desc = "Strong but heavy weapon of destruction, that works well only if you know how to use it properly."
+	name = "кувалда"
+	desc = "Сильное, но тяжелое орудие разрушения, эффективно лишь тогда, когда знаешь как этим пользоваться."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "sledgehammer0"
 	flags = CONDUCT
@@ -300,7 +300,7 @@
 	origin_tech = "combat=3;powerstorage=3"
 
 /obj/item/weapon/twohanded/largehammer
-	name = "large sledgehammer"
+	name = "большая кувалда"
 	desc = "Большое, сильное, оружие РАЗРУШЕНИЯ."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "largesledgehammer0"
