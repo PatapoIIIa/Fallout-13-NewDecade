@@ -128,5 +128,5 @@
 
 /mob/living/simple_animal/hostile/ghoul/soldier/armored/New()
 	..()
-	icon_state = "soldier_ghoul_a-[rand(1,7)]"
-	icon_living = "soldier_ghoul_a-[rand(1,7)]"
+	icon_state = "soldier_ghoul_a-[rand(1,10)]"
+	icon_living = "soldier_ghoul_a-[rand(1,10)]"
