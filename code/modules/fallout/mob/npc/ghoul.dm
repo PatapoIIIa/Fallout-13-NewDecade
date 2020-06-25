@@ -99,8 +99,8 @@
 
 /mob/living/simple_animal/hostile/ghoul/glowing/New()
 	..()
-	icon_state = "retro_glowghoul-[rand(1,6)]"
-	icon_living = "retro_glowghoul-[rand(1,6)]"
+	icon_state = "retro_glowghoul-[rand(1,10)]"
+	icon_living = "retro_glowghoul-[rand(1,10)]"
 	SSradiation.processing += src
 
 /mob/living/simple_animal/hostile/ghoul/soldier
