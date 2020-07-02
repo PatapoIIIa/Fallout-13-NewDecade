@@ -1654,15 +1654,15 @@
 		//Location
 		if(isturf(T))
 			if(isarea(T.loc))
-				location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z] in area <b>[T.loc]</b>)"
+				location_description = "([M.loc == T ? "по координатам " : "в [M.loc] по координатам "] [T.x], [T.y], [T.z] в зоне <b>[T.loc]</b>)"
 			else
-				location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z])"
+				location_description = "([M.loc == T ? "по координатам " : "в [M.loc] по координатам "] [T.x], [T.y], [T.z])"
 
 		//Job + antagonist
 		if(M.mind)
 			special_role_description = "Роль: <b>[M.mind.assigned_role]</b>; Антагонист: <font color='red'><b>[M.mind.special_role]</b></font>"
 		else
-			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>"
+			special_role_description = "Роль: <i>Mind datum missing</i> Антагонист: <i>Mind datum missing</i>"
 
 		//Health
 		if(isliving(M))
@@ -1670,12 +1670,12 @@
 			var/status
 			switch (M.stat)
 				if (0)
-					status = "Alive"
+					status = "Жив"
 				if (1)
-					status = "<font color='orange'><b>Unconscious</b></font>"
+					status = "<font color='orange'><b>Без сознания</b></font>"
 				if (2)
-					status = "<font color='red'><b>Dead</b></font>"
-			health_description = "Status = [status]"
+					status = "<font color='red'><b>Мёртв</b></font>"
+			health_description = "Статус = [status]"
 			health_description += "<BR>Oxy: [L.getOxyLoss()] - Tox: [L.getToxLoss()] - Fire: [L.getFireLoss()] - Brute: [L.getBruteLoss()] - Clone: [L.getCloneLoss()] - Brain: [L.getBrainLoss()] - Stamina: [L.getStaminaLoss()]"
 		else
 			health_description = "This mob type has no health to speak of."

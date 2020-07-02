@@ -19,14 +19,14 @@
 /obj/structure/safe_caps/proc/deposit(amount)
 	var/caps = capsGet()
 
-	capsSet(caps + amount * 0.66)
+	capsSet(caps + amount)
 	playsound(src, 'sound/items/change_jaws.ogg', 60, 1)
 
 /obj/structure/safe_caps/proc/withdraw(amount)
 	var/safe_amount = capsGet()
 
 	if(amount > safe_amount)
-		to_chat(usr, "<span class='warning'>You need more caps in safe to do this!</span>")
+		to_chat(usr, "<span class='warning'>Вам необходимо больше крышечек для этого!</span>")
 		return
 
 	capsSet(safe_amount - amount)
@@ -54,7 +54,7 @@
 	. += "</style>"
 
 	. += "<span class='header'>В этом меню Вы можете сохранять Ваши крышки между раундами.</span>"
-	. += "<span class='description'>Вводя свои крышки в сейф, Вы отдаете <span class='percent'>33%</span> в качестве комиссии.</span>"
+	. += "<span class='description'>Вводя свои крышки в сейф, Вы пополняете свой счёт <span class='percent'>атомов</span>.</span>"
 	. += "<span class='description'>Чтобы положить крышки - достаточно кликнуть ими на сейф.</span>"
 	. += "<span class='content'>На Вашем счету <span class='caps'>[capsGet()]</span> крышек.</span>"
 
@@ -67,10 +67,10 @@
 		. += "<a class='button' href='byond://?src=\ref[src];withdraw=5000'>Снять 5000</a>"
 
 	if(amount >= 3000)
-		. += "<a class='button' href='byond://?src=\ref[src];withdraw=1000'>Снять 3000</a>"
+		. += "<a class='button' href='byond://?src=\ref[src];withdraw=3000'>Снять 3000</a>"
 
 	if(amount >= 2000)
-		. += "<a class='button' href='byond://?src=\ref[src];withdraw=1000'>Снять 2000</a>"
+		. += "<a class='button' href='byond://?src=\ref[src];withdraw=2000'>Снять 2000</a>"
 
 	if(amount >= 1000)
 		. += "<a class='button' href='byond://?src=\ref[src];withdraw=1000'>Снять 1000</a>"
@@ -79,16 +79,16 @@
 		. += "<a class='button' href='byond://?src=\ref[src];withdraw=500'>Снять 500</a>"
 
 	if(amount >= 400)
-		. += "<a class='button' href='byond://?src=\ref[src];withdraw=1000'>Снять 400</a>"
+		. += "<a class='button' href='byond://?src=\ref[src];withdraw=400'>Снять 400</a>"
 
 	if(amount >= 300)
-		. += "<a class='button' href='byond://?src=\ref[src];withdraw=1000'>Снять 300</a>"
+		. += "<a class='button' href='byond://?src=\ref[src];withdraw=300'>Снять 300</a>"
 
 	if(amount >= 200)
-		. += "<a class='button' href='byond://?src=\ref[src];withdraw=1000'>Снять 200</a>"
+		. += "<a class='button' href='byond://?src=\ref[src];withdraw=200'>Снять 200</a>"
 
 	if(amount >= 100)
-		. += "<a class='button' href='byond://?src=\ref[src];withdraw=1000'>Снять 100</a>"
+		. += "<a class='button' href='byond://?src=\ref[src];withdraw=100'>Снять 100</a>"
 
 	if(amount >= 50)
 		. += "<a class='button' href='byond://?src=\ref[src];withdraw=50'>Снять 50</a>"
@@ -102,7 +102,7 @@
 	return .
 
 /obj/structure/safe_caps/proc/showUI()
-	var/datum/browser/popup = new(usr, "vending", "Caps safe",  641, 237)
+	var/datum/browser/popup = new(usr, "vending", "Сейф для крышечек",  641, 237)
 	popup.set_content(getHTML())
 	popup.open()
 

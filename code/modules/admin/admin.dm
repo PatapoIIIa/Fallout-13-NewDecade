@@ -809,7 +809,7 @@ var/global/BSACooldown = 0
 
 	tomob.ghostize(0)
 
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.ckey] in control of [tomob.name].</span>")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] перемещает [frommob.ckey] давая контроль над [tomob.name].</span>")
 	log_admin("[key_name(usr)] stuffed [frommob.ckey] into [tomob.name].")
 	feedback_add_details("admin_verb","CGD")
 

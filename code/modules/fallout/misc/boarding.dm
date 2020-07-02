@@ -16,7 +16,7 @@
 
 /obj/structure/barricade/wooden/planks/examine()
 	..()
-	usr << "<span class='notice'>There are [planks] boards left.</span>"
+	usr << "<span class='notice'>Тут [planks].</span>"
 
 /obj/structure/barricade/wooden/planks/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/crowbar))
