@@ -110,9 +110,9 @@
 			if(do_after(user, R.time, target = user))
 				contents = get_surroundings(user)
 				if(!check_contents(R, contents))
-					return ", missing component."
+					return ", нет компонента."
 				if(!check_tools(user, R, contents))
-					return ", missing tool."
+					return ", нет инструмента."
 				var/list/parts = del_reqs(R, user)
 				var/atom/movable/I = new R.result (get_turf(user.loc))
 				I.CheckParts(parts, R)
@@ -126,8 +126,8 @@
 					feedback_add_details("object_crafted","[I.type]")
 				return 0
 			return "."
-		return ", missing tool."
-	return ", missing component."
+		return ", нет инструмента."
+	return ", нет компонента."
 
 
 /*Del reqs works like this:
@@ -257,7 +257,7 @@
 /datum/personal_crafting/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = not_incapacitated_turf_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "personal_crafting", "Crafting Menu", 700, 800, master_ui, state)
+		ui = new(user, src, ui_key, "personal_crafting", "Меню создания предметов", 700, 800, master_ui, state)
 		ui.open()
 
 
@@ -312,30 +312,30 @@ proc/get_craft_recipe(craft_type)
 			ui_interact(usr) //explicit call to show the busy display
 			var/fail_msg = construct_item(usr, TR)
 			if(!fail_msg)
-				to_chat(usr, "<span class='notice'>[TR.name] constructed.</span>")
+				to_chat(usr, "<span class='notice'>[TR.name] готов.</span>")
 			else
-				to_chat(usr, "<span class='warning'>Construction failed[fail_msg]</span>")
+				to_chat(usr, "<span class='warning'>Не удалось собрать [fail_msg]</span>")
 			busy = 0
 			ui_interact(usr)
 		if("forwardCat") //Meow
 			viewing_category = next_cat()
-			to_chat(usr, "<span class='notice'>Category is now [categories[viewing_category]].</span>")
+			to_chat(usr, "<span class='notice'>Текущая категория [categories[viewing_category]].</span>")
 			. = TRUE
 		if("backwardCat")
 			viewing_category = prev_cat()
-			to_chat(usr, "<span class='notice'>Category is now [categories[viewing_category]].</span>")
+			to_chat(usr, "<span class='notice'>Текущая категория [categories[viewing_category]].</span>")
 			. = TRUE
 		if("toggle_recipes")
 			display_craftable_only = !display_craftable_only
-			to_chat(usr, "<span class='notice'>You will now [display_craftable_only ? "only see recipes you can craft":"see all recipes"].</span>")
+			to_chat(usr, "<span class='notice'>Теперь вы [display_craftable_only ? "видите лишь то что можете собрать":"видите все рецепты"].</span>")
 			. = TRUE
 		if("toogle_hiding")
-			to_chat(usr, "<span class='notice'>You will now [hide_default ? "only see recipes you have blueprints (non-default)":"see all recipes include default"].</span>")
+			to_chat(usr, "<span class='notice'>Теперь вы [hide_default ? "видите рецепты к которым у вас есть чертёж":"видите все рецепты"].</span>")
 			hide_default = !hide_default
 			. = TRUE
 		if("toggle_compact")
 			display_compact = !display_compact
-			to_chat(usr, "<span class='notice'>Crafting menu is now [display_compact? "compact" : "full size"].</span>")
+			to_chat(usr, "<span class='notice'>Теперь меню создания [display_compact? "компактное" : "информативное"].</span>")
 			. = TRUE
 
 

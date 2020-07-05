@@ -61,6 +61,20 @@
 	layer = 3.2
 	density = 0
 
+/obj/structure/decoration_f13/bunker_vent
+	name = "вентилятор"
+	desc = "Большой вентилятор, когда-то служивший системой подачи воздуха куда-то..."
+	icon_state = "v_vent_fine"
+	layer = 3.2
+	density = 0
+
+/obj/structure/decoration_f13/bunker_vent/rusted
+	name = "вентилятор"
+	desc = "Большой и ржавый вентилятор, когда-то служивший системой подачи воздуха куда-то..."
+	icon_state = "v_vent_rusted"
+	layer = 3.2
+	density = 0
+
 /obj/structure/decoration_f13/old_tv
 	name = "старый телевизор"
 	desc = "Старый телевизор, покрыт пылью а электроника уже никогда не заработает."
