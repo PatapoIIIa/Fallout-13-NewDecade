@@ -65,15 +65,13 @@
 	name = "вентилятор"
 	desc = "Большой вентилятор, когда-то служивший системой подачи воздуха куда-то..."
 	icon_state = "v_vent_fine"
-	layer = 3.2
-	density = 0
+	layer = 4
+	density = 1
 
 /obj/structure/decoration_f13/bunker_vent/rusted
 	name = "вентилятор"
 	desc = "Большой и ржавый вентилятор, когда-то служивший системой подачи воздуха куда-то..."
 	icon_state = "v_vent_rusted"
-	layer = 3.2
-	density = 0
 
 /obj/structure/decoration_f13/old_tv
 	name = "старый телевизор"
