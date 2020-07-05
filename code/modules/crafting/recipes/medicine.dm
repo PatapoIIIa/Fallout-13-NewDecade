@@ -6,7 +6,7 @@
 				/obj/item/weapon/reagent_containers/food/snacks/grown/xander = 1)
 	category = CAT_MEDICINE
 	default = 1
-	XP = 20
+	XP = 10
 
 /datum/crafting_recipe/stimpak
 	name = "Стимулятор"
@@ -20,7 +20,18 @@
 	time = 50
 	category = CAT_MEDICINE
 	default = 1
-	XP = 40
+	XP = 20
+
+	/datum/crafting_recipe/antivenom
+	name = "Противоядие"
+	result = /obj/item/weapon/reagent_containers/glass/bottle/antivenom
+	reqs = list(/obj/item/stack/sheet/glass = 1,
+				/obj/item/weapon/reagent_containers/food/snacks/grown/ferocactus = 2,
+				/obj/item/weapon/reagent_containers/food/snacks/f13/venomgland = 1,
+				/obj/item/weapon/reagent_containers/food/snacks/grown/xander = 1 )
+	time = 55
+	category = CAT_MEDICINE
+	XP = 20
 
 /*
 /datum/crafting_recipe/gauze
@@ -58,7 +69,7 @@
 	time = 100
 	category = CAT_MEDICINE
 	default = 1
-	XP = 50
+	XP = 20
 
 /datum/crafting_recipe/fev
 	name = "ВРЭ"
@@ -68,4 +79,4 @@
 	time = 100
 	category = CAT_MEDICINE
 	default = 1
-	XP = 10
+	XP = 25

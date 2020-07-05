@@ -10,7 +10,7 @@
 	icon_gib = "radscorpion_g"
 	turns_per_move = 5
 	see_in_dark = 10
-	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab/spider = 2, /obj/item/weapon/reagent_containers/food/snacks/spiderleg = 8)
+	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab/radscorpion_meat = 2, /obj/item/weapon/reagent_containers/food/snacks/f13/venomgland = 1)
 	response_help  = "touches"
 	response_disarm = "hits"
 	response_harm   = "kicks"
@@ -53,3 +53,21 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 30
 	move_to_delay = 4
+
+/datum/reagent/toxin/radscorpion_venom
+	name = "Radscorpion venom"
+	id = "radscorpion_venom"
+	description = "A potent toxin resulting from Radscorpion stings that quickly kills if too much remains in the body."
+	color = "#801E28"
+	toxpwr = 1
+
+/datum/reagent/toxin/radscorpion_venom/on_mob_life(mob/living/M)
+	if(volume >= 15)
+		M.adjustToxLoss(7, 0)
+	..()
+
+/mob/living/simple_animal/hostile/rad_scorpion/AttackingTarget()
+	. = ..()
+	if(. && ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.reagents.add_reagent("toxin", 5)

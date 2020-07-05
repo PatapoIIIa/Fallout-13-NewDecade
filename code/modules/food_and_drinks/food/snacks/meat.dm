@@ -206,6 +206,20 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 1)
 	filling_color = "#854817"
 
+/obj/item/weapon/reagent_containers/food/snacks/meat/slab/radscorpion_meat
+	name = "radscorpion meat"
+	desc = "A slab of radscorpion meat."
+	icon_state = "mothmeat"
+	list_reagents = list("nutriment" = 2, "bad_food" = 3, "vitamin" = 1)
+	cooked_type = /obj/item/weapon/reagent_containers/food/snacks/meat/steak/radscorpion_meat
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/slab/cazador_meat
+	name = "cazador meat"
+	desc = "A slab of cazador meat."
+	icon_state = "mothmeat"
+	list_reagents = list("nutriment" = 2, "carpotoxin" = 5, "vitamin" = 2)
+	cooked_type = /obj/item/weapon/reagent_containers/food/snacks/meat/steak/cazador_meat
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 
@@ -240,6 +254,18 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	icon_state = "goliathsteak"
 	trash = null
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/steak/radscorpion_meat
+	name = "radscorpion steak"
+	desc = "A radscorpion steak. A dish for seasoned wastelanders."
+	icon_state = "mothmeat"
+	list_reagents = list("nutriment" = 3, "vitamin" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/steak/cazador_meat
+	name = "cazador steak"
+	desc = "A steak of cazador meat. If the poison did't finish the job, this might do... or not"
+	icon_state = "mothmeat"
+	list_reagents = list("nutriment" = 3, "vitamin" = 3)
 
 //////////////////////////////// MEAT CUTLETS ///////////////////////////////////////////////////////
 

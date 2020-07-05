@@ -312,3 +312,13 @@
 	icon_state = "sawsoup"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 3, "mine_salve" = 1)
 	price = 150
+
+//WASTELAND ANIMAL ORGANS
+
+/obj/item/weapon/reagent_containers/food/snacks/f13/venomgland
+	name ="Venom Gland"
+	desc = "It is a venom gland taken from the end of a venomous and poisonous creature. Probably not good to drink!"
+	icon_state ="venomgland"
+	list_reagents = list("venom" = 35)
+	bonus_reagents = list("nutriment" = 10)
+	filling_color = "#6a6b1a"
