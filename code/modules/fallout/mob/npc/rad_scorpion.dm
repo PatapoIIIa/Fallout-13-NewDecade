@@ -1,6 +1,6 @@
 //Fallout 13 rad scorpion directory
 
-/mob/living/simple_animal/hostile/rad_scorpion
+/mob/living/simple_animal/hostile/poison/rad_scorpion
 	name = "рад скорпион"
 	desc = "Гигантский мутировавший скорпион с голубым панцирем."
 	icon = 'icons/fallout/mobs/animal.dmi'
@@ -41,7 +41,7 @@
 
 	XP = 13
 
-/mob/living/simple_animal/hostile/rad_scorpion/black
+/mob/living/simple_animal/hostile/poison/rad_scorpion/black
 	name = "рад скорпион"
 	desc = "Гигантский мутировавший скорпион с черным панцирем. Этот выглядит немного... больше."
 	icon_state = "radscorpion_black"
@@ -66,7 +66,7 @@
 		M.adjustToxLoss(7, 0)
 	..()
 
-/mob/living/simple_animal/hostile/rad_scorpion/AttackingTarget()
+/mob/living/simple_animal/hostile/poison/rad_scorpion/AttackingTarget()
 	. = ..()
 	if(. && ishuman(target))
 		var/mob/living/carbon/human/H = target

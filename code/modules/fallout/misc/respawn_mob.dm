@@ -162,13 +162,13 @@ proc/spawn_cazador(var/amount = 1, var/Loc)
 proc/spawn_radscorp(var/amount = 1, var/Loc)
 	var/i
 	for(i = 0, i < amount, i++)
-		var/mob/living/simple_animal/hostile/rad_scorpion/G = new(Loc)
+		var/mob/living/simple_animal/hostile/poison/rad_scorpion/G = new(Loc)
 		G.health = G.maxHealth//:/
 
 proc/spawn_bigscorp(var/amount = 1, var/Loc)
 	var/i
 	for(i = 0, i < amount, i++)
-		var/mob/living/simple_animal/hostile/rad_scorpion/black/G = new(Loc)
+		var/mob/living/simple_animal/hostile/poison/rad_scorpion/black/G = new(Loc)
 		G.health = G.maxHealth//:/
 
 proc/spawn_supermutant(var/amount = 1, var/Loc)
