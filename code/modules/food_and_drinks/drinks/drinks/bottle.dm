@@ -385,8 +385,8 @@
 					var/counter
 					var/target = src.loc
 					for(counter = 0, counter<2, counter++)
-						if(istype(target, /obj/item/storage))
-							var/obj/item/storage/S = target
+						if(istype(target, /obj/item/weapon/storage))
+							var/obj/item/weapon/storage/S = target
 							target = S.loc
 					if(istype(target, /atom))
 						var/atom/A = target
