@@ -5,8 +5,8 @@
 	self_weight = 2
 
 /obj/item/clothing/under/f13/navy
-	name = "navy jumpsuit"
-	desc = "Pre-War standard naval uniform."
+	name = "комбинезон морского флота"
+	desc = "Стандартная довоенная форма флота."
 	icon_state = "navy"
 	item_state = "bl_suit"
 	item_color = "navy"
@@ -15,8 +15,8 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/navyofficer
-	name = "navy officer jumpsuit"
-	desc = "Pre-War standard naval uniform for ranked officers."
+	name = "комбинезон офицера морского флота"
+	desc = "Стандартная довоенная офицерская форма флота."
 	icon_state = "navyofficer"
 	item_state = "bl_suit"
 	item_color = "navyofficer"
@@ -25,24 +25,24 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/machinist
-	name = "workman outfit"
-	desc = "The apparel of an old-time machinist."
+	name = "комбинезон рабочего"
+	desc = "В этой одежде вы выглядите как стим-панк механик."
 	icon_state = "machinist"
 	item_state = "lb_suit"
 	item_color = "machinist"
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/lumberjack
-	name = "lumberjack outfit"
-	desc = "The apparel of an old-time lumberjack."
+	name = "костюм лесоруба"
+	desc = "Такие костюмы когда-то носили лесорубы."
 	icon_state = "lumberjack"
 	item_state = "r_suit"
 	item_color = "lumberjack"
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/police
-	name = "pre-War police uniform"
-	desc = "Golden classics of pre-War police officers."
+	name = "довоенная полицейская форма"
+	desc = "Золотая классика полиции, до войны."
 	icon_state = "retro_police"
 	item_state = "b_suit"
 	item_color = "retro_police"
@@ -84,8 +84,8 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/bdu //WalterJe military standarts.
-	name = "BDU"
-	desc = "A standard military Battle Dress Uniform."
+	name = "военная форма"
+	desc = "Стандартная военная форма."
 	icon_state = "bdu"
 	item_state = "xenos_suit"
 	item_color = "bdu"
@@ -93,10 +93,11 @@
 	armor = list(melee = 20, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0)
 	can_adjust = 1
 	self_weight = 3
+	price = 800
 
 /obj/item/clothing/under/f13/dbdu
-	name = "DBDU"
-	desc = "A military Desert Battle Dress Uniform."
+	name = "пустынная военная форма"
+	desc = "Стандартная пустынная военная форма."
 	icon_state = "dbdu"
 	item_state = "brownjsuit"
 	item_color = "dbdu"
@@ -104,6 +105,7 @@
 	armor = list(melee = 20, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0)
 	can_adjust = 1
 	self_weight = 3
+	price = 800
 
 /obj/item/clothing/under/f13/shiny //Firefly, yay!
 	name = "shiny outfit"
@@ -114,8 +116,8 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/batter //I guess we're going OFF limits.
-	name = "worn baseball uniform"
-	desc = "<b>Purification in progress...</b>"
+	name = "чистая форма бейсболиста"
+	desc = "<b>Очистка в процессе...</b>"
 	icon_state = "batter"
 	item_state = "w_suit"
 	item_color = "batter"
@@ -234,18 +236,18 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/deadmoney
-	icon = 'icons/obj/clothing/uniforms.dmi'
 	name = "Utility jumpsuit"
 	desc = "A working class jumpsuit that appears rather plain in every aspect, apart from the unsettling red X painted across it's back with an unknown substance."
+	icon = 'icons/obj/clothing/uniforms.dmi'
 	icon_state = "deadmoney"
 	item_state = "deadmoney"
 	item_color = "deadmoney"
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/casinoarmor
-	icon = 'icons/obj/clothing/uniforms.dmi'
 	name = "Casino security uniform"
 	desc = "A rather dated and now defunct pre-war Casino security guard's uniform, bearing mild kevlar armoring suitable for defense against some melee weapons and basic handgun calibers."
+	icon = 'icons/obj/clothing/uniforms.dmi'
 	icon_state = "casinoarmor"
 	item_state = "casinoarmor"
 	item_color = "casinoarmor"
@@ -254,9 +256,9 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/assassinarmor
-	icon = 'icons/obj/clothing/uniforms.dmi'
 	name = "Assassin's armor"
 	desc = "A very flexible bodysuit bearing little in the way of ballistic protection but highly suitable for defense against most conventional energy and plasma weapons due to it's odd and rubbery material."
+	icon = 'icons/obj/clothing/uniforms.dmi'
 	icon_state = "assassinarmor"
 	item_state = "assassinarmor"
 	item_color = "assassinarmor"
@@ -265,17 +267,17 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/patriotsuit
+	name = "костюм патриота"
+	desc = "Мотоцикл не входит в комплект."
 	icon = 'icons/obj/clothing/uniforms.dmi'
-	name = "Patriotic Suit"
-	desc = "Motorcycle not included."
 	icon_state = "ek"
 	item_state = "ek"
 	item_color = "ek"
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/wolfwood
-	name = "Priest's suit"
-	desc = "A solid black suit with the untucked collar of a white button up. Looks pretty snazzy, but incredibly impactical for preaching."
+	name = "костюм священника"
+	desc = "Солидный черный костюм с оротников. В нём так и хочется читать молитвы своей пастве."
 	icon_state = "wolfwood"
 	item_state = "wolfwood"
 	item_color = "wolfwood"
@@ -558,7 +560,7 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/vault
-	name = "���������� �������"
+	name = "комбинезон Убежища"
 	desc = "The regulation clothing worn by the vault dwellers of Vault-Tec vaults. It's made of sturdy leather.<br>This particular jumpsuit has no number on the back."
 	icon_state = "vault"
 	item_state = "b_suit"
@@ -566,37 +568,37 @@
 	can_adjust = 1
 
 /obj/item/clothing/under/f13/vault/v13 //The Legend is here.
-	name = "���������� ������� 13"
+	name = "комбинезон Убежища 13"
 	desc = "The regulation clothing worn by the vault dwellers of Vault-Tec vaults. It's made of sturdy leather.<br>This jumpsuit has number 13 on the back."
 	icon_state = "vault13"
 	item_color = "vault13"
 
 /obj/item/clothing/under/f13/vault/v113
-	name = "���������� ������� 113"
+	name = "комбинезон Убежища 113"
 	desc = "The regulation clothing worn by the vault dwellers of Vault-Tec vaults. It's made of sturdy leather.<br>This jumpsuit has number 113 on the back."
 	icon_state = "vault113"
 	item_color = "vault113"
 
 /obj/item/clothing/under/f13/vault/v21
-	name = "���������� ������� 21"
+	name = "комбинезон Убежища 21"
 	desc = "The regulation clothing worn by the vault dwellers of Vault-Tec vaults. It's made of sturdy leather.<br>This jumpsuit has number 21 on the back."
 	icon_state = "vault21"
 	item_color = "vault21"
 
 /obj/item/clothing/under/f13/vault/v42
-	name = "���������� ������� 42"
+	name = "комбинезон Убежища 42"
 	desc = "The regulation clothing worn by the vault dwellers, of Vault-Tec vaults built to solve the Ultimate Question of life, Universe, and everything. It's made of sturdy leather.<br>This jumpsuit has number 42 on the back."
 	icon_state = "vault42"
 	item_color = "vault42"
 
 /obj/item/clothing/under/f13/vault/v76
-	name = "���������� ������� 76"
+	name = "комбинезон Убежища 76"
 	desc = "The regulation clothing worn by the vault dwellers, of Vault-Tec vaults built to solve the Ultimate Question of life, Universe, and everything. It's made of sturdy leather.<br>This jumpsuit has number 76 on the back."
 	icon_state = "vault76"
 	item_color = "vault76"
 
 /obj/item/clothing/under/f13/followers
-	name = "������ ������������� "
+	name = "одежда последователя "
 	desc = "A white shirt with a pair of dark brown cargo pants - an outfit commonly worn by Followers of the Apocalypse.<br><i>Nihil boni sine labore.</i>"
 	icon_state = "followers"
 	item_state = "bar_suit"
@@ -605,7 +607,7 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/combat
-	name = "������ �����"
+	name = "боевая форма"
 	desc = "An ancient combat uniform, that went out of use around the time of the Great War."
 	icon_state = "combat"
 	item_state = "bl_suit"
@@ -615,8 +617,8 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/enclave_officer
-	name = "����� ������� �������"
-	desc = "A standard Enclave officer uniform.<br>The outer layer is made of a sturdy material designed to withstand the harsh conditions of the wasteland."
+	name = "форма офицера анклава"
+	desc = "Стандартная униформа офицера Анклава. <br>Внешний."
 	icon_state = "enclave_o"
 	item_state = "bl_suit"
 	item_color = "enclave_o"
@@ -637,8 +639,8 @@
 	self_weight = 3
 
 /obj/item/clothing/under/f13/ncr_officer
-	name = "���������� �����"
-	desc = "A standard NCR officer uniform.<br>Embroided New California Republic flag patches adorn both sleeves."
+	name = "офицерская форма"
+	desc = "Стандартная формаа используемая в НКР.<br>На рукаве есть нашивка изображающая флаг Новой Калифорнийской Республики."
 	icon_state = "ncr_o"
 	item_state = "lb_suit"
 	item_color = "ncr_o"
@@ -648,8 +650,8 @@
 	self_weight = 3
 
 /obj/item/clothing/under/f13/ncr
-	name = "������"
-	desc = "A regular NCR uniform that consists of khaki field jacket with bellowed hip pockets and khaki breeches."
+	name = "шинель"
+	desc = "Стандартная формаа используемая в НКР."
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0)
 	icon_state = "overcoat"
@@ -658,7 +660,7 @@
 	can_adjust = 1
 
 /obj/item/clothing/under/f13/ncr/torn
-	name = "����������� ������"
+	name = "разодранная шинель"
 	desc = "Some time ago it looked like a regular NCR uniform, but now it looks like a total mess of ripped cloth."
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0)
@@ -667,7 +669,7 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/general
-	name = "������ ��������"
+	name = "шинель генерала"
 	desc = "A grim looking overcoat - preferable standard for General commander of New California Republic.<br>It's decorated with golden stars, and an insignia plaque that adorns the left side."
 	icon_state = "general"
 	item_state = "lb_suit"
@@ -690,6 +692,7 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HEAD
 	can_adjust = 0
 	self_weight = 5
+	price = 10000
 
 /obj/item/clothing/under/f13/reconenclave
 	name = "enclave recon armor"
@@ -1081,8 +1084,8 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/female/maid
-	name = "maid costume"
-	desc = "Maid in China."
+	name = "форма горничной"
+	desc = "Сделано в китае."
 	icon_state = "maid"
 	item_state = "maid"
 	item_color = "maid"
@@ -1091,8 +1094,8 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/female/janimaid
-	name = "maid uniform"
-	desc = "A simple maid uniform for housekeeping."
+	name = "форма горничной"
+	desc = "Простая форма горничной для уборки."
 	icon_state = "janimaid"
 	item_state = "janimaid"
 	item_color = "janimaid"
@@ -1210,8 +1213,8 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/f13/fluff/waffenss
-	name = "Waffen SS form"
-	desc = "Scheisse, das uniformei ist gut!."
+	name = "форма общих СС"
+	desc = "Когда-то это было музейным образцом, сейчас, лишь еще одна частица прошлого."
 	icon_state = "waffen"
 	item_state = "bl_suit"
 	item_color = "waffen"
@@ -1221,8 +1224,8 @@
 	self_weight = 3
 
 /obj/item/clothing/under/f13/fluff/m35
-	name = "M35 form"
-	desc = "Scheisse, das uniformei ist gut!."
+	name = "форма вермахта"
+	desc = "Когда-то это было музейным образцом, сейчас, лишь еще одна частица прошлого."
 	icon_state = "m35"
 	item_state = "bl_suit"
 	item_color = "m35"
@@ -1233,8 +1236,8 @@
 
 //FLUFF SHIT//
 /obj/item/clothing/under/f13/fluff/azov
-	name = "Azov uniform"
-	desc = "Batallion Azov uniform. Slava Ukraine."
+	name = "форма Азов"
+	desc = "Униформа бойца батальона Азов. Слава Украине."
 	icon_state = "ukform"
 	item_state = "dbdu"
 	item_color = "ukform"

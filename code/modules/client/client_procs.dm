@@ -3,6 +3,12 @@
 	////////////
 #define UPLOAD_LIMIT		100997152	//Restricts client uploads to the server to 2MB //Could not probably do with being lower.
 
+#define LIMITER_SIZE	5
+#define CURRENT_SECOND	1
+#define SECOND_COUNT	2
+#define CURRENT_MINUTE	3
+#define MINUTE_COUNT	4
+#define ADMINSWARNED_AT	5
 	/*
 	When somebody clicks a link in game, this Topic is called first.
 	It does the stuff in this proc and  then is redirected to the Topic() proc for the src=[0xWhatever]
@@ -18,7 +24,6 @@
 		- If so, is there any protection against somebody spam-clicking a link?
 	If you have any  questions about this stuff feel free to ask. ~Carn
 	*/
-/client/var/inprefs = FALSE
 /client/Topic(href, href_list, hsrc)
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
@@ -26,8 +31,46 @@
 	if(href_list["asset_cache_confirm_arrival"])
 //		to_chat(src, "ASSET JOB [href_list["asset_cache_confirm_arrival"]] ARRIVED.")
 		var/job = text2num(href_list["asset_cache_confirm_arrival"])
-		completed_asset_jobs += job
-		return
+		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
+		//	into letting append to a list without limit.
+		if (job && job <= last_asset_job && !(job in completed_asset_jobs))
+			completed_asset_jobs += job
+			return
+
+	if (!holder && config.minutetopiclimit)
+		var/minute = round(world.time, 600)
+		if (!topiclimiter)
+			topiclimiter = new(LIMITER_SIZE)
+		if (minute != topiclimiter[CURRENT_MINUTE])
+			topiclimiter[CURRENT_MINUTE] = minute
+			topiclimiter[MINUTE_COUNT] = 0
+		topiclimiter[MINUTE_COUNT] += 1
+		if (topiclimiter[MINUTE_COUNT] > config.minutetopiclimit)
+			var/msg = "Your previous action was ignored because you've done too many in a minute."
+			if (minute != topiclimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
+				topiclimiter[ADMINSWARNED_AT] = minute
+				msg += " Administrators have been informed."
+				log_game("[key_name(src)] Has hit the per-minute topic limit of [config.minutetopiclimit] topic calls in a given game minute")
+				message_admins("[key_name_admin(src)] [ADMIN_KICK(usr)] Has hit the per-minute topic limit of [config.minutetopiclimit] topic calls in a given game minute")
+			src << "<span class='danger'>[msg]</span>"
+			return
+
+	if (!holder && config.secondtopiclimit)
+		var/second = round(world.time, 10)
+		if (!topiclimiter)
+			topiclimiter = new(LIMITER_SIZE)
+		if (second != topiclimiter[CURRENT_SECOND])
+			topiclimiter[CURRENT_SECOND] = second
+			topiclimiter[SECOND_COUNT] = 0
+		topiclimiter[SECOND_COUNT] += 1
+		if (topiclimiter[SECOND_COUNT] > config.secondtopiclimit)
+			src << "<span class='danger'>Your previous action was ignored because you've done too many in a second</span>"
+			return
+
+	//Logs all hrefs
+	if(config && config.log_hrefs && href_logfile)
+		href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
+
 	// Admin PM
 	if(href_list["priv_msg"])
 		if (href_list["ahelp_reply"])
@@ -35,10 +78,6 @@
 			return
 		cmd_admin_pm(href_list["priv_msg"],null)
 		return
-
-	//Logs all hrefs
-	if(config && config.log_hrefs && href_logfile)
-		to_chat(href_logfile, "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>")
 
 	switch(href_list["_src_"])
 		if("holder")
@@ -175,7 +214,7 @@ var/next_external_rsc = 0
 	connection_timeofday = world.timeofday
 
 	if (byond_version < config.client_error_version)		//Out of date client.
-		to_chat(src, "<span class='danger'><b>Обновите ваш BYOND:</b></span>")
+		to_chat(src, "<span class='danger'><b>РћР±РЅРѕРІРёС‚Рµ РІР°С€ BYOND:</b></span>")
 		to_chat(src, config.client_error_message)
 		to_chat(src, "Your version: [byond_version]")
 		to_chat(src, "Required version: [config.client_error_version] or later")
@@ -231,7 +270,7 @@ var/next_external_rsc = 0
 			return 0
 
 		if (config.notify_new_player_age >= 0)
-			message_admins("Новый пользователь: [key_name_admin(src)] подключается впервые.")
+			message_admins("РќРѕРІС‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ: [key_name_admin(src)] РїРѕРґРєР»СЋС‡Р°РµС‚СЃСЏ РІРїРµСЂРІС‹Рµ.")
 			if (config.irc_first_connection_alert)
 				send2irc_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
 
@@ -254,13 +293,14 @@ var/next_external_rsc = 0
 
 	screen += void
 
+/*
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
-		to_chat(src, "<span class='info'>Вы не прочли список обновлений.</span>")
+		to_chat(src, "<span class='info'>Р’С‹ РЅРµ РїСЂРѕС‡Р»Рё СЃРїРёСЃРѕРє РѕР±РЅРѕРІР»РµРЅРёР№.</span>")
 		if(config.aggressive_changelog)
 			changelog()
 		else
 			winset(src, "infowindow.changelog", "font-style=bold")
-
+*/
 	if(ckey in clientmessages)
 		for(var/message in clientmessages[ckey])
 			to_chat(src, message)
@@ -353,7 +393,7 @@ var/next_external_rsc = 0
 	var/watchreason = check_watchlist(sql_ckey)
 	if(watchreason)
 		current_watchlist[sql_ckey] = watchreason
-		message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[key_name_admin(src)] is on the watchlist and has just connected - Reason: [watchreason]</font>")
+		message_admins("<font color='red'><B>Р’РђР–РќРћ: </B></font><font color='blue'>[key_name_admin(src)] РЅР°С…РѕРґРёС‚СЃСЏ РІ СЃРїРёСЃРєРµ РЅР°РґР·РѕСЂР°, РїРѕ СЃР»РµРґСѓСЋС‰РµР№ РїСЂРёС‡РёРЅРµ: [watchreason]</font>")
 		send2irc_adminless_only("Watchlist", "[key_name(src)] is on the watchlist and has just connected - Reason: [watchreason]")
 
 	var/sql_ip = sanitizeSQL(src.address)

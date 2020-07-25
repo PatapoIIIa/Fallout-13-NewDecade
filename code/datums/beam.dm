@@ -16,8 +16,8 @@
 	var/beam_type = /obj/effect/ebeam //must be subtype
 
 /datum/beam/Destroy()
-	..()
-	return QDEL_HINT_PUTINPOOL
+	. = ..()
+
 
 /datum/beam/New(beam_origin,beam_target,beam_icon='icons/effects/beam.dmi',beam_icon_state="b_beam",time=50,maxdistance=10,btype = /obj/effect/ebeam,beam_sleep_time=3)
 	endtime = world.time+time
@@ -46,12 +46,12 @@
 			Reset()
 			Draw()
 		sleep(sleep_time)
-
-	qdel(src)
+	if(!qdeleted(src))
+		qdel(src)
 
 
 /datum/beam/proc/End()
-	finished = 1
+	finished = TRUE
 
 
 /datum/beam/proc/Reset()
@@ -134,7 +134,6 @@
 
 /atom/proc/Beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time=50, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time = 3)
 	var/datum/beam/newbeam = new(src,BeamTarget,icon,icon_state,time,maxdistance,beam_type,beam_sleep_time)
-	spawn(0)
-		newbeam.Start()
+	addtimer(CALLBACK(newbeam, /datum/beam/.proc/Start), 0)
 	return newbeam
 

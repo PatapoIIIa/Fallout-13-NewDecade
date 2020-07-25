@@ -20,11 +20,11 @@ var/list/slime_colours = list("rainbow", "grey", "purple", "metal", "orange",
 	harm_intent_damage = 5
 	icon_living = "grey baby slime"
 	icon_dead = "grey baby slime dead"
-	response_help  = "������"
-	response_disarm = "�����"
-	response_harm   = "��������� ��"
-	emote_see = list("jiggles", "bounces in place")
-	speak_emote = list("telepathically chirps")
+	response_help  = "гладит"
+	response_disarm = "гонит"
+	response_harm   = "наступает на"
+	emote_see = list("дрожит", "скачет на месте")
+	speak_emote = list("телепатически хлюпает")
 	bubble_icon = "slime"
 
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -100,7 +100,7 @@ var/list/slime_colours = list("rainbow", "grey", "purple", "metal", "orange",
 	colour = new_colour
 	update_name()
 	slime_mutation = mutation_table(colour)
-	var/sanitizedcolour = replacetext(colour, " ", "")
+	var/sanitizedcolour = replacetext_char(colour, " ", "")
 	coretype = text2path("/obj/item/slime_extract/[sanitizedcolour]")
 	regenerate_icons()
 

@@ -1,8 +1,8 @@
 //Fallout 13 super mutants directory
 
 /mob/living/simple_animal/hostile/supermutant
-	name = "super mutant"
-	desc = "A huge and ugly mutant humanoid."
+	name = "супермутант"
+	desc = "Больной, уродливый и зеленый гуманоид."
 	icon = 'icons/fallout/mobs/supermutant.dmi'
 	icon_state = "hulk_113_s"
 	icon_living = "hulk_113_s"
@@ -23,7 +23,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 30
 	mob_size = MOB_SIZE_LARGE
-	attacktext = "hits"
+	attacktext = "бьёт"
 	attack_sound = "punch"
 	self_weight = 250
 

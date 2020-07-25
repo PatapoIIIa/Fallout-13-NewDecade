@@ -260,7 +260,7 @@
 		E.GiveTarget(owner) //so it starts running right away
 		E.Goto(owner, E.move_to_delay, E.minimum_distance)
 		owner.alpha = 0
-		owner.visible_message("<span class='danger'>[owner] ����� � [attack_text] � �����!</span>") //We pretend to be hit, since blocking it would stop the message otherwise
+		owner.visible_message("<span class='danger'>[owner] ранен с [attack_text] в грудь!</span>") //We pretend to be hit, since blocking it would stop the message otherwise
 		spawn(40)
 			owner.alpha = initial(owner.alpha)
 		reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
@@ -330,8 +330,8 @@
 	return
 
 /obj/item/clothing/suit/stealth/stealthsuit
-	name = "Chinese Stealth Suit"
-	desc = "A form-fitting armor suit complete with an active stealth field that can be triggered at the press of a button."
+	name = "Китайский стелс костюм"
+	desc = "Удобный стелс костюм, идеально для тайных операций."
 	icon_state = "stealthsuit"
 	item_state = "stealthsuit"
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_box,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/restraints/handcuffs,/obj/item/weapon/tank/internals,/obj/item/weapon/stock_parts/cell)
@@ -340,8 +340,8 @@
 	armor = list(melee = 10, bullet = 10, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 10, fire = 100, acid = 100)
 	strip_delay = 12
 	var/mob/living/carbon/human/user = null
-	var/charge = 300
-	var/max_charge = 300
+	var/charge = 50
+	var/max_charge = 50
 	var/on = 0
 	var/old_alpha = 120
 	actions_types = list(/datum/action/item_action/toggle)
@@ -395,6 +395,14 @@
 		else
 			charge = min(max_charge,charge + 50) //Charge in the dark
 		animate(user,alpha = Clamp(255 - charge,0,255),time = 5)
+
+/obj/item/clothing/suit/stealth/stealthsuit/hans
+	name = "Advanced Stealth Suit"
+	desc = "A form-fitting armor suit complete with an active stealth field that can be triggered at the press of a button."
+	icon_state = "stealth_hans"
+	item_state = "stealthsuit"
+	armor = list(melee = 15, bullet = 15, laser = 15,energy = 15, bomb = 30, bio = 40, rad = 60, fire = 100, acid = 100)
+
 
 //All of the armor below is mostly unused
 

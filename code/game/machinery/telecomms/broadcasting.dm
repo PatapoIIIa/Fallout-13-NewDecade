@@ -60,7 +60,7 @@
 						var/data, var/compression, var/list/level, var/freq, var/list/spans,
 						var/verb_say, var/verb_ask, var/verb_exclaim, var/verb_yell, var/key)
 
-	message = copytext(message, 1, MAX_BROADCAST_LEN)
+	message = copytext_char(message, 1, MAX_BROADCAST_LEN)
 
 	if(!message)
 		return
@@ -68,7 +68,7 @@
 	var/list/radios = list()
 	var/list/unencrypted_radios = list()
 
-	var/atom/movable/virtualspeaker/virt = PoolOrNew(/atom/movable/virtualspeaker,null)
+	var/atom/movable/virtualspeaker/virt = new /atom/movable/virtualspeaker(null)
 	virt.name = name
 	virt.job = job
 	virt.languages_spoken = AM.languages_spoken

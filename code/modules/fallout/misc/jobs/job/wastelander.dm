@@ -9,7 +9,7 @@
 	status = "none"
 	total_positions = -1
 	spawn_positions = -1
-	supervisors = "none"
+	supervisors = "никому"
 	selection_color = "#ece19d"
 	access = list()
 	minimal_access = list()
@@ -35,7 +35,7 @@
 	status = "none"
 	total_positions = -1
 	spawn_positions = -1 //does not matter for late join
-	supervisors = "������"
+	supervisors = "зову приключений"
 	selection_color = "#ece19d"
 	access = list()
 	minimal_access = list()
@@ -76,6 +76,7 @@
 	satchel = null
 	uniform = /obj/item/clothing/under/f13/mercadv
 	shoes = /obj/item/clothing/shoes/f13/tan
+//	head = /obj/item/clothing/head/hardhat/f13/headlamp
 
 //Mercenary
 
@@ -88,12 +89,12 @@
 	status = "none"
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "������"
+	supervisors = "кодексу чести наёмника"
 	selection_color = "#ece19d"
 	access = list()
 	minimal_access = list()
 	outfit = /datum/outfit/job/mercenary
-
+	whitelist_on = 0
 	allowed_packs = list("starter", "cigarettes", "follower", "team_fortress", "wardrobe", "vault13", "bard", "khan", "super_ten", "punk", "off", "madmax", "doom", "specops", "f76")
 
 	required_items = list(
@@ -144,11 +145,10 @@
 	suit = /obj/item/clothing/suit/f13/veteran
 	head = null
 	belt = /obj/item/weapon/storage/belt/military/army
-	weapon = /obj/item/weapon/gun/ballistic/shotgun/rifle
-	belt_contents = list(/obj/item/ammo_box/F13/m308 = 1, \
-		/obj/item/stack/medical/healingpowder = 2, \
-		/obj/item/weapon/reagent_containers/food/drinks/flask/survival = 1, \
-		/obj/item/device/radio = 1, \
+	weapon = /obj/item/weapon/gun/ballistic/automatic/pistol/f4/pipe_pistol
+	belt_contents = list(/obj/item/stack/medical/healingpowder = 2, \
+		/obj/item/weapon/reagent_containers/food/drinks/flask/survival = 1,
+		/obj/item/ammo_box/magazine/internal/cylinder/piperev = 2,
 		/obj/item/device/flashlight/torch/flare/green = 1)
 
 ///Tribeman///

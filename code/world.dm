@@ -13,7 +13,6 @@
 var/list/map_transition_config = MAP_TRANSITION_CONFIG
 
 /world/New()
-	check_for_cleanbot_bug()
 	map_ready = 1
 	world.log << "Map is ready."
 
@@ -59,9 +58,6 @@ var/list/map_transition_config = MAP_TRANSITION_CONFIG
 
 	data_core = new /datum/datacore()
 
-	spawn(10)
-		Master.Setup()
-
 	SortAreas()						//Build the list of all existing areas and sort it alphabetically
 	process_teleport_locs()			//Sets up the wizard teleport locations
 
@@ -71,8 +67,7 @@ var/list/map_transition_config = MAP_TRANSITION_CONFIG
 	map_name = "Unknown"
 	#endif
 
-
-	return
+	Master.Setup(10, FALSE)
 
 #define IRC_STATUS_THROTTLE 50
 var/last_irc_status = 0
@@ -186,13 +181,16 @@ var/last_irc_status = 0
 		else
 			return ircadminwho()
 
+#define CHAT_LANGUAGE 	1024
+#define TOGGLES_DEFAULT_CHAT (CHAT_LANGUAGE)
+
 
 /world/Reboot(var/reason, var/feedback_c, var/feedback_r, var/time)
 	if (reason == 1) //special reboot, do none of the normal stuff
 		if (usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
 			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
-		to_chat(world, "<span class='boldannounce'>Rebooting World immediately due to host request</span>")
+		to_chat(world, "<span class='boldannounce'>РџРµСЂРµР·Р°РїСѓСЃРє РІС‹Р·РІР°РЅ С…РѕСЃС‚РѕРј.</span>")
 		return ..(1)
 	var/delay
 	if(time)
@@ -200,9 +198,9 @@ var/last_irc_status = 0
 	else
 		delay = config.round_end_countdown * 10
 	if(ticker.delay_end)
-		to_chat(world, "<span class='boldannounce'>Администратор приостановил конец раунда.</span>")
+		to_chat(world, "<span class='boldannounce'>РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ РїСЂРёРѕСЃС‚Р°РЅРѕРІРёР» РєРѕРЅРµС† СЂР°СѓРЅРґР°.</span>")
 		return
-	to_chat(world, "<span class='boldannounce'>Перезапуск мира через [delay/10] [delay > 10 ? "seconds" : "second"]. [reason]</span>")
+	to_chat(world, "<span class='boldannounce'>РџРµСЂРµР·Р°РїСѓСЃРє РјРёСЂР° С‡РµСЂРµР· [delay/10] [delay > 10 ? "seconds" : "second"]. [reason]</span>")
 	var/round_end_sound_sent = FALSE
 	if(ticker.round_end_sound)
 		round_end_sound_sent = TRUE
@@ -226,7 +224,7 @@ var/last_irc_status = 0
 				Reboot("Map change timed out", time = 10)
 		return
 	feedback_set_details("[feedback_c]","[feedback_r]")
-	log_game("<span class='boldannounce'>Перезагрузка мира. [reason]</span>")
+	log_game("<span class='boldannounce'>РџРµСЂРµР·Р°РіСЂСѓР·РєР° РјРёСЂР°. [reason]</span>")
 	kick_clients_in_lobby("<span class='boldannounce'>The round came to an end with you in the lobby.</span>", 1) //second parameter ensures only afk clients are kicked
 #ifdef dellogging
 	var/log = file("data/logs/del.log")
@@ -259,6 +257,8 @@ var/last_irc_status = 0
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
 
+#undef CHAT_LANGUAGE
+#undef TOGGLES_DEFAULT_CHAT
 
 //Testing
 	if(config.shell_reboot)
@@ -278,7 +278,7 @@ var/inerror = 0
 
 	//this is done this way rather then replace text to pave the way for processing the runtime reports more thoroughly
 	//	(and because runtimes end with a newline, and we don't want to basically print an empty time stamp)
-	var/list/split = splittext(e.desc, "\n")
+	var/list/split = splittext_char(e.desc, "\n")
 	for (var/i in 1 to split.len)
 		if (split[i] != "")
 			split[i] = "\[[time2text(world.timeofday,"hh:mm:ss")]\][split[i]]"
@@ -321,7 +321,7 @@ var/inerror = 0
 		s += "<b>[config.server_name]</b> &#8212; "
 	s += "<b>[station_name()]</b>";
 	s += " ("
-	s += "<a href=\"https://discord.gg/K2Yxxvs\">" //Change this to wherever you want the hub to link to.
+	s += "<a href=\"https://discord.gg/AqWfCnF \">" //Change this to wherever you want the hub to link to.
 //	s += "[game_version]"
 	s += "Discord"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
 	s += "</a>"

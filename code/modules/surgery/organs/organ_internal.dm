@@ -12,8 +12,8 @@
 	var/vital = 0
 
 /obj/item/organ/Destroy()
-	..()
-	return QDEL_HINT_PUTINPOOL
+	. = ..()
+//	return QDEL_HINT_PUTINPOOL
 
 /obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0)
 	if(!iscarbon(M) || owner == M)
@@ -252,7 +252,7 @@
 #define COLD_GAS_DAMAGE_LEVEL_3 3
 
 /obj/item/organ/lungs
-	name = "lungs"
+	name = "лёгкие"
 	icon_state = "lungs"
 	zone = "chest"
 	slot = "lungs"
@@ -518,7 +518,7 @@
 #undef COLD_GAS_DAMAGE_LEVEL_3
 
 /obj/item/organ/tongue
-	name = "tongue"
+	name = "язык"
 	desc = "A fleshy muscle mostly used for lying."
 	icon_state = "tonguenormal"
 	zone = "mouth"
@@ -551,9 +551,9 @@
 /obj/item/organ/tongue/lizard/TongueSpeech(var/message)
 	var/regex/lizard_hiss = new("s+", "g")
 	var/regex/lizard_hiSS = new("S+", "g")
-	if(copytext(message, 1, 2) != "*")
-		message = lizard_hiss.Replace(message, "sss")
-		message = lizard_hiSS.Replace(message, "SSS")
+	if(copytext_char(message, 1, 2) != "*")
+		message = lizard_hiss.Replace_char(message, "sss")
+		message = lizard_hiSS.Replace_char(message, "SSS")
 	return message
 
 /obj/item/organ/tongue/fly
@@ -565,9 +565,9 @@
 /obj/item/organ/tongue/fly/TongueSpeech(var/message)
 	var/regex/fly_buzz = new("z+", "g")
 	var/regex/fly_buZZ = new("Z+", "g")
-	if(copytext(message, 1, 2) != "*")
-		message = fly_buzz.Replace(message, "zzz")
-		message = fly_buZZ.Replace(message, "ZZZ")
+	if(copytext_char(message, 1, 2) != "*")
+		message = fly_buzz.Replace_char(message, "zzz")
+		message = fly_buZZ.Replace_char(message, "ZZZ")
 	return message
 
 /obj/item/organ/tongue/abductor
@@ -602,14 +602,14 @@
 	say_mod = "moans"
 
 /obj/item/organ/tongue/zombie/TongueSpeech(var/message)
-	var/list/message_list = splittext(message, " ")
+	var/list/message_list = splittext_char(message, " ")
 	var/maxchanges = max(round(message_list.len / 1.5), 2)
 
 	for(var/i = rand(maxchanges / 2, maxchanges), i > 0, i--)
 		var/insertpos = rand(1, message_list.len - 1)
 		var/inserttext = message_list[insertpos]
 
-		if(!(copytext(inserttext, length(inserttext) - 2) == "..."))
+		if(!(copytext_char(inserttext, length(inserttext) - 2) == "..."))
 			message_list[insertpos] = inserttext + "..."
 
 		if(prob(20) && message_list.len > 3)
@@ -664,8 +664,18 @@
 	name = "chattering bone \"tongue\""
 	chattering = TRUE
 
+/obj/item/organ/tongue/robot
+	name = "robotic voicebox"
+	desc = "A voice synthesizer that can interface with organic lifeforms."
+	icon_state = "tonguerobot"
+	say_mod = "states"
+	attack_verb = list("beeped", "booped")
+
+/obj/item/organ/tongue/robot/get_spans()
+	return ..() | SPAN_ROBOT
+
 /obj/item/organ/appendix
-	name = "appendix"
+	name = "аппендицит"
 	icon_state = "appendix"
 	zone = "groin"
 	slot = "appendix"
@@ -702,11 +712,11 @@
 
 /mob/living/carbon/regenerate_organs()
 	if(!(NOBREATH in dna.species.species_traits) && !getorganslot("lungs"))
-		var/obj/item/organ/lungs/L = PoolOrNew(/obj/item/organ/lungs)
+		var/obj/item/organ/lungs/L = new()
 		L.Insert(src)
 
 	if(!(NOBLOOD in dna.species.species_traits) && !getorganslot("heart"))
-		var/obj/item/organ/heart/H = PoolOrNew(/obj/item/organ/heart)
+		var/obj/item/organ/heart/H = new()
 		H.Insert(src)
 
 	if(!getorganslot("tongue"))
@@ -714,10 +724,10 @@
 
 		for(var/tongue_type in dna.species.mutant_organs)
 			if(ispath(tongue_type, /obj/item/organ/tongue))
-				T = PoolOrNew(tongue_type)
+				T = new tongue_type()
 				T.Insert(src)
 
 		// if they have no mutant tongues, give them a regular one
 		if(!T)
-			T = PoolOrNew(T)
+			T = new()
 			T.Insert(src)

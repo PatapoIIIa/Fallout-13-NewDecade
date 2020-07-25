@@ -169,7 +169,10 @@
 	terminal.setDir(tdir)
 	terminal.master = src
 
-/obj/machinery/power/apc/initialize()
+/obj/machinery/power/apc/Initialize(mapload)
+	..()
+	if(!mapload)
+		return
 	has_electronics = 2 //installed and secured
 	// is starting with a power cell installed, create it and set its charge level
 	if(cell_type)
@@ -863,7 +866,7 @@
 		return
 	occupier = new /mob/living/silicon/ai(src, malf.laws, malf) //DEAR GOD WHY?
 	occupier.adjustOxyLoss(malf.getOxyLoss())
-	if(!findtext(occupier.name, "APC Copy"))
+	if(!findtext_char(occupier.name, "APC Copy"))
 		occupier.name = "[malf.name] APC Copy"
 	if(malf.parent)
 		occupier.parent = malf.parent

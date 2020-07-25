@@ -1,6 +1,6 @@
 /obj/item/weapon/storage/toolbox
-	name = "Ящик для инструментов"
-	desc = "Опасно. Очень Робустный."
+	name = "СЏС‰РёРє РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ"
+	desc = "РћРїР°СЃРЅРѕ. РћС‡РµРЅСЊ Р РѕР±СѓСЃС‚РЅС‹Р№."
 	icon_state = "red"
 	item_state = "toolbox_red"
 	flags = CONDUCT
@@ -19,7 +19,7 @@
 	return (BRUTELOSS)
 
 /obj/item/weapon/storage/toolbox/emergency
-	name = "Ящик для инструментов"
+	name = "СЏС‰РёРє РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ"
 	icon_state = "red"
 	item_state = "toolbox_red"
 
@@ -35,7 +35,7 @@
 	new /obj/item/device/radio/off(src)
 
 /obj/item/weapon/storage/toolbox/mechanical
-	name = "Ящик для инструментов механика"
+	name = "СЏС‰РёРє РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РјРµС…Р°РЅРёРєР°"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
 
@@ -45,11 +45,10 @@
 	new /obj/item/weapon/wrench(src)
 	new /obj/item/weapon/weldingtool(src)
 	new /obj/item/weapon/crowbar(src)
-	new /obj/item/device/analyzer(src)
 	new /obj/item/weapon/wirecutters(src)
 
 /obj/item/weapon/storage/toolbox/electrical
-	name = "Ящик для инструментов электрика"
+	name = "СЏС‰РёРє РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ СЌР»РµРєС‚СЂРёРєР°"
 	icon_state = "yellow"
 	item_state = "toolbox_yellow"
 
@@ -58,7 +57,6 @@
 	var/pickedcolor = pick("red","yellow","green","blue","pink","orange","cyan","white")
 	new /obj/item/weapon/screwdriver(src)
 	new /obj/item/weapon/wirecutters(src)
-	new /obj/item/device/t_scanner(src)
 	new /obj/item/weapon/crowbar(src)
 	new /obj/item/stack/cable_coil(src,30,pickedcolor)
 	new /obj/item/stack/cable_coil(src,30,pickedcolor)
@@ -68,7 +66,7 @@
 		new /obj/item/stack/cable_coil(src,30,pickedcolor)
 
 /obj/item/weapon/storage/toolbox/syndicate
-	name = "Подозрительно выглядящий ящик для инструметов"
+	name = "РїРѕРґРѕР·СЂРёС‚РµР»СЊРЅРѕ РІС‹РіР»СЏРґСЏС‰РёР№ СЏС‰РёРє РґР»СЏ РёРЅСЃС‚СЂСѓРјРµС‚РѕРІ"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
 	origin_tech = "combat=2;syndicate=1;engineering=2"
@@ -87,7 +85,7 @@
 	new /obj/item/clothing/gloves/combat(src)
 
 /obj/item/weapon/storage/toolbox/drone
-	name = "mechanical toolbox"
+	name = "СЏС‰РёРє РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РјРµС…Р°РЅРёРєР°"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
 
@@ -103,7 +101,7 @@
 	new /obj/item/device/multitool(src)
 
 /obj/item/weapon/storage/toolbox/brass
-	name = "brass box"
+	name = "Р±СЂРѕРЅР·РѕРІС‹Р№ СЏС‰РёРє"
 	desc = "A huge brass box with several indentations in its surface."
 	icon_state = "brassbox"
 	w_class = WEIGHT_CLASS_HUGE
@@ -112,7 +110,7 @@
 	storage_slots = 28
 	slowdown = 1
 	flags = HANDSLOW
-	attack_verb = list("robusted", "crushed", "smashed")
+	attack_verb = list("СЂРѕР±СѓСЃС‚РёС‚", "РєСЂСѓС€РёС‚", "Р±СЊС‘С‚")
 	var/proselytizer_type = /obj/item/clockwork/clockwork_proselytizer/scarab
 
 /obj/item/weapon/storage/toolbox/brass/prefilled/New()
@@ -134,3 +132,20 @@
 /obj/item/weapon/storage/toolbox/brass/prefilled/ratvar/admin
 	slab_type = /obj/item/clockwork/slab/debug
 	proselytizer_type = /obj/item/clockwork/clockwork_proselytizer/scarab/debug
+
+/obj/item/weapon/storage/toolbox/rusty
+	name = "СЂР¶Р°РІС‹Р№ СЏС‰РёРє РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ"
+	desc = "РћРїР°СЃРЅРѕ. РћС‡РµРЅСЊ СЂР¶Р°РІС‹Р№."
+	icon_state = "toolbox_rusty"
+	item_state = "toolbox_rusty"
+	materials = list(MAT_METAL = 300)
+	origin_tech = "combat=1;engineering=1"
+	attack_verb = list("РѕРіСЂРµРІР°РµС‚ СЏС‰РёРєРѕРј")
+
+/obj/item/weapon/storage/toolbox/rusty/New()
+	..()
+	new /obj/item/weapon/screwdriver(src)
+	new /obj/item/weapon/wrench(src)
+	new /obj/item/weapon/weldingtool(src)
+	new /obj/item/weapon/crowbar(src)
+	new /obj/item/weapon/wirecutters(src)

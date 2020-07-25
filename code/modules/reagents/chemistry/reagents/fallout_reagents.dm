@@ -71,7 +71,7 @@ datum/reagent/supstimpackium_oxy/on_mob_life(mob/living/M)
 
 
 /datum/reagent/mentats
-	name = "Mentats"
+	name = "Ментаты"
 	id = "mentats"
 	description = "Helps you, if you stupid. Possible..."
 	color = "#2222FF"
@@ -195,3 +195,21 @@ datum/reagent/supstimpackium_oxy/on_mob_life(mob/living/M)
 	metabolization_rate = 1.5
 	description = "warm salty-biterness with an edge of sweet"
 	water_factor = 3 * REAGENTS_METABOLISM
+
+/datum/reagent/medicine/antivenom
+	name = "Противоядие"
+	id = "antivenom"
+	description = "Помогает очистить организм от радиации. Передозировка вызывает асфиксию."
+	reagent_state = LIQUID
+	color = "#DCDCDC"
+	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	overdose_threshold = 30
+
+/datum/reagent/medicine/antivenom/on_mob_life(mob/living/carbon/M)
+	if(holder.has_reagent("cazador_venom"))
+		holder.remove_reagent("cazador_venom", 6)
+	if(holder.has_reagent("radscorpion_venom"))
+		holder.remove_reagent("radscorpion_venom", 5)
+	M.adjustToxLoss(-0.9*REM, 0)
+	..()
+	. = 1

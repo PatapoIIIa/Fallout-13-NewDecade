@@ -210,7 +210,7 @@ Proc for attack log creation, because really why not
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
 	if (progress)
-		progbar = PoolOrNew(/datum/progressbar, list (user, time, target))
+		progbar = new(user, time, target)
 
 	var/endtime = world.time+time
 	var/starttime = world.time
@@ -257,7 +257,7 @@ Proc for attack log creation, because really why not
 
 	var/datum/progressbar/progbar
 	if (progress)
-		progbar = PoolOrNew(/datum/progressbar, list (user, delay, target))
+		progbar = new(user, delay, target)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
@@ -276,8 +276,9 @@ Proc for attack log creation, because really why not
 			break
 
 		if(Tloc && (!target || Tloc != target.loc))
-			. = 0
-			break
+			if((Uloc != Tloc || Tloc != user) && !drifting)
+				. = 0
+				break
 
 		if(needhand)
 			//This might seem like an odd check, but you can still need a hand even when it's empty
@@ -310,7 +311,7 @@ Proc for attack log creation, because really why not
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
 	if(progress)
-		progbar = PoolOrNew(/datum/progressbar, list(user, time, targets[1]))
+		progbar = new(user, time, targets[1])
 
 	var/endtime = world.time + time
 	var/starttime = world.time
@@ -400,6 +401,6 @@ Proc for attack log creation, because really why not
 
 		if(isobserver(M) && follow_target)
 			var/link = FOLLOW_LINK(M, follow_target)
-			to_chat(M, "[link] [message]")
+			M << "[link] [message]"
 		else
-			to_chat(M, "[message]")
+			M << "[message]"

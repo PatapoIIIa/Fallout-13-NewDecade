@@ -1,37 +1,37 @@
 //pronoun procs, for getting pronouns without using the text macros that only work in certain positions
 //datums don't have gender, but most of their subtypes do!
 /datum/proc/p_they(capitalized, temp_gender)
-	. = "оно"
+	. = "РѕРЅРѕ"
 	if(capitalized)
 		. = capitalize(.)
 
 /datum/proc/p_their(capitalized, temp_gender)
-	. = "это"
+	. = "СЌС‚Рѕ"
 	if(capitalized)
 		. = capitalize(.)
 
 /datum/proc/p_them(capitalized, temp_gender)
-	. = "оно"
+	. = "РѕРЅРѕ"
 	if(capitalized)
 		. = capitalize(.)
 
 /datum/proc/p_have(temp_gender)
-	. = "имеет"
+	. = "РёРјРµРµС‚"
 
 /datum/proc/p_are(temp_gender)
-	. = "есть"
+	. = "РµСЃС‚СЊ"
 
 /datum/proc/p_were(temp_gender)
-	. = "был"
+	. = "Р±С‹Р»"
 
 /datum/proc/p_do(temp_gender)
-	. = "делает"
+	. = "РґРµР»Р°РµС‚"
 
 /datum/proc/p_theyve(capitalized, temp_gender)
-	. = p_they(capitalized, temp_gender) + "'" + copytext(p_have(temp_gender), 3)
+	. = p_they(capitalized, temp_gender) + "'" + copytext_char(p_have(temp_gender), 3)
 
 /datum/proc/p_theyre(capitalized, temp_gender)
-	. = p_they(capitalized, temp_gender) + "'" + copytext(p_are(temp_gender), 2)
+	. = p_they(capitalized, temp_gender) + "'" + copytext_char(p_are(temp_gender), 2)
 
 /datum/proc/p_s(temp_gender) //is this a descriptive proc name, or what?
 	. = "s"
@@ -40,45 +40,45 @@
 /client/p_they(capitalized, temp_gender)
 	if(!temp_gender)
 		temp_gender = gender
-	. = "они"
+	. = "РѕРЅРё"
 	switch(temp_gender)
 		if(FEMALE)
-			. = "она"
+			. = "РѕРЅР°"
 		if(MALE)
-			. = "он"
+			. = "РѕРЅ"
 	if(capitalized)
 		. = capitalize(.)
 
 /client/p_their(capitalized, temp_gender)
 	if(!temp_gender)
 		temp_gender = gender
-	. = "их"
+	. = "РёС…"
 	switch(temp_gender)
 		if(FEMALE)
-			. = "свой"
+			. = "СЃРІРѕР№"
 		if(MALE)
-			. = "свой"
+			. = "СЃРІРѕР№"
 	if(capitalized)
 		. = capitalize(.)
 
 /client/p_them(capitalized, temp_gender)
 	if(!temp_gender)
 		temp_gender = gender
-	. = "их"
+	. = "РёС…"
 	switch(temp_gender)
 		if(FEMALE)
-			. = "своих"
+			. = "СЃРІРѕРµР№"
 		if(MALE)
-			. = "своих"
+			. = "СЃРІРѕРµР№"
 	if(capitalized)
 		. = capitalize(.)
 
 /client/p_have(temp_gender)
 	if(!temp_gender)
 		temp_gender = gender
-	. = "имеет"
+	. = "РёРјРµРµС‚"
 	if(temp_gender == PLURAL || temp_gender == NEUTER)
-		. = "имеют"
+		. = "РёРјРµСЋС‚"
 
 /client/p_are(temp_gender)
 	if(!temp_gender)
@@ -90,16 +90,16 @@
 /client/p_were(temp_gender)
 	if(!temp_gender)
 		temp_gender = gender
-	. = "был"
+	. = "Р±С‹Р»"
 	if(temp_gender == PLURAL || temp_gender == NEUTER)
-		. = "были"
+		. = "Р±С‹Р»Рё"
 
 /client/p_do(temp_gender)
 	if(!temp_gender)
 		temp_gender = gender
-	. = "делает"
+	. = "РґРµР»Р°РµС‚"
 	if(temp_gender == PLURAL || temp_gender == NEUTER)
-		. = "делают"
+		. = "РґРµР»Р°СЋС‚"
 
 /client/p_s(temp_gender)
 	if(!temp_gender)
@@ -114,48 +114,48 @@
 	. = "it"
 	switch(temp_gender)
 		if(FEMALE)
-			. = "она"
+			. = "РѕРЅР°"
 		if(MALE)
-			. = "он"
+			. = "РѕРЅ"
 		if(PLURAL)
-			. = "это"
+			. = "РѕРЅРѕ"
 	if(capitalized)
 		. = capitalize(.)
 
 /mob/p_their(capitalized, temp_gender)
 	if(!temp_gender)
 		temp_gender = gender
-	. = "это"
+	. = "СЌС‚Рѕ"
 	switch(temp_gender)
 		if(FEMALE)
-			. = "её"
+			. = "РµС‘"
 		if(MALE)
-			. = "его"
+			. = "РµРіРѕ"
 		if(PLURAL)
-			. = "их"
+			. = "РёС…"
 	if(capitalized)
 		. = capitalize(.)
 
 /mob/p_them(capitalized, temp_gender)
 	if(!temp_gender)
 		temp_gender = gender
-	. = "it"
+	. = "РѕРЅРѕ"
 	switch(temp_gender)
 		if(FEMALE)
-			. = "её"
+			. = "РµС‘"
 		if(MALE)
-			. = "его"
+			. = "РµРіРѕ"
 		if(PLURAL)
-			. = "их"
+			. = "РёС…"
 	if(capitalized)
 		. = capitalize(.)
 
 /mob/p_have(temp_gender)
 	if(!temp_gender)
 		temp_gender = gender
-	. = "имеет"
+	. = "РёРјРµРµС‚"
 	if(temp_gender == PLURAL)
-		. = "имеют"
+		. = "РёРјРµСЋС‚"
 
 /mob/p_are(temp_gender)
 	if(!temp_gender)

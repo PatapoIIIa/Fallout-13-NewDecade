@@ -16,7 +16,7 @@
 
 /obj/structure/barricade/wooden/planks/examine()
 	..()
-	usr << "<span class='notice'>There are [planks] boards left.</span>"
+	usr << "<span class='notice'>Тут [planks].</span>"
 
 /obj/structure/barricade/wooden/planks/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/crowbar))
@@ -43,6 +43,6 @@
 	if(obj_integrity <= 0)
 		qdel(src)
 
-/obj/structure/barricade/wooden/planks/pregame/initialize() //Place these in the map maker to have a bit of randomization with boarded up windows/doors
+/obj/structure/barricade/wooden/planks/pregame/Initialize() //Place these in the map maker to have a bit of randomization with boarded up windows/doors
 	planks = rand(1,maxplanks)
 	..()

@@ -7,13 +7,7 @@
 	var/mob/living/carbon/human/patient = null
 	var/obj/structure/table/optable/table = null
 
-
-/obj/machinery/computer/operating/New()
-	..()
-	if(ticker)
-		find_table()
-
-/obj/machinery/computer/operating/initialize()
+/obj/machinery/computer/operating/Initialize()
 	find_table()
 
 /obj/machinery/computer/operating/proc/find_table()
@@ -34,7 +28,7 @@
 	if (humanUser.special.getPoint("i") + humanUser.skills.getPoint("medicine") < 14)
 		to_chat(user, "You too dumb or have not enough medicine skills for this console")
 		return
-	var/dat = ""
+	var/dat = {"<meta charset="UTF-8">"}
 	if(table)
 		dat += "<B>Patient information:</B><BR>"
 		if(table.check_patient())
@@ -51,7 +45,7 @@
 	popup.open()
 
 /obj/machinery/computer/operating/proc/get_patient_info()
-	var/dat = {"
+	var/dat = {"<meta charset="UTF-8">
 				<div class='statusLabel'>Patient:</div> [patient.stat ? "<span class='bad'>Non-Responsive</span>" : "<span class='good'>Stable</span>"]<BR>
 				<div class='statusLabel'>Blood Type:</div> [patient.dna.blood_type]
 

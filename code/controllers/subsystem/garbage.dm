@@ -309,7 +309,8 @@ var/datum/subsystem/garbage_collector/SSgarbage
 	set name = "Show qdel() Log"
 	set desc = "Render the qdel() log and display it"
 
-	var/dat = "<B>List of things that have been qdel()eted this round</B><BR><BR>"
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += "<B>List of things that have been qdel()eted this round</B><BR><BR>"
 
 	var/tmplist = list()
 	for(var/elem in SSgarbage.qdel_list)

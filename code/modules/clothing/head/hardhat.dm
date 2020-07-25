@@ -1,6 +1,6 @@
 /obj/item/clothing/head/hardhat
-	name = "hard hat"
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
+	name = "строительная каска"
+	desc = "Элемент строительной одежды для работы в опасных условиях и защиты головы. В комплекте с фонариком."
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
 	var/brightness_on = 4 //luminosity when on
@@ -69,12 +69,12 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/hardhat/atmos
+	name = "каска пожарного"
+	desc = "Каска пожарного, специально для тех случаев когда обычная расплавится."
 	icon_state = "hardhat0_atmos"
 	item_state = "hardhat0_atmos"
 	item_color = "atmos"
 	dog_fashion = null
-	name = "atmospheric technician's firefighting helmet"
-	desc = "A firefighter's helmet, able to keep the user cool in any situation."
 	flags = STOPSPRESSUREDMAGE | THICKMATERIAL
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	heat_protection = HEAD

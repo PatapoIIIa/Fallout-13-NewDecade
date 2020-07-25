@@ -54,8 +54,9 @@
 			world.log << "[src.c_tag] [src.x] [src.y] [src.z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]"
 	*/
 
-/obj/machinery/camera/initialize()
-	if(z == 1 && prob(3) && !start_active)
+/obj/machinery/camera/Initialize(mapload)
+	..()
+	if(mapload && z == 1 && prob(3) && !start_active)
 		toggle_cam()
 
 /obj/machinery/camera/Move()
@@ -213,11 +214,11 @@
 				if(U.name == "Unknown")
 					to_chat(AI, "<b>[U]</b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
 				else
-					to_chat(AI, "<b><a href='?src=\ref[AI];track=[html_encode_ru(U.name)]'>[U]</a></b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
-				AI.last_paper_seen = "<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
+					to_chat(AI, "<b><a href='?src=\ref[AI];track=[html_encode(U.name)]'>[U]</a></b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
+				AI.last_paper_seen = "<HTML><meta charset=UTF-8><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
 			else if (O.client && O.client.eye == src)
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
-				O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
+				O << browse(text("<HTML><meta charset=UTF-8><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 		return
 
 	else if(istype(W, /obj/item/device/camera_bug))

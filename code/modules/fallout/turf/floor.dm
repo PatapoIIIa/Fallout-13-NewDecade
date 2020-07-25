@@ -1,8 +1,8 @@
 //Fallout 13 general destructible floor directory
 
 /turf/open/floor/f13
-	name = "floor"
-
+	name = "РїРѕР»"
+	desc = "РЎР°РјС‹Р№ РѕР±С‹С‡РЅС‹Р№ РїРѕР»."
 	icon_state = "floor"
 	icon_regular_floor = "floor"
 	icon_plating = "plating"
@@ -12,6 +12,7 @@
 	ChangeTurf(baseturf)
 
 /turf/open/floor/f13/wood
+	name = "РґРµСЂРµРІСЏРЅРЅС‹Р№ РїРѕР»"
 	icon_state = "housewood1"
 	icon = 'icons/fallout/turfs/ground.dmi'
 	floor_tile = /obj/item/stack/tile/wood
@@ -44,7 +45,7 @@
 		playsound(src, C.usesound, 80, 1)
 		return
 
-///Вуна, ты костыльный пидорас, знай это. Удивительно что это вообще работает.
+///Р’СѓРЅР°, С‚С‹ РєРѕСЃС‚С‹Р»СЊРЅС‹Р№ РїРёРґРѕСЂР°СЃ, Р·РЅР°Р№ СЌС‚Рѕ. РЈРґРёРІРёС‚РµР»СЊРЅРѕ С‡С‚Рѕ СЌС‚Рѕ РІРѕРѕР±С‰Рµ СЂР°Р±РѕС‚Р°РµС‚.
 
 /turf/open/floor/f13/wood/stage
 	icon_state = "housewood_stage1"
@@ -57,3 +58,13 @@
 
 /turf/open/floor/f13/wood/housebase/sand/corner
 	icon_state = "housebase_sandcorner"
+
+/turf/open/floor/f13/wood_st
+	icon_state = "wood_st"
+	icon_plating = "plating"
+	name = "РїРѕР»"
+	icon = 'icons/fallout/turfs/ground.dmi'
+	floor_tile = /obj/item/stack/tile/wood
+	sheet_type = /obj/item/stack/sheet/mineral/wood
+	icon_plating = "housebase"
+	step_sounds = list("human" = "woodfootsteps")

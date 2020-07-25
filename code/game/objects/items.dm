@@ -158,11 +158,11 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 	..()
 	var/pronoun
 	if(src.gender == PLURAL)
-		pronoun = "They are"
+		pronoun = "Они"
 	else
-		pronoun = "���"
+		pronoun = "Это"
 	var/size = weightclass2text(src.w_class)
-	to_chat(user, "[pronoun] [size] �������.")//e.g. They are a small item. or It is a bulky item.
+	to_chat(user, "[pronoun] [size] предмет.")
 
 
 	if(user.research_scanner) //Mob has a research scanner active.
@@ -334,7 +334,7 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 
 /obj/item/proc/hit_reaction(mob/living/carbon/human/owner, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(prob(final_block_chance))
-		owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
+		owner.visible_message("<span class='danger'>[owner] блокирует [attack_text] используя [src]!</span>")
 		return 1
 	return 0
 
@@ -589,15 +589,17 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 /obj/item/burn()
 	if(!qdeleted(src))
 		var/turf/T = get_turf(src)
-		var/obj/effect/decal/cleanable/ash/A = new()
-		A.desc = "Looks like this used to be a [name] some time ago."
-		A.forceMove(T) //so the ash decal is deleted if on top of lava.
+		var/ash_type = /obj/effect/decal/cleanable/ash
+		if(w_class == WEIGHT_CLASS_HUGE || w_class == WEIGHT_CLASS_GIGANTIC)
+			ash_type = /obj/effect/decal/cleanable/ash/large
+		var/obj/effect/decal/cleanable/ash/A = new ash_type(T)
+		A.desc += "\nLooks like this used to be \an [name] some time ago."
 		..()
 
 /obj/item/acid_melt()
 	if(!qdeleted(src))
 		var/turf/T = get_turf(src)
-		var/obj/effect/decal/cleanable/molten_object/MO = new (T)
+		var/obj/effect/decal/cleanable/molten_object/MO = new(T)
 		MO.pixel_x = rand(-16,16)
 		MO.pixel_y = rand(-16,16)
 		MO.desc = "Looks like this was \an [src] some time ago."

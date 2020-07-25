@@ -41,19 +41,19 @@
 		return
 	var/client/C
 	if(istext(whom))
-		if(cmptext(copytext(whom,1,2),"@"))
+		if(cmptext(copytext_char(whom,1,2),"@"))
 			whom = findStealthKey(whom)
 		C = directory[whom]
 	else if(istype(whom,/client))
 		C = whom
 	if(!C)
 		if(holder)
-			to_chat(src, "<font color='red'>Ошибка: Admin-PM: Игрок вышел.</font>")
+			to_chat(src, "<font color='red'>РћС€РёР±РєР°: Admin-PM: РРіСЂРѕРє РІС‹С€РµР».</font>")
 		return
-	message_admins("[key_name_admin(src)] начал отвечать на вопрос игрока [key_name(C, 0, 0)].")
-	var/msg = input(src,"Message:", "Приватное сообщение для [key_name(C, 0, 0)]") as text|null
+	message_admins("[key_name_admin(src)] РЅР°С‡Р°Р» РѕС‚РІРµС‡Р°С‚СЊ РЅР° РІРѕРїСЂРѕСЃ РёРіСЂРѕРєР° [key_name(C, 0, 0)].")
+	var/msg = input(src,"Message:", "РџСЂРёРІР°С‚РЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ [key_name(C, 0, 0)]") as text|null
 	if (!msg)
-		message_admins("[key_name_admin(src)] отменил свой ответ для запроса [key_name(C, 0, 0)]")
+		message_admins("[key_name_admin(src)] РѕС‚РјРµРЅРёР» СЃРІРѕР№ РѕС‚РІРµС‚ РґР»СЏ Р·Р°РїСЂРѕСЃР° [key_name(C, 0, 0)]")
 		return
 	cmd_admin_pm(whom, msg)
 
@@ -67,7 +67,7 @@
 	var/client/C
 	var/irc = 0
 	if(istext(whom))
-		if(cmptext(copytext(whom,1,2),"@"))
+		if(cmptext(copytext_char(whom,1,2),"@"))
 			whom = findStealthKey(whom)
 		if(whom == "IRCKEY")
 			irc = 1
@@ -79,7 +79,7 @@
 		if(!ircreplyamount)	//to prevent people from spamming irc
 			return
 		if(!msg)
-			msg = input(src,"Message:", "Private message to Administrator") as text|null
+			msg = input(src,"РЎРѕРѕР±С‰РµРЅРёРµ:", "Р›РёС‡РЅРѕРµ РЎРѕРѕР±С‰РµРЅРёРµ РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ") as text|null
 
 		if(!msg)
 			return
@@ -91,14 +91,14 @@
 	else
 		if(!C)
 			if(holder)
-				to_chat(src, "<font color='red'>Ошибка: Admin-PM: Игрок вышел.</font>")
+				to_chat(src, "<font color='red'>РћС€РёР±РєР°: Admin-PM: РРіСЂРѕРє РІС‹С€РµР».</font>")
 			else
 				adminhelp(msg)	//admin we are replying to left. adminhelp instead
 			return
 
 		//get message text, limit it's length.and clean/escape html
 		if(!msg)
-			msg = input(src,"Message:", "Приватное сообщение для [key_name(C, 0, 0)]") as text|null
+			msg = input(src,"Message:", "РџСЂРёРІР°С‚РЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ [key_name(C, 0, 0)]") as text|null
 
 			if(!msg)
 				return
@@ -109,7 +109,7 @@
 
 			if(!C)
 				if(holder)
-					to_chat(src, "<font color='red'>Ошибка: Admin-PM: Игрок вышел.</font>")
+					to_chat(src, "<font color='red'>РћС€РёР±РєР°: Admin-PM: РРіСЂРѕРє РІС‹С€РµР».</font>")
 				else
 					adminhelp(msg)	//admin we are replying to has vanished, adminhelp instead
 				return
@@ -119,7 +119,7 @@
 
 	//clean the message if it's not sent by a high-rank admin
 //	if(!check_rights(R_SERVER|R_DEBUG,0)||irc)//no sending html to the poor bots
-	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
+	msg = sanitize(copytext_char(msg,1,MAX_MESSAGE_LEN))
 	if(!msg)
 		return
 
@@ -131,14 +131,14 @@
 	var/keywordparsedmsg = keywords_lookup(msg)
 
 	if(irc)
-		to_chat(src, "<font color='blue'>PM to-<b>Admins</b>: [rawmsg]</font>")
+		to_chat(src, "<font color='blue'>Р›РЎ РґР»СЏ-<b>РђРґРјРёРЅРѕРІ</b>: [rawmsg]</font>")
 		ircreplyamount--
-		send2irc("Reply: [ckey]",rawmsg)
+		send2irc("РћС‚РІРµС‚: [ckey]",rawmsg)
 	else
 		if(C.holder)
 			if(holder)	//both are admins
-				to_chat(C, "<font color='red'>Admin PM from-<b>[key_name(src, C, 1)]</b>: [keywordparsedmsg]</font>")
-				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(C, src, 1)]</b>: [keywordparsedmsg]</font>")
+				to_chat(C, "<font color='red'>Р›РЎ РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё РѕС‚-<b>[key_name(src, C, 1)]</b>: [keywordparsedmsg]</font>")
+				to_chat(src, "<font color='blue'>Р›РЎ РђРґРјРёРЅРёСЃС‚СЂР°С†РёРё РґР»СЏ-<b>[key_name(C, src, 1)]</b>: [keywordparsedmsg]</font>")
 
 			else		//recipient is an admin but sender is not
 				to_chat(C, "<font color='red'>Reply PM from-<b>[key_name(src, C, 1)]</b>: [keywordparsedmsg]</font>")
@@ -150,10 +150,10 @@
 
 		else
 			if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
-				to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
-				to_chat(C, "<font color='red'>Admin PM from-<b>[key_name(src, C, 0)]</b>: [msg]</font>")
-				to_chat(C, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
-				to_chat(src, "<font color='blue'>Admin PM to-<b>[key_name(C, src, 1)]</b>: [msg]</font>")
+				to_chat(C, "<font color='red' size='4'><b>-- РЎРѕРѕР±С‰РµРЅРёРµ РѕС‚ РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР° --</b></font>")
+				to_chat(C, "<font color='red'>Р›РЎ РѕС‚ РђРґРјРёРЅР°-<b>[key_name(src, C, 0)]</b>: [msg]</font>")
+				to_chat(C, "<font color='red'><i>РќР°Р¶РјРёС‚Рµ РЅР° РЅРёРєРЅРµР№Рј Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР° С‡С‚РѕР±С‹ РѕС‚РІРµС‚РёС‚СЊ.</i></font>")
+				to_chat(src, "<font color='blue'>Р›РЎ РґР»СЏ-<b>[key_name(C, src, 1)]</b>: [msg]</font>")
 
 				//always play non-admin recipients the adminhelp sound
 				to_chat(C, 'sound/effects/adminhelp.ogg')
@@ -178,7 +178,7 @@
 	if(irc)
 		log_admin("PM: [key_name(src)]->IRC: [rawmsg]")
 		for(var/client/X in admins)
-			to_chat(X, "<B><font color='blue'>PM: [key_name(src, X, 0)]-&gt;IRC:</B> \blue [keywordparsedmsg]</font>")//inform X
+			to_chat(X, "<B><font color='blue'>Р›РЎ: [key_name(src, X, 0)]-&gt;IRC:</B> \blue [keywordparsedmsg]</font>")//inform X
 
 	else
 		window_flash(C)
@@ -186,7 +186,7 @@
 		//we don't use message_admins here because the sender/receiver might get it too
 		for(var/client/X in admins)
 			if(X.key!=key && X.key!=C.key)	//check client/X is an admin and isn't the sender or recipient
-				to_chat(X, "<B><font color='blue'>PM: [key_name(src, X, 0)]-&gt;[key_name(C, X, 0)]:</B> \blue [keywordparsedmsg]</font>")//inform X
+				to_chat(X, "<B><font color='blue'>Р›РЎ: [key_name(src, X, 0)]-&gt;[key_name(C, X, 0)]:</B> \blue [keywordparsedmsg]</font>")//inform X
 
 
 
@@ -205,7 +205,7 @@
 	if(!stealthkey)
 		stealthkey = GenIrcStealthKey()
 
-	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
+	msg = sanitize(copytext_char(msg,1,MAX_MESSAGE_LEN))
 	if(!msg)
 		return "No message"
 
@@ -213,9 +213,9 @@
 	log_admin("IRC PM: [sender] -> [key_name(C)] : [msg]")
 	msg = emoji_parse(msg)
 
-	to_chat(C, "<font color='red' size='4'><b>-- Сообщение от администратора --</b></font>")
+	to_chat(C, "<font color='red' size='4'><b>-- РЎРѕРѕР±С‰РµРЅРёРµ РѕС‚ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР° --</b></font>")
 	to_chat(C, "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
-	to_chat(C, "<font color='red'><i>Нажмите на имя администратора чтобы ответить.</i></font>")
+	to_chat(C, "<font color='red'><i>РќР°Р¶РјРёС‚Рµ РЅР° РёРјСЏ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР° С‡С‚РѕР±С‹ РѕС‚РІРµС‚РёС‚СЊ.</i></font>")
 	window_flash(C)
 	//always play non-admin recipients the adminhelp sound
 	to_chat(C, 'sound/effects/adminhelp.ogg')

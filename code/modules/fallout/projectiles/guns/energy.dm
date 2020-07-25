@@ -23,6 +23,7 @@
 	item_state = "plasma-pistol"
 	desc = "Glock 86 Plasma Pistol. Designed by the Gaston Glock artificial intelligence. Shoots a small bolt of superheated plasma."
 	origin_tech = "combat=2;magnets=3;prewar=5"
+	ammo_type = list(/obj/item/ammo_casing/energy/f13plasma/pistol)
 	weapon_weight = WEAPON_LIGHT
 	w_class = WEIGHT_CLASS_NORMAL
 	burst_size = 1
@@ -41,6 +42,7 @@
 	item_state = "plasma-pistol"
 	desc = "Glock 86 Plasma Pistol. Designed by the Gaston Glock artificial intelligence. Shoots a small bolt of superheated plasma."
 	origin_tech = "combat=2;magnets=3;prewar=3"
+	fire_sound = 'sound/f13weapons/plasma_pistol.ogg'
 	weapon_weight = WEAPON_LIGHT
 	w_class = 2
 	burst_size = 1
@@ -66,6 +68,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/f13plasma/tri)
 	weapon_weight = WEAPON_HEAVY
 	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = SLOT_BACK
 	burst_size = 1
 	w_class = 3
 	fire_delay = 15
@@ -83,6 +86,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/f13plasma/turbo)
 	weapon_weight = WEAPON_HEAVY
 	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = SLOT_BACK
 	fire_delay = 15
 	w_class = 4
 	price = 1500
@@ -99,6 +103,7 @@
 	origin_tech = "combat=6;magnets=6;prewar=5"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/rcw)
 	burst_size = 2 //Fuck yeah
+	slot_flags = SLOT_BACK
 	w_class = 3
 	weapon_weight = WEAPON_HEAVY
 	w_class = WEIGHT_CLASS_BULKY
@@ -142,6 +147,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/rifle)
 	burst_size = 1
 	fire_delay = 3
+	slot_flags = SLOT_BACK
 	w_class = 3
 	weapon_weight = WEAPON_HEAVY
 	w_class = WEIGHT_CLASS_BULKY
@@ -209,3 +215,4 @@
 	price = 4000
 	energy_gun = 1
 	origin_tech = "combat=7;magnets=8;prewar=6"
+

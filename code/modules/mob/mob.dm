@@ -61,7 +61,7 @@ var/next_mob_id = 0
 	if(!client)
 		return
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
 		if(type & 1 && eye_blind )//Vision related
@@ -82,7 +82,7 @@ var/next_mob_id = 0
 	// voice muffling
 	if(stat == UNCONSCIOUS)
 		if(type & 2) //audio
-			to_chat(src, "<I>... �� �� ������ ��������� ���� ...</I>")
+			to_chat(src, "<I>... Вы не можете разобрать слов ...</I>")
 	else
 		to_chat(src, msg)
 
@@ -198,7 +198,7 @@ var/next_mob_id = 0
 			qdel(W)
 		else
 			if(!disable_warning)
-				to_chat(src, "<span class='warning'>�� �� ������ ����������� ���!</span>")//Only print if qdel_on_fail is false
+				to_chat(src, "<span class='warning'>Вы не можете экипировать это!</span>")//Only print if qdel_on_fail is false
 
 		return 0
 	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
@@ -297,7 +297,7 @@ var/next_mob_id = 0
 	for(var/mob/living/simple_animal/hostile/commanded/C in oview(src.loc))
 		C.target_point(A, src)
 
-	PoolOrNew(/obj/effect/overlay/temp/point, list(A,invisibility))
+	new /obj/effect/overlay/temp/point(A,invisibility)
 
 	return 1
 
@@ -341,7 +341,7 @@ var/next_mob_id = 0
 	if(ismob(AM))
 		var/mob/M = AM
 		if(!supress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+			visible_message("<span class='warning'>[src] хватает [M] пассивно!</span>")
 		if(!iscarbon(src))
 			M.LAssailant = null
 		else
@@ -411,7 +411,7 @@ var/next_mob_id = 0
 	set name = "Add Note"
 	set category = "IC"
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 	msg = sanitize(msg)
 
 	if(mind)
@@ -426,7 +426,7 @@ var/next_mob_id = 0
 	if (!( abandon_allowed ))
 		return
 	if ((stat != 2 || !( ticker )))
-		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
+		to_chat(usr, "<span class='boldnotice'>Вы должны умереть чтобы использовать это!</span>")
 		return
 
 	if(jobban_isbanned(src, "labor"))

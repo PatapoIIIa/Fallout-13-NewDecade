@@ -128,10 +128,10 @@ var/list/admin_verbs_server = list(
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
 	/client/proc/cmd_debug_del_all,
 	/client/proc/toggle_random_events,
-#if SERVERTOOLS
+//#if SERVERTOOLS
 	/client/proc/forcerandomrotate,
 	/client/proc/adminchangemap,
-#endif
+//#endif
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub
 
@@ -389,7 +389,7 @@ var/list/admin_verbs_hideable = list(
 	else
 		//ghostize
 		log_admin("[key_name(usr)] admin ghosted.")
-		message_admins("[key_name_admin(usr)] admin ghosted.")
+		message_admins("[key_name_admin(usr)] входит в режим обозрения.")
 		var/mob/body = mob
 		body.ghostize(1)
 		if(body && !body.key)
@@ -404,10 +404,10 @@ var/list/admin_verbs_hideable = list(
 	if(holder && mob)
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
-			to_chat(mob, "<span class='boldannounce'>����������� ���������.</span>")
+			to_chat(mob, "<span class='boldannounce'>Невидимость отключена.</span>")
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
-			to_chat(mob, "<span class='adminnotice'><b>����������� ��������. ������ �� �������� ������ �������.</b></span>")
+			to_chat(mob, "<span class='adminnotice'><b>Невидимость включена. Теперь вы невидимы словно призрак.</b></span>")
 
 /client/proc/player_panel_new()
 	set name = "Player Panel"
@@ -491,7 +491,7 @@ var/list/admin_verbs_hideable = list(
 			if(!new_key)
 				return
 			if(length(new_key) >= 26)
-				new_key = copytext(new_key, 1, 26)
+				new_key = copytext_char(new_key, 1, 26)
 			holder.fakekey = new_key
 			createStealthKey()
 			if(isobserver(mob))
@@ -596,7 +596,7 @@ var/list/admin_verbs_hideable = list(
 	var/list/spell_list = list()
 	var/type_length = length("/obj/effect/proc_holder/spell") + 2
 	for(var/A in spells)
-		spell_list[copytext("[A]", type_length)] = A
+		spell_list[copytext_char("[A]", type_length)] = A
 	var/obj/effect/proc_holder/spell/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spell_list
 	if(!S)
 		return
@@ -693,7 +693,7 @@ var/list/admin_verbs_hideable = list(
 
 	to_chat(src, "<span class='interface'>You are now a normal player.</span>")
 	log_admin("[src] deadmined themself.")
-	message_admins("[src] deadmined themself.")
+	message_admins("[src] снимает свои администраторские полномочия.")
 	feedback_add_details("admin_verb","DAS")
 
 /client/proc/readmin()
@@ -710,7 +710,7 @@ var/list/admin_verbs_hideable = list(
 	verbs -= /client/proc/readmin
 
 	to_chat(src, "<span class='interface'>You are now an admin.</span>")
-	message_admins("[src] re-adminned themselves.")
+	message_admins("[src] возвращает себе администраторские полномочия.")
 	log_admin("[src] re-adminned themselves.")
 	feedback_add_details("admin_verb","RAS")
 
@@ -724,7 +724,6 @@ var/list/admin_verbs_hideable = list(
 		var/list/candidates
 		var/turf/open/floor/tile
 		var/j,k
-		var/mob/living/carbon/human/mob
 
 		for (var/i = 1 to amount)
 			j = 100
@@ -744,9 +743,8 @@ var/list/admin_verbs_hideable = list(
 						while ((!tile || !istype(tile)) && --k > 0)
 
 						if (tile)
-							mob = new/mob/living/carbon/human/interactive(tile)
-
-							testing("Spawned test mob with name \"[mob.name]\" at [tile.x],[tile.y],[tile.z]")
+							new/mob/living/carbon/human/interactive(tile)
+							testing("Spawned test mob at [tile.x],[tile.y],[tile.z]")
 			while (!area && --j > 0)
 
 /client/proc/toggle_AI_interact()

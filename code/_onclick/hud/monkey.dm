@@ -3,12 +3,11 @@
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
 
-	using = new /obj/screen/act_intent()
-	using.icon = ui_style
-	using.icon_state = mymob.a_intent
-	using.screen_loc = ui_acti
-	static_inventory += using
-	action_intent = using
+	action_intent = new /obj/screen/act_intent()
+	action_intent.icon = ui_style
+	action_intent.icon_state = mymob.a_intent
+	action_intent.screen_loc = ui_acti
+	static_inventory += action_intent
 
 	using = new /obj/screen/mov_intent()
 	using.icon = ui_style
@@ -23,7 +22,7 @@
 
 	using = new /obj/screen/drop()
 	using.icon = ui_style
-	using.screen_loc = ui_drop_throw
+	using.screen_loc = ui_drop
 	static_inventory += using
 
 	build_hand_slots(ui_style)
@@ -78,7 +77,7 @@
 
 	throw_icon = new /obj/screen/throw_catch()
 	throw_icon.icon = ui_style
-	throw_icon.screen_loc = ui_drop_throw
+	throw_icon.screen_loc = ui_throw
 	hotkeybuttons += throw_icon
 
 	internals = new /obj/screen/internals()
@@ -90,7 +89,7 @@
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = ui_style
 	pull_icon.update_icon(mymob)
-	pull_icon.screen_loc = ui_pull_resist
+	pull_icon.screen_loc = ui_pull
 	static_inventory += pull_icon
 
 	lingchemdisplay = new /obj/screen/ling/chems()
@@ -109,7 +108,7 @@
 
 	using = new /obj/screen/resist()
 	using.icon = ui_style
-	using.screen_loc = ui_pull_resist
+	using.screen_loc = ui_resist
 	hotkeybuttons += using
 
 	for(var/obj/screen/inventory/inv in (static_inventory + toggleable_inventory))

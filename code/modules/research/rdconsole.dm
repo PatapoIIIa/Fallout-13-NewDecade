@@ -61,7 +61,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	return "ERROR: Report This"
 
 /proc/CallMaterialName(ID)
-	if (copytext(ID, 1, 2) == "$" && materials_list[ID])
+	if (copytext_char(ID, 1, 2) == "$" && materials_list[ID])
 		var/datum/material/material = materials_list[ID]
 		return material.name
 
@@ -105,9 +105,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	files = new /datum/research(src) //Setup the research data holder.
 	matching_designs = list()
 	if(!id)
-		for(var/obj/machinery/r_n_d/server/centcom/S in machines)
-			S.initialize()
-			break
+		fix_noid_research_servers()
 
 /*	Instead of calling this every tick, it is only being called when needed
 /obj/machinery/computer/rdconsole/process()
@@ -119,7 +117,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	//Loading a disk into it.
 	if(istype(D, /obj/item/weapon/disk))
 		if(t_disk || d_disk)
-			to_chat(user, "A disk is already loaded into the machine.")
+			to_chat(user, "Диск уже вставлен в этот аппарат.")
 			return
 
 		if(istype(D, /obj/item/weapon/disk/tech_disk))
@@ -132,7 +130,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(!user.drop_item())
 			return
 		D.forceMove(src)
-		to_chat(user, "<span class='notice'>You add the disk to the machine!</span>")
+		to_chat(user, "<span class='notice'>Вы вставили диск в аппарат!</span>")
 	else if(!(linked_destroy && linked_destroy.busy) && !(linked_lathe && linked_lathe.busy) && !(linked_imprinter && linked_imprinter.busy))
 		. = ..()
 	updateUsrDialog()
@@ -188,8 +186,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			if(t_disk)
 				if(!n)
 					for(var/tech in t_disk.tech_stored)
-						if(tech)
-							files.AddTech2Known(tech)
+						files.AddTech2Known(tech)
 				else
 					files.AddTech2Known(t_disk.tech_stored[n])
 				updateUsrDialog()
@@ -212,7 +209,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["copy_tech"]) //Copy some technology data from the research holder to the disk.
 		var/slot = text2num(href_list["copy_tech"])
-		t_disk.tech_stored[slot] = files.known_tech[href_list["copy_tech_ID"]]
+		var/datum/tech/T = files.known_tech[href_list["copy_tech_ID"]]
+		if(T)
+			t_disk.tech_stored[slot] = T.copy()
 		screen = 1.2
 
 	else if(href_list["updt_design"]) //Updates the research holder with design data from the design disk.
@@ -597,7 +596,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			var/datum/design/D = files.known_designs[v]
 			if(!(D.build_type & compare))
 				continue
-			if(findtext(D.name,href_list["to_search"]))
+			if(findtext_char(D.name,href_list["to_search"]))
 				matching_designs.Add(D)
 
 	updateUsrDialog()
@@ -624,7 +623,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if(first_use)
 		SyncRDevices()
 
-	var/dat = ""
+	var/dat = {"<meta charset="UTF-8">"}
 	files.RefreshResearch()
 	switch(screen) //A quick check to make sure you get the right screen when a device is disconnected.
 		if(2 to 2.9)

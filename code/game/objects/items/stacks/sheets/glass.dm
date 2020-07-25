@@ -9,12 +9,12 @@
  * Glass sheets
  */
 var/global/list/datum/stack_recipe/glass_recipes = list ( \
-//	new/datum/stack_recipe("directional window", /obj/structure/window/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("directional window", /obj/structure/window/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
 	new/datum/stack_recipe("fulltile window", /obj/structure/window/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE)
 )
 
 /obj/item/stack/sheet/glass
-	name = "glass"
+	name = "стекло"
 	desc = "HOLY SHEET! That is a lot of glass."
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
@@ -70,15 +70,15 @@ var/global/list/datum/stack_recipe/glass_recipes = list ( \
  * Reinforced glass sheets
  */
 var/global/list/datum/stack_recipe/reinforced_glass_recipes = list ( \
-//	new/datum/stack_recipe("windoor frame", /obj/structure/windoor_assembly, 5, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("windoor frame", /obj/structure/windoor_assembly, 5, time = 0, on_floor = TRUE, window_checks = TRUE), \
 	null, \
-//	new/datum/stack_recipe("directional reinforced window", /obj/structure/window/reinforced/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
-//	new/datum/stack_recipe("fulltile reinforced window", /obj/structure/window/reinforced/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE)
+	new/datum/stack_recipe("directional reinforced window", /obj/structure/window/reinforced/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("fulltile reinforced window", /obj/structure/window/reinforced/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE)
 )
 
 
 /obj/item/stack/sheet/rglass
-	name = "reinforced glass"
+	name = "армированое стекло"
 	desc = "Glass which seems to have rods or something stuck in them."
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
@@ -110,8 +110,8 @@ var/global/list/datum/stack_recipe/reinforced_glass_recipes = list ( \
 	..()
 
 /obj/item/weapon/shard
-	name = "shard"
-	desc = "A nasty looking shard of glass."
+	name = "осколок"
+	desc = "Выглядит опасно и остро. Очень остро..."
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "large"
 	w_class = WEIGHT_CLASS_TINY
@@ -199,8 +199,8 @@ var/global/list/datum/stack_recipe/reinforced_glass_recipes = list ( \
 				H.apply_damage(5, BRUTE, picked_def_zone)
 				if(cooldown < world.time - 10) //cooldown to avoid message spam.
 					if(!H.incapacitated())
-						H.visible_message("<span class='danger'>[H] steps in the broken glass!</span>", \
-								"<span class='userdanger'>You step in the broken glass!</span>")
+						H.visible_message("<span class='danger'>[H] наступает на битое стекло!</span>", \
+								"<span class='userdanger'>Вы наступили на битое стекло!</span>")
 					else
 						H.visible_message("<span class='danger'>[H] slides on the broken glass!</span>", \
 								"<span class='userdanger'>You slide on the broken glass!</span>")

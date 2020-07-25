@@ -424,7 +424,7 @@ var/bomb_set
 	sleep(100)
 
 	if(!core)
-		ticker.station_explosion_cinematic(3,"no_core")
+		ticker.station_explosion_cinematic(3,"no_core",src)
 		ticker.mode.explosion_in_progress = 0
 		return
 
@@ -443,19 +443,17 @@ var/bomb_set
 	else
 		off_station = NUKE_NEAR_MISS
 
-	if(ticker.mode && ticker.mode.name == "nuclear emergency")
+	if(istype(ticker.mode, /datum/game_mode/nuclear))
 		var/obj/docking_port/mobile/Shuttle = SSshuttle.getShuttle("syndicate")
-		ticker.mode:syndies_didnt_escape = (Shuttle && Shuttle.z == ZLEVEL_CENTCOM) ? 0 : 1
-		ticker.mode:nuke_off_station = off_station
-	ticker.station_explosion_cinematic(off_station,null)
+		var/datum/game_mode/nuclear/NM = ticker.mode
+		NM.syndies_didnt_escape = (Shuttle && Shuttle.z == ZLEVEL_CENTCOM) ? 0 : 1
+		NM.nuke_off_station = off_station
+
+	ticker.station_explosion_cinematic(off_station,null,src)
 	if(ticker.mode)
-		ticker.mode.explosion_in_progress = 0
-		if(ticker.mode.name == "nuclear emergency")
-			ticker.mode:nukes_left --
-		else
-			to_chat(world, "<B>Springfield was destoyed by the nuclear blast!</B>")
-		ticker.mode.station_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
-														//kinda shit but I couldn't  get permission to do what I wanted to do.
+		if(istype(ticker.mode, /datum/game_mode/nuclear))
+			var/datum/game_mode/nuclear/NM = ticker.mode
+			NM.nukes_left --
 		if(!ticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
 			spawn()
 				world.Reboot("Denwer destroyed by Nuclear Device.", "end_error", "nuke - unhandled ending")
@@ -543,8 +541,8 @@ This is here to make the tiles around the station mininuke change when it's arme
 	else
 		to_chat(get(src, /mob), "<span class='danger'>You can't help but feel that you just lost something back there...</span>")
 		var/turf/targetturf = relocate()
-		message_admins("кто-то спиздил диск \
-			[ADMIN_COORDJMP(diskturf)]. Телепортирую сюда \
+		message_admins("РєС‚Рѕ-С‚Рѕ СЃРїРёР·РґРёР» РґРёСЃРє \
+			[ADMIN_COORDJMP(diskturf)]. РўРµР»РµРїРѕСЂС‚РёСЂСѓСЋ СЃСЋРґР° \
 			[ADMIN_COORDJMP(targetturf)].")
 		log_game("[src] has been moved out of bounds in [COORD(diskturf)]. \
 			Moving it to [COORD(targetturf)].")

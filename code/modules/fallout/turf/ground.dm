@@ -6,7 +6,7 @@
 
 /turf/open/indestructible/ground
 	icon = 'icons/fallout/turfs/ground.dmi'
-	name = "\proper ground"
+	name = "\proper пол"
 	icon_state = "wasteland1"
 	intact = 1
 
@@ -45,7 +45,7 @@
 var/global/list/desertTurfEdgeCache
 
 /turf/open/indestructible/ground/desert
-	name = "desert"
+	name = "песок"
 	icon_state = "wasteland"
 	step_sounds = list("human" = "dirtfootsteps")
 	allowed_plants = list(/obj/item/seeds/broc, /obj/item/seeds/xander, /obj/item/seeds/agave, /obj/item/seeds/mutfruit, \
@@ -57,7 +57,7 @@ var/global/list/desertTurfEdgeCache
 	icon_state = "wasteland[rand(1,31)]"
 	..()
 /turf/open/indestructible/ground/dirt
-	name = "dirt"
+	name = "земля"
 	icon_state = "dirtfull"
 	step_sounds = list("human" = "dirtfootsteps")
 	allowed_plants = list(/obj/item/seeds/broc, /obj/item/seeds/xander, /obj/item/seeds/mutfruit, \
@@ -66,19 +66,19 @@ var/global/list/desertTurfEdgeCache
 	flags = CAN_HAVE_NATURE
 
 /turf/open/indestructible/ground/road
-	name = "\proper road"
+	name = "дорога"
 	icon_state = "innermiddle"
 	icon = 'icons/fallout/turfs/asphalt.dmi'
 	step_sounds = list("human" = "erikafootsteps")
 
 /turf/open/indestructible/ground/sidewalk
-	name = "\proper sidewalk"
+	name = "тротуар"
 	icon_state = "outermiddle"
 	icon = 'icons/fallout/turfs/sidewalk.dmi'
 	step_sounds = list("human" = "erikafootsteps")
 
 /turf/open/indestructible/ground/mountain
-	name = "cave"
+	name = "камень"
 	icon_state = "rockfloor1"
 	icon = 'icons/fallout/turfs/mining.dmi'
 	allowed_plants = list(/obj/item/seeds/glow)
@@ -89,7 +89,7 @@ var/global/list/desertTurfEdgeCache
 	icon_state = "rockfloor[rand(1,2)]"
 
 /turf/open/indestructible/ground/subway
-	name = "subway tunnel"
+	name = "туннель метро"
 	icon_state = "railsnone"
 	icon = 'icons/fallout/turfs/ground.dmi'
 
@@ -122,7 +122,7 @@ var/global/list/desertTurfEdgeCache
 	icon_state = "blankrailsleft"
 
 /turf/open/ruins
-	name = "ruins"
+	name = "руины"
 	desc = "It's just a pile of concrete rubble."
 	icon_state = "rubblefull"
 	icon = 'icons/fallout/turfs/ground.dmi'
@@ -141,7 +141,7 @@ var/global/list/desertTurfEdgeCache
 			ChangeTurf(baseturf)
 
 /turf/open/temple
-	name = "temple"
+	name = "храм"
 	desc = "It's temple floor."
 	icon_state = "temple"
 	icon = 'icons/fallout/turfs/ground.dmi'

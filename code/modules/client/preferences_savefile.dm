@@ -131,7 +131,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
 		return
-	path = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/[filename]"
+	path = "data/player_saves/[copytext_char(ckey,1,2)]/[ckey]/[filename]"
 
 /datum/preferences/proc/load_preferences()
 	if(!path)
@@ -185,7 +185,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Sanitize
 	ooccolor		= sanitize_ooccolor(sanitize_hexcolor(ooccolor, 6, 1, initial(ooccolor)))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
-	UI_style		= sanitize_inlist(UI_style, list("Fallout", "Midnight", "Plasmafire", "Retro", "Slimecore", "Operative", "Clockwork"), initial(UI_style))
+	UI_style		= sanitize_inlist(UI_style, list("Fallout New", "Fallout Vegas", "Vault-Tec", "Fallout", "Midnight", "Plasmafire", "Retro", "Slimecore", "Operative", "Clockwork"), initial(UI_style))
 	hotkeys			= sanitize_integer(hotkeys, 0, 1, initial(hotkeys))
 	tgui_fancy		= sanitize_integer(tgui_fancy, 0, 1, initial(tgui_fancy))
 	tgui_lock		= sanitize_integer(tgui_lock, 0, 1, initial(tgui_lock))
@@ -283,9 +283,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["skin_tone"]			>> skin_tone
 	S["hair_style_name"]	>> hair_style
 	S["facial_style_name"]	>> facial_hair_style
-//	S["underwear"]			>> underwear
-//	S["undershirt"]			>> undershirt
-//	S["socks"]				>> socks
+	S["underwear"]			>> underwear
+	S["undershirt"]			>> undershirt
+	S["socks"]				>> socks
 //	S["backbag"]			>> backbag
 	S["feature_mcolor"]					>> features["mcolor"]
 	S["feature_lizard_tail"]			>> features["tail_lizard"]
@@ -307,6 +307,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["cyborg_name"]		>> custom_names["cyborg"]
 	S["religion_name"]		>> custom_names["religion"]
 	S["deity_name"]			>> custom_names["deity"]
+	S["prefered_security_department"] >> prefered_security_department
 
 	//SKILLLSSSSSs by awwware
 	S["s_small_guns"]		>> SKILLS.small_guns
@@ -463,10 +464,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["skin_tone"] << skin_tone
 	S["hair_style_name"] << hair_style
 	S["facial_style_name"] << facial_hair_style
-//	S["underwear"] << underwear
-//	S["undershirt"] << undershirt
-//	S["socks"] << socks
-//	S["backbag"] << backbag
+	S["underwear"] << underwear
+	S["undershirt"] << undershirt
+	S["socks"] << socks
+	S["backbag"] << backbag
 	S["species"] << pref_species.id
 	S["feature_mcolor"] << features["mcolor"]
 	S["feature_lizard_tail"] << features["tail_lizard"]

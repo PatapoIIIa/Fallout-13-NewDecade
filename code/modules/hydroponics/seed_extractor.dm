@@ -139,7 +139,8 @@
 	if (stat)
 		return 0
 
-	var/dat = "<b>Stored seeds:</b><br>"
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += "<b>Stored seeds:</b><br>"
 
 	if (contents.len == 0)
 		dat += "<font color='red'>No seeds</font>"

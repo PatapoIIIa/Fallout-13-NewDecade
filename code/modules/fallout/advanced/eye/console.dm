@@ -1,6 +1,6 @@
 /obj/machinery/computer/eyebots
-	name = "eyebot console"
-	desc = "Used to access eyebots."
+	name = "консоль управления робоглазами"
+	desc = "Используется для управления робоглазами."
 	icon = 'icons/fallout/machines/terminals.dmi'
 	icon_state = "enclave"
 	icon_screen = "enclave_on"

@@ -17,6 +17,12 @@
 		return 0
 	return SSshuttle.points
 
+/obj/machinery/computer/stockexchange/attack_ai(mob/user)
+	return attack_hand(user)
+
+/obj/machinery/computer/stockexchange/attack_robot(mob/user)
+	return attack_hand(user)
+
 /obj/machinery/computer/stockexchange/attack_hand(var/mob/user)
 	if(..())
 		return
@@ -52,7 +58,7 @@ a.updated {
 	color: red;
 }
 </style>"}
-	var/dat = "<html><head><title>[station_name()] Stock Exchange</title>[css]</head><body>"
+	var/dat = "<html><meta charset=UTF-8><head><title>[station_name()] Stock Exchange</title>[css]</head><body>"
 
 	dat += "<span class='user'>Welcome, <b>[logged_in]</b></span><br><span class='balance'><b>Credits:</b> [balance()] </span><br>"
 	for (var/datum/stock/S in stockExchange.last_read)
@@ -180,7 +186,7 @@ a.updated {
 	var/amt = round(input(user, "How many shares? \n(Have: [avail], unit price: [price])", "Sell shares in [S.name]", 0) as num|null)
 	amt = min(amt, S.shareholders[logged_in])
 
-	if (!user || !(user in range(1, src)))
+	if (!usr || (!(usr in range(1, src)) && iscarbon(usr)))
 		return
 	if (!amt)
 		return
@@ -213,7 +219,7 @@ a.updated {
 	var/price = S.current_value
 	var/canbuy = round(b / price)
 	var/amt = round(input(user, "How many shares? \n(Available: [avail], unit price: [price], can buy: [canbuy])", "Buy shares in [S.name]", 0) as num|null)
-	if (!user || !(user in range(1, src)))
+	if (!user || (!(user in range(1, src)) && iscarbon(user)))
 		return
 	if (li != logged_in)
 		return
@@ -244,7 +250,7 @@ a.updated {
 	if (..())
 		return 1
 
-	if (usr in range(1, src))
+	if (!usr || (!(usr in range(1, src)) && iscarbon(usr)))
 		usr.machine = src
 
 	if (href_list["viewhistory"])
@@ -266,7 +272,7 @@ a.updated {
 			sell_some_shares(S, usr)
 
 	if (href_list["show_logs"])
-		var/dat = "<html><head><title>Stock Transaction Logs</title></head><body><h2>Stock Transaction Logs</h2><div><a href='?src=\ref[src];show_logs=1'>Refresh</a></div><br>"
+		var/dat = "<html><meta charset=UTF-8><head><title>Stock Transaction Logs</title></head><body><h2>Stock Transaction Logs</h2><div><a href='?src=\ref[src];show_logs=1'>Refresh</a></div><br>"
 		for(var/D in stockExchange.logs)
 			var/datum/stock_log/L = D
 			if(istype(L, /datum/stock_log/buy))
@@ -288,7 +294,7 @@ a.updated {
 		if (logged_in && logged_in != "")
 			var/list/LR = stockExchange.last_read[S]
 			LR[logged_in] = world.time
-		var/dat = "<html><head><title>News feed for [S.name]</title></head><body><h2>News feed for [S.name]</h2><div><a href='?src=\ref[src];archive=\ref[S]'>Refresh</a></div>"
+		var/dat = "<html><meta charset=UTF-8><head><title>News feed for [S.name]</title></head><body><h2>News feed for [S.name]</h2><div><a href='?src=\ref[src];archive=\ref[S]'>Refresh</a></div>"
 		dat += "<div><h3>Events</h3>"
 		var/p = 0
 		for (var/datum/stockEvent/E in S.events)

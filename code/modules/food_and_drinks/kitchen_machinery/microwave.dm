@@ -1,6 +1,6 @@
 /obj/machinery/microwave
-	name = "microwave oven"
-	desc = "Cooks and boils stuff."
+	name = "микроволновка"
+	desc = "Готовит и подогревает вещи. Или еду."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
 	layer = BELOW_OBJ_LAYER
@@ -346,8 +346,8 @@
 
 
 /obj/machinery/oven_old
-	name = "oven"
-	desc = "Cooks and boils stuff."
+	name = "печка"
+	desc = "Готовит еду. Выглядит ржавой но имеет всё-еще читаемую гравировку РобКо."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "oven_old"
 	layer = BELOW_OBJ_LAYER
@@ -534,7 +534,8 @@
 /obj/machinery/oven_old/interact(mob/user) // The microwave Menu
 	if(panel_open || !anchored)
 		return
-	var/dat = "<div class='statusDisplay'>"
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += "<div class='statusDisplay'>"
 	if(broken > 0)
 		dat += "ERROR: 09734014-A2379-D18746 --Bad memory<BR>Contact your operator or use command line to rebase memory ///git checkout {HEAD} -a commit pull --rebase push {*NEW HEAD*}</div>"    //Thats how all the git fiddling looks to me
 	else if(operating)

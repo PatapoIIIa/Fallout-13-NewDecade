@@ -619,7 +619,8 @@
 			to_chat(usr, "This mob has no ckey.")
 			return
 
-		var/dat = "<head><title>Job-Ban Panel: [key_name(M)]</title></head>"
+		var/dat = {"<meta charset="UTF-8">"}
+		dat += "<head><title>Job-Ban Panel: [key_name(M)]</title></head>"
 
 	/***********************************WARNING!************************************
 				      The jobban stuff looks mangled and disgusting
@@ -1236,7 +1237,7 @@
 
 		if(ticker && ticker.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
+		var/dat = {"<meta charset="UTF-8"><B>What mode do you wish to play?</B><HR>"}
 		for(var/mode in config.modes)
 			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
 		dat += {"<A href='?src=\ref[src];c_mode2=secret'>Secret</A><br>"}
@@ -1252,7 +1253,7 @@
 			return alert(usr, "The game has already started.", null, null, null, null)
 		if(master_mode != "secret")
 			return alert(usr, "The game mode has to be secret!", null, null, null, null)
-		var/dat = {"<B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
+		var/dat = {"<meta charset="UTF-8"><B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
 		for(var/mode in config.modes)
 			dat += {"<A href='?src=\ref[src];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
 		dat += {"<A href='?src=\ref[src];f_secret2=secret'>Random (default)</A><br>"}
@@ -1518,7 +1519,7 @@
 			return
 
 		L.revive(full_heal = 1, admin_revive = 1)
-		message_admins("<span class='danger'>������������� [key_name_admin(usr)] ������� / ������ [key_name_admin(L)]!</span>")
+		message_admins("<span class='danger'>Администратор [key_name_admin(usr)] излечил / оживил [key_name_admin(L)]!</span>")
 		log_admin("[key_name(usr)] healed / Revived [key_name(L)].")
 
 	else if(href_list["makeai"])
@@ -1653,15 +1654,15 @@
 		//Location
 		if(isturf(T))
 			if(isarea(T.loc))
-				location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z] in area <b>[T.loc]</b>)"
+				location_description = "([M.loc == T ? "по координатам " : "в [M.loc] по координатам "] [T.x], [T.y], [T.z] в зоне <b>[T.loc]</b>)"
 			else
-				location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z])"
+				location_description = "([M.loc == T ? "по координатам " : "в [M.loc] по координатам "] [T.x], [T.y], [T.z])"
 
 		//Job + antagonist
 		if(M.mind)
-			special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>[M.mind.special_role]</b></font>"
+			special_role_description = "Роль: <b>[M.mind.assigned_role]</b>; Антагонист: <font color='red'><b>[M.mind.special_role]</b></font>"
 		else
-			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>"
+			special_role_description = "Роль: <i>Mind datum missing</i> Антагонист: <i>Mind datum missing</i>"
 
 		//Health
 		if(isliving(M))
@@ -1669,12 +1670,12 @@
 			var/status
 			switch (M.stat)
 				if (0)
-					status = "Alive"
+					status = "Жив"
 				if (1)
-					status = "<font color='orange'><b>Unconscious</b></font>"
+					status = "<font color='orange'><b>Без сознания</b></font>"
 				if (2)
-					status = "<font color='red'><b>Dead</b></font>"
-			health_description = "Status = [status]"
+					status = "<font color='red'><b>Мёртв</b></font>"
+			health_description = "Статус = [status]"
 			health_description += "<BR>Oxy: [L.getOxyLoss()] - Tox: [L.getToxLoss()] - Fire: [L.getFireLoss()] - Brute: [L.getBruteLoss()] - Clone: [L.getCloneLoss()] - Brain: [L.getBrainLoss()] - Stamina: [L.getStaminaLoss()]"
 		else
 			health_description = "This mob type has no health to speak of."
@@ -1686,10 +1687,10 @@
 			else
 				gender_description = "<font color='red'><b>[M.gender]</b></font>"
 
-		to_chat(src.owner, "<b>Info about [M.name]:</b> ")
-		to_chat(src.owner, "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]")
-		to_chat(src.owner, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;")
-		to_chat(src.owner, "Location = [location_description];")
+		to_chat(src.owner, "<b>Информация об: [M.name]:</b> ")
+		to_chat(src.owner, "Тип моба = [M.type]; Пол = [gender_description] Урон = [health_description]")
+		to_chat(src.owner, "Имя = <b>[M.name]</b>; Настоящее имя = [M.real_name]; Имя разума = [M.mind?"[M.mind.name]":""]; Никнейм = <b>[M.key]</b>;")
+		to_chat(src.owner, "Местоположение = [location_description];")
 		to_chat(src.owner, "[special_role_description]")
 		to_chat(src.owner, "(<a href='?priv_msg=[M.ckey]'>PM</a>) (<A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[M]'>VV</A>) (<A HREF='?src=\ref[src];subtlemessage=\ref[M]'>SM</A>) (<A HREF='?src=\ref[src];adminplayerobservefollow=\ref[M]'>FLW</A>) (<A HREF='?src=\ref[src];secrets=check_antagonist'>CA</A>)")
 
@@ -1765,9 +1766,9 @@
 			return
 
 		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)].")
-		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)].")
+		message_admins("[key_name(H)] получает печеньку, выданную [key_name(src.owner)].")
 		feedback_inc("admin_cookies_spawned",1)
-		to_chat(H, "<span class='adminnotice'>Your prayers have been answered!! You received the <b>best cookie</b>!</span>")
+		to_chat(H, "<span class='adminnotice'>Ваши мольбы услышаны!! Вкусите эту <b>ПЕЧЕНЬКУ</b>!</span>")
 		to_chat(H, 'sound/effects/pray_chaplain.ogg')
 
 	else if(href_list["BlueSpaceArtillery"])
@@ -1932,7 +1933,7 @@
 			alert("Select fewer object types, (max 5).")
 			return
 
-		var/list/offset = splittext(href_list["offset"],",")
+		var/list/offset = splittext_char(href_list["offset"],",")
 		var/number = Clamp(text2num(href_list["object_count"]), 1, 100)
 		var/X = offset.len > 0 ? text2num(offset[1]) : 0
 		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
@@ -2025,8 +2026,8 @@
 
 	else if(href_list["ac_set_channel_name"])
 		src.admincaster_feed_channel.channel_name = stripped_input(usr, "Provide a Feed Channel Name.", "Network Channel Handler", "")
-		while (findtext(src.admincaster_feed_channel.channel_name," ") == 1)
-			src.admincaster_feed_channel.channel_name = copytext(src.admincaster_feed_channel.channel_name,2,lentext(src.admincaster_feed_channel.channel_name)+1)
+		while (findtext_char(src.admincaster_feed_channel.channel_name," ") == 1)
+			src.admincaster_feed_channel.channel_name = copytext_char(src.admincaster_feed_channel.channel_name,2,length(src.admincaster_feed_channel.channel_name)+1)
 		src.access_news_network()
 
 	else if(href_list["ac_set_channel_lock"])
@@ -2059,8 +2060,8 @@
 
 	else if(href_list["ac_set_new_message"])
 		src.admincaster_feed_message.body = adminscrub(input(usr, "Write your Feed story.", "Network Channel Handler", ""))
-		while (findtext(src.admincaster_feed_message.returnBody(-1)," ") == 1)
-			src.admincaster_feed_message.body = copytext(src.admincaster_feed_message.returnBody(-1),2,lentext(src.admincaster_feed_message.returnBody(-1))+1)
+		while (findtext_char(src.admincaster_feed_message.returnBody(-1)," ") == 1)
+			src.admincaster_feed_message.body = copytext_char(src.admincaster_feed_message.returnBody(-1),2,length(src.admincaster_feed_message.returnBody(-1))+1)
 		src.access_news_network()
 
 	else if(href_list["ac_submit_new_message"])
@@ -2106,14 +2107,14 @@
 
 	else if(href_list["ac_set_wanted_name"])
 		src.admincaster_wanted_message.criminal = adminscrub(input(usr, "Provide the name of the Wanted person.", "Network Security Handler", ""))
-		while(findtext(src.admincaster_wanted_message.criminal," ") == 1)
-			src.admincaster_wanted_message.criminal = copytext(admincaster_wanted_message.criminal,2,lentext(admincaster_wanted_message.criminal)+1)
+		while(findtext_char(src.admincaster_wanted_message.criminal," ") == 1)
+			src.admincaster_wanted_message.criminal = copytext_char(admincaster_wanted_message.criminal,2,length(admincaster_wanted_message.criminal)+1)
 		src.access_news_network()
 
 	else if(href_list["ac_set_wanted_desc"])
 		src.admincaster_wanted_message.body = adminscrub(input(usr, "Provide the a description of the Wanted person and any other details you deem important.", "Network Security Handler", ""))
-		while (findtext(src.admincaster_wanted_message.body," ") == 1)
-			src.admincaster_wanted_message.body = copytext(src.admincaster_wanted_message.body,2,lentext(src.admincaster_wanted_message.body)+1)
+		while (findtext_char(src.admincaster_wanted_message.body," ") == 1)
+			src.admincaster_wanted_message.body = copytext_char(src.admincaster_wanted_message.body,2,length(src.admincaster_wanted_message.body)+1)
 		src.access_news_network()
 
 	else if(href_list["ac_submit_wanted"])

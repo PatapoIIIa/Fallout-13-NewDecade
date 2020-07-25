@@ -2,9 +2,9 @@
 
 /datum/content_pack
 	var
-		name = "Чего блять?"
+		name = "Р§РµРіРѕ Р±Р»СЏС‚СЊ?"
 		id = "shit"
-		desc = "Something is wrong! Maybe you already have this content pack?"
+		desc = "Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє..."
 		list/items = list()
 		list/sorted_items = list()
 		list/roles = list()
@@ -35,20 +35,18 @@
 
 
 /datum/content_pack/starter
-	name = "Фоллаут 13: Набор новичка"
+	name = "Р¤РѕР»Р»Р°СѓС‚ 13: РЎС‚Р°СЂС‚РѕРІС‹Р№ РЅР°Р±РѕСЂ"
 	id = "starter"
-	desc = "<b>Доступен для: Всех фракций!</b><br>Любой может иметь эти ВАЖНЫЕ вещи, абсолютно бесплатно!<br><i>Важно: Чтобы взять оружие из этого набора, посмотрите слот карманов. Так-же, некоторые виды одежды могут быть недоступны, ввиду дресс-кода фракций. Роль обывателя(settler) имеет доступ ко всему что тут перечисленно.</i>"
+	desc = "<b>Р”РѕСЃС‚СѓРїРµРЅ РґР»СЏ: Р’СЃРµС… С„СЂР°РєС†РёР№!</b><br>Р›СЋР±РѕР№ РјРѕР¶РµС‚ РёРјРµС‚СЊ СЌС‚Рё Р’РђР–РќР«Р• РІРµС‰Рё, Р°Р±СЃРѕР»СЋС‚РЅРѕ Р±РµСЃРїР»Р°С‚РЅРѕ!<br><i>Р’Р°Р¶РЅРѕ: Р§С‚РѕР±С‹ РІР·СЏС‚СЊ РѕСЂСѓР¶РёРµ РёР· СЌС‚РѕРіРѕ РЅР°Р±РѕСЂР°, РїРѕСЃРјРѕС‚СЂРёС‚Рµ СЃР»РѕС‚ РєР°СЂРјР°РЅРѕРІ. РўР°Рє-Р¶Рµ, РЅРµРєРѕС‚РѕСЂС‹Рµ РІРёРґС‹ РѕРґРµР¶РґС‹ РјРѕРіСѓС‚ Р±С‹С‚СЊ РЅРµРґРѕСЃС‚СѓРїРЅС‹, РІРІРёРґСѓ РґСЂРµСЃСЃ-РєРѕРґР° С„СЂР°РєС†РёР№. Р РѕР»СЊ РѕР±С‹РІР°С‚РµР»СЏ(settler) РёРјРµРµС‚ РґРѕСЃС‚СѓРї РєРѕ РІСЃРµРјСѓ С‡С‚Рѕ С‚СѓС‚ РїРµСЂРµС‡РёСЃР»РµРЅРЅРѕ.</i>"
 	items = list(
 		/obj/item/clothing/shoes/f13/rag,
 		// Hats
-		/obj/item/clothing/head/f13/headscarf,
 		/obj/item/clothing/head/f13/pot,
 		// Goggles
 		/obj/item/clothing/glasses/regular,
 		// Uniforms
 		/obj/item/clothing/under/pants/f13/ghoul,
 		/obj/item/clothing/under/pants/f13/cloth,
-		/obj/item/clothing/under/pants/f13/caravan,
 		/obj/item/clothing/under/f13/rag,
 		/obj/item/clothing/under/f13/tribal,
 		/obj/item/clothing/under/f13/female/tribal,
@@ -60,27 +58,8 @@
 		/obj/item/clothing/suit/f13/mantle_liz,
 		// Items
 		/obj/item/weapon/reagent_containers/food/drinks/flask/survival,
-		/obj/item/weapon/dice/d6,
-		/obj/item/toy/cards/deck,
-		/obj/item/weapon/storage/fancy/cigarettes,
-		/obj/item/weapon/storage/fancy/cigarettes/tortoise,
-		/obj/item/weapon/storage/box/matches,
 		// Weapons
-		/obj/item/weapon/pipe,
-		/obj/item/weapon/tireiron,
-		/obj/item/weapon/pan,
-		/obj/item/weapon/kitchen/rollingpin,
-		/obj/item/weapon/kitchen/knife,
-		/obj/item/weapon/kitchen/knife/butcher,
-		/obj/item/weapon/scalpel,
-		/obj/item/weapon/shovel,
-		/obj/item/weapon/hammer,
-		/obj/item/weapon/crowbar,
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/wirecutters,
-		/obj/item/weapon/wrench,
-		/obj/item/weapon/weldingtool/experimental,
-		/obj/item/weapon/restraints/legcuffs/bola
+		/obj/item/weapon/pipe
 		)
 	price = -1
 
@@ -88,9 +67,9 @@
 		client.add_race("human", /datum/species/human)
 
 /datum/content_pack/cigarettes
-	name = "Сигареты"
+	name = "РЎРёРіР°СЂРµС‚С‹"
 	id = "cigarettes"
-	desc = "<b>Доступно для: Всех фракций!</b><br><i>Важно: Всемирная Организация Здравоохранения предупреждает - курение вредит здоровью. Вдыхание табачного дыма плохо сказывается на вашем здоровье!</i>"
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: Р’СЃРµС… С„СЂР°РєС†РёР№!</b><br><i>Р’Р°Р¶РЅРѕ: Р’СЃРµРјРёСЂРЅР°СЏ РћСЂРіР°РЅРёР·Р°С†РёСЏ Р—РґСЂР°РІРѕРѕС…СЂР°РЅРµРЅРёСЏ РїСЂРµРґСѓРїСЂРµР¶РґР°РµС‚ - РєСѓСЂРµРЅРёРµ РІСЂРµРґРёС‚ Р·РґРѕСЂРѕРІСЊСЋ. Р’РґС‹С…Р°РЅРёРµ С‚Р°Р±Р°С‡РЅРѕРіРѕ РґС‹РјР° РїР»РѕС…Рѕ СЃРєР°Р·С‹РІР°РµС‚СЃСЏ РЅР° РІР°С€РµРј Р·РґРѕСЂРѕРІСЊРµ!</i>"
 	items = list(
 		/obj/item/weapon/storage/fancy/rollingpapers,
 		/obj/item/weapon/storage/fancy/cigarettes/cigpack_myron,
@@ -102,12 +81,12 @@
 		/obj/item/clothing/mask/cigarette/cigar/havana,
 		/obj/item/weapon/lighter
 		)
-	price = 5000
+	price = 1000
 
 /datum/content_pack/team_fortress
-	name = "Набор шапок"
+	name = "РќР°Р±РѕСЂ С€Р°РїРѕРє"
 	id = "team_fortress"
-	desc = "<b>Доступно для: Нейтралов, Горожан и рейдеров!</b><br>Получите уникальнейший опыт игры в Фоллаут 13 с нашим новым набором шапок.<br>В этот набор входит целых пять (вау) дополнительных шапок!"
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РќРµР№С‚СЂР°Р»РѕРІ, Р“РѕСЂРѕР¶Р°РЅ Рё СЂРµР№РґРµСЂРѕРІ!</b><br>РџРѕР»СѓС‡РёС‚Рµ СѓРЅРёРєР°Р»СЊРЅРµР№С€РёР№ РѕРїС‹С‚ РёРіСЂС‹ РІ Р¤РѕР»Р»Р°СѓС‚ 13 СЃ РЅР°С€РёРј РЅРѕРІС‹Рј РЅР°Р±РѕСЂРѕРј С€Р°РїРѕРє.<br>Р’ СЌС‚РѕС‚ РЅР°Р±РѕСЂ РІС…РѕРґРёС‚ С†РµР»С‹С… РїСЏС‚СЊ (РІР°Сѓ) РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… С€Р°РїРѕРє!"
 	items = list(
 		/obj/item/clothing/head/soft/f13/baseball,
 		/obj/item/clothing/head/soft/f13/utility,
@@ -116,12 +95,12 @@
 		/obj/item/clothing/head/f13/stormchaser,
 		/obj/item/clothing/head/f13/gambler
 		)
-	price = 10000
+	price = 4000
 
 /datum/content_pack/wardrobe
-	name = "Высшая Мода"
+	name = "Р’С‹СЃС€Р°СЏ РњРѕРґР°"
 	id = "wardrobe"
-	desc = "<b>Доступно для: Нейтралов и Горожан!</b><br>Устали от того что ваш персонаж выглядит как какой-то бомж?<br>Этот набор разработан специально для вас! Новая мода пустоши 2255 года!<br>Данный набор содержит две пары обуви и целых семь замечательных костюмов.<br><i>Важно: Вы можете застегивать dark red wasteland wanderer jacket.</i>"
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РќРµР№С‚СЂР°Р»РѕРІ Рё Р“РѕСЂРѕР¶Р°РЅ!</b><br>РЈСЃС‚Р°Р»Рё РѕС‚ С‚РѕРіРѕ С‡С‚Рѕ РІР°С€ РїРµСЂСЃРѕРЅР°Р¶ РІС‹РіР»СЏРґРёС‚ РєР°Рє РєР°РєРѕР№-С‚Рѕ Р±РѕРјР¶?<br>Р­С‚РѕС‚ РЅР°Р±РѕСЂ СЂР°Р·СЂР°Р±РѕС‚Р°РЅ СЃРїРµС†РёР°Р»СЊРЅРѕ РґР»СЏ РІР°СЃ! РќРѕРІР°СЏ РјРѕРґР° РїСѓСЃС‚РѕС€Рё 2255 РіРѕРґР°!<br>Р”Р°РЅРЅС‹Р№ РЅР°Р±РѕСЂ СЃРѕРґРµСЂР¶РёС‚ РґРІРµ РїР°СЂС‹ РѕР±СѓРІРё Рё С†РµР»С‹С… СЃРµРјСЊ Р·Р°РјРµС‡Р°С‚РµР»СЊРЅС‹С… РєРѕСЃС‚СЋРјРѕРІ.<br><i>Р’Р°Р¶РЅРѕ: Р’С‹ РјРѕР¶РµС‚Рµ Р·Р°СЃС‚РµРіРёРІР°С‚СЊ dark red wasteland wanderer jacket.</i>"
 	items = list(
 		/obj/item/clothing/shoes/f13/explorer,
 		// Uniforms
@@ -138,12 +117,12 @@
 		/obj/item/clothing/suit/f13/puffer,
 		/obj/item/clothing/suit/toggle/labcoat/f13/wanderer
 		)
-	price = 20000
+	price = 5000
 
 /datum/content_pack/vault13
-	name = "Убежище 13"
+	name = "РЈР±РµР¶РёС‰Рµ 13"
 	id = "vault13"
-	desc = "<b>Доступно для: Нейтралов, Горожан и рейдеров!</b><br>Убежище 13 открылось очеь давно, но вы все еще можете примерить на себя их комбинезоны, ну или просто притворяться выходцем из убежища и ловить пули.</i>"
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РќРµР№С‚СЂР°Р»РѕРІ, Р“РѕСЂРѕР¶Р°РЅ Рё СЂРµР№РґРµСЂРѕРІ!</b><br>РЈР±РµР¶РёС‰Рµ 13 РѕС‚РєСЂС‹Р»РѕСЃСЊ РѕС‡РµСЊ РґР°РІРЅРѕ, РЅРѕ РІС‹ РІСЃРµ РµС‰Рµ РјРѕР¶РµС‚Рµ РїСЂРёРјРµСЂРёС‚СЊ РЅР° СЃРµР±СЏ РёС… РєРѕРјР±РёРЅРµР·РѕРЅС‹, РЅСѓ РёР»Рё РїСЂРѕСЃС‚Рѕ РїСЂРёС‚РІРѕСЂСЏС‚СЊСЃСЏ РІС‹С…РѕРґС†РµРј РёР· СѓР±РµР¶РёС‰Р° Рё Р»РѕРІРёС‚СЊ РїСѓР»Рё.</i>"
 	items = list(
 		/obj/item/clothing/under/f13/vault/v13,
 		/obj/item/weapon/reagent_containers/food/drinks/flask/vault13,
@@ -152,9 +131,9 @@
 	price = 15000
 
 /datum/content_pack/bard
-	name = "Музыкальные инструменты"
+	name = "РњСѓР·С‹РєР°Р»СЊРЅС‹Рµ РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹"
 	id = "bard"
-	desc = "<b>Доступны для: Всех фракций!</b><br>Russian General says, :<br><i>\"Я не люблю рок-н-ролл. Он слишком громкий! Мне нравится Фолк, мягкая, и приятная музыка. Полька, вальс, да что угодно!\"</i><br><b>Six String Samurai (1998)</b>"
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅС‹ РґР»СЏ: Р’СЃРµС… С„СЂР°РєС†РёР№!</b><br>Russian General says, <br><i>\"РЇ РЅРµ Р»СЋР±Р»СЋ СЂРѕРє-РЅ-СЂРѕР»Р». РћРЅ СЃР»РёС€РєРѕРј РіСЂРѕРјРєРёР№! РњРЅРµ РЅСЂР°РІРёС‚СЃСЏ Р¤РѕР»Рє, РјСЏРіРєР°СЏ, Рё РїСЂРёСЏС‚РЅР°СЏ РјСѓР·С‹РєР°. РџРѕР»СЊРєР°, РІР°Р»СЊСЃ, РґР° С‡С‚Рѕ СѓРіРѕРґРЅРѕ!\"</i><br><b>Six String Samurai (1998)</b>"
 	items = list(
 		/obj/item/device/harmonica,
 		/obj/item/device/instrument/guitar
@@ -162,7 +141,7 @@
 	price = 1000
 
 /datum/content_pack/doom
-	name = "Doom"
+	name = "Р”СѓРј Р“Р°Р№"
 	id = "doom"
 	desc = "<b>Available to: Neutral and Raider factions only!</b><br>Carefully selected items from Doom game.<br><i>Note: Union Aerospace Corporation welcomes you aboard a shuttle leaving Earth on the way to Mars. Please fasten your seatbelts and have a safe flight!</i>"
 	items = list(
@@ -171,14 +150,14 @@
 		/obj/item/clothing/under/pants/f13/doom,
 		/obj/item/clothing/gloves/f13/doom,
 		/obj/item/clothing/shoes/f13/doom,
-		/obj/item/weapon/mounted_chainsaw
+		/obj/item/weapon/twohanded/required/chainsaw
 		)
-	price = 9000000000
+	price = 85000
 
 /datum/content_pack/followers
-	name = "Набор Последователей"
+	name = "РќР°Р±РѕСЂ РџРѕСЃР»РµРґРѕРІР°С‚РµР»РµР№"
 	id = "follower"
-	desc = "<b>Доступно для: Всех фракций!</b> :Если все доктора на пустоши умрут, то кто вас будет лечить?"
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: Р’СЃРµС… С„СЂР°РєС†РёР№!</b> :Р•СЃР»Рё РІСЃРµ РґРѕРєС‚РѕСЂР° РЅР° РїСѓСЃС‚РѕС€Рё СѓРјСЂСѓС‚, С‚Рѕ РєС‚Рѕ РІР°СЃ Р±СѓРґРµС‚ Р»РµС‡РёС‚СЊ?"
 	items = list(
 		/obj/item/clothing/suit/toggle/labcoat/f13/followers,
 		/obj/item/clothing/under/f13/doctor,
@@ -190,25 +169,25 @@
 		/obj/item/weapon/storage/backpack/satchel/leather,
 		/obj/item/weapon/storage/firstaid
 	)
-	price = 9000
+	price = 4000
 
 /datum/content_pack/trooper_armor
-	name = "Набор брони НКР"
+	name = "РќР°Р±РѕСЂ Р±СЂРѕРЅРё РќРљР "
 	id = "trooper_armor"
-	desc = "<b>Доступно для: НКР!</b><br>Сформируйте собственный отряд со совими друзьями, с этим набором вы даже не нарушите устав НКР!<br>Этот набор включает в себя шесть дополнительных покрасок для брони:<br>White star insignia<br>Red star insignia<br>Holy cross insignia<br>Hear symbol insignia<br>Radiation symbol insignia<br>White skull insignia"
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РќРљР !</b><br>РЎС„РѕСЂРјРёСЂСѓР№С‚Рµ СЃРѕР±СЃС‚РІРµРЅРЅС‹Р№ РѕС‚СЂСЏРґ СЃРѕ СЃРІРѕРёРјРё РґСЂСѓР·СЊСЏРјРё, СЃ СЌС‚РёРј РЅР°Р±РѕСЂРѕРј РІС‹ РґР°Р¶Рµ РЅРµ РЅР°СЂСѓС€РёС‚Рµ СѓСЃС‚Р°РІ РќРљР !<br>Р­С‚РѕС‚ РЅР°Р±РѕСЂ РІРєР»СЋС‡Р°РµС‚ РІ СЃРµР±СЏ С€РµСЃС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… РїРѕРєСЂР°СЃРѕРє РґР»СЏ Р±СЂРѕРЅРё."
 	items = list(
 		/obj/item/clothing/suit/armor/f13/ncr/patriot,
 		/obj/item/clothing/suit/armor/f13/ncr/commie,
 		/obj/item/clothing/suit/armor/f13/ncr/preacher,
 		/obj/item/clothing/suit/armor/f13/ncr/lover,
-		/obj/item/clothing/suit/armor/f13/ncr/stalker,
+		/obj/item/clothing/suit/armor/f13/ncr/stalker, //cheeki breeki
 		/obj/item/clothing/suit/armor/f13/ncr/punisher
 		)
-	price = 10000
+	price = 4000
 
-/*
+
 /datum/content_pack/heavy_trooper
-	name = "NCR Heavy Infantry Corps"
+	name = "РќР°Р±РѕСЂ С‚СЏР¶РµР»РѕР№ РїРµС…РѕС‚С‹ РќРљР "
 	id = "heavy_trooper"
 	desc = "<b>Available to: NCR Trooper and NCR Sergeant roles only!</b><br>Become the NCR Heavy Trooper with a set of NCR salvaged power armor and a big gun!"
 	items = list(
@@ -218,13 +197,13 @@
 		/obj/item/weapon/gun/ballistic/automatic/rifle,
 		/obj/item/ammo_box/magazine/F13/m308
 		)
-	price = 180
-*/
+	price = 8000
+
 
 /datum/content_pack/khan
-	name = "Великие Ханы"
+	name = "Р’РµР»РёРєРёРµ РҐР°РЅС‹"
 	id = "khan"
-	desc = "<b>Доступно для: Нейтралы и Рейдеры!</b><br>Величие Великих Ханов будет восстановлено с этим замечательным набором!<br>Или посмотрите на это копью, с помощью которого вы можете насмерть затыкать таракана.<br><i>Важно: Вы можете застегивать Great Khan jacket .</i>"
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РќРµР№С‚СЂР°Р»С‹ Рё Р РµР№РґРµСЂС‹!</b><br>Р’РµР»РёС‡РёРµ Р’РµР»РёРєРёС… РҐР°РЅРѕРІ Р±СѓРґРµС‚ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃ СЌС‚РёРј Р·Р°РјРµС‡Р°С‚РµР»СЊРЅС‹Рј РЅР°Р±РѕСЂРѕРј!<br>РР»Рё РїРѕСЃРјРѕС‚СЂРёС‚Рµ РЅР° СЌС‚Рѕ РєРѕРїСЊСЋ, СЃ РїРѕРјРѕС‰СЊСЋ РєРѕС‚РѕСЂРѕРіРѕ РІС‹ РјРѕР¶РµС‚Рµ РЅР°СЃРјРµСЂС‚СЊ Р·Р°С‚С‹РєР°С‚СЊ С‚Р°СЂР°РєР°РЅР°.<br><i>Р’Р°Р¶РЅРѕ: Р’С‹ РјРѕР¶РµС‚Рµ Р·Р°СЃС‚РµРіРёРІР°С‚СЊ Great Khan jacket .</i>"
 	items = list(
 		/obj/item/clothing/head/helmet/f13/khan,
 		/obj/item/clothing/suit/toggle/labcoat/f13/khan,
@@ -233,12 +212,12 @@
 		/obj/item/weapon/twohanded/tribal_spear,
 		/obj/item/weapon/restraints/legcuffs/bola/tribal
 		)
-	price = 8000
+	price = 3000
 
 /datum/content_pack/punk
-	name = "Панк"
+	name = "РџР°РЅРє"
 	id = "punk"
-	desc = "<b>Доступно для: Нейтралы и Рейдеры!</b><br>Если вам кажется что в игре недостаточно металла, этот набор всё исправит.<br><i>ГОРШОК МЁРТВ!</i><br>"
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РќРµР№С‚СЂР°Р»С‹ Рё Р РµР№РґРµСЂС‹!</b><br>Р•СЃР»Рё РІР°Рј РєР°Р¶РµС‚СЃСЏ С‡С‚Рѕ РІ РёРіСЂРµ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РјРµС‚Р°Р»Р»Р°, СЌС‚РѕС‚ РЅР°Р±РѕСЂ РІСЃС‘ РёСЃРїСЂР°РІРёС‚.<br><i>Р“РћР РЁРћРљ РњРЃР РўР’!</i><br>"
 	items = list(
 		/obj/item/clothing/shoes/f13/military/diesel,
 		/obj/item/clothing/shoes/f13/military/female/diesel,
@@ -246,12 +225,12 @@
 		/obj/item/device/instrument/eguitar,
 		/obj/item/key/motorcycle
 		)
-	price = 8000
+	price = 5000
 
 /datum/content_pack/off
-	name = "Набор Бейсболиста"
+	name = "РќР°Р±РѕСЂ Р‘РµР№СЃР±РѕР»РёСЃС‚Р°"
 	id = "off"
-	desc = "<b>Доступно для: Нейтралы и Рейдеры!</b><br>Чательно восстановленные мухобои и форма грозных бойцов - Бейсболистов."
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РќРµР№С‚СЂР°Р»С‹ Рё Р РµР№РґРµСЂС‹!</b><br>РўС‰Р°С‚РµР»СЊРЅРѕ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Рµ РјСѓС…РѕР±РѕРё Рё С„РѕСЂРјР° РіСЂРѕР·РЅС‹С… Р±РѕР№С†РѕРІ - Р‘РµР№СЃР±РѕР»РёСЃС‚РѕРІ."
 	items = list(
 		/obj/item/clothing/head/soft/black,
 		/obj/item/clothing/under/f13/batter,
@@ -259,12 +238,12 @@
 		//obj/item/clothing/gloves/f13/baseball,
 		/obj/item/clothing/shoes/f13/fancy
 		)
-	price = 10000
+	price = 5000
 
 /datum/content_pack/madmax
-	name = "Безумный Макс"
+	name = "Р‘РµР·СѓРјРЅС‹Р№ РњР°РєСЃ"
 	id = "madmax"
-	desc = "<b>Доступно для: Нейтралы и Рейдеры!</b><br>Чательно отобранные предметы из вселенной Безумного Макса.<br><i>Важно: Steering wheel используется как ключи от машин.<br>В память о БартеНиксоне.</i>"
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РќРµР№С‚СЂР°Р»С‹ Рё Р РµР№РґРµСЂС‹!</b><br>РўС‰Р°С‚РµР»СЊРЅРѕ РѕС‚РѕР±СЂР°РЅРЅС‹Рµ РїСЂРµРґРјРµС‚С‹ РёР· РІСЃРµР»РµРЅРЅРѕР№ Р‘РµР·СѓРјРЅРѕРіРѕ РњР°РєСЃР°.<br><i>Р’Р°Р¶РЅРѕ: Steering wheel РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РєР°Рє РєР»СЋС‡Рё РѕС‚ РјР°С€РёРЅ.<br>Р’ РїР°РјСЏС‚СЊ Рѕ Р‘Р°СЂС‚Рµ РќРёРєСЃРѕРЅРµ.</i>"
 	items = list(
 		/obj/item/clothing/suit/f13/mfp,
 		/obj/item/clothing/suit/f13/mfp/raider,
@@ -275,41 +254,29 @@
 		)
 	price = 15000
 
-/datum/content_pack/trooper_armor
-	name = "Броня подразделений НКР"
-	id = "trooper_armor"
-	desc = "<b>Доступно для: Только для Соладат НКР и Сержанта!</b><br>Сформируйте ударный отряд вместе со своими друзьями, нося этот стильный сет брони!<br>В сет входят шесть покрасок для брони:<br>White star insignia<br>Red star insignia<br>Holy cross insignia<br>Hear symbol insignia<br>Radiation symbol insignia<br>White skull insignia"
-	items = list(
-		/obj/item/clothing/suit/armor/f13/ncr/patriot,
-		/obj/item/clothing/suit/armor/f13/ncr/commie,
-		/obj/item/clothing/suit/armor/f13/ncr/preacher,
-		/obj/item/clothing/suit/armor/f13/ncr/lover,
-		/obj/item/clothing/suit/armor/f13/ncr/stalker,
-		/obj/item/clothing/suit/armor/f13/ncr/punisher
-		)
-	price = 10000
-
 /datum/content_pack/glowing_ghoul
-	name = "Игровая раса: Светящийся Гуль"
+	name = "РРіСЂРѕРІР°СЏ СЂР°СЃР°: РЎРІРµС‚СЏС‰РёР№СЃСЏ Р“СѓР»СЊ"
 	id = "glowing_ghoul"
-	desc = "<b>Доступно для: Кого угодно, кроме анклавовцев!</b><br>Данный набор, позволяет вам создать светящегося гуля!"
-	price = 50000
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РљРѕРіРѕ СѓРіРѕРґРЅРѕ, РєСЂРѕРјРµ Р°РЅРєР»Р°РІРѕРІС†РµРІ!</b><br>Р”Р°РЅРЅС‹Р№ РЅР°Р±РѕСЂ, РїРѕР·РІРѕР»СЏРµС‚ РІР°Рј СЃРѕР·РґР°С‚СЊ СЃРІРµС‚СЏС‰РµРіРѕСЃСЏ РіСѓР»СЏ!"
+	price = 30000
 
 	on_set(client/client)
 		client.add_race("glowing ghoul", /datum/species/ghoul/glowing)
 
-/datum/content_pack/glowing_ghoul
-	name = "Игровая раса: Гуль"
+/*
+/datum/content_pack/ghoul
+	name = "РРіСЂРѕРІР°СЏ СЂР°СЃР°: Р“СѓР»СЊ"
 	id = "ghoul"
-	desc = "<b>Доступно для: Кого угодно, кроме анклавовцев!</b><br>Данный набор, позволяет вам создать гуля!"
-	price = 30000
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РљРѕРіРѕ СѓРіРѕРґРЅРѕ, РєСЂРѕРјРµ Р°РЅРєР»Р°РІРѕРІС†РµРІ!</b><br>Р”Р°РЅРЅС‹Р№ РЅР°Р±РѕСЂ, РїРѕР·РІРѕР»СЏРµС‚ РІР°Рј СЃРѕР·РґР°С‚СЊ РіСѓР»СЏ!"
+	price = 10000
+
 	on_set(client/client)
 		client.add_race("ghoul", /datum/species/ghoul)
-
+*/
 /datum/content_pack/specops
-	name = "Отряд Специального Назначения"
+	name = "РћС‚СЂСЏРґ РЎРїРµС†РёР°Р»СЊРЅРѕРіРѕ РќР°Р·РЅР°С‡РµРЅРёСЏ"
 	id = "specops"
-	desc = "<b>Доступно для: кто угодно!</b><br>Альфа 1-1, это браво, как слышите?.<br>."
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РєС‚Рѕ СѓРіРѕРґРЅРѕ!</b><br>РђР»СЊС„Р° 1-1, СЌС‚Рѕ Р±СЂР°РІРѕ, РєР°Рє СЃР»С‹С€РёС‚Рµ?<br>"
 	items = list(
 		/obj/item/clothing/gloves/f13/military,
 		/obj/item/clothing/shoes/f13/military,
@@ -317,46 +284,211 @@
 		/obj/item/clothing/under/syndicate/tacticool,
 		/obj/item/clothing/glasses/night
 		)
-	price = 85000
+	price = 75000 // Stalkeros: Рђ РЅРµ СЃР»РёС€РєРѕРј Р»Рё РґРѕС…СЂРµРЅР°? // iWuna: net, ne mnogo. //SanecMan: РџРѕРјРѕРµРјСѓ СЌС‚Рѕ РЅРµРјРѕРЅРіРѕ РјРЅРѕРіРѕ
 
 /datum/content_pack/f76
-	name = "Коллекционное Издание Фоллаут 13"
+	name = "РљРѕР»Р»РµРєС†РёРѕРЅРЅРѕРµ РР·РґР°РЅРёРµ Р¤РѕР»Р»Р°СѓС‚ 13"
 	id = "f76"
-	desc = "<b>Доступно для: кто угодно всего за 200$!</b><br>ЭТО ПРОСТО РАБОТАЕТ.<br>."
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РєС‚Рѕ СѓРіРѕРґРЅРѕ РІСЃРµРіРѕ Р·Р° 200$!</b><br>Р­РўРћ РџР РћРЎРўРћ Р РђР‘РћРўРђР•Рў.<br>"
 	items = list(/obj/item/weapon/storage/f76bag/bag)
-	price = 200
+	price = 20000
 
+/*
 /datum/content_pack/leaders
-	name = "Лидеры всех основных фракций"
+	name = "Р›РёРґРµСЂС‹ РІСЃРµС… РѕСЃРЅРѕРІРЅС‹С… С„СЂР°РєС†РёР№"
 	id = "leaders"
-	desc = "<b>Доступно для: кого угодно!</b><br>А кто бы не хотел быть лидером?.<br>."
+	desc = "<b>Р”РѕСЃС‚СѓРїРЅРѕ РґР»СЏ: РєРѕРіРѕ СѓРіРѕРґРЅРѕ!</b><br>Рђ РєС‚Рѕ Р±С‹ РЅРµ С…РѕС‚РµР» Р±С‹С‚СЊ Р»РёРґРµСЂРѕРј?.<br>."
 	roles = list(
 		/datum/job/gangleader,
 		/datum/job/mayor,
 		/datum/job/general,
-	//	/datum/job/legate,
+		/datum/job/legate,
 		/datum/job/elder,
-	//	/datum/job/colonel,
-	//	/datum/job/overseer
-		//datum/job/preacher
+		/datum/job/colonel,
+		/datum/job/overseer
+		/datum/job/preacher
 		)
-	price = 800000000
+	price = 100000
+*/
 
+///РѕС‚СЂРµР±СЊРµ///
 
-/datum/content_pack/enclave2
-	name = "Анклав: роль сержанта"
+/datum/content_pack/gang_leader
+	name = "РћС‚СЂРµР±СЊРµ: Р›РёРґРµСЂ Р±Р°РЅРґ"
+	id = "gang_lead"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё Р›РёРґРµСЂР° Р±Р°РЅРґ!</b><br>РЎС‚Р°СЃ Р‘РѕСЂРµС‚СЃРєРёР№ РјРёСЂР° СЃРµРіРѕ!<br>"
+	roles = list(/datum/job/gangleader)
+	price = 15000
+/*
+/datum/content_pack/slaver
+	name = "РћС‚СЂРµР±СЊРµ: Р Р°Р±РѕС‚РѕСЂРіРѕРІРµС†"
+	id = "slaver"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё Р Р°Р±РѕС‚РѕСЂРіРѕРІС†Р°!</b><br>РўРѕСЂРіРѕРІР»СЏ Р›Р®Р”Р¬РњР СЃРїР°СЃС‘С‚ РїСѓСЃС‚РѕС€Рё!<br>."
+	roles = list(/datum/job/slaver)
+	price = 7000
+
+/datum/content_pack/raider
+	name = "РћС‚СЂРµР±СЊРµ: Р РµР№РґРµСЂ"
+	id = "raider"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё Р РµР№РґРµСЂР°!</b><br>РЈРњР Р-РЈРњР Р-РЈРњР Р!<br>."
+	roles = list(/datum/job/raider)
+	price = 1500
+*/
+///legion///
+
+/datum/content_pack/leg_legate
+	name = "Р›РµРіРёРѕРЅ: Р›РµРіР°С‚"
+	id = "legion_legate"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё Р›РµРіР°С‚Р°!</b><br>РђРІРµ РјРЅРµ!<br>"
+	roles = list(/datum/job/legate)
+	price = 80000
+
+/datum/content_pack/leg_centurion
+	name = "Р›РµРіРёРѕРЅ: Р¦РµРЅС‚СѓСЂРёРѕРЅ"
+	id = "legion_centurion"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё Р¦РµРЅС‚СѓСЂРёРѕРЅР°!</b><br>Р”РµРіРµРЅРµСЂР°С‚С‹ РєР°Рє С‚С‹, РґРѕР»Р¶РЅС‹ РІРµСЃРµСЊ РЅР° РєСЂРµСЃС‚Рµ!<br>"
+	roles = list(/datum/job/centurion)
+	price = 60000
+
+/datum/content_pack/leg_vex
+	name = "Р›РµРіРёРѕРЅ: Р’РµРєСЃРёР»Р»СЏСЂРёР№"
+	id = "legion_vex"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё Р’РµРєСЃРёР»Р»СЏСЂРёСЏ!</b><br>Р¤Сѓ, РІРµС‰РµСЃС‚РІР°!<br>"
+	roles = list(/datum/job/vex)
+	price = 30000
+
+/datum/content_pack/leg_decan
+	name = "Р›РµРіРёРѕРЅ: Р”РµРєР°РЅСѓСЃ"
+	id = "legion_decane"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё Р”РµРєР°РЅСѓСЃР°!</b><br>РЎРњР•Р РўР¬ Р‘Р РђРўР¬РЇРњ Р‘РЈ... РќРµ С‚Р° СЂРµРїР»РёРєР°... РЎРњР•Р РўР¬ Р‘Р РђРўРЎРўР’РЈ!<br>"
+	roles = list(/datum/job/decan)
+	price = 20000
+/*
+/datum/content_pack/leg_prime
+	name = "Р›РµРіРёРѕРЅ: РџСЂР°Р№Рј"
+	id = "legion_prime"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё РџСЂР°Р№РјР°!</b><br>РЎРњР•Р РўР¬ РџР›РЈРўРћРљР РђРўРђРњ!<br>."
+	roles = list(/datum/job/prime)
+	price = 10000
+*/
+///bruhderhood of gay///
+
+/datum/content_pack/bs_elder
+	name = "Р‘СЂР°С‚СЃС‚РІРѕ: РЎС‚Р°СЂРµР№С€РёРЅР°"
+	id = "bs_elder"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё РЎС‚Р°СЂРµР№С€РёРЅС‹!</b><br>РўР•РҐРќРћР›РћР“РР!<br>"
+	roles = list(/datum/job/elder)
+	price = 80000
+
+/datum/content_pack/bs_paladin
+	name = "Р‘СЂР°С‚СЃС‚РІРѕ: РџР°Р»Р°РґРёРЅ"
+	id = "bs_paladin"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё РџР°Р»Р°РґРёРЅР°!</b><br>РўР•РҐРќРћР›РћР“РР!<br>"
+	roles = list(/datum/job/paladin)
+	price = 45000
+
+/datum/content_pack/bs_private
+	name = "Р‘СЂР°С‚СЃС‚РІРѕ: Р Р°РґРёСЃС‚ Рё Р С‹С†Р°СЂСЊ"
+	id = "bs_private"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё Р Р°РґРёСЃС‚Р° Рё Р С‹С†Р°СЂСЏ!</b><br>РўР•РҐРќРћР›РћР“РР!<br>"
+	roles = list(/datum/job/radist_bs, /datum/job/knight)
+	price = 25000
+
+/datum/content_pack/bs_scriber
+	name = "Р‘СЂР°С‚СЃС‚РІРѕ: РџРёСЃРµС†"
+	id = "bs_scribe"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё РџРёСЃС†Р°!</b><br>РўР•РҐРќРћР›РћР“РР!<br>"
+	roles = list(/datum/job/scriber)
+	price = 15000
+
+///РќРµР№С‚СЂР°Р»С‹ Рё РіРѕСЂРѕРґСЃРєРёРµ///
+
+/datum/content_pack/mayor
+	name = "Р“РѕСЂРѕРґСЃРєРёРµ: РњСЌСЂ"
+	id = "mayor"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё РњСЌСЂ!</b><br>РљС‚Рѕ РµСЃР»Рё РЅРµ СЏ?<br>"
+	roles = list(/datum/job/mayor)
+	price = 15000
+/*
+/datum/content_pack/sherif
+	name = "Р“РѕСЂРѕРґСЃРєРёРµ: РЁРµСЂРёС„"
+	id = "sherif"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё РЁРµСЂРёС„!</b><br>Р§С‚Рѕ Р·Р° С€Р»СЏРїРєР°? Р“СЂРѕРј-Р±Р°Р±Р°?<br>."
+	roles = list(/datum/job/sheriff)
+	price = 8000
+*/
+/datum/content_pack/trader
+	name = "Р“РѕСЂРѕРґСЃРєРёРµ: РўРѕСЂРіРѕРІРµС†"
+	id = "trader"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё РўРѕСЂРіРѕРІРµС†!</b><br>РўРѕСЂРіРѕРІР»СЏ СЃРїР°СЃС‘С‚ РїСѓСЃС‚РѕС€Рё!<br>"
+	roles = list(/datum/job/trader)
+	price = 5000
+/*
+/datum/content_pack/merc
+	name = "РќРµР№С‚СЂР°Р»С‹: РќР°С‘РјРЅРёРє"
+	id = "mercenary"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё РќР°С‘РјРЅРёРє!</b><br>Р’СЂРµРјСЏ РґРµРЅСЊРіРё!<br>."
+	roles = list(/datum/job/mercenary)
+	price = 3500
+
+/datum/content_pack/gunrunner
+	name = "РќРµР№С‚СЂР°Р»С‹: РћСЂСѓР¶РµР№РЅРёРє"
+	id = "gunrunners"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё РћСЂСѓР¶РµР№РЅРёРє!</b><br>РћСЂСѓР¶РёРµ - РЅР°С€Рµ РІСЃС‘!<br>."
+	roles = list(/datum/job/gunrunner)
+	price = 10000
+*/
+///РђРЅРєР»Р°РІ///
+
+/datum/content_pack/enclave_colonel
+	name = "РђРЅРєР»Р°РІ: СЂРѕР»СЊ РџРѕР»РєРѕРІРЅРёРєР°"
+	id = "enclave_colonel"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё РїРѕР»РєРѕРІРЅРёРєР° РђРЅРєР»Р°РІР°!</b><br>РЎР»СѓР¶Сѓ РђРјРµСЂРёРєРµ!<br>"
+	roles = list(/datum/job/colonel)
+	price = 80000
+
+/datum/content_pack/enclave_sergeant
+	name = "РђРЅРєР»Р°РІ: СЂРѕР»СЊ РЎРµСЂР¶Р°РЅС‚Р°"
 	id = "enclave_sergeant"
-	desc = "<b>Открывает доступ к роли сержанта Анклава!</b><br>И-ДИ-ОТ!<br>."
-	roles = list(
-	/datum/outfit/job/enclave_sergeant
-		)
-	price = 6500000
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё СЃРµСЂР¶Р°РЅС‚Р° РђРЅРєР»Р°РІР°!</b><br>Р-Р”Р-РћРў!<br>"
+	roles = list(/datum/job/enclave_sergeant)
+	price = 45000
 
 /datum/content_pack/enclave
-	name = "Анклав: роль рядового"
+	name = "РђРЅРєР»Р°РІ: СЂРѕР»СЊ Р Р°РґРёСЃС‚Р°"
 	id = "enclave_private"
-	desc = "<b>Открывает доступ к роли рядового Анклава!</b><br>ГДЕ ВАША СИЛОВАЯ БРОНЯ?.<br>."
-	roles = list(
-	/datum/job/enclave_private
-		)
-	price = 3500000
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё СЂСЏРґРѕРІРѕРіРѕ Рё СЂР°РґРёСЃС‚Р° РђРЅРєР»Р°РІР°!</b><br>Р“Р”Р• Р’РђРЁРђ РЎРР›РћР’РђРЇ Р‘Р РћРќРЇ?.<br>"
+	roles = list(/datum/job/enclave_radist)
+	price = 20000
+
+///РќРљР ///
+
+/datum/content_pack/ncr_general
+	name = "РќРљР : СЂРѕР»СЊ РіРµРЅРµСЂР°Р»Р°"
+	id = "ncr_general"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё РіРµРЅРµСЂР°Р»Р° РќРљР !</b><br>РџРѕС‡СѓРІСЃС‚РІСѓР№ РІРєСѓСЃ РґРµРјРѕРєСЂР°С‚РёРё!<br>"
+	roles = list(/datum/job/general)
+	price = 50000
+
+/datum/content_pack/ncr_sergeant
+	name = "РќРљР : СЂРѕР»СЊ СЃРµСЂР¶Р°РЅС‚Р°."
+	id = "ncr_sergeant"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё СЃРµСЂР¶Р°РЅС‚Р° РќРљР !</b><br>Р“Р”Р• Р’РђРЁРђ РЎРР›Рћ.. Рђ, РЅРµ С‚Р° СЂРµРїР»РёРєР°...<br>"
+	roles = list(/datum/job/ncr_sergeant)
+	price = 30000
+
+
+/datum/content_pack/ncr_ranger
+	name = "РќРљР : СЂРѕР»СЊ СЂРµР№РЅРґР¶РµСЂР°."
+	id = "ncr_ranger"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё СЂРµР№РЅРґР¶РµСЂР° РќРљР !</b><br>РЇ РЅРµ РґРѕР»Р¶РµРЅ С‚СѓС‚ РЅР°С…РѕРґРёС‚СЊСЃСЏ...<br>"
+	roles = list(/datum/job/vranger)
+	price = 20000
+/*
+/datum/content_pack/ncr_troop
+	name = "РќРљР : СЂРѕР»СЊ СЂСЏРґРѕРІРѕРіРѕ."
+	id = "ncr_private"
+	desc = "<b>РћС‚РєСЂС‹РІР°РµС‚ РґРѕСЃС‚СѓРї Рє СЂРѕР»Рё СЂСЏРґРѕРІРѕРіРѕ РќРљР !</b><br>РџРѕР±СЂРѕРґРёРІ РїРѕ РњРѕС…Р°РІРµ, РЅР°С‡РёРЅР°РµС€СЊ СЃРєСѓС‡Р°С‚СЊ РїРѕ СЏРґРµСЂРЅРѕР№ Р·РёРјРµ...<br>."
+	roles = list(/datum/job/trooper)
+	price = 10000
+*/

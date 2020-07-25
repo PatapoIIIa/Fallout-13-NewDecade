@@ -32,11 +32,10 @@
 		usr.try_interaction(src)
 
 /mob/living/carbon/human/try_interaction(var/mob/partner)
-
-	var/dat = "<B><HR><FONT size=3>Взаимодействие с [partner]...</FONT></B><HR>"
-
-	dat += "Вы:<br>[list_interaction_attributes()]<hr>"
-	dat += "Партнер:<br>[partner.list_interaction_attributes()]<hr>"
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += "<B><HR><FONT size=3>Р’Р·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ [partner]...</FONT></B><HR>"
+	dat += "Р’С‹:<br>[list_interaction_attributes()]<hr>"
+	dat += "РџР°СЂС‚РЅРµСЂ:<br>[partner.list_interaction_attributes()]<hr>"
 
 	make_interactions()
 	for(var/interaction_key in interactions)
@@ -49,11 +48,10 @@
 	popup.open()
 
 /mob/living/simple_animal/hostile/deathclaw/try_interaction(var/mob/partner)
-
-	var/dat = "<B><HR><FONT size=3>Взаимодействие с [partner]...</FONT></B><HR>"
-
-	dat += "Вы:<br>[list_interaction_attributes()]<hr>"
-	dat += "Партнер:<br>[partner.list_interaction_attributes()]<hr>"
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += "<B><HR><FONT size=3>Р’Р·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ [partner]...</FONT></B><HR>"
+	dat += "Р’С‹:<br>[list_interaction_attributes()]<hr>"
+	dat += "РџР°СЂС‚РЅРµСЂ:<br>[partner.list_interaction_attributes()]<hr>"
 
 	make_interactions()
 	for(var/interaction_key in interactions)

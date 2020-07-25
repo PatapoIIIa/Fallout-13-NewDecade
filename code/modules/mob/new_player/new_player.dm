@@ -24,28 +24,26 @@
 		forceMove(locate(1,1,1))
 
 /mob/new_player/proc/new_player_panel()
-
-	var/output = "<center><p><a href='byond://?src=\ref[src];show_preferences=1'>Настройка персонажа</A></p>"
+	var/output = ""
+	output = "<center><p><a href='byond://?src=\ref[src];show_preferences=1'>РќР°СЃС‚СЂРѕР№РєР° РїРµСЂСЃРѕРЅР°Р¶Р°</A></p>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 		if(ready)
-			output += "<p>\[ <b>Готов</b> | <a href='byond://?src=\ref[src];ready=0'>Не готов</a> \]</p>"
+			output += "<p>\[ <b>Р“РѕС‚РѕРІ</b> | <a href='byond://?src=\ref[src];ready=0'>РќРµ РіРѕС‚РѕРІ</a> \]</p>"
+			output += "<p><a href='byond://?src=\ref[src];show_content=1'>РљСѓРїРёС‚СЊ РєРѕРЅС‚РµРЅС‚!</a></p>"
 		else
-			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Готов</a> | <b>Не готов</b> \]</p>"
-
+			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Р“РѕС‚РѕРІ</a> | <b>РќРµ РіРѕС‚РѕРІ</b> \]</p>"
+			output += "<p><a href='byond://?src=\ref[src];show_content=1'>РђС‚РѕРјРЅС‹Р№ РјР°РіР°Р·РёРЅ!</a></p>"
 	else
-		//output += "<p><a href='byond://?src=\ref[src];manifest=1'>View Manifest</A></p>"
-		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Присоедениться!</A></p>"
+		output += "<p><a href='byond://?src=\ref[src];late_join=1'>РџСЂРёСЃРѕРµРґРµРЅРёС‚СЊСЃСЏ!</A></p>"
+		output += "<p><a href='byond://?src=\ref[src];show_content=1'>РљСѓРїРёС‚СЊ РєРѕРЅС‚РµРЅС‚!</a></p>"
 
-	output += "<p><a href='byond://?src=\ref[src];show_content=1'>Купить Контент!</a></p>"
-/*
-	output += "<p><a href='byond://?src=\ref[src];contribute=1'>Contribute</a></p>"
-*/
 
 /*
 	if(client && client.holder)
-		output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
+		output += "<p><a href='byond://?src=\ref[src];observe=1'>РќР°Р±Р»СЋРґР°С‚СЊ</A></p>"
 */
+
 
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
@@ -70,7 +68,7 @@
 	output += "</center>"
 
 	//src << browse(output,"window=playersetup;size=210x240;can_close=0")
-	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>Настройки нового персонажа</div>", 220, 265)
+	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ!</div>", 220, 265)
 	popup.set_window_options("can_close=0")
 	popup.set_content(output)
 	popup.open(0)
@@ -128,36 +126,28 @@
 
 	if(href_list["observe"])
 
-		if(!client.holder)
-			return 1
+		var/mob/dead/observer/observer = new()
+		spawning = 1
+		observer.started_as_observer = 1
+		close_spawn_windows()
+		var/obj/O = locate("landmark*Observer-Start")
+		to_chat(src, "<span class='notice'>Now teleporting.</span>")
+		if (O)
+			observer.forceMove(O.loc)
+		else
+			to_chat(src, "<span class='notice'>Teleporting failed. You should be able to use ghost verbs to teleport somewhere useful</span>")
+		observer.key = key
+		observer.client = client
+		observer.set_ghost_appearance()
+		if(observer.client && observer.client.prefs)
+			observer.real_name = observer.client.prefs.real_name
+			observer.name = observer.real_name
+		observer.update_icon()
+		observer.stopLobbySound()
+		qdel(mind)
 
-		if(alert(src,"Are you sure you wish to observe? You will not be able to play this round!","Player Setup","Yes","No") == "Yes")
-			if(!client)
-				return 1
-			var/mob/dead/observer/observer = new()
-
-			spawning = 1
-
-			observer.started_as_observer = 1
-			close_spawn_windows()
-			var/obj/O = locate("landmark*Observer-Start")
-			to_chat(src, "<span class='notice'>Now teleporting.</span>")
-			if (O)
-				observer.forceMove(O.loc)
-			else
-				to_chat(src, "<span class='notice'>Teleporting failed. You should be able to use ghost verbs to teleport somewhere useful</span>")
-			observer.key = key
-			observer.client = client
-			observer.set_ghost_appearance()
-			if(observer.client && observer.client.prefs)
-				observer.real_name = observer.client.prefs.real_name
-				observer.name = observer.real_name
-			observer.update_icon()
-			observer.stopLobbySound()
-			qdel(mind)
-
-			qdel(src)
-			return 1
+		qdel(src)
+		return 1
 
 	if(href_list["late_join"])
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
@@ -298,7 +288,7 @@
 			if(POLLTYPE_IRV)
 				if (!href_list["IRVdata"])
 					to_chat(src, "<span class='danger'>No ordering data found. Please try again or contact an administrator.</span>")
-				var/list/votelist = splittext(href_list["IRVdata"], ",")
+				var/list/votelist = splittext_char(href_list["IRVdata"], ",")
 				if (!vote_on_irv_poll(pollid, votelist))
 					to_chat(src, "<span class='danger'>Vote failed, please try again or contact an administrator.</span>")
 					return
@@ -423,15 +413,17 @@
 	var/mins = (mills % 36000) / 600
 	var/hours = mills / 36000
 
-	var/dat = "<div class='notice'>Длительность раунда: [round(hours)]ч [round(mins)]м</div>"
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += "<div class='notice'>Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ СЂР°СѓРЅРґР°: [round(hours)]С‡ [round(mins)]Рј</div>"
 
 	var/available_job_count = 0
 	for(var/datum/job/job in SSjob.occupations)
 		if(job && IsJobAvailable(job.title))
 			available_job_count++;
 
-	dat += "<div class='clearBoth'>Выберите одну из доступных ролей:</div><br>"
+	dat += "<div class='clearBoth'>Р’С‹Р±РµСЂРёС‚Рµ РѕРґРЅСѓ РёР· РґРѕСЃС‚СѓРїРЅС‹С… СЂРѕР»РµР№:</div><br>"
 	dat += "<div class='jobs'><div class='jobsColumn'>"
+
 	var/job_count = 0
 	for(var/datum/job/job in SSjob.occupations)
 		if(job && IsJobAvailable(job.title))
@@ -453,7 +445,7 @@
 	//src << browse(dat, "window=latechoices;size=300x640;can_close=1")
 
 	// Added the new browser window method
-	var/datum/browser/popup = new(src, "latechoices", "Выберите роль", 440, 500)
+	var/datum/browser/popup = new(src, "latechoices", "Р’С‹Р±РµСЂРёС‚Рµ СЂРѕР»СЊ", 440, 500)
 	popup.add_stylesheet("playeroptions", 'html/browser/playeroptions.css')
 	popup.set_content(dat)
 	popup.open(0) // 0 is passed to open so that it doesn't use the onclose() proc
@@ -474,16 +466,6 @@
 		mind.active = 0					//we wish to transfer the key manually
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 
-///FLUFF THINGS///
-/*
-/mob/living/carbon/human/OnSpawn
-	if(M.ckey == "DrNuke")
-		new /obj/item/weapon/gun/energy/disabler/fluff/angelofmercy(loc)
-	else if(M.ckey == "iWuna")
-		new /obj/item/weapon/gun/energy/disabler/fluff/angelofmercy(loc)
-*/
-///END OF FLUFF SPAWN
-
 
 	new_character.name = real_name
 	new_character.key = key		//Manually transfer the key to log them in
@@ -492,7 +474,7 @@
 	return new_character
 
 /mob/new_player/proc/ViewManifest()
-	var/dat = "<html><body>"
+	var/dat = "<html><meta charset=UTF-8><body>"
 	dat += "<h4>Crew Manifest</h4>"
 	dat += data_core.get_manifest(OOC = 1)
 

@@ -4,8 +4,8 @@
 //Handcuffs
 
 /obj/item/weapon/restraints/handcuffs
-	name = "handcuffs"
-	desc = "Use this to keep prisoners in line."
+	name = "наручники"
+	desc = "Идеальный предмет для сдерживания ваших жертв или заключенных."
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "handcuff"
@@ -88,8 +88,8 @@
 	cuffsound = 'sound/weapons/cablecuff.ogg'
 
 /obj/item/weapon/restraints/handcuffs/cable
-	name = "cable restraints"
-	desc = "Looks like some cables tied together. Could be used to tie something up."
+	name = "затяжки из кабеля"
+	desc = "Сплетение двух кабелей, хуже чем наручники, но всё еще выполняют свою задачу. Лучше так чем вообще никак."
 	icon_state = "cuff_red"
 	item_state = "coil_red"
 	materials = list(MAT_METAL=150, MAT_GLASS=75)
@@ -99,8 +99,8 @@
 	var/datum/robot_energy_storage/wirestorage = null
 
 /obj/item/weapon/restraints/handcuffs/cable/rope
-	name = "rope"
-	desc = "Looks like rope. Could be used to tie something up."
+	name = "верёвка"
+	desc = "Верёвка. Классический метод связывания."
 	icon = 'icons/fallout/objects/items.dmi'
 	icon_state = "rope"
 	item_state = "coil_orange"
@@ -220,8 +220,8 @@
 				to_chat(user, "<span class='warning'>You fail to handcuff [C]!</span>")
 
 /obj/item/weapon/restraints/handcuffs/cable/zipties
-	name = "zipties"
-	desc = "Plastic, disposable zipties that can be used to restrain temporarily but are destroyed after use."
+	name = "затяжки"
+	desc = "Пара проводов связанных в затяжку, это конечно не наручники, но свою задачу выполняют."
 	icon_state = "cuff_white"
 	item_state = "coil_white"
 	materials = list()
@@ -252,11 +252,11 @@
 	breakouttime = 300	//Deciseconds = 30s = 0.5 minute
 
 /obj/item/weapon/restraints/legcuffs/beartrap
-	name = "bear trap"
+	name = "капкан"
+	desc = "Нехитрая ловушка для хитрых охотников. Если ногу не сломает, то не даст жертве уйти далеко точно."
 	throw_speed = 1
 	throw_range = 1
 	icon_state = "beartrap"
-	desc = "A trap used to catch bears and other legged creatures."
 	origin_tech = "engineering=4"
 	var/armed = 0
 	var/trap_damage = 40
@@ -336,8 +336,8 @@
 	breakouttime = 20 // Cyborgs shouldn't have a strong restraint
 
 /obj/item/weapon/restraints/legcuffs/bola
-	name = "makeshift bola"
-	desc = "A restraining device designed to be thrown at the target. Upon connecting with said target, it will wrap around their legs, making it difficult for them to move quickly."
+	name = "самодельная бола"
+	desc = "Самопальная бола из веревки и камней, качество ужасное но лучше чем ничего..."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "bola"
 	breakouttime = 30//easy to apply, easy to break out of
@@ -365,22 +365,22 @@
 		C.Weaken(weaken)
 
 /obj/item/weapon/restraints/legcuffs/bola/raider
-	name = "raiding bola"
-	desc = "A classic bola used by raiders to weaken and capture their victims."
+	name = "бола"
+	desc = "Классическая бола, используется обычно рейдерами чтобы ловить своих жертв."
 	icon_state = "bola_r"
 	breakouttime = 50 //Slightly harder to break out of
 
 /obj/item/weapon/restraints/legcuffs/bola/tribal
-	name = "reinforced bola"
-	desc = "A strong bola, made by elderly tribal craftsman. It looks heavy, enough so that it could trip somebody."
+	name = "усиленная бола"
+	desc = "Прочное бола, сделанное умельцем. Выглядит достаточно крепко."
 	icon_state = "bola_t"
 	breakouttime = 100 //Way harder to break out of
 	throwforce = 10
 	weaken = 1
 
 /obj/item/weapon/restraints/legcuffs/bola/energy //For Security
-	name = "energy bola"
-	desc = "A specialized hard-light bola designed to ensnare fleeing criminals and aid in arrests."
+	name = "энергетическая бола"
+	desc = "Бола из чистой энергии. Это как вообще?."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "ebola"
 	hitsound = 'sound/weapons/taserhit.ogg'

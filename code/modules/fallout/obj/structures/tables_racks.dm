@@ -384,8 +384,8 @@
  */
 
 /obj/structure/table/optable
-	name = "operating table"
-	desc = "Used for advanced medical procedures."
+	name = "операционный стол"
+	desc = "Стол, предназначенный для проведения операций."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "optable"
 	buildstack = /obj/item/stack/sheet/mineral/silver
@@ -428,8 +428,8 @@
  * Racks
  */
 /obj/structure/rack
-	name = "rack"
-	desc = "Different from the Middle Ages version."
+	name = "стеллаж"
+	desc = "обычный стеллаж для хранения всяких вещей."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "rack"
 	density = 1
@@ -437,6 +437,7 @@
 	pass_flags = LETPASSTHROW //You can throw objects over this, despite it's density.
 	obj_integrity = 20
 	max_integrity = 20
+	layer = 2
 
 /obj/structure/rack/CanPass(atom/movable/mover, turf/target, height=0)
 	if(height==0) return 1
@@ -481,7 +482,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_KICK)
-	user.visible_message("<span class='danger'>[user] kicks [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message("<span class='danger'>[user] пинает [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
 	take_damage(rand(4,8), BRUTE, "melee", 1)
 
 
@@ -512,8 +513,8 @@
  */
 
 /obj/item/weapon/rack_parts
-	name = "rack parts"
-	desc = "Parts of a rack."
+	name = "детали для сборки стеллажа"
+	desc = "Набор разнообразных деталей для сборки стеллажа."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "rack_parts"
 	flags = CONDUCT
@@ -527,12 +528,12 @@
 		. = ..()
 
 /obj/item/weapon/rack_parts/attack_self(mob/user)
-	to_chat(user, "<span class='notice'>You start constructing a rack...</span>")
+	to_chat(user, "<span class='notice'>Вы начинаете собирать стеллаж...</span>")
 	if(do_after(user, 50, target = src, progress=TRUE))
 		if(!user.drop_item())
 			return
 		var/obj/structure/rack/R = new /obj/structure/rack(user.loc)
-		user.visible_message("<span class='notice'>[user] assembles \a [R].\
-			</span>", "<span class='notice'>You assemble \a [R].</span>")
+		user.visible_message("<span class='notice'>[user] собирает [R].\
+			</span>", "<span class='notice'>Вы собрали [R].</span>")
 		R.add_fingerprint(user)
 		qdel(src)

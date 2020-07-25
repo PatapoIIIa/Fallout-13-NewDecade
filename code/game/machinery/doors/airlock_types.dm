@@ -362,7 +362,7 @@
 
 /obj/machinery/door/airlock/cult/New()
 	..()
-	PoolOrNew(openingoverlaytype, src.loc)
+	new openingoverlaytype(src.loc)
 
 /obj/machinery/door/airlock/cult/canAIControl(mob/user)
 	return (iscultist(user) && !isAllPowerCut())
@@ -371,10 +371,10 @@
 	if(!density)
 		return 1
 	if(friendly || iscultist(M) || istype(M, /mob/living/simple_animal/shade) || isconstruct(M))
-		PoolOrNew(openingoverlaytype, loc)
+		new openingoverlaytype(loc)
 		return 1
 	else
-		PoolOrNew(/obj/effect/overlay/temp/cult/sac, loc)
+		new /obj/effect/overlay/temp/cult/sac(loc)
 		var/atom/throwtarget
 		throwtarget = get_edge_target_turf(src, get_dir(src, get_step_away(M, src)))
 		to_chat(M, pick(sound('sound/hallucinations/turn_around1.ogg',0,1,50), sound('sound/hallucinations/turn_around2.ogg',0,1,50)))
@@ -432,8 +432,8 @@
 /obj/machinery/door/airlock/clockwork/New()
 	..()
 	var/turf/T = get_turf(src)
-	PoolOrNew(/obj/effect/overlay/temp/ratvar/door, T)
-	PoolOrNew(/obj/effect/overlay/temp/ratvar/beam/door, T)
+	new /obj/effect/overlay/temp/ratvar/door(T)
+	new /obj/effect/overlay/temp/ratvar/beam/door(T)
 	change_construction_value(5)
 
 /obj/machinery/door/airlock/clockwork/Destroy()
@@ -571,3 +571,18 @@
 
 /obj/machinery/door/airlock/glass_large/narsie_act()
 	return
+
+///f13 airlocks///
+
+/obj/machinery/door/airlock/f13/bunker
+	name = "bunker airlock"
+	desc = "An olive green painted airlock.<br>The door mechanism itself is a complex mix of an electic engine and hydraulic motion.<br>This particular door looks like a pre-War military tech."
+	icon_state = "bunker"
+	overlays_file = 'icons/obj/doors/airlocks/bunker/overlays.dmi'
+	icon = 'icons/obj/doors/airlocks/bunker/bunker.dmi'
+	damage_deflection = 30
+	opacity = 1
+	explosion_block = 5
+	hackProof = 1
+	normal_integrity = 700
+	security_level = 1

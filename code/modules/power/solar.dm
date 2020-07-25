@@ -282,10 +282,10 @@
 	var/list/connected_panels = list()
 
 
-/obj/machinery/power/solar_control/New()
+/obj/machinery/power/solar_control/Initialize()
 	..()
-	if(ticker)
-		initialize()
+	if(powernet)
+		set_panels(currentdir)
 	connect_to_network()
 
 /obj/machinery/power/solar_control/Destroy()
@@ -334,12 +334,6 @@
 
 	set_panels(currentdir)
 	updateDialog()
-
-
-/obj/machinery/power/solar_control/initialize()
-	..()
-	if(!powernet) return
-	set_panels(currentdir)
 
 /obj/machinery/power/solar_control/update_icon()
 	cut_overlays()
@@ -474,9 +468,9 @@
 			connected_tracker.unset_control()
 
 	if(track==1 && trackrate) //manual tracking and set a rotation speed
-		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1�...
+		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1пїЅ...
 			targetdir = (targetdir + trackrate/abs(trackrate) + 360) % 360 	//... do it
-			nexttime += 36000/abs(trackrate) //reset the counter for the next 1�
+			nexttime += 36000/abs(trackrate) //reset the counter for the next 1пїЅ
 
 //rotates the panel to the passed angle
 /obj/machinery/power/solar_control/proc/set_panels(currentdir)

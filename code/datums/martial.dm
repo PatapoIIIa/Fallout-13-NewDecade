@@ -9,6 +9,8 @@
 	var/block_chance = 0 //Chance to block melee attacks using items while on throw mode.
 	var/restraining = 0 //used in cqc's disarm_act to check if the disarmed is being restrained and so whether they should be put in a chokehold or not
 	var/help_verb = null
+	var/no_guns = FALSE
+	var/allow_temp_override = TRUE //if this martial art can be overridden by temporary martial arts
 
 /datum/martial_art/proc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	return 0
@@ -26,7 +28,7 @@
 		restraining = 0
 	streak = streak+element
 	if(length(streak) > max_streak_length)
-		streak = copytext(streak,2)
+		streak = copytext_char(streak,2)
 	return
 
 /datum/martial_art/proc/basic_hit(mob/living/carbon/human/A,mob/living/carbon/human/D)
@@ -75,12 +77,14 @@
 	return 1
 
 /datum/martial_art/proc/teach(mob/living/carbon/human/H,make_temporary=0)
-	if(help_verb)
-		H.verbs += help_verb
 	if(make_temporary)
 		temporary = 1
-	if(H.martial_art && temporary)
+	if(temporary && H.martial_art)
+		if(!H.martial_art.allow_temp_override)
+			return
 		base = H.martial_art
+	if(help_verb)
+		H.verbs += help_verb
 	H.martial_art = src
 
 /datum/martial_art/proc/remove(mob/living/carbon/human/H)
@@ -248,6 +252,8 @@
 /datum/martial_art/the_sleeping_carp
 	name = "The Sleeping Carp"
 	deflection_chance = 100
+	no_guns = TRUE
+	allow_temp_override = FALSE
 	help_verb = /mob/living/carbon/human/proc/sleeping_carp_help
 
 /datum/martial_art/the_sleeping_carp/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -546,8 +552,8 @@
 			D.Jitter(2)
 			D.apply_damage(5, BRUTE)
 	else
-		D.visible_message("<span class='danger'>[A] попытался опрокинуть [D]!</span>", \
-							"<span class='userdanger'>[A] попытался опрокинуть [D]!</span>")
+		D.visible_message("<span class='danger'>[A] РїРѕРїС‹С‚Р°Р»СЃСЏ РѕРїСЂРѕРєРёРЅСѓС‚СЊ [D]!</span>", \
+							"<span class='userdanger'>[A] РїРѕРїС‹С‚Р°Р»СЃСЏ РѕРїСЂРѕРєРёРЅСѓС‚СЊ [D]!</span>")
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 	add_logs(A, D, "disarmed with CQC")
 	if(restraining && A.pulling == D)

@@ -77,8 +77,8 @@ var/datum/subsystem/ticker/ticker
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
 			timeLeft = config.lobby_countdown * 10
-			to_chat(world, "<span class='boldnotice'>Добро пожаловать на Пустоши!</span>")
-			to_chat(world, "Пожалуйста, настройте своего персонажа и нажмите \"Готов\". Игра начнется через [config.lobby_countdown] секунд.")
+			to_chat(world, "<span class='boldnotice'>Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° РџСѓСЃС‚РѕС€Рё!</span>")
+			to_chat(world, "РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РЅР°СЃС‚СЂРѕР№С‚Рµ СЃРІРѕРµРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р° Рё РЅР°Р¶РјРёС‚Рµ \"Р“РѕС‚РѕРІ\". РРіСЂР° РЅР°С‡РЅРµС‚СЃСЏ С‡РµСЂРµР· [config.lobby_countdown] СЃРµРєСѓРЅРґ.")
 			current_state = GAME_STATE_PREGAME
 			for(var/client/C in clients)
 				window_flash(C) //let them know lobby has opened up.
@@ -125,6 +125,12 @@ var/datum/subsystem/ticker/ticker
 				spawn(50)
 					world.Reboot("Round ended.", "end_proper", "proper completion")
 
+/datum/subsystem/ticker/proc/NukeCleanup()
+	if(mode.station_was_nuked)
+		world.Reboot("Station destroyed by Nuclear Device.", "end_proper", "nuke")
+	else
+		world.Reboot("Round ended.", "end_proper", "proper completion")
+
 /datum/subsystem/ticker/proc/setup()
 		//Create and announce mode
 	var/list/datum/game_mode/runnable_modes
@@ -149,7 +155,7 @@ var/datum/subsystem/ticker/ticker
 	else
 		mode = config.pick_mode(master_mode)
 		if(!mode.can_start())
-			to_chat(world, "<B>Не вышло запустить [mode.name].</B> Недостаточно игроков, [mode.required_players] players and [mode.required_enemies] eligible antagonists needed. Reverting to pre-game lobby.")
+			to_chat(world, "<B>РќРµ РІС‹С€Р»Рѕ Р·Р°РїСѓСЃС‚РёС‚СЊ [mode.name].</B> РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РёРіСЂРѕРєРѕРІ, [mode.required_players] players and [mode.required_enemies] eligible antagonists needed. Reverting to pre-game lobby.")
 			qdel(mode)
 			mode = null
 			SSjob.ResetOccupations()
@@ -175,8 +181,8 @@ var/datum/subsystem/ticker/ticker
 		for (var/datum/game_mode/M in runnable_modes)
 			modes += M.name
 		modes = sortList(modes)
-		to_chat(world, "<b>Игровой режим: секретно!\
-		Возможно:</B> [english_list(modes)]")
+		to_chat(world, "<b>РРіСЂРѕРІРѕР№ СЂРµР¶РёРј: СЃРµРєСЂРµС‚РЅРѕ!\
+		Р’РѕР·РјРѕР¶РЅРѕ:</B> [english_list(modes)]")
 	else
 		mode.announce()
 
@@ -195,7 +201,7 @@ var/datum/subsystem/ticker/ticker
 
 	Master.RoundStart()
 
-	to_chat(world, "<B><FONT color='#3c4438'>Все последующие события будут записаны под кодовым именем:<br><FONT color='#77ca00'>[station_name()]</FONT><br><FONT color='#3c4438'>Удачи вам в вашем выживании!</FONT></B>")
+	to_chat(world, "<B><FONT color='#3c4438'>Р’СЃРµ РїРѕСЃР»РµРґСѓСЋС‰РёРµ СЃРѕР±С‹С‚РёСЏ Р±СѓРґСѓС‚ Р·Р°РїРёСЃР°РЅС‹ РїРѕРґ РєРѕРґРѕРІС‹Рј РёРјРµРЅРµРј:<br><FONT color='#77ca00'>[station_name()]</FONT><br><FONT color='#3c4438'>РЈРґР°С‡Рё РІР°Рј РІ РІР°С€РµРј РІС‹Р¶РёРІР°РЅРёРё!</FONT></B>")
 	to_chat(world, sound('sound/f13music/game_start.ogg'))
 
 	if(SSevent.holidays)
@@ -203,7 +209,6 @@ var/datum/subsystem/ticker/ticker
 		for(var/holidayname in SSevent.holidays)
 			var/datum/holiday/holiday = SSevent.holidays[holidayname]
 			to_chat(world, "<h4>[holiday.greet()]</h4>")
-
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup()
@@ -220,31 +225,35 @@ var/datum/subsystem/ticker/ticker
 
 	return 1
 
+/datum/subsystem/ticker/proc/station_explosion_detonation(atom/bomb)
+	if(bomb)	//BOOM
+		var/turf/epi = bomb.loc
+		qdel(bomb)
+		if(epi)
+			explosion(epi, 0, 256, 512, 0, TRUE, TRUE, 0, TRUE)
+
 //Plus it provides an easy way to make cinematics for other events. Just use this as a template
-/datum/subsystem/ticker/proc/station_explosion_cinematic(station_missed=0, override = null)
+/datum/subsystem/ticker/proc/station_explosion_cinematic(station_missed=0, override = null, atom/bomb = null)
 	if( cinematic )
 		return	//already a cinematic in progress!
 
 	for (var/datum/html_interface/hi in html_interfaces)
 		hi.closeAll()
+	SStgui.close_all_uis()
+
+	//Turn off the shuttles, there's no escape now
+	if(!station_missed && bomb)
+		SSshuttle.registerHostileEnvironment(src)
+		SSshuttle.lockdown = TRUE
 	//initialise our cinematic screen object
 	cinematic = new /obj/screen{icon='icons/effects/station_explosion.dmi';icon_state="station_intact";layer=21;mouse_opacity=0;screen_loc="1,0";}(src)
 
-	if(station_missed)
-		for(var/mob/M in mob_list)
-			M.notransform = TRUE //stop everything moving
-			if(M.client)
-				M.client.screen += cinematic	//show every client the cinematic
-	else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
-		for(var/mob/M in mob_list)
-			if(M.client)
-				M.client.screen += cinematic
-			if(M.stat != DEAD)
-				var/turf/T = get_turf(M)
-				if(T && T.z==1)
-					M.death(0) //no mercy
-				else
-					M.notransform=TRUE //no moving for you
+	for(var/mob/M in mob_list)
+		M.notransform = TRUE //stop everything moving
+		if(M.client)
+			M.client.screen += cinematic	//show every client the cinematic
+
+	var/actually_blew_up = TRUE
 
 	//Now animate the cinematic
 	switch(station_missed)
@@ -256,27 +265,32 @@ var/datum/subsystem/ticker/ticker
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					to_chat(world, sound('sound/effects/explosionfar.ogg'))
+					station_explosion_detonation(bomb)
 					flick("station_intact_fade_red",cinematic)
 					cinematic.icon_state = "summary_nukefail"
 				if("gang war") //Gang Domination (just show the override screen)
 					cinematic.icon_state = "intro_malf_still"
 					flick("intro_malf",cinematic)
+					actually_blew_up = FALSE
 					sleep(70)
 				if("fake") //The round isn't over, we're just freaking people out for fun
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					to_chat(world, sound('sound/items/bikehorn.ogg'))
 					flick("summary_selfdes",cinematic)
+					actually_blew_up = FALSE
 				else
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					to_chat(world, sound('sound/effects/explosionfar.ogg'))
-					//flick("end",cinematic)
+					station_explosion_detonation(bomb)
 
 
 		if(NUKE_MISS_STATION || NUKE_SYNDICATE_BASE)	//nuke was nowhere nearby	//TODO: a really distant explosion animation
 			sleep(50)
 			to_chat(world, sound('sound/effects/explosionfar.ogg'))
+			station_explosion_detonation(bomb)
+			actually_blew_up = station_missed == NUKE_SYNDICATE_BASE	//don't kill everyone on station if it detonated off station
 		else	//station was destroyed
 			if( mode && !override )
 				override = mode.name
@@ -286,47 +300,61 @@ var/datum/subsystem/ticker/ticker
 					sleep(35)
 					flick("station_explode_fade_red",cinematic)
 					to_chat(world, sound('sound/effects/explosionfar.ogg'))
+					station_explosion_detonation(bomb)
 					cinematic.icon_state = "summary_nukewin"
 				if("AI malfunction") //Malf (screen,explosion,summary)
 					flick("intro_malf",cinematic)
 					sleep(76)
 					flick("station_explode_fade_red",cinematic)
 					to_chat(world, sound('sound/effects/explosionfar.ogg'))
+					station_explosion_detonation(bomb)	//TODO: If we ever decide to actually detonate the vault bomb
 					cinematic.icon_state = "summary_malf"
 				if("blob") //Station nuked (nuke,explosion,summary)
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					flick("station_explode_fade_red",cinematic)
 					to_chat(world, sound('sound/effects/explosionfar.ogg'))
+					station_explosion_detonation(bomb)	//TODO: no idea what this case could be
 					cinematic.icon_state = "summary_selfdes"
 				if("no_core") //Nuke failed to detonate as it had no core
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					flick("station_intact",cinematic)
 					to_chat(world, sound('sound/ambience/signal.ogg'))
-					sleep(100)
-					if(cinematic)
-						qdel(cinematic)
-						cinematic = null
-					for(var/mob/M in mob_list)
-						M.notransform = FALSE
+					addtimer(CALLBACK(src, .proc/finish_cinematic, null, FALSE), 100)
 					return	//Faster exit, since nothing happened
 				else //Station nuked (nuke,explosion,summary)
 					flick("intro_nuke",cinematic)
 					sleep(35)
 					flick("station_explode_fade_red", cinematic)
 					to_chat(world, sound('sound/effects/explosionfar.ogg'))
+					station_explosion_detonation(bomb)
 					cinematic.icon_state = "summary_selfdes"
 	//If its actually the end of the round, wait for it to end.
 	//Otherwise if its a verb it will continue on afterwards.
-	spawn(300)
-		if(cinematic)
-			qdel(cinematic)		//end the cinematic
-		for(var/mob/M in mob_list)
-			M.notransform = FALSE //gratz you survived
-	return
 
+	var/bombloc = null
+	if(actually_blew_up)
+		if(bomb && bomb.loc)
+			bombloc = bomb.z
+		else if(!station_missed)
+			bombloc = ZLEVEL_STATION
 
+		if(mode)
+			mode.explosion_in_progress = 0
+			world << "<B>The station was destoyed by the nuclear blast!</B>"
+			mode.station_was_nuked = (station_missed<2)	//station_missed==1 is a draw. the station becomes irradiated and needs to be evacuated.
+
+	addtimer(CALLBACK(src, .proc/finish_cinematic, bombloc, actually_blew_up), 300)
+
+/datum/subsystem/ticker/proc/finish_cinematic(killz, actually_blew_up)
+	if(cinematic)
+		qdel(cinematic)		//end the cinematic
+		cinematic = null
+	for(var/mob/M in mob_list)
+		M.notransform = FALSE
+		if(actually_blew_up && !isnull(killz) && M.stat != DEAD && M.z == killz)
+			M.gib()
 
 /datum/subsystem/ticker/proc/create_characters()
 	for(var/mob/new_player/player in player_list)
@@ -356,7 +384,7 @@ var/datum/subsystem/ticker/ticker
 
 /datum/subsystem/ticker/proc/declare_completion()
 
-	to_chat(world, "<BR><BR><BR><FONT size=3><B>Раунд завершен.</B></FONT>")
+	to_chat(world, "<BR><BR><BR><FONT size=3><B>Р Р°СѓРЅРґ Р·Р°РІРµСЂС€РµРЅ.</B></FONT>")
 
 	SSobjectives.on_roundend()
 
@@ -387,7 +415,7 @@ var/datum/subsystem/ticker/ticker
 
 	if(m)
 		to_chat(world, "<font color='purple'><b>Tip of the round: \
-			</b>[html_encode_ru(m)]</font>")
+			</b>[html_encode(m)]</font>")
 */
 
 /datum/subsystem/ticker/proc/check_queue()
@@ -470,12 +498,12 @@ var/datum/subsystem/ticker/ticker
 
 /datum/subsystem/ticker/proc/send_news_report()
 	var/news_message
-	var/news_source = "Nanotrasen News Network"
+	var/news_source = "Vault-Tec News Network"
 	switch(news_report)
 		if(NUKE_SYNDICATE_BASE)
 			news_message = "In a daring raid, the heroic crew of [station_name()] detonated a nuclear device in the heart of a terrorist base."
 		if(STATION_DESTROYED_NUKE)
-			news_message = "We would like to reassure all employees that the reports of a Syndicate backed nuclear attack on [station_name()] are, in fact, a hoax. Have a secure day!"
+			news_message = "We would like to reassure all employees that the reports of a Enclave backed nuclear attack on [station_name()] are, in fact, a hoax. Have a secure day!"
 		if(STATION_EVACUATED)
 			news_message = "The crew of [station_name()] has been evacuated amid unconfirmed reports of enemy activity."
 		if(GANG_LOSS)

@@ -87,7 +87,7 @@
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 50, 1)
 
 /obj/machinery/firealarm/temperature_expose(datum/gas_mixture/air, temperature, volume)
-	if(!emagged && detecting && !stat && temperature > T0C + 200)
+	if(!emagged && detecting && !stat && (temperature > T0C + 200 || temperature < BODYTEMP_COLD_DAMAGE_LIMIT))
 		alarm()
 	..()
 
@@ -263,7 +263,7 @@
 			d1 = text("<A href='?src=\ref[];reset=1'>No Party :(</A>", src)
 		else
 			d1 = text("<A href='?src=\ref[];alarm=1'>PARTY!!!</A>", src)
-		dat = text("<HTML><HEAD></HEAD><BODY><TT><B>Party Button</B> []</BODY></HTML>", d1)
+		dat = text("<HTML><meta charset=UTF-8><HEAD></HEAD><BODY><TT><B>Party Button</B> []</BODY></HTML>", d1)
 
 	else
 		A = A.loc
@@ -271,7 +271,7 @@
 			d1 = text("<A href='?src=\ref[];reset=1'>[]</A>", src, stars("No Party :("))
 		else
 			d1 = text("<A href='?src=\ref[];alarm=1'>[]</A>", src, stars("PARTY!!!"))
-		dat = text("<HTML><HEAD></HEAD><BODY><TT><B>[]</B> []", stars("Party Button"), d1)
+		dat = text("<HTML><meta charset=UTF-8><HEAD></HEAD><BODY><TT><B>[]</B> []", stars("Party Button"), d1)
 
 	var/datum/browser/popup = new(user, "firealarm", "Party Alarm")
 	popup.set_content(dat)

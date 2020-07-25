@@ -1,8 +1,8 @@
 //Fallout 13 automobile tires directory
 
 /obj/structure/garbage
-	name = "trash"
-	desc = "Just trash"
+	name = "РјСѓСЃРѕСЂ"
+	desc = "РџСЂРѕСЃС‚Рѕ РјСѓСЃРѕСЂ."
 	icon = 'icons/fallout/objects/crafting.dmi'
 	icon_state = "Junk_1"
 	obj_integrity = 50
@@ -86,7 +86,7 @@
 		if(craftobj == 32)
 			CC = new/obj/item/weaponcrafting/handle/rifle(user.loc)
 
-		to_chat(user, "<span class='notice'>Вы разгребли кучу и достали немного материалов из [src].</span>")
+		to_chat(user, "<span class='notice'>Р’С‹ СЂР°Р·РіСЂРµР±Р»Рё РєСѓС‡Сѓ Рё РґРѕСЃС‚Р°Р»Рё РЅРµРјРЅРѕРіРѕ РјР°С‚РµСЂРёР°Р»РѕРІ РёР· [src].</span>")
 		craftnumber = craftnumber - 1
 	else
 		if(iscyborg(user) || isalien(user))
@@ -157,7 +157,7 @@
 			CC = new/obj/item/weaponcrafting/handle/pistol(user.loc)
 		if(craftobj == 32)
 			CC = new/obj/item/weaponcrafting/handle/rifle(user.loc)
-		to_chat(user, "<span class='notice'>Вы достали последний полезный материал из этой кучи.</span>")
+		to_chat(user, "<span class='notice'>Р’С‹ РґРѕСЃС‚Р°Р»Рё РїРѕСЃР»РµРґРЅРёР№ РїРѕР»РµР·РЅС‹Р№ РјР°С‚РµСЂРёР°Р» РёР· СЌС‚РѕР№ РєСѓС‡Рё.</span>")
 		qdel(src)
 
 /obj/structure/garbage/garbage2
@@ -189,3 +189,26 @@
 
 /obj/structure/garbage/garbage12
 	icon_state = "Junk_12"
+
+
+///junk car///
+
+/obj/structure/garbage/garbage13
+	name = "pre-War automobile"
+	desc = "A rusty pre-War automobile carcass.<br>This car is damaged beyond repair."
+	icon = 'icons/fallout/vehicles/medium_vehicles.dmi'
+	icon_state = "derelict"
+	anchored = 1
+	density = 1
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/garbage/garbage13/New()
+	..()
+
+	dir = pick("1","2","4","5","6","8","9","10")
+
+	var/atom/movable/S = new (locate(x+1,y,z))
+	S.density = 1
+	S.anchored = 1
+	S.icon = null
+	S.verbs.Cut()

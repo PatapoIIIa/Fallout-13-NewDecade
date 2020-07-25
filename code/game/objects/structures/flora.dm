@@ -24,7 +24,7 @@
 		if(W.sharpness && W.force > 0)
 			if(W.hitsound)
 				playsound(get_turf(src), W.hitsound, 100, 0, 0)
-			user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
+			user.visible_message("<span class='notice'>[user] начинает рубить [src] используя [W].</span>","<span class='notice'>Вы начали рубить [src] используя [W].</span>", "Вы слышите звуки рубки.")
 			if(do_after(user, 1000/W.force, target = user)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.
 				if(cut)
 					return
@@ -32,6 +32,7 @@
 				playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
 				for(var/i=1 to log_amount)
 					new /obj/item/weapon/grown/log/tree(get_turf(src))
+					new /obj/item/weapon/reagent_containers/food/snacks/f13/sawdust(get_turf(src))
 				qdel(src)
 
 	else

@@ -6,7 +6,7 @@
 /datum/time_of_day/day
 	name = "Day"
 	color = "#FFFFFF"
-	duration = 9000
+	duration = 50000
 
 /datum/time_of_day/morning
 	name = "Morning"
@@ -20,8 +20,8 @@
 
 /datum/time_of_day/night
 	name = "Night"
-	color = "#050d29"
-	duration = 9000
+	color = "#020614"  //old - #050d29
+	duration = 55000
 
 var/day=1
 var/month=1

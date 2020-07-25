@@ -1,5 +1,5 @@
 /obj/machinery/button/vertibird
-	name = "Lock Vertibird"
+	name = "запереть винтокрыл"
 
 /obj/machinery/button/vertibird/attack_hand(mob/user)
 	..()

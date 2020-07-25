@@ -1,6 +1,7 @@
 /obj/item/weapon/paper_bin
-	name = "paper bin"
-	desc = "Contains all the paper you'll never need."
+	name = "лоток с бумагой"
+
+	desc = "Содержит столько бумаги, что любой бюрократ обрадуется."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper_bin1"
 	item_state = "sheet-metal"
@@ -13,7 +14,10 @@
 	var/list/papers = list()
 	var/obj/item/weapon/pen/bin_pen
 
-/obj/item/weapon/paper_bin/initialize()
+/obj/item/weapon/paper_bin/Initialize(mapload)
+	..()
+	if(!mapload)
+		return
 	var/obj/item/weapon/pen/P = locate(/obj/item/weapon/pen) in src.loc
 	if(P && !bin_pen)
 		P.forceMove(src)
@@ -72,7 +76,7 @@
 		var/obj/item/weapon/pen/P = bin_pen
 		P.forceMove(user.loc)
 		user.put_in_hands(P)
-		to_chat(user, "<span class='notice'>You take [P] out of \the [src].</span>")
+		to_chat(user, "<span class='notice'>Вы взяли [P] из [src].</span>")
 		bin_pen = null
 		update_icon()
 	else if(total_paper >= 1)
@@ -93,9 +97,9 @@
 
 		P.forceMove(user.loc)
 		user.put_in_hands(P)
-		to_chat(user, "<span class='notice'>You take [P] out of \the [src].</span>")
+		to_chat(user, "<span class='notice'>Вы взяли [P] из [src].</span>")
 	else
-		to_chat(user, "<span class='warning'>[src] is empty!</span>")
+		to_chat(user, "<span class='warning'>[src] пуст!</span>")
 
 	add_fingerprint(user)
 
@@ -106,7 +110,7 @@
 		if(!user.unEquip(P))
 			return
 		P.forceMove(src)
-		to_chat(user, "<span class='notice'>You put [P] in [src].</span>")
+		to_chat(user, "<span class='notice'>Вы кладёте [P] в [src].</span>")
 		papers.Add(P)
 		total_paper++
 		update_icon()
@@ -115,7 +119,7 @@
 		if(!user.unEquip(P))
 			return
 		P.forceMove(src)
-		to_chat(user, "<span class='notice'>You put [P] in [src].</span>")
+		to_chat(user, "<span class='notice'>Вы кладёте [P] в [src].</span>")
 		bin_pen = P
 		update_icon()
 	else
@@ -124,9 +128,9 @@
 /obj/item/weapon/paper_bin/examine(mob/user)
 	..()
 	if(total_paper)
-		to_chat(user, "It contains " + (total_paper > 1 ? "[total_paper] papers" : " one paper")+".")
+		to_chat(user, "Содержит " + (total_paper > 1 ? "[total_paper] бумаги" : " один лист")+".")
 	else
-		to_chat(user, "It doesn't contain anything.")
+		to_chat(user, "Тут вообще ничего нет. Пусто..")
 
 
 /obj/item/weapon/paper_bin/update_icon()

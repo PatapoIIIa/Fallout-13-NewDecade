@@ -132,17 +132,17 @@
 
 
 /obj/structure/reagent_dispensers/water_cooler
-	name = "liquid cooler"
+	name = "кулер с водой"
 	desc = "A machine that dispenses liquid to drink."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler"
 	anchored = 1
 	tank_volume = 500
-	var/paper_cups = 25 //Paper cups left from the cooler
+	var/paper_cups = 5 //Paper cups left from the cooler
 
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
 	..()
-	to_chat(user, "There are [paper_cups ? paper_cups : "no"] paper cups left.")
+	to_chat(user, "Тут [paper_cups ? paper_cups : "не осталось"] стаканчиков.")
 
 /obj/structure/reagent_dispensers/water_cooler/attack_hand(mob/living/user)
 	if(!paper_cups)
@@ -155,7 +155,7 @@
 
 
 /obj/structure/reagent_dispensers/beerkeg
-	name = "beer keg"
+	name = "бочка пива"
 	desc = "Beer is liquid bread, it's good for you..."
 	icon_state = "beer"
 	reagent_id = "beer"

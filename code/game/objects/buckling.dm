@@ -38,10 +38,16 @@
 		return TRUE
 
 //procs that handle the actual buckling and unbuckling
-/atom/movable/proc/buckle_mob(mob/living/M, force = 0)
+/atom/movable/proc/buckle_mob(mob/living/M, force = 0, check_loc = 1)
 	if(!buckled_mobs)
 		buckled_mobs = list()
-	if((!can_buckle && !force) || !istype(M) || (M.loc != loc) || M.buckled || (buckled_mobs.len >= max_buckled_mobs) || (buckle_requires_restraints && !M.restrained()) || M == src)
+	if(!istype(M))
+		return 0
+
+	if(check_loc && M.loc != loc)
+		return 0
+
+	if((!can_buckle && !force) || M.buckled || (buckled_mobs.len >= max_buckled_mobs) || (buckle_requires_restraints && !M.restrained()) || M == src)
 		return 0
 	if(!M.can_buckle() && !force)
 		if(M == usr)
@@ -52,6 +58,10 @@
 
 	if(M.pulledby && buckle_prevents_pull)
 		M.pulledby.stop_pulling()
+
+	if(!check_loc && M.loc != loc)
+		M.forceMove(loc)
+
 	M.buckled = src
 	M.setDir(dir)
 	buckled_mobs |= M
@@ -61,7 +71,7 @@
 
 	return 1
 
-/obj/buckle_mob(mob/living/M, force = 0)
+/obj/buckle_mob(mob/living/M, force = 0, check_loc = 1)
 	. = ..()
 	if(.)
 		if(resistance_flags & ON_FIRE) //Sets the mob on fire if you buckle them to a burning atom/movableect
@@ -92,23 +102,23 @@
 
 
 //Wrapper procs that handle sanity and user feedback
-/atom/movable/proc/user_buckle_mob(mob/living/M, mob/user)
+/atom/movable/proc/user_buckle_mob(mob/living/M, mob/user, check_loc = 1)
 	if(!in_range(user, src) || user.stat || user.restrained())
 		return 0
 
 	add_fingerprint(user)
 
-	if(buckle_mob(M))
+	if(buckle_mob(M, check_loc = check_loc))
 		if(M == user)
 			M.visible_message(\
-				"<span class='notice'>[M] садится на [src].</span>",\
-				"<span class='notice'>Вы сели на [src].</span>",\
-				"<span class='italics'>Вы слышите металлический лязг.</span>")
+				"<span class='notice'>[M] СЃР°РґРёС‚СЃСЏ РЅР° [src].</span>",\
+				"<span class='notice'>Р’С‹ СЃРµР»Рё РЅР° [src].</span>",\
+				"<span class='italics'>Р’С‹ СЃР»С‹С€РёС‚Рµ РјРµС‚Р°Р»Р»РёС‡РµСЃРєРёР№ Р»СЏР·Рі.</span>")
 		else
 			M.visible_message(\
-				"<span class='warning'>[user] садит [M] на [src]!</span>",\
-				"<span class='warning'>[user] посадил вас на [src]!</span>",\
-				"<span class='italics'>Вы слышите металлический лязг.</span>")
+				"<span class='warning'>[user] СЃР°РґРёС‚ [M] РЅР° [src]!</span>",\
+				"<span class='warning'>[user] РїРѕСЃР°РґРёР» РІР°СЃ РЅР° [src]!</span>",\
+				"<span class='italics'>Р’С‹ СЃР»С‹С€РёС‚Рµ РјРµС‚Р°Р»Р»РёС‡РµСЃРєРёР№ Р»СЏР·Рі.</span>")
 		return 1
 
 
@@ -117,14 +127,14 @@
 	if(M)
 		if(M != user)
 			M.visible_message(\
-				"<span class='notice'>[user] поднимает [M] с [src].</span>",\
-				"<span class='notice'>[user] поднимает вас с [src].</span>",\
-				"<span class='italics'>Вы слышите металлический лязг.</span>")
+				"<span class='notice'>[user] РїРѕРґРЅРёРјР°РµС‚ [M] СЃ [src].</span>",\
+				"<span class='notice'>[user] РїРѕРґРЅРёРјР°РµС‚ РІР°СЃ СЃ [src].</span>",\
+				"<span class='italics'>Р’С‹ СЃР»С‹С€РёС‚Рµ РјРµС‚Р°Р»Р»РёС‡РµСЃРєРёР№ Р»СЏР·Рі.</span>")
 		else
 			M.visible_message(\
-				"<span class='notice'>[M] встает с [src].</span>",\
-				"<span class='notice'>Вы встали с [src].</span>",\
-				"<span class='italics'>Вы слышите металлический лязг.</span>")
+				"<span class='notice'>[M] РїРѕРєРёРґР°РµС‚ [src].</span>",\
+				"<span class='notice'>Р’С‹ РїРѕРєРёРЅСѓР»Рё [src].</span>",\
+				"<span class='italics'>Р’С‹ СЃР»С‹С€РёС‚Рµ РјРµС‚Р°Р»Р»РёС‡РµСЃРєРёР№ Р»СЏР·Рі.</span>")
 		add_fingerprint(user)
 	return M
 

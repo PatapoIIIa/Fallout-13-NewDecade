@@ -1,8 +1,8 @@
 
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass
-	name = "drinking glass"
-	desc = "Your standard drinking glass."
+	name = "стакан"
+	desc = "Самй обычный стеклянный стакан."
 	icon_state = "glass_empty"
 	amount_per_transfer_from_this = 10
 	volume = 50
@@ -19,15 +19,15 @@
 		switch(reagents.get_master_reagent_id())
 			if("beer")
 				icon_state = "beerglass"
-				name = "glass of beer"
-				desc = "A freezing pint of beer."
+				name = "стакан с пивом"
+				desc = "Освежающий стакан пива."
 			if("beer2")
 				icon_state = "beerglass"
 				name = "glass of beer"
 				desc = "A freezing pint of beer."
 			if("greenbeer")
 				icon_state = "greenbeerglass"
-				name = "glass of green beer"
+				name = "стакан с пивом"
 				desc = "A freezing pint of green beer. Festive."
 			if("ale")
 				icon_state = "aleglass"
@@ -35,11 +35,11 @@
 				desc = "A freezing pint of delicious Ale."
 			if("milk")
 				icon_state = "glass_white"
-				name = "glass of milk"
+				name = "стакан с молоком"
 				desc = "White and nutritious goodness!"
 			if("cream")
 				icon_state  = "glass_white"
-				name = "glass of cream"
+				name = "стакан с кремом"
 				desc = "Ewwww..."
 			if("hot_coco")
 				icon_state  = "chocolateglass"
@@ -67,7 +67,7 @@
 				desc = "A glass of refreshing Space Cola."
 			if("nuka_cola")
 				icon_state = "nuka_colaglass"
-				name = "Nuka Cola"
+				name = "Ядер-Кола"
 				desc = "Don't cry, Don't raise your eye, It's only nuclear wasteland."
 			if("orangejuice")
 				icon_state = "glass_orange"
@@ -87,15 +87,15 @@
 				desc = "A glass of sweet-sour lime juice."
 			if("whiskey")
 				icon_state = "whiskeyglass"
-				name = "glass of whiskey"
+				name = "стакан с виски"
 				desc = "The silky, smokey whiskey goodness inside the glass makes the drink look very classy."
 			if("gin")
 				icon_state = "ginvodkaglass"
-				name = "glass of gin"
+				name = "стакан с джином"
 				desc = "A crystal clear glass of Griffeater gin."
 			if("vodka")
 				icon_state = "ginvodkaglass"
-				name = "glass of vodka"
+				name = "стакан с водкой"
 				desc = "The glass contain wodka. Xynta."
 			if("goldschlager")
 				icon_state = "goldschlagerglass"
@@ -103,7 +103,7 @@
 				desc = "100% proof that teen girls will drink anything with gold in it."
 			if("wine")
 				icon_state = "wineglass"
-				name = "glass of wine"
+				name = "стакан с вином"
 				desc = "A very classy looking drink."
 			if("cognac")
 				icon_state = "cognacglass"

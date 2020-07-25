@@ -3,6 +3,7 @@ var/global/default_martial_art = new/datum/martial_art
 	languages_spoken = HUMAN
 	languages_understood = HUMAN
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD,ANTAG_HUD)
+	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, INTENT_HARM)
 	pressure_resistance = 25
 	step_sound_type = "human"
 	//Hair colour and style
@@ -40,7 +41,7 @@ var/global/default_martial_art = new/datum/martial_art
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
 	var/bleed_rate = 0 //how much are we bleeding
-	var/bleedsuppress = 1 //for stopping bloodloss, eventually this will be limb-based like bleeding
+	var/bleedsuppress = 0 //for stopping bloodloss, eventually this will be limb-based like bleeding
 
 	var/datum/martial_art/martial_art = null
 
@@ -48,5 +49,6 @@ var/global/default_martial_art = new/datum/martial_art
 
 	var/heart_attack = 0
 
+	var/last_hunger_message = 0
 	var/drunkenness = 0 //Overall drunkenness - check handle_alcohol() in life.dm for effects
 	var/datum/personal_crafting/handcrafting

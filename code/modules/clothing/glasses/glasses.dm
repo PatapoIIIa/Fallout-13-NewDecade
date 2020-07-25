@@ -1,5 +1,5 @@
 /obj/item/clothing/glasses
-	name = "glasses"
+	name = "очки"
 	materials = list(MAT_GLASS = 250)
 	self_weight = 0.1
 
@@ -30,8 +30,8 @@
 				H.adjust_eye_damage(5)
 
 /obj/item/clothing/glasses/meson
-	name = "Optical Meson Scanner"
-	desc = "Used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting condition."
+	name = "Оптически-Мезонные сканеры"
+	desc = "Используется инженерами и шахтерами для получения данных об окружающей их обстановки через стены."
 	icon_state = "meson"
 	item_state = "meson"
 	origin_tech = "magnets=1;engineering=2"
@@ -78,8 +78,8 @@
 		return 1
 
 /obj/item/clothing/glasses/night
-	name = "Night Vision Goggles"
-	desc = "You can totally see in the dark now!"
+	name = "прибор ночного видения"
+	desc = "Теперь вы сможете видеть во тьме!"
 	icon_state = "night"
 	item_state = "glasses"
 	origin_tech = "materials=4;magnets=4;plasmatech=4;engineering=4"
@@ -88,20 +88,20 @@
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
 /obj/item/clothing/glasses/eyepatch
-	name = "eyepatch"
-	desc = "Yarr."
+	name = "глазная повязка"
+	desc = "ЙО-ХО-ХО!"
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 
 /obj/item/clothing/glasses/monocle
-	name = "monocle"
-	desc = "Such a dapper eyepiece!"
+	name = "монокль"
+	desc = "Как элегантно!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
 
 /obj/item/clothing/glasses/material
-	name = "Optical Material Scanner"
-	desc = "Very confusing glasses."
+	name = "Оптически-Материальные сканеры"
+	desc = "Очень странные очки."
 	icon_state = "material"
 	item_state = "glasses"
 	origin_tech = "magnets=3;engineering=3"
@@ -109,8 +109,8 @@
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
 
 /obj/item/clothing/glasses/material/mining
-	name = "Optical Material Scanner"
-	desc = "Used by miners to detect ores deep within the rock."
+	name = "Оптически-Материальные сканеры"
+	desc = "Используются шахтёрами чтобы обнаружить руду."
 	icon_state = "material"
 	item_state = "glasses"
 	origin_tech = "magnets=3;engineering=3"
@@ -118,9 +118,9 @@
 
 /obj/item/clothing/glasses/material/mining/gar
 	name = "gar material scanner"
+	desc = "Do the impossible, see the invisible!"
 	icon_state = "garm"
 	item_state = "garm"
-	desc = "Do the impossible, see the invisible!"
 	force = 10
 	throwforce = 20
 	throw_speed = 4
@@ -130,23 +130,23 @@
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
 /obj/item/clothing/glasses/regular
-	name = "Prescription Glasses"
-	desc = "Made by Nerd. Co."
+	name = "корректирующие очки"
+	desc = "Сделано Ботан&Co."
 	icon_state = "glasses"
 	item_state = "glasses"
 	vision_correction = 1 //corrects nearsightedness
 
 /obj/item/clothing/glasses/regular/hipster
-	name = "Prescription Glasses"
-	desc = "Made by Uncool. Co."
+	name = "корректирующие очки хипстера"
+	desc = "Сделано Некрутой&Co."
 	icon_state = "hipster_glasses"
 	item_state = "hipster_glasses"
 
 //Here lies green glasses, so ugly they died. RIP
 
 /obj/item/clothing/glasses/sunglasses
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover."
-	name = "sunglasses"
+	name = "солнечные очки"
+	desc = "Странная древняя технология, использовалась чтобы прикрывать глаза от солнца."
 	icon_state = "sun"
 	item_state = "sunglasses"
 	darkness_view = 1
@@ -156,14 +156,14 @@
 	dog_fashion = /datum/dog_fashion/head
 
 /obj/item/clothing/glasses/sunglasses/reagent
-	name = "beer goggles"
-	desc = "A pair of sunglasses outfitted with apparatus to scan reagents."
+	name = "солнечные очки бармена"
+	desc = "Солнечные очки с функцией распознования реагентов и напитков."
 	origin_tech = "magnets=2;engineering=2"
 	scan_reagents = 1
 
 /obj/item/clothing/glasses/sunglasses/garb
-	desc = "Go beyond impossible and kick reason to the curb!"
 	name = "black gar glasses"
+	desc = "Go beyond impossible and kick reason to the curb!"
 	icon_state = "garb"
 	item_state = "garb"
 	force = 10
@@ -174,16 +174,16 @@
 	sharpness = IS_SHARP
 
 /obj/item/clothing/glasses/sunglasses/garb/supergarb
-	desc = "Believe in us humans."
 	name = "black giga gar glasses"
+	desc = "Believe in us humans."
 	icon_state = "supergarb"
 	item_state = "garb"
 	force = 12
 	throwforce = 12
 
 /obj/item/clothing/glasses/sunglasses/gar
-	desc = "Just who the hell do you think I am?!"
 	name = "gar glasses"
+	desc = "Just who the hell do you think I am?!"
 	icon_state = "gar"
 	item_state = "gar"
 	force = 10
@@ -195,8 +195,8 @@
 	glass_colour_type = /datum/client_colour/glass_colour/orange
 
 /obj/item/clothing/glasses/sunglasses/gar/supergar
-	desc = "We evolve past the person we were a minute before. Little by little we advance with each turn. That's how a drill works!"
 	name = "giga gar glasses"
+	desc = "We evolve past the person we were a minute before. Little by little we advance with each turn. That's how a drill works!"
 	icon_state = "supergar"
 	item_state = "gar"
 	force = 12
@@ -204,8 +204,8 @@
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/welding
-	name = "welding goggles"
-	desc = "Protects the eyes from welders; approved by the mad scientist association."
+	name = "сварочные очки"
+	desc = "Защищают глаза от сварки. Одобрено учёными-психопатами."
 	icon_state = "welding-g"
 	item_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
@@ -222,21 +222,21 @@
 
 
 /obj/item/clothing/glasses/sunglasses/blindfold
-	name = "blindfold"
-	desc = "Covers the eyes, preventing sight."
+	name = "повязка на глаза"
+	desc = "Пикрывают глаза, блокируя зрение."
 	icon_state = "blindfold"
 	item_state = "blindfold"
 	flash_protect = 2
 	tint = 3			// to make them blind
 
 /obj/item/clothing/glasses/sunglasses/big
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
+	desc = "Странная древняя технология, использовалась чтобы прикрывать глаза от солнца. Эти больше чем другие, видимо, они лучше блокируют вспышку."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
 
 /obj/item/clothing/glasses/thermal
-	name = "Optical Thermal Scanner"
-	desc = "Thermals in the shape of glasses."
+	name = "термосканер"
+	desc = "Термальный сканер в форме очков."
 	icon_state = "thermal"
 	item_state = "glasses"
 	origin_tech = "magnets=3"
@@ -259,46 +259,46 @@
 	chameleon(user)
 
 /obj/item/clothing/glasses/thermal/monocle
-	name = "Thermoncle"
-	desc = "A monocle thermal."
+	name = "Термонокль"
+	desc = "Монокль с тепловизором для тех, кто хочет выглядеть богато."
 	icon_state = "thermoncle"
 	flags = null //doesn't protect eyes because it's a monocle, duh
 
 /obj/item/clothing/glasses/thermal/eyepatch
-	name = "Optical Thermal Eyepatch"
-	desc = "An eyepatch with built-in thermal optics."
+	name = "Термо-повязка"
+	desc = "Повязка на глаза со встроенным тепловизором."
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 
 /obj/item/clothing/glasses/cold
-	name = "cold goggles"
-	desc = "A pair of goggles meant for low temperatures."
+	name = "очки для экстремально низких температур"
+	desc = "Их стоит использовать в среде экстремально низких температур."
 	icon_state = "cold"
 	item_state = "cold"
 
 /obj/item/clothing/glasses/heat
-	name = "heat goggles"
-	desc = "A pair of goggles meant for high temperatures."
+	name = "очки для экстремально высоких температур"
+	desc = "Их стоит использовать в среде экстремально высоких температур."
 	icon_state = "heat"
 	item_state = "heat"
 
 /obj/item/clothing/glasses/orange
-	name = "orange glasses"
-	desc = "A sweet pair of orange shades."
+	name = "оранжевые очки"
+	desc = "Пара отличных оранжевых очков."
 	icon_state = "orangeglasses"
 	item_state = "orangeglasses"
 	glass_colour_type = /datum/client_colour/glass_colour/lightorange
 
 /obj/item/clothing/glasses/red
-	name = "red glasses"
-	desc = "Hey, you're looking good, senpai!"
+	name = "красные очки"
+	desc = "Эй, ты выглядишь прекрасно, Семпай!"
 	icon_state = "redglasses"
 	item_state = "redglasses"
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/godeye
-	name = "eye of god"
-	desc = "A strange eye, said to have been torn from an omniscient creature that used to roam the wastes."
+	name = "глаз бога"
+	desc = "Странный глаз, говорят его вырвали из существа, что создал вселенную."
 	icon_state = "godeye"
 	item_state = "godeye"
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS

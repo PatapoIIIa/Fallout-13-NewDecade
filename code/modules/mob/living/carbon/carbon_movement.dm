@@ -19,8 +19,15 @@
 		if(istype(src, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = src
 			if(istype(H.wear_suit, /obj/item/clothing/suit/armor/f13/power_armor))
+				. += 2
+				var/obj/item/clothing/suit/armor/f13/power_armor/PA = H.wear_suit
+				if(!PA.enabled)
+					. += 10
+
 				if(!perks.have(/datum/perk_hidden/powerArmor))
-					. += 15
+					. += 7
+				else if(H.special.getPoint("a") < 8 && H.special.getPoint("s") < 9)
+					. += 4
 		/*
 		if(src:wear_suit)
 			var/classSlowdown = (src:wear_suit:self_weight) / 30
@@ -47,7 +54,7 @@ var/const/SLIDE_ICE = 8
 	if(movement_type & FLYING)
 		return 0
 	if(!(lube&SLIDE_ICE))
-		add_logs(src,, "ïîäñêîëüçíóëñß",, "íà [O ? O.name : "floor"]")
+		add_logs(src,, "Ð¿Ð¾Ð´ÑÐºÐ¾Ð»ÑŒÐ·Ð½ÑƒÐ»ÑÐ¯",, "Ð½Ð° [O ? O.name : "floor"]")
 	return loc.handle_slip(src, s_amount, w_amount, O, lube)
 
 

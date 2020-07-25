@@ -33,6 +33,8 @@
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
+	if(SSobj && SSobj.initialized)
+		Initialize(FALSE)
 	//. = ..() //uncomment if you are dumb enough to add a /datum/New() proc
 
 /atom/Destroy()
@@ -152,7 +154,8 @@
 	return
 
 /atom/proc/emp_act(severity)
-	return
+	if(istype(wires))
+		wires.emp_pulse()
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
 	. = P.on_hit(src, 0, def_zone)
@@ -198,9 +201,8 @@
 			f_name = "some "
 		else
 			f_name = ""
-		f_name += "<span class='danger'>в крови</span> [name]!"
-
-	to_chat(user, "[bicon(src)] Это [f_name]")
+		f_name += "<span class='danger'>РІ РєСЂРѕРІРё</span> [name]!"
+	to_chat(user, "[bicon(src)] Р­С‚Рѕ [f_name]")
 
 	if(desc)
 		to_chat(user, desc)
@@ -208,18 +210,18 @@
 //	to_chat(user, "[name]: Dn:[density] dir:[dir] cont:[contents] icon:[icon] is:[icon_state] loc:[loc]")
 
 	if(reagents && (is_open_container() || is_transparent())) //is_open_container() isn't really the right proc for this, but w/e
-		to_chat(user, "Содержит:")
+		to_chat(user, "РЎРѕРґРµСЂР¶РёС‚:")
 		if(reagents.reagent_list.len)
 			if(user.can_see_reagents()) //Show each individual reagent
 				for(var/datum/reagent/R in reagents.reagent_list)
-					to_chat(user, "[R.volume] единиц [R.name]")
+					to_chat(user, "[R.volume] РµРґРµРЅРёС† [R.name]")
 			else //Otherwise, just show the total volume
 				var/total_volume = 0
 				for(var/datum/reagent/R in reagents.reagent_list)
 					total_volume += R.volume
-				to_chat(user, "[total_volume] единиц разных реагентов")
+				to_chat(user, "[total_volume] РµРґРµРЅРёС† СЂР°Р·РЅС‹С… СЂРµР°РіРµРЅС‚РѕРІ")
 		else
-			to_chat(user, "Ничего.")
+			to_chat(user, "РќРёС‡РµРіРѕ.")
 
 /atom/proc/relaymove()
 	return
@@ -238,9 +240,11 @@
 
 /atom/proc/hitby(atom/movable/AM, skipcatch, hitpush, blocked)
 	if(density && !has_gravity(AM)) //thrown stuff bounces off dense stuff in no grav, unless the thrown stuff ends up inside what it hit(embedding, bola, etc...).
-		spawn(2) //very short wait, so we can actually see the impact.
-			if(AM && isturf(AM.loc))
-				step(AM, turn(AM.dir, 180))
+		addtimer(CALLBACK(src, .proc/hitby_react, AM), 2)
+
+/atom/proc/hitby_react(atom/movable/AM)
+	if(AM && isturf(AM.loc))
+		step(AM, turn(AM.dir, 180))
 
 var/list/blood_splatter_icons = list()
 
@@ -334,7 +338,7 @@ var/list/blood_splatter_icons = list()
 
 	var/obj/effect/decal/cleanable/blood/splatter/B = locate() in src
 	if(!B)
-		B = PoolOrNew(/obj/effect/decal/cleanable/blood/splatter, src)
+		B = new /obj/effect/decal/cleanable/blood/splatter(src)
 	B.transfer_blood_dna(blood_dna) //give blood info to the blood decal.
 	return 1 //we bloodied the floor
 
@@ -426,8 +430,10 @@ var/list/blood_splatter_icons = list()
 //effects at world start up without causing runtimes
 /atom/proc/spawn_atom_to_world()
 
-//This will be called after the map and objects are loaded
-/atom/proc/initialize()
+//Called after New if the world is not loaded with TRUE
+//Called from base of New if the world is loaded with FALSE
+/atom/proc/Initialize(mapload)
+	set waitfor = 0
 	return
 
 //the vision impairment to give to the mob whose perspective is set to that atom (e.g. an unfocused camera giving you an impaired vision when looking through it)
@@ -440,7 +446,7 @@ var/list/blood_splatter_icons = list()
 
 /atom/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = 0)
 	if(isturf(src))
-		var/obj/effect/decal/cleanable/vomit/V = PoolOrNew(/obj/effect/decal/cleanable/vomit, src)
+		var/obj/effect/decal/cleanable/vomit/V = new /obj/effect/decal/cleanable/vomit(src)
 		// Make toxins vomit look different
 		if(toxvomit)
 			V.icon_state = "vomittox_[pick(1,4)]"

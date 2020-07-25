@@ -41,7 +41,7 @@
 			TeleporterSend()
 		return
 	user.set_machine(src)
-	var/dat = ""
+	var/dat = {"<meta charset="UTF-8">"}
 	dat += "<H3> Abductsoft 3000 </H3>"
 
 	if(experiment != null)
@@ -154,7 +154,7 @@
 		to_chat(user, "<span class='notice'>Location marked as test subject release point.</span>")
 
 
-/obj/machinery/abductor/console/proc/Initialize()
+/obj/machinery/abductor/console/proc/Setup()
 
 	for(var/obj/machinery/abductor/pad/p in machines)
 		if(p.team == team)

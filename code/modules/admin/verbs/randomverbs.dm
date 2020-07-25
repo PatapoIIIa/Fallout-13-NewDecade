@@ -29,19 +29,19 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	message_admins("[key_name_admin(src)] has started answering [key_name(M.key, 0, 0)]'s prayer.")
-	var/msg = input("Message:", text("Subtle PM to [M.key]")) as text
+	message_admins("[key_name_admin(src)] начинает отвечать на молитву [key_name(M.key, 0, 0)].")
+	var/msg = input("Сообщение:", text("Ответ на молитву для [M.key]")) as text
 
 	if (!msg)
-		message_admins("[key_name_admin(src)] decided not to answer [key_name(M.key, 0, 0)]'s prayer")
+		message_admins("[key_name_admin(src)] решает не отвечать на молитву [key_name(M.key, 0, 0)]")
 		return
 	if(usr)
 		if (usr.client)
 			if(usr.client.holder)
-				to_chat(M, "<i>You hear a voice in your head... <b>[msg]</i></b>")
+				to_chat(M, "<i>Вы слышите голос в своей голове...<b>[msg]</i></b>")
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
-	message_admins("<span class='adminnotice'><b> SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] :</b> [msg]</span>")
+	message_admins("<span class='adminnotice'><b> Ответ на молитву: [key_name_admin(usr)] -> [key_name_admin(M)] :</b> [msg]</span>")
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_world_narrate()
@@ -313,7 +313,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				return	//all done. The ghost is auto-deleted
 
 		//check if they were a monkey
-		else if(findtext(G_found.real_name,"monkey"))
+		else if(findtext_char(G_found.real_name,"monkey"))
 			if(alert("This character appears to have been a monkey. Would you like to respawn them as such?",,"Yes","No")=="Yes")
 				var/mob/living/carbon/monkey/new_monkey = new(pick(latejoin))
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
@@ -458,7 +458,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	M.revive(full_heal = 1, admin_revive = 1)
 
 	log_admin("[key_name(usr)] healed / revived [key_name(M)]")
-	message_admins("<span class='danger'>������������� [key_name_admin(usr)] ������� / ������ [key_name_admin(M)]!</span>")
+	message_admins("<span class='danger'>Администратор [key_name_admin(usr)] излечил / оживил [key_name_admin(M)]!</span>")
 	feedback_add_details("admin_verb","REJU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_create_centcom_report()
@@ -504,15 +504,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if (alert(src, "�� ������� ��� ������ �������:\n[O]\n� ([O.x], [O.y], [O.z])?", "�����������", "Yes", "No") == "Yes")
-		log_admin("[key_name(usr)] ������ [O] � ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] deleted [O] at ([O.x],[O.y],[O.z])")
+	if (alert(src, "Вы уверены что хотите удалить:\n[O]\nв ([O.x], [O.y], [O.z])?", "Подтвердите", "Да", "Нет") == "Да")
+		log_admin("[key_name(usr)] удаляет [O] в ([O.x],[O.y],[O.z])")
+		message_admins("[key_name_admin(usr)] удаляет [O] на координатах ([O.x],[O.y],[O.z])")
 		feedback_add_details("admin_verb","DEL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		qdel(O)
 
 /client/proc/cmd_admin_list_open_jobs()
 	set category = "Admin"
-	set name = "Manage Job Slots"
+	set name = "Администратирование ролей"
 
 	if (!holder)
 		to_chat(src, "Only administrators may use this command.")
@@ -584,20 +584,20 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	var/confirm = alert(src, "Drop a brain?", "Confirm", "Yes", "No","Cancel")
-	if(confirm == "Cancel")
+	var/confirm = alert(src, "Оставить мозг?", "Подтвердите", "Да", "Нет","Закрыть")
+	if(confirm == "Закрыть")
 		return
 	//Due to the delay here its easy for something to have happened to the mob
 	if(!M)
 		return
 
-	log_admin("[key_name(usr)] has gibbed [key_name(M)]")
-	message_admins("[key_name_admin(usr)] has gibbed [key_name_admin(M)]")
+	log_admin("[key_name(usr)] гибает [key_name(M)]")
+	message_admins("[key_name_admin(usr)] гибнул [key_name_admin(M)]")
 
 	if(isobserver(M))
 		new /obj/effect/gibspawner/generic(M.loc, M.viruses)
 		return
-	if(confirm == "Yes")
+	if(confirm == "Да")
 		M.gib()
 	else
 		M.gib(1)
@@ -607,10 +607,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Gibself"
 	set category = "Fun"
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm == "Yes")
-		log_admin("[key_name(usr)] used gibself.")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] used gibself.</span>")
+	var/confirm = alert(src, "Вы уверены?", "Подтвердите", "Да", "Нет")
+	if(confirm == "Да")
+		log_admin("[key_name(usr)] гибнул самого себя. Досадно.")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] гибнул самого себя. Досадно.</span>")
 		feedback_add_details("admin_verb","GIBS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		mob.gib(1, 1, 1)
 
@@ -639,9 +639,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/admin_call_shuttle()
-
 	set category = "Admin"
-	set name = "Call Shuttle"
+	set name = "Call Train"
 
 	if(EMERGENCY_AT_LEAST_DOCKED)
 		return
@@ -650,8 +649,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes")
+	var/confirm = alert(src, "Вы уверены?", "Подтвердите", "Да", "Нет")
+	if(confirm != "Да")
 		return
 
 	SSshuttle.emergency.request()
@@ -662,10 +661,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/admin_cancel_shuttle()
 	set category = "Admin"
-	set name = "Cancel Shuttle"
+	set name = "Cancel Train"
 	if(!check_rights(0))
 		return
-	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
+	if(alert(src, "Вы уверены?", "Подтвердите", "Да", "Нет") != "Да")
 		return
 
 	if(EMERGENCY_AT_LEAST_DOCKED)
@@ -851,7 +850,7 @@ var/list/datum/outfit/custom_outfits = list() //Admin created outfits
 	id_select += "</select>"
 
 	var/dat = {"
-	<html><head><title>Create Outfit</title></head><body>
+	<html><meta charset=UTF-8><head><title>Create Outfit</title></head><body>
 	<form name="outfit" action="byond://?src=\ref[src]" method="get">
 	<input type="hidden" name="src" value="\ref[src]">
 	<input type="hidden" name="create_outfit" value="1">
@@ -990,7 +989,7 @@ var/list/datum/outfit/custom_outfits = list() //Admin created outfits
 
 /client/proc/open_shuttle_manipulator()
 	set category = "Admin"
-	set name = "Shuttle Manipulator"
+	set name = "Train Manipulator"
 	set desc = "Opens the shuttle manipulator UI."
 
 	for(var/obj/machinery/shuttle_manipulator/M in machines)
@@ -1151,7 +1150,7 @@ var/list/datum/outfit/custom_outfits = list() //Admin created outfits
 	holder.modify_goals()
 
 /datum/admins/proc/modify_goals()
-	var/dat = ""
+	var/dat = {"<meta charset="UTF-8">"}
 	for(var/datum/station_goal/S in ticker.mode.station_goals)
 		dat += "[S.name] - <a href='?src=\ref[S];announce=1'>Announce</a> | <a href='?src=\ref[S];remove=1'>Remove</a><br>"
 	dat += "<br><a href='?src=\ref[src];add_station_goal=1'>Add New Goal</a>"

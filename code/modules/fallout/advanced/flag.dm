@@ -8,7 +8,7 @@ obj/flag
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 obj/flagpole
-	name = "Flagpole"
+	name = "С„Р»Р°РіС€С‚РѕРє"
 	icon = 'icons/fallout/advanced/flagpole_2.dmi'
 	icon_state = "flag_stock"
 	anchored = 1
@@ -57,7 +57,7 @@ obj/flagpole/proc/factionPerk(var/faction)
 
 	var/datum/perk_hidden/perk = new flag_perk()
 
-	to_chat(world, "<font size='3' color='blue'>[faction_name] now [perk.desc]</font>")
+	to_chat(world, "<font size='3' color='blue'>[faction_name] С‚РµРїРµСЂСЊ [perk.desc]</font>")
 
 	qdel(perk)
 
@@ -73,10 +73,9 @@ obj/flagpole/proc/onCaptured(var/faction)
 
 	var/datum/f13_faction/faction_datum = get_faction_datum(faction)
 	var/faction_name = faction_datum.name
-	to_chat(world, "<font size='4' color='red'>Точка [flag_location] была захвачена [faction_name]!</font>")
+	to_chat(world, "<font size='4' color='red'>РўРѕС‡РєР° [flag_location] Р±С‹Р»Р° Р·Р°С…РІР°С‡РµРЅР° [faction_name]!</font>")
 
 obj/flagpole/proc/onLoosing()
-	to_chat(world, "<font size='3' color='blue'>Кто-то пытается захватить точку [flag_location]</font>")
-
+	to_chat(world, "<font size='3' color='blue'>РљС‚Рѕ-С‚Рѕ РїС‹С‚Р°РµС‚СЃСЏ Р·Р°С…РІР°С‚РёС‚СЊ С‚РѕС‡РєСѓ [flag_location]</font>")
 obj/flagpole/proc/onUpdate()
 	flag.pixel_y = 10 + flag_tickets

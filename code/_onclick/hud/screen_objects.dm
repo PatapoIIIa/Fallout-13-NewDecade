@@ -54,7 +54,7 @@
 	return 1
 
 /obj/screen/craft
-	name = "crafting menu"
+	name = "меню крафта"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "craft"
 	screen_loc = ui_crafting
@@ -66,7 +66,7 @@
 	M.OpenCraftingMenu()
 
 /obj/screen/wield
-	name = "wield"
+	name = "взять в обе руки"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "wield"
 	screen_loc = ui_wield
@@ -79,7 +79,7 @@
 
 
 /obj/screen/area_creator
-	name = "create new area"
+	name = "создать новую зону"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "area_edit"
 	screen_loc = ui_building
@@ -192,7 +192,7 @@
 
 
 /obj/screen/drop
-	name = "drop"
+	name = "бросить"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_drop"
 	layer = HUD_LAYER
@@ -202,13 +202,15 @@
 	usr.drop_item_v()
 
 /obj/screen/act_intent
-	name = "intent"
+	name = "взаимодействие"
 	icon_state = "help"
 	screen_loc = ui_acti
 
 /obj/screen/act_intent/Click(location, control, params)
-	if(ishuman(usr) && (usr.client.prefs.toggles & INTENT_STYLE))
+	usr.a_intent_change(INTENT_HOTKEY_RIGHT)
 
+/obj/screen/act_intent/segmented/Click(location, control, params)
+	if(usr.client.prefs.toggles & INTENT_STYLE)
 		var/_x = text2num(params2list(params)["icon-x"])
 		var/_y = text2num(params2list(params)["icon-y"])
 
@@ -225,7 +227,7 @@
 			usr.a_intent_change(INTENT_DISARM)
 
 	else
-		usr.a_intent_change(INTENT_HOTKEY_RIGHT)
+		return ..()
 
 /obj/screen/act_intent/alien
 	icon = 'icons/mob/screen_alien.dmi'
@@ -236,7 +238,7 @@
 	screen_loc = ui_borg_intents
 
 /obj/screen/internals
-	name = "toggle internals"
+	name = "переключить"
 	icon_state = "internal0"
 	screen_loc = ui_internal
 
@@ -296,7 +298,7 @@
 	C.update_action_buttons_icon()
 
 /obj/screen/mov_intent
-	name = "run/walk toggle"
+	name = "бег/ходьба"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "running"
 
@@ -316,7 +318,7 @@
 	user.update_icons()
 
 /obj/screen/pull
-	name = "stop pulling"
+	name = "перестать тащить"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "pull"
 
@@ -333,7 +335,7 @@
 		icon_state = "pull0"
 
 /obj/screen/resist
-	name = "resist"
+	name = "сопротивляться"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_resist"
 	layer = HUD_LAYER
@@ -345,7 +347,7 @@
 		L.resist()
 
 /obj/screen/storage
-	name = "storage"
+	name = "хранилище"
 
 /obj/screen/storage/Click(location, control, params)
 	if(world.time <= usr.next_move)
@@ -361,7 +363,7 @@
 	return 1
 
 /obj/screen/throw_catch
-	name = "throw/catch"
+	name = "кинуть/поймать"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_throw_off"
 
@@ -371,7 +373,7 @@
 		C.toggle_throw_mode()
 
 /obj/screen/zone_sel
-	name = "damage zone"
+	name = "зона урона"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 	var/selecting = "chest"
@@ -457,7 +459,7 @@
 
 
 /obj/screen/flash
-	name = "flash"
+	name = "вспышка"
 	icon_state = "blank"
 	blend_mode = BLEND_ADD
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
@@ -475,7 +477,7 @@
 	plane = FULLSCREEN_PLANE
 
 /obj/screen/healths
-	name = "health"
+	name = "здоровье"
 	icon_state = "health0"
 	screen_loc = ui_health
 
@@ -534,13 +536,13 @@
 	mouse_opacity = 0
 
 /obj/screen/healthdoll
-	name = "health doll"
+	name = "кукла здоровья"
 	screen_loc = ui_healthdoll
 
 
 
 /obj/screen/wheel
-	name = "wheel"
+	name = "колесо"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
 	icon_state = ""
@@ -618,15 +620,15 @@
 
 
 /obj/screen/wheel/talk
-	name = "talk wheel"
+	name = "разговорное колесо"
 	icon_state = "talk_wheel"
 	screen_loc = "11:6,2:-11"
 	wheel_buttons_type = /obj/screen/wheel_button/talk
 	buttons_names = list("help","hello","bye","stop","thanks","come","out", "yes", "no")
-	var/list/word_messages = list(list("��������!","�������� ���!"), list("������.", "����������."), list("����.", "�� ��������."),\
-									list("����!", "������!"), list("�������.", "�������!", "���������."), \
-									list("���.", "�� ����."), list("�����!", "��������!", "�����!"), \
-									list("��.", "��� �����."), list("���.", "����� ���."))
+	var/list/word_messages = list(list("Помогите!","Помогите мне!"), list("Привет.", "Здравствуй."), list("Пока.", "До свидания."),\
+									list("Стой!", "Стоять!"), list("Спасибо.", "Спасибо!", "Благодарю."), \
+									list("Идём.", "За мной."), list("Уходи!", "Убирайся!", "Свали!"), \
+									list("Да.", "Так точно."), list("Нет.", "Никак нет."))
 
 /obj/screen/wheel/talk/set_button(obj/screen/wheel_button/WB, button_number)
 	..()
@@ -636,7 +638,7 @@
 
 
 /obj/screen/wheel_button
-	name = "default wheel button"
+	name = "базовое колесо"
 	screen_loc = "8,8"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
@@ -648,7 +650,7 @@
 	return ..()
 
 /obj/screen/wheel_button/close_wheel
-	name = "close wheel"
+	name = "закрыть колесо"
 	icon_state = "radialclose"
 
 /obj/screen/wheel_button/close_wheel/Click()
@@ -659,7 +661,7 @@
 
 
 /obj/screen/wheel_button/talk
-	name = "talk option"
+	name = "опция разговора"
 	icon_state = "talk_help"
 	var/talk_cooldown = 0
 	var/list/word_messages = list()

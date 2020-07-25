@@ -641,7 +641,11 @@
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 	power_change() //Checks power and initial settings
 
-/obj/machinery/turretid/initialize() //map-placed turrets autolink turrets
+/obj/machinery/turretid/Initialize(mapload) //map-placed turrets autolink turrets
+	..()
+	if(!mapload)
+		return
+
 	if(control_area && istext(control_area))
 		for(var/V in sortedAreas)
 			var/area/A = V
@@ -876,7 +880,8 @@
 		if(team_color == "red" && istype(H.wear_suit, /obj/item/clothing/suit/bluetag))
 			return
 
-	var/dat = "Status: <a href='?src=\ref[src];power=1'>[on ? "On" : "Off"]</a>"
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += "Status: <a href='?src=\ref[src];power=1'>[on ? "On" : "Off"]</a>"
 
 	var/datum/browser/popup = new(user, "autosec", "Automatic Portable Turret Installation", 300, 300)
 	popup.set_content(dat)

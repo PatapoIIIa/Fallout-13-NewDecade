@@ -9,11 +9,11 @@
 
 /obj/effect/mob_spawner/black_scorpions
 	name = "black scorpions spawner"
-	mob_type = /mob/living/simple_animal/hostile/rad_scorpion/black
+	mob_type = /mob/living/simple_animal/hostile/poison/rad_scorpion/black
 
 /obj/effect/mob_spawner/blue_scorpions
 	name = "blue scorpions spawner"
-	mob_type = /mob/living/simple_animal/hostile/rad_scorpion
+	mob_type = /mob/living/simple_animal/hostile/poison/rad_scorpion
 
 /obj/effect/mob_spawner/gecko
 	name = "geckos spawner"

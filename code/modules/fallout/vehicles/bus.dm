@@ -1,8 +1,8 @@
 //Fallout 13 ambush bus directory
 
 /obj/structure/closet/bus
-	name = "\proper ancient City Liner bus"
-	desc = "A derelict bus that belonged to a City Liner network.<br>Despite all the decades it has spent out in the open, the exterior looks more or less intact."
+	name = "старый остов автобуса"
+	desc = "Древний автобус, принадлежавшей Городской Сети Линейных Автобусов.<br>Спустя целые декады с последнего пользования, внутри он выглядит еще сносно."
 	icon_state = "bus"
 	pixel_x = -110
 	pixel_y = -18
@@ -82,7 +82,8 @@
 	playsound(src, 'sound/effects/meteorimpact.ogg', rand(50,100), 1)
 
 /obj/structure/bus_door
-	name = "broken bus door"
+	name = "сломанная дверь автобуса"
+	desc = "Когда-то, это было частью автобуса."
 	icon = 'icons/fallout/objects/structures/trash.dmi'
 	icon_state = "bus_door"
 	anchored = 1

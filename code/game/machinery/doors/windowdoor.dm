@@ -328,7 +328,7 @@
 
 /obj/machinery/door/window/clockwork/setDir(direct)
 	if(!made_glow)
-		var/obj/effect/E = PoolOrNew(/obj/effect/overlay/temp/ratvar/door/window, get_turf(src))
+		var/obj/effect/E = new /obj/effect/overlay/temp/ratvar/door/window(get_turf(src))
 		E.setDir(direct)
 		made_glow = TRUE
 	..()
@@ -338,7 +338,8 @@
 	return ..()
 
 /obj/machinery/door/window/clockwork/ratvar_act()
-	obj_integrity = max_integrity
+	if(ratvar_awakens)
+		obj_integrity = max_integrity
 
 /obj/machinery/door/window/clockwork/hasPower()
 	return TRUE //yup that's power all right

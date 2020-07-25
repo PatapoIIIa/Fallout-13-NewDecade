@@ -436,7 +436,7 @@
 			extinguishes_left--
 			H.visible_message("<span class='warning'>[H]'s suit automatically extinguishes them!</span>","<span class='warning'>Your suit automatically extinguishes you.</span>")
 			H.ExtinguishMob()
-			PoolOrNew(/obj/effect/particle_effect/water, get_turf(H))
+			new /obj/effect/particle_effect/water(get_turf(H))
 	return 0
 
 /obj/item/clothing/under/plasmaman/attackby(obj/item/E, mob/user, params)
@@ -464,3 +464,47 @@
 	icon_state = "hostanclothes"
 	item_state = "hostanclothes"
 	item_color = "hostanclothes"
+
+/obj/item/clothing/under/victdress
+	name = "black victorian dress"
+	desc = "A victorian style dress, fancy!"
+
+	icon_state = "victorianblackdress"
+
+	item_color = "victorianblackdress"
+
+	body_parts_covered = CHEST|GROIN|LEGS|HANDS
+
+	can_adjust = 0
+
+/obj/item/clothing/under/victdress/red
+	name = "red victorian dress"
+	icon_state = "victorianreddress"
+	item_color = "victorianreddress"
+
+	body_parts_covered = CHEST|GROIN|LEGS|HANDS
+	can_adjust = 0
+
+/obj/item/clothing/under/officeruniform
+	name = "Officer's Uniform"
+	desc = "this uniform was designed by the great designer Hugo Boss."
+	icon_state = "officeruniform"
+	item_state = "officeruniform"
+	item_color = "officeruniform"
+	body_parts_covered = CHEST|GROIN
+
+/obj/item/clothing/under/janimaid
+	name = "maid uniform"
+	desc = "A simple maid uniform for housekeeping."
+	icon_state = "janimaid"
+	item_state = "janimaid"
+	item_color = "janimaid"
+	body_parts_covered = CHEST|GROIN
+
+/obj/item/clothing/under/columbine
+	name = "футболка с джинсами"
+	desc = "Футболка с надписью \"Естественный Отбор\"."
+	icon_state = "columbine"
+	item_state = "columbine"
+	item_color = "columbine"
+	can_adjust = 0

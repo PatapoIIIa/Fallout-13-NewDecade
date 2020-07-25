@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/vault
-	name = "Vault Dweller"
-	desc = "Just a Vault Dweller"
+	name = "житель убежища"
+	desc = "Просто житель убежища."
 	icon_state = "vault_dweller"
 	icon_living = "vault_dweller"
 	icon_dead = "vault_dweller"
@@ -19,18 +19,18 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attacktext = "punches"
+	attacktext = "бьёт"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = INTENT_HARM
 	loot = list(/obj/effect/mob_spawn/human/corpse/vault)
 	atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 15
-	faction = list("vault", "city")
+	faction = list("vault", "city", "none")
 	check_friendly_fire = 1
 	status_flags = CANPUSH
 	del_on_death = 1
-	speak = list("�����!", "� ���� �����!", "���������� ������!", "������ ������?")
-	speak_emote = "�������,"
+	speak = list("Агась!", "Я хочу кушац!", "Смотритель мудень!", "Будешь ядерку?")
+	speak_emote = "говорит,"
 	speak_chance = 1
 	XP = 10
 
@@ -45,7 +45,7 @@
 	..()
 
 /obj/effect/mob_spawn/human/corpse/vault
-	name = "Vault Dweller"
+	name = "житель убежища"
 	uniform = /obj/item/clothing/under/f13/vault/v13
 	//suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/sneakers/brown
@@ -65,7 +65,7 @@
 /mob/living/simple_animal/hostile/vault/dweller/Aggro()
 	..()
 	summon_backup(15)
-	say("��������!!")
+	say("ПОМОГИТЕ!!")
 
 /mob/living/simple_animal/hostile/vault/dweller/dweller1
 	icon_state = "vault_dweller1"
@@ -98,8 +98,8 @@
 	icon_gib = "vault_dweller5"
 
 /mob/living/simple_animal/hostile/vault/security
-	name = "Vault Security"
-	desc = "Just a Vault Security"
+	name = "охрана убежища"
+	desc = "Грозный мужик с дубинкой."
 	icon_state = "vault_dweller_sec"
 	icon_living = "vault_dweller_sec"
 	icon_dead = "vault_dweller_sec"
@@ -115,15 +115,15 @@
 	rapid = 1
 	projectiletype = /obj/item/projectile/beam
 	projectilesound = 'sound/weapons/resonator_fire.ogg'
-	speak = list("��� �� ������� �� �����������...", "���������� ���� ��������!", "����� ����� �����...", "���������� ������ ����. ��� �������.")
-	speak_emote = "�������,"
+	speak = list("Как же хочется на поверхность...", "Смотритель наше спасение!", "Скоро конец смены...", "Смотритель всегда прав. Так говорят.")
+	speak_emote = "говорит,"
 	speak_chance = 1
 	XP = 20
 
 /mob/living/simple_animal/hostile/vault/security/Aggro()
 	..()
 	summon_backup(15)
-	say("����� ����� ����� ������ �� ���!")
+	say("ОТРЯД СМЕНЫ БРАВО СРОЧНО КО МНЕ!")
 
 /obj/effect/mob_spawn/human/corpse/vault/security
 	name = "Vault Security"
@@ -140,7 +140,7 @@
 
 /mob/living/simple_animal/hostile/enclave
 	name = "Enclave"
-	desc = "Just an Enclave"
+	desc = "Кто эти люди?"
 	icon_state = "enclave_scientist"
 	icon_living = "enclave_scientist"
 	icon_dead = "enclave_scientist"
@@ -150,7 +150,7 @@
 	respawn_time_of_mob = 900000000
 	response_help = "pokes"
 	response_disarm = "shoves"
-	response_harm = "����"
+	response_harm = "бьет"
 	speed = 1
 	stat_attack = 1
 	robust_searching = 1
@@ -159,7 +159,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attacktext = "����"
+	attacktext = "бьет"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = INTENT_HARM
 	loot = list(/obj/effect/mob_spawn/human/corpse/enclave)
@@ -169,8 +169,8 @@
 	check_friendly_fire = 1
 	status_flags = CANPUSH
 	del_on_death = 1
-	speak = list("�����!", "��� ���� ������� �����!", "�����!", "�-��-��!")
-	speak_emote = "�������,"
+	speak = list("Агась!", "Где ваша силовая броня!", "ДЕБИЛ!", "И-ДИ-ОТ!")
+	speak_emote = "говорит,"
 	speak_chance = 1
 	XP = 15
 
@@ -184,7 +184,7 @@
 	..()
 
 /obj/effect/mob_spawn/human/corpse/enclave
-	name = "Enclave scientist"
+	name = "учёный анклава"
 	uniform = /obj/item/clothing/under/f13/enclave_officer
 	suit = /obj/item/clothing/suit/radiation/enclave
 	shoes = /obj/item/clothing/shoes/f13/military
@@ -196,8 +196,8 @@
 	has_id = 0
 
 /mob/living/simple_animal/hostile/enclave/scientist
-	name = "Enclave scientist"
-	desc = "Just an Enclave scientist"
+	name = "учёный анклава"
+	desc = "Просто учёный."
 	minimum_distance = 10
 	retreat_distance = 10
 	obj_damage = 0
@@ -206,11 +206,11 @@
 /mob/living/simple_animal/hostile/enclave/scientist/Aggro()
 	..()
 	summon_backup(15)
-	say("��������!!")
+	say("ПОМОГИТЕ!!")
 
 /mob/living/simple_animal/hostile/enclave/soldier
-	name = "Enclave Soldier"
-	desc = "Just a Enclave Soldier"
+	name = "патрульный анклава"
+	desc = "Выглядит очень грозно!"
 	icon_state = "enclave_soldier"
 	icon_living = "enclave_soldier"
 	icon_dead = "enclave_soldier"
@@ -229,8 +229,8 @@
 	XP = 80
 
 /mob/living/simple_animal/hostile/enclave/soldier_ca
-	name = "Enclave Private Soldier"
-	desc = "Just a Enclave Soldier"
+	name = "рядовой анклава"
+	desc = "Это судя по всему, рядовой."
 	icon_state = "enclave_soldier_ca"
 	icon_living = "enclave_soldier_ca"
 	icon_dead = "enclave_soldier_ca"
@@ -239,6 +239,15 @@
 	health = 250
 	retreat_distance = 6
 	minimum_distance = 6
+
+	sound_speak_chance = 3
+	sound_speak = list('sound/f13npc/enclave_npc/idle_1.ogg')
+
+	aggro_sound_chance = 50
+	aggro_sound = list('sound/f13npc/enclave_npc/attack_1.ogg','sound/f13npc/enclave_npc/attack_2.ogg','sound/f13npc/enclave_npc/attack_3.ogg','sound/f13npc/enclave_npc/attack_4.ogg','sound/f13npc/enclave_npc/attack_5.ogg','sound/f13npc/enclave_npc/attack_6.ogg','sound/f13npc/enclave_npc/attack_7.ogg','sound/f13npc/enclave_npc/attack_8.ogg','sound/f13npc/enclave_npc/attack_9.ogg','sound/f13npc/enclave_npc/attack_10.ogg','sound/f13npc/enclave_npc/attack_11.ogg','sound/f13npc/enclave_npc/attack_12.ogg','sound/f13npc/enclave_npc/attack_13.ogg','sound/f13npc/enclave_npc/attack_14.ogg','sound/f13npc/enclave_npc/attack_15.ogg')
+
+	death_sound = list('sound/f13npc/enclave_npc/death_1.ogg','sound/f13npc/enclave_npc/death_2.ogg','sound/f13npc/enclave_npc/death_3.ogg','sound/f13npc/enclave_npc/death_4.ogg','sound/f13npc/enclave_npc/death_5.ogg','sound/f13npc/enclave_npc/death_6.ogg','sound/f13npc/enclave_npc/death_7.ogg','sound/f13npc/enclave_npc/death_8.ogg','sound/f13npc/enclave_npc/death_9.ogg','sound/f13npc/enclave_npc/death_10.ogg','sound/f13npc/enclave_npc/death_11.ogg')
+
 	loot = list(/obj/effect/mob_spawn/human/corpse/enclave/soldier)
 	self_weight = 45
 	healable = 1
@@ -262,7 +271,7 @@
 
 /mob/living/simple_animal/hostile/bs
 	name = "BS"
-	desc = "�� �������, ���� � ��� ������, �� �� ������ � ������� ���, ����� ���������� ���."
+	desc = "Вы уверены, будь у вас Тостер, он бы догнал и трахнул вас, чтобы заполучить его."
 	icon_state = "bs_knight"
 	icon_living = "bs_knight"
 	icon_dead = "bs_knight"
@@ -278,10 +287,12 @@
 	robust_searching = 1
 	maxHealth = 250
 	health = 250
+	aggro_sound_chance = 50
+	aggro_sound = list('sound/f13npc/bruhderhood/attack_1.ogg','sound/f13npc/bruhderhood/attack_2.ogg','sound/f13npc/bruhderhood/attack_3.ogg','sound/f13npc/bruhderhood/attack_4.ogg','sound/f13npc/bruhderhood/attack_5.ogg','sound/f13npc/bruhderhood/attack_6.ogg','sound/f13npc/bruhderhood/attack_7.ogg','sound/f13npc/bruhderhood/attack_8.ogg','sound/f13npc/bruhderhood/attack_9.ogg','sound/f13npc/bruhderhood/attack_10.ogg','sound/f13npc/bruhderhood/attack_11.ogg','sound/f13npc/bruhderhood/attack_12.ogg','sound/f13npc/bruhderhood/attack_13.ogg','sound/f13npc/bruhderhood/attack_14.ogg','sound/f13npc/bruhderhood/attack_15.ogg','sound/f13npc/bruhderhood/attack_16.ogg','sound/f13npc/bruhderhood/attack_17.ogg','sound/f13npc/bruhderhood/attack_18.ogg')
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attacktext = "����"
+	attacktext = "бьет"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = INTENT_HARM
 	loot = list(/obj/effect/mob_spawn/human/corpse/bs)
@@ -291,8 +302,8 @@
 	check_friendly_fire = 1
 	status_flags = CANPUSH
 	del_on_death = 1
-	speak = list("��� ����� ��� ��������� ������, �� �� ������ �������� ����� ��� ������� ���������� ��������.", "Semper Invicta!", "�� �������� � ����� �����!")
-	speak_emote = "�������,"
+	speak = list("Все знают как управлять людьми, но не каждая обезьяна знает как собрать плазменную винтовку.", "Semper Invicta!", "Да прибудет с тобой сталь!")
+	speak_emote = "говорит,"
 	speak_chance = 1
 	XP = 30
 
@@ -306,7 +317,7 @@
 	..()
 
 /obj/effect/mob_spawn/human/corpse/bs
-	name = "BS Knight"
+	name = "рыцарь братства"
 	uniform = /obj/item/clothing/under/f13/bdu
 	suit = /obj/item/clothing/suit/armor/f13/brotherhood_armor
 	shoes = /obj/item/clothing/shoes/f13/military
@@ -318,8 +329,8 @@
 	has_id = 0
 
 /mob/living/simple_animal/hostile/bs/knight
-	name = "BS Knight"
-	desc = "Just a BS Knight"
+	name = "рыцарь братства"
+	desc = "Рыцарь братства. Бесполезный и медлительный идиот."
 	icon_state = "bs_knight"
 	icon_living = "bs_knight"
 	icon_dead = "bs_knight"
@@ -336,8 +347,8 @@
 	XP = 30
 
 /mob/living/simple_animal/hostile/bs/paladin
-	name = "BS Paladin"
-	desc = "Just a BS Paladin"
+	name = "паладин братства"
+	desc = "Чуть более опаснее рыцаря."
 	icon_state = "bs_paladin"
 	icon_living = "bs_paladin"
 	icon_dead = "bs_paladin"
@@ -356,7 +367,7 @@
 	XP = 70
 
 /obj/effect/mob_spawn/human/corpse/bs/paladin
-	name = "BS Paladin"
+	name = "паладин братства"
 	uniform = /obj/item/clothing/under/f13/bdu
 	suit = /obj/item/clothing/suit/armor/f13/power_armor/t45d
 	shoes = /obj/item/clothing/shoes/f13/military
@@ -388,7 +399,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attacktext = "����"
+	attacktext = "бьет"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = INTENT_HARM
 	loot = list(/obj/effect/mob_spawn/human/corpse/ncr)
@@ -501,18 +512,18 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attacktext = "����"
+	attacktext = "бьет"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = INTENT_HARM
 	loot = list(/obj/effect/mob_spawn/human/corpse/legion)
 	atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 15
-	faction = list("legion", "none", "followers")
+	faction = list("legion")
 	check_friendly_fire = 1
 	status_flags = CANPUSH
 	del_on_death = 1
 	speak = list("Ave, true to Caesar.", "True to Caesar.", "Ave, Amicus.", "The new slave girls are quite beautiful.", "Give me cause, Profligate.", "Degenerates like you belong on a cross.")
-	speak_emote = "�������,"
+	speak_emote = "говорит,"
 	speak_chance = 1
 	XP = 20
 
@@ -530,7 +541,8 @@
 	..()
 
 /obj/effect/mob_spawn/human/corpse/legion
-	name = "Legion Prime"
+	name = "прайм легиона"
+	desc = "Просто типа умный дегенерат."
 	uniform = /obj/item/clothing/under/f13/rag
 	suit = /obj/item/clothing/suit/armor/f13/legrecruit
 	shoes = /obj/item/clothing/shoes/f13/military/legionleather
@@ -542,8 +554,8 @@
 	has_id = 0
 
 /mob/living/simple_animal/hostile/legion/prime
-	name = "Legion Prime"
-	desc = "Just a Legion Prime"
+	name = "прайм легиона"
+	desc = "Просто типа умный дегенерат."
 	icon_state = "legion_prime"
 	icon_living = "legion_prime"
 	icon_dead = "legion_prime"
@@ -561,8 +573,8 @@
 	XP = 20
 
 /mob/living/simple_animal/hostile/legion/decan
-	name = "Legion Decan"
-	desc = "Just a Legion Decan"
+	name = "декан легиона"
+	desc = "Просто Декан легиона."
 	icon_state = "legion_decan"
 	icon_living = "legion_decan"
 	icon_dead = "legion_decan"
@@ -582,7 +594,7 @@
 	XP = 30
 
 /obj/effect/mob_spawn/human/corpse/legion/decan
-	name = "Legion Decan"
+	name = "декан легиона"
 	uniform = /obj/item/clothing/under/f13/rag
 	suit = /obj/item/clothing/suit/armor/f13/legrecruit
 	shoes = /obj/item/clothing/shoes/f13/military/legionleather
@@ -594,13 +606,12 @@
 	has_id = 0
 
 /mob/living/simple_animal/hostile/raider
-	name = "Raider"
-	desc = "Just a Raider"
+	name = "Неизвестная личность (Рейдер)"
+	desc = "Просто тупой рейдер."
 	icon_state = "firefighter_raider"
 	icon_living = "firefighter_raider"
 	icon_dead = "firefighter_raider"
 	icon_gib = "firefighter_raider"
-	speak_chance = 0
 	turns_per_move = 5
 	respawn_time_of_mob = 900000000
 	response_help = "pokes"
@@ -611,10 +622,15 @@
 	robust_searching = 1
 	maxHealth = 150
 	health = 150
+	sound_speak_chance = 1
+	sound_speak = list('sound/f13npc/raider/idle_1.ogg','sound/f13npc/raider/idle_2.ogg','sound/f13npc/raider/idle_3.ogg','sound/f13npc/raider/idle_4.ogg')
+	aggro_sound_chance = 1
+	aggro_sound = list('sound/f13npc/raider/attack_1.ogg','sound/f13npc/raider/attack_2.ogg','sound/f13npc/raider/attack_3.ogg','sound/f13npc/raider/attack_4.ogg','sound/f13npc/raider/attack_5.ogg','sound/f13npc/raider/attack_6.ogg','sound/f13npc/raider/attack_7.ogg','sound/f13npc/raider/attack_8.ogg','sound/f13npc/raider/attack_9.ogg','sound/f13npc/raider/attack_10.ogg','sound/f13npc/raider/attack_11.ogg','sound/f13npc/raider/attack_12.ogg','sound/f13npc/raider/attack_13.ogg','sound/f13npc/raider/attack_14.ogg','sound/f13npc/raider/attack_15.ogg','sound/f13npc/raider/attack_16.ogg')
+	death_sound = list('sound/f13npc/raider/death_1.ogg', 'sound/f13npc/raider/death_2.ogg','sound/f13npc/raider/death_3.ogg','sound/f13npc/raider/death_4.ogg')
 	harm_intent_damage = 5
-	melee_damage_lower = 10
-	melee_damage_upper = 10
-	attacktext = "punches"
+	melee_damage_lower = 20
+	melee_damage_upper = 30
+	attacktext = "наносит удар"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = INTENT_HARM
 	loot = list(/obj/effect/mob_spawn/human/corpse/raider)
@@ -624,9 +640,9 @@
 	check_friendly_fire = 1
 	status_flags = CANPUSH
 	del_on_death = 1
-	speak = list("Got to lay off the jet", "Scared huh? You should be.", "The jet will make you jittery", "...I can do this all day", "I've done this 100 times... you think you'll be any different?")
-	speak_emote = "says,"
-	speak_chance = 1
+	speak = list("ЭЙ, СУКА, СЮДА ИДИ!", "Испугался? ДА ТОЧНО ИСПУГАЛСЯ!.", "ДОЛБОЕБИНА, СЮДА ИДИ!", "Я МОГУ ДЕЛАТЬ ЭТО ВЕСЬ СУКА ДЕНЬ!", "Я делал это сотни раз, думаешь этот будет иначе?")
+	speak_emote = list("орёт", "кричит")
+	speak_chance = 2
 	XP = 15
 
 /mob/living/simple_animal/hostile/raider/death(gibbed)
@@ -643,7 +659,7 @@
 	..()
 
 /obj/effect/mob_spawn/human/corpse/raider
-	name = "Raider"
+	name = "Рейдер"
 	uniform = /obj/item/clothing/under/f13/rag
 	suit = /obj/item/clothing/suit/armor/f13/tribal
 	shoes = /obj/item/clothing/shoes/f13/rag
@@ -657,18 +673,18 @@
 /mob/living/simple_animal/hostile/raider/Aggro()
 	..()
 	summon_backup(15)
-	say("����, ����, ����!!!")
+	say("УМРИ, УМРИ, УМРИ!!!")
 
 /mob/living/simple_animal/hostile/raider/firefighter
 	icon_state = "firefighter_raider"
 	icon_living = "firefighter_raider"
 	icon_dead = "firefighter_raider"
 	icon_gib = "firefighter_raider"
-	retreat_distance = 2
-	minimum_distance = 2
+	retreat_distance = 0
+	minimum_distance = 0
 	melee_damage_lower = 50
 	melee_damage_upper = 50
-	loot = list(/obj/effect/mob_spawn/human/corpse/raider, /obj/item/weapon/reagent_containers/pill/patch/jet)
+	loot = list(/obj/effect/mob_spawn/human/corpse/raider)
 	self_weight = 25
 	healable = 1
 	ranged = 0
@@ -678,11 +694,11 @@
 	icon_living = "tribal_raider"
 	icon_dead = "tribal_raider"
 	icon_gib = "tribal_raider"
-	retreat_distance = 2
-	minimum_distance = 2
+	retreat_distance = 0
+	minimum_distance = 0
 	melee_damage_lower = 40
 	melee_damage_upper = 40
-	loot = list(/obj/effect/mob_spawn/human/corpse/raider/tribal, /obj/item/weapon/reagent_containers/pill/patch/jet)
+	loot = list(/obj/effect/mob_spawn/human/corpse/raider/tribal)
 	self_weight = 22
 	healable = 1
 	ranged = 0
@@ -704,13 +720,13 @@
 	icon_living = "baseball_raider"
 	icon_dead = "baseball_raider"
 	icon_gib = "baseball_raider"
-	retreat_distance = 2
-	minimum_distance = 2
+	retreat_distance = 1
+	minimum_distance = 1
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	maxHealth = 200
 	health = 200
-	loot = list(/obj/effect/mob_spawn/human/corpse/raider/baseball, /obj/item/weapon/reagent_containers/pill/patch/jet)
+	loot = list(/obj/effect/mob_spawn/human/corpse/raider/baseball)
 	self_weight = 30
 	healable = 1
 	ranged = 0
@@ -737,7 +753,7 @@
 	melee_damage_upper = 20
 	maxHealth = 200
 	health = 200
-	loot = list(/obj/effect/mob_spawn/human/corpse/raider/biker, /obj/item/weapon/reagent_containers/pill/patch/jet)
+	loot = list(/obj/effect/mob_spawn/human/corpse/raider/biker)
 	self_weight = 30
 	healable = 1
 	ranged = 1

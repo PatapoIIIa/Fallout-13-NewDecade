@@ -1,11 +1,11 @@
 //Fallout 13 npc ghouls directory
 
 /mob/living/simple_animal/hostile/ghoul
-	name = "Дикий гуль"
-	desc = "Have you ever seen a living ghoul before?<br>Ghouls are necrotic post-humans - decrepit, rotting, zombie-like mutants."
-	icon = 'icons/fallout/mobs/animal.dmi'
-	icon_state = "retro_ghoul"
-	icon_living = "retro_ghoul"
+	name = "Р”РёРєРёР№ РіСѓР»СЊ"
+	desc = "Р’С‹ РІРёРґРµР»Рё РєРѕРіРґР°-РЅРёР±СѓРґСЊ Р¶РёРІРѕРіРѕ РіСѓР»СЏ?<br>Р“СѓР»Рё, СЌС‚Рѕ РїСЂР°РєС‚РёС‡РµСЃРєРё РјРµСЂС‚РІС‹Рµ Р»СЋРґРё, РіРЅРёСЋС‰РёРµ Рё РїР»РѕС…Рѕ РїР°С…РЅСѓС‰РёРµ, РїСЂСЏРјРѕ РєР°Рє Р·РѕРјР±Рё."
+	icon = 'icons/fallout/mobs/ghoul.dmi'
+	icon_state = "retro_ghoul-1"
+	icon_living = "retro_ghoul-1"
 	icon_dead = "retro_ghoul_d"
 	icon_gib = "gib"
 	speak_chance = 0
@@ -30,11 +30,12 @@
 
 	death_sound = 'sound/f13npc/ghoul_death.ogg'
 
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 10
+	armour_penetration = 10
+	melee_damage_upper = 35
 	aggro_vision_range = 10
 	idle_vision_range = 7
-	attacktext = "царапает"
+	attacktext = "С†Р°СЂР°РїР°РµС‚"
 	attack_sound = "punch"
 
 	XP = 7
@@ -49,10 +50,22 @@
 
 	..()
 
+/mob/living/simple_animal/hostile/ghoul/Life()
+	. = ..()
+	if(!.)
+		if(prob(0.1))
+			visible_message("<span class='notice'>РўРµР»Рѕ [src] СЂР°Р·Р»Р°РіР°РµС‚СЃСЏ!</span>")
+			gib(FALSE, FALSE, FALSE, TRUE)
+
+/mob/living/simple_animal/hostile/ghoul/New()
+	..()
+	icon_state = "retro_ghoul-[rand(1,10)]"
+	icon_living = "retro_ghoul-[rand(1,10)]"
+
 /mob/living/simple_animal/hostile/ghoul/aggressive
-	name = "Дикий гуль"
-	desc = "Have you ever seen a hungry ghoul before?<br>Similar to other feral ghouls, it's more aggressive and confident about the fact that you are the best food around.<br>It is missing a left arm."
-	icon_state = "angry_ghoul"
+	name = "Р”РёРєРёР№ РіСѓР»СЊ"
+	desc = "Р’С‹ РІРёРґРµР»Рё РєРѕРіРґР°-РЅРёР±СѓРґСЊ РіРѕР»РѕРґРЅРѕРіРѕ РіСѓР»СЏ?<br>РђРЅР°Р»РѕРіРёС‡РЅРѕ РґСЂСѓРіРёРј РґРёРєРёРј РіСѓР»СЏРј, СЌС‚РѕС‚ Р±РѕР»РµРµ Р°РіСЂРµСЃСЃРёРІРµРЅ Рё СѓРІРµСЂРµРЅРµРЅ РІ С‚РѕРј, С‡С‚Рѕ С‚С‹ СЏРІР»СЏРµС€СЊСЃСЏ РѕС‚Р»РёС‡РЅРѕР№ РµРґРѕР№. <br> РЈ РЅРµРіРѕ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ Р»РµРІР°СЏ СЂСѓРєР°."
+	icon_state = "angry_ghoul-1"
 	icon_living = "angry_ghoul"
 	icon_dead = "angry_ghoul_d"
 	icon_gib = "gib"
@@ -62,13 +75,18 @@
 	melee_damage_upper = 25
 	aggro_vision_range = 15
 	idle_vision_range = 10
-	attacktext = "chomps"
+	attacktext = "Р¶СѓРµС‚"
+
+/mob/living/simple_animal/hostile/ghoul/aggressive/New()
+	..()
+	icon_state = "angry_ghoul-[rand(1,10)]"
+	icon_living = "angry_ghoul-[rand(1,10)]"
 
 /mob/living/simple_animal/hostile/ghoul/glowing
-	name = "Светящийся гуль"
-	desc = "Have you ever seen a glowing ghoul before?<br>Glowing ghouls are necrotic post-humans - rotting, zombie-like mutants, who are so irradiated they actually glow in the dark."
-	icon_state = "retro_glowghoul"
-	icon_living = "retro_glowghoul"
+	name = "РЎРІРµС‚СЏС‰РёР№СЃСЏ РіСѓР»СЊ"
+	desc = "Р’С‹ РІРёРґРµР»Рё РєРѕРіРґР°-РЅРёР±СѓРґСЊ СЃРІРµС‚СЏС‰РµРіРѕСЃСЏ РіСѓР»СЏ??<br>РЎРІРµС‚СЏС‰РёРµСЃСЏ РіСѓР»Рё, СЌС‚Рѕ РїСЂР°РєС‚РёС‡РµСЃРєРё РјС‘СЂС‚РІС‹Рµ Р»СЋРґРё, РіРЅРёСЋС‰РёРµ Рё РїР»РѕС…Рѕ РїР°С…РЅСѓС‰РёРµ, РїСЂСЏРјРѕ РєР°Рє Р·РѕРјР±Рё, Рё РЅР°СЃС‚РѕР»СЊРєРѕ РѕР±Р»СѓС‡С‘РЅРЅС‹Рµ С‡С‚Рѕ СЃС‚Р°Р»Рё СЃРІРµС‚РёС‚СЊСЃСЏ РІ С‚РµРјРЅРѕС‚Рµ."
+	icon_state = "retro_glowghoul-1"
+	icon_living = "retro_glowghoul-1"
 	icon_dead = "retro_glowghoul_d"
 	icon_gib = "gib"
 	maxHealth = 100
@@ -81,106 +99,34 @@
 
 /mob/living/simple_animal/hostile/ghoul/glowing/New()
 	..()
+	icon_state = "retro_glowghoul-[rand(1,10)]"
+	icon_living = "retro_glowghoul-[rand(1,10)]"
 	SSradiation.processing += src
 
 /mob/living/simple_animal/hostile/ghoul/soldier
-	name = "Дикий гуль"
-	desc = "Have you ever seen a living ghoul before?<br>Ghouls are necrotic post-humans - decrepit, rotting, zombie-like mutants."
-	icon = 'icons/fallout/mobs/animal.dmi'
-	icon_state = "soldier_ghoul"
-	icon_living = "soldier_ghoul"
+	name = "Р”РёРєРёР№ РіСѓР»СЊ-СЃРѕР»РґР°С‚"
+	icon_state = "soldier_ghoul-1"
+	icon_living = "soldier_ghoul-1"
 	icon_dead = "soldier_ghoul_d"
 	icon_gib = "gib"
 	maxHealth = 90
 	health = 90
 
+/mob/living/simple_animal/hostile/ghoul/soldier/New()
+	..()
+	icon_state = "soldier_ghoul-[rand(1,10)]"
+	icon_living = "soldier_ghoul-[rand(1,10)]"
+
 /mob/living/simple_animal/hostile/ghoul/soldier/armored
-	name = "Бронированный дикий гуль"
-	desc = "Have you ever seen a living ghoul before?<br>Ghouls are necrotic post-humans - decrepit, rotting, zombie-like mutants."
-	icon = 'icons/fallout/mobs/animal.dmi'
-	icon_state = "soldier_ghoul_a"
-	icon_living = "soldier_ghoul_a"
+	name = "Р‘СЂРѕРЅРёСЂРѕРІР°РЅРЅС‹Р№ РґРёРєРёР№ РіСѓР»СЊ-СЃРѕР»РґР°С‚"
+	icon_state = "soldier_ghoul_a-1"
+	icon_living = "soldier_ghoul_a-1"
 	icon_dead = "soldier_ghoul_a_d"
 	icon_gib = "gib"
 	maxHealth = 100
 	health = 100
 
-/mob/living/simple_animal/hostile/ghoul/scorched
-	name = "Горелый"
-	desc = "В дополнение к сморщенной, обгоревшей коже, типичной для гулей, горелые обладают зелеными ультрацитовыми наростами по всему телу, пронизывающими их кожу нерегулярными узорами. Причины образования и предназначение этих ростков неизвестны, но, согласно предварительным исследованиям на местах, проводимым смотрительницей Убежища 76, горелые — это бывшие люди, которые заразились «чумой горелых», распространяемой зверожогами.."
-	icon = 'icons/fallout/mobs/animal.dmi'
-	icon_state = "scorched_m"
-	icon_living = "scorched_m"
-	icon_dead = "scorched_m_d"
-	icon_gib = "gib"
-	speak_chance = 1
-	turns_per_move = 5
-	environment_smash = 0
-	response_help = "hugs"
-	response_disarm = "pushes aside"
-	response_harm = "режет"
-	move_to_delay = 4
-	respawn_time_of_mob = 500000000
-	maxHealth = 80
-	health = 80
-	self_weight = 45
-
-	faction = list("scorched", "hostile")
-
-	sound_speak_chance = 1
-	sound_speak = list('sound/f13npc/scor_br1.ogg','sound/f13npc/scor_b2.ogg','sound/f13npc/scor_b3.ogg')
-
-	aggro_sound_chance = 50
-	aggro_sound = 'sound/f13npc/ghoul_alert.ogg'
-
-	death_sound = list('sound/f13npc/scor_d1.ogg','sound/f13npc/scor_d2.ogg','sound/f13npc/scor_d3.ogg','sound/f13npc/scor_d4.ogg','sound/f13npc/scor_d5.ogg')
-
-	melee_damage_lower = 15
-	melee_damage_upper = 20
-	aggro_vision_range = 10
-	idle_vision_range = 7
-	attacktext = "царапает"
-	attack_sound = "punch"
-	XP = 10
-
-/mob/living/simple_animal/hostile/ghoul/scorched/ranged
-	name = "Горелый"
-	desc = "В дополнение к сморщенной, обгоревшей коже, типичной для гулей, горелые обладают зелеными ультрацитовыми наростами по всему телу, пронизывающими их кожу нерегулярными узорами. Причины образования и предназначение этих ростков неизвестны, но, согласно предварительным исследованиям на местах, проводимым смотрительницей Убежища 76, горелые — это бывшие люди, которые заразились «чумой горелых», распространяемой зверожогами.."
-	icon = 'icons/fallout/mobs/animal.dmi'
-	icon_state = "scorched_r"
-	icon_living = "scorched_r"
-	icon_dead = "scorched_r_d"
-	icon_gib = "gib"
-	speak_chance = 1
-	turns_per_move = 5
-	environment_smash = 0
-	response_help = "hugs"
-	response_disarm = "pushes aside"
-	response_harm = "бьёт"
-	move_to_delay = 4
-	respawn_time_of_mob = 500000000
-	maxHealth = 80
-	health = 80
-	self_weight = 45
-	ranged = 1
-	ranged_cooldown_time = 200
-	projectiletype = /obj/item/projectile/bullet/F13/c9mmBullet
-	projectilesound = 'sound/f13weapons/hunting_rifle.ogg'
-
-	faction = list("scorched", "hostile")
-
-	sound_speak_chance = 1
-	sound_speak = list('sound/f13npc/scor_br1.ogg','sound/f13npc/scor_b2.ogg','sound/f13npc/scor_b3.ogg')
-
-	aggro_sound_chance = 50
-	aggro_sound = 'sound/f13npc/ghoul_alert.ogg'
-
-	death_sound = list('sound/f13npc/scor_d1.ogg','sound/f13npc/scor_d2.ogg','sound/f13npc/scor_d3.ogg','sound/f13npc/scor_d4.ogg','sound/f13npc/scor_d5.ogg')
-
-	melee_damage_lower = 15
-	melee_damage_upper = 20
-	aggro_vision_range = 10
-	idle_vision_range = 7
-	attacktext = "царапает"
-	attack_sound = "punch"
-	XP = 15
+/mob/living/simple_animal/hostile/ghoul/soldier/armored/New()
+	..()
+	icon_state = "soldier_ghoul_a-[rand(1,10)]"
+	icon_living = "soldier_ghoul_a-[rand(1,10)]"

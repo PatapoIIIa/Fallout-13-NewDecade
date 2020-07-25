@@ -21,6 +21,7 @@
 				implement_type = path
 				if(tool_check(user, tool))
 					success = 1
+					break
 
 	if(success)
 		if(target_zone == surgery.location)
@@ -71,15 +72,15 @@
 
 
 /datum/surgery_step/proc/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] собирается выполнить операцию на [target].", "<span class='notice'>Вы начинаете операцию на [target]...</span>")
+	user.visible_message("[user] СЃРѕР±РёСЂР°РµС‚СЃСЏ РІС‹РїРѕР»РЅРёС‚СЊ РѕРїРµСЂР°С†РёСЋ РЅР° [target].", "<span class='notice'>Р’С‹ РЅР°С‡РёРЅР°РµС‚Рµ РѕРїРµСЂР°С†РёСЋ РЅР° [target]...</span>")
 
 
 /datum/surgery_step/proc/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] succeeds!", "<span class='notice'>Заебися.</span>")
+	user.visible_message("[user] succeeds!", "<span class='notice'>Р—Р°РµР±РёСЃСЏ.</span>")
 	return 1
 
 /datum/surgery_step/proc/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("<span class='warning'>[user] screws up!</span>", "<span class='warning'>Вы проебались!</span>")
+	user.visible_message("<span class='warning'>[user] screws up!</span>", "<span class='warning'>Р’С‹ РїСЂРѕРµР±Р°Р»РёСЃСЊ!</span>")
 	return 0
 
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)

@@ -30,8 +30,9 @@
 	density = 1
 	smooth = SMOOTH_OLD
 	layer = ABOVE_ALL_MOB_LAYER
+	pass_flags = LETPASSTHROW
 	canSmoothWith = list(/turf/closed/wall, /turf/closed/wall/f13/ruins, /turf/closed/wall/f13/store, /turf/closed/wall/f13/supermart, /turf/closed/wall/f13/wood, /obj/structure/fence,
-	/turf/closed/mineral, /turf/closed/wall/f13/wood/house)
+	/turf/closed/mineral, /turf/closed/wall/f13/wood/house, /turf/closed/wall/r_wall/rust, /turf/closed/wall/rust, /turf/closed/wall/vault)
 
 /obj/structure/fence/update_icon()
 	queue_smooth(src)
@@ -107,6 +108,17 @@
 	icon_state = "[icontype][icon_junction][!density ? "-open" : ""]"
 
 
+/obj/structure/metal_fence/broken
+	icon = 'icons/fallout/objects/structures/fences.dmi'
+	name = "сломанный металлический забор"
+	density = 0
+	anchored = 1
+	layer = ABOVE_ALL_MOB_LAYER
+	icon_state = "metal_fence3-broken-alt"
+
+/obj/structure/metal_fence/broken/alt
+	density = 0
+	icon_state = "metal_fence3-broken"
 
 /obj/structure/wood_fence
 	name = "wood fence"

@@ -112,7 +112,7 @@
 	desc = "This piece of junk looks like something that could have been used 700 years ago. It feels slightly moist."
 	icon_state = "moistnugget"
 	item_state = "moistnugget"
-	slot_flags = 0 //no SLOT_BACK sprite, alas
+	slot_flags = SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction
 	var/bolt_open = 0
 	wielded_icon = null

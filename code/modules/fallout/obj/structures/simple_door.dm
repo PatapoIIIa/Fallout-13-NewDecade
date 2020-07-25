@@ -7,8 +7,8 @@
 //  - maxyo
 
 /obj/structure/simple_door
-	name = "wooden door"
-	desc = "It opens and closes - nothing out of the ordinary."
+	name = "деревянная дверь"
+	desc = "Открывается и закрывается! Скучно..."
 	icon = 'icons/fallout/objects/structures/doors.dmi'
 	icon_state = "house"
 	opacity = 1
@@ -16,6 +16,7 @@
 	anchored = 1
 	layer = CLOSED_DOOR_LAYER
 	explosion_block = 0.5
+	resistance_flags = INDESTRUCTIBLE //потому что так надо.
 	var/can_hold_padlock = FALSE
 	var/obj/item/lock/padlock
 	var/door_type = "house"
@@ -153,6 +154,10 @@
 				attach_padlock(P)
 				P.attackby(I, user, params)
 				return 1
+	if(istype(I, /obj/item/lockpick))
+		if(padlock)
+			padlock.attackby(I, user, params)
+
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	attack_hand(user)
@@ -163,7 +168,7 @@
 	if(isliving(user))
 		var/mob/living/M = user
 		if(/obj/structure/barricade in src.loc)
-			M << "It won't budge!"
+			M << "Не двигается!"
 			return 0
 		if(M.client)
 			if(iscarbon(M))
@@ -229,8 +234,8 @@
 // Fallout 13 general doors directory
 
 /obj/structure/simple_door/manhole
-	name = "sewer's manhole"
-	desc = "A small manhole to access sewers."
+	name = "канализационный люк"
+	desc = "Небольшой люк, дающий доступ к канализации."
 	icon_state = "manhole"
 	door_type = "manhole"
 	opacity = 0
@@ -262,14 +267,14 @@
 	can_hold_padlock = TRUE
 
 /obj/structure/simple_door/dirtyglass
-	desc = "A glass is dirty, you can't see a thing behind it."
+	desc = "Окно настолько грязное, что ничего не разглядеть."
 	icon_state = "dirtyglass"
 	door_type = "dirtyglass"
 	can_hold_padlock = TRUE
 
 /obj/structure/simple_door/fakeglass
-	name = "damaged wooden door"
-	desc = "It still somehow opens and closes."
+	name = "поврежденная деревянная дверь"
+	desc = "Ну, она хотябы всё еще открывается и закрывается."
 	icon_state = "fakeglass"
 	door_type = "fakeglass"
 	can_hold_padlock = TRUE
@@ -283,7 +288,7 @@
 	can_hold_padlock = TRUE
 
 /obj/structure/simple_door/glass
-	desc = "A glass is quite clean, someone took care of this door."
+	desc = "Стекло выглядит почти чистым, похоже, кто-то заботился об этой двери."
 	icon_state = "glass"
 	door_type = "glass"
 	opaque = 0
@@ -296,14 +301,14 @@
 	can_hold_padlock = TRUE
 
 /obj/structure/simple_door/metal
-	name = "metal door"
+	name = "металлическая дверь"
 	material_type = /obj/item/stack/sheet/metal
 	open_sound = "sound/f13machines/doorstore_open.ogg"
 	close_sound = "sound/f13machines/doorstore_close.ogg"
 	explosion_block = 2
 
 /obj/structure/simple_door/metal/dirtystore
-	desc = "A metal door with dirty glass, you can't see a thing behind it."
+	desc = "Металлическая дверь, тут есть окошко, но оно настолько покрыто грязью, что ничего не разглядеть."
 	icon_state = "dirtystore"
 	door_type = "dirtystore"
 	can_hold_padlock = TRUE
@@ -316,8 +321,8 @@
 	can_hold_padlock = TRUE
 
 /obj/structure/simple_door/metal/barred
-	name = "barred door"
-	desc = "Bars. No matter which side we're on, aren't we always behind them?"
+	name = "решетчатая дверь"
+	desc = "Решетки. Не важно с какой стороны ты за ними, ты же всегда за РЕШЕТКОЙ?"
 	icon_state = "barred"
 	door_type = "barred"
 	open_sound = "sound/f13machines/doorchainlink_open.ogg"
@@ -326,8 +331,8 @@
 	can_hold_padlock = TRUE
 
 /obj/structure/simple_door/metal/ventilation
-	name = "ventilation system"
-	desc = "As you take a closer look, you notice a handle at the bottom of ventilation system access hatch."
+	name = "вентиляционный люк"
+	desc = "Приглядевшись, вы замечаете рукоятку, возможно если её дёрнуть, можно будет попасть туда?"
 	icon_state = "ventilation"
 	door_type = "ventilation"
 	open_sound = "sound/f13machines/doorhidden_open.ogg"
@@ -337,8 +342,8 @@
 	closing_time = 20
 
 /obj/structure/simple_door/metal/vault
-	name = "vault wall"
-	desc = "A sturdy and cold metal wall."
+	name = "стена убежища"
+	desc = "Холодный металл. Бр..."
 	icon = 'icons/fallout/turfs/walls/vault.dmi'
 	icon_state = "vaultfwall"
 	door_type = "vaultfwall"
@@ -355,8 +360,8 @@
 	close_sound = "sound/f13items/flashlight_off.ogg"
 
 /obj/structure/simple_door/blast
-	name = "blast door"
-	desc = "A blast door, alternatively referred to as a shielded door or safety door, is a type of door designed to be especially reliable and durable."
+	name = "гермозатвор"
+	desc = "Гермозатвор, создан специально чтобы выдерживать множественные взрывы. Выглядит грозно."
 	icon_state = "blastdoor"
 	door_type = "blastdoor"
 	material_type = /obj/item/stack/sheet/plasteel
@@ -368,7 +373,7 @@
 	closing_time = 20
 
 /obj/structure/simple_door/bunker
-	name = "airlock"
+	name = "шлюз"
 	desc = "An olive green painted airlock.<br>The door mechanism itself is a complex mix of an electic engine and hydraulic motion.<br>This particular door looks like a pre-War military tech."
 	icon_state = "bunker"
 	door_type = "bunker"
@@ -379,7 +384,7 @@
 	hard_open = 0
 
 /obj/structure/simple_door/bunker/vault
-	desc = "Vault door."
+	desc = "шлюз бункера."
 	icon_state = "vault"
 	door_type = "vault"
 	explosion_block = 8
@@ -392,7 +397,7 @@
 	opaque = 0
 
 /obj/structure/simple_door/bunker/glass/vault
-	desc = "Vault glass door."
+	desc = "шлюз бункера с окошком."
 	icon_state = "vault_glass"
 	door_type = "vault_glass"
 	explosion_block = 7 //A glass window in it, reduces the resistance, am I right?

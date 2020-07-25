@@ -23,7 +23,7 @@
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 
-	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
 	usr.emote("me",1,message)
 
@@ -64,7 +64,7 @@
 		K = src.key
 
 	message = src.say_quote(message, get_spans())
-	var/rendered = "<span class='game deadsay'><span class='prefix'>̨���:</span> <span class='name'>[name]</span>[alt_name] <span class='message'>[message]</span></span>"
+	var/rendered = "<span class='game deadsay'><span class='prefix'>МЁРТВ:</span> <span class='name'>[name]</span>[alt_name] <span class='message'>[message]</span></span>"
 
 	deadchat_broadcast(rendered, follow_target = src, speaker_key = K)
 
@@ -76,3 +76,15 @@
 
 /mob/proc/lingcheck()
 	return 0
+
+/mob/dead/observer/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans)
+	if(radio_freq)
+		var/atom/movable/virtualspeaker/V = speaker
+
+		if(isAI(V.source))
+			var/mob/living/silicon/ai/S = V.source
+			speaker = S.eyeobj
+		else
+			speaker = V.source
+	var/link = FOLLOW_LINK(src, speaker)
+	to_chat(src, "[link] [message]")

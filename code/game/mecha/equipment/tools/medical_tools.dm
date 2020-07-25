@@ -127,7 +127,7 @@
 /obj/item/mecha_parts/mecha_equipment/medical/sleeper/proc/get_patient_stats()
 	if(!patient)
 		return
-	return {"<html>
+	return {"<html><meta charset="UTF-8">
 				<head>
 				<title>[patient] statistics</title>
 				<script language='javascript' type='text/javascript'>
@@ -333,7 +333,7 @@
 				var/mob/living/carbon/M = safepick(mobs)
 				if(M)
 					var/R
-					mechsyringe.visible_message("<span class=\"attack\"> [M] заколот шприцом!</span>")
+					mechsyringe.visible_message("<span class=\"attack\"> [M] Р·Р°РєРѕР»РѕС‚ С€РїСЂРёС†РѕРј!</span>")
 					if(M.can_inject(null, 1))
 						if(mechsyringe.reagents)
 							for(var/datum/reagent/A in mechsyringe.reagents.reagent_list)
@@ -399,7 +399,7 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/proc/get_reagents_page()
-	var/output = {"<html>
+	var/output = {"<html><meta charset=UTF-8>
 						<head>
 						<title>Reagent Synthesizer</title>
 						<script language='javascript' type='text/javascript'>

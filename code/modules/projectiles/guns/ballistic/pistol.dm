@@ -18,7 +18,7 @@
 	return
 
 /obj/item/weapon/gun/ballistic/automatic/pistol/m1911
-	name = "\improper M1911"
+	name = "М1911"
 	desc = "A classic .45 handgun with a small magazine capacity."
 	icon_state = "m1911"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -80,4 +80,3 @@
 	else
 		to_chat(user, "<span class='notice'>..and falls into view. Whew, that was a close one.</span>")
 		user.unEquip(src)
-

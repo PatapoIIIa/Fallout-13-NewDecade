@@ -1,8 +1,8 @@
 //Fallout 13 securitron directory
 
 /mob/living/simple_animal/hostile/securitron
-	name = "securitron"
-	desc = "A pre-War type of securitron.<br>Extremely dangerous machine."
+	name = "секьюрититрон МК1"
+	desc = "Довоенный вид секьюрититронов.<br>Очень опасная машина."
 	icon = 'icons/fallout/mobs/robots.dmi'
 	icon_state = "Securitron"
 	icon_living = "Securitron"
@@ -24,7 +24,7 @@
 
 	faction = list("neutral", "city", "ncr")
 
-	emote_hear = list("подмигнул.")
+	emote_hear = list("winks.")
 	speak = list("Уот так уот!","Представьте! Целых 510 лет! Мы столько не живем.", "Руки вверх, вы арестованы! Ха-ха, шутка.")
 	sound_speak_chance = 5
 	sound_speak = list('sound/f13npc/robot_charge1.ogg','sound/f13npc/robot_charge2.ogg','sound/f13npc/robot_charge3.ogg')
@@ -39,7 +39,7 @@
 	melee_damage_upper = 10
 	minimum_distance = 4
 	retreat_distance = 7
-	attacktext = "punches"
+	attacktext = "бъёт"
 	attack_sound = "punch"
 	a_intent = "harm"
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)

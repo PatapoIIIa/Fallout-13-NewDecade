@@ -10,7 +10,7 @@
 	status = "legate"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "������"
+	supervisors = "Цезарю"
 	selection_color = "#ec9d9d"
 	minimal_player_age = 7
 	disallowed_gender = FEMALE
@@ -24,7 +24,6 @@
 	/obj/item/weapon/kitchen/knife/combat,
 	/obj/item/weapon/spear,
 	/obj/item/weapon/harpoon,
-	/obj/item/device/radio,
 	/obj/item/weapon/lighter/gold,
 	/obj/item/weapon/reagent_containers/f13stimpack,
 	/obj/item/weapon/reagent_containers/f13stimpack/super
@@ -32,7 +31,7 @@
 
 	denied_items = list(
 	/obj/item/clothing/shoes/f13/rag,
-	/obj/item/clothing/head/f13/headscarf,
+	/obj/item/clothing/mask/bandana/f13/headscarf,
 	/obj/item/clothing/head/f13/pot,
 	/obj/item/clothing/under/pants/f13/ghoul,
 	/obj/item/clothing/under/f13/rag,
@@ -52,7 +51,7 @@
 
 /datum/outfit/job/leglegate
 	name = "Legate"
-	id = /obj/item/card/id/legveteran
+	id = /obj/item/weapon/card/id/legcenturion
 	uniform = /obj/item/clothing/under/pants/f13/cloth
 	shoes = /obj/item/clothing/shoes/f13/military/legionlegate
 	gloves = /obj/item/clothing/gloves/f13/legionlegate
@@ -76,11 +75,11 @@
 	status = "centurion"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "������"
+	supervisors = "Легату"
 	selection_color = "#ec9d9d"
 	minimal_player_age = 7
 	disallowed_gender = FEMALE
-
+	whitelist_on = 1
 	allowed_packs = list("starter", "cigarettes", "follower", "bard", "super_ten")
 
 	required_items = list(
@@ -88,14 +87,13 @@
 	/obj/item/weapon/kitchen/knife/combat,
 	/obj/item/weapon/spear,
 	/obj/item/weapon/harpoon,
-	/obj/item/device/radio,
 	/obj/item/weapon/lighter/engraved,
 	/obj/item/weapon/reagent_containers/f13stimpack
 	)
 
 	denied_items = list(
 	/obj/item/clothing/shoes/f13/rag,
-	/obj/item/clothing/head/f13/headscarf,
+	/obj/item/clothing/mask/bandana/f13/headscarf,
 	/obj/item/clothing/head/f13/pot,
 	/obj/item/clothing/under/pants/f13/ghoul,
 	/obj/item/clothing/under/f13/rag,
@@ -115,7 +113,7 @@
 
 /datum/outfit/job/legcenturion
 	name = "Centurion"
-	id = /obj/item/card/id/legcenturion
+	id = /obj/item/weapon/card/id/legveteran
 	uniform = /obj/item/clothing/under/pants/f13/cloth
 	shoes = /obj/item/clothing/shoes/f13/military/legionmetal
 	gloves = /obj/item/clothing/gloves/f13/leather
@@ -142,7 +140,7 @@
 	selection_color = "#ec9d9d"
 	minimal_player_age = 7
 	disallowed_gender = FEMALE
-
+	whitelist_on = 1
 	allowed_packs = list("starter", "cigarettes", "follower", "bard", "super_ten")
 
 	required_items = list(
@@ -150,14 +148,13 @@
 	/obj/item/weapon/kitchen/knife/combat,
 	/obj/item/weapon/spear,
 	/obj/item/weapon/harpoon,
-	/obj/item/device/radio,
 	/obj/item/weapon/lighter/engraved,
 	/obj/item/weapon/reagent_containers/f13stimpack
 	)
 
 	denied_items = list(
 	/obj/item/clothing/shoes/f13/rag,
-	/obj/item/clothing/head/f13/headscarf,
+	/obj/item/clothing/mask/bandana/f13/headscarf,
 	/obj/item/clothing/head/f13/pot,
 	/obj/item/clothing/under/pants/f13/ghoul,
 	/obj/item/clothing/under/f13/rag,
@@ -177,7 +174,7 @@
 
 /datum/outfit/job/legvex
 	name = "Vexillarius"
-	id = /obj/item/card/id/legrecruit
+	id = /obj/item/weapon/card/id/legveteran
 	uniform = /obj/item/clothing/under/pants/f13/cloth
 	shoes = /obj/item/clothing/shoes/f13/military/legionmetal
 	gloves = /obj/item/clothing/gloves/f13/leather
@@ -200,11 +197,11 @@
 	status = "decanus"
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the Centurion"
+	supervisors = "Центуриону"
 	selection_color = "#ec9d9d"
 	minimal_player_age = 7
 	disallowed_gender = FEMALE
-
+	whitelist_on = 1
 	allowed_packs = list("starter", "cigarettes", "follower", "bard", "super_ten")
 
 	required_items = list(
@@ -213,13 +210,12 @@
 	/obj/item/weapon/kitchen/knife/combat,
 	/obj/item/weapon/spear,
 	/obj/item/weapon/harpoon,
-	/obj/item/device/radio,
 	/obj/item/stack/medical/healingpowder
 	)
 
 	denied_items = list(
 	/obj/item/clothing/shoes/f13/rag,
-	/obj/item/clothing/head/f13/headscarf,
+	/obj/item/clothing/mask/bandana/f13/headscarf,
 	/obj/item/clothing/head/f13/pot,
 	/obj/item/clothing/under/pants/f13/ghoul,
 	/obj/item/clothing/under/f13/rag,
@@ -239,7 +235,7 @@
 
 /datum/outfit/job/legdecan
 	name = "Decanus"
-	id = /obj/item/card/id/legrecruit
+	id = /obj/item/weapon/card/id/legprime
 	uniform = /obj/item/clothing/under/pants/f13/cloth
 	shoes = /obj/item/clothing/shoes/f13/military/legionleather
 	gloves = /obj/item/clothing/gloves/f13/leather
@@ -263,11 +259,11 @@
 	status = "prime"
 	total_positions = 20
 	spawn_positions = 20
-	supervisors = "the Centurion"
+	supervisors = "Центуриону"
 	selection_color = "#ec9d9d"
 	minimal_player_age = 7
 	disallowed_gender = FEMALE
-
+	whitelist_on = 0
 	allowed_packs = list("starter", "cigarettes", "follower", "bard", "super_ten")
 
 	required_items = list(
@@ -280,7 +276,7 @@
 
 	denied_items = list(
 	/obj/item/clothing/shoes/f13/rag,
-	/obj/item/clothing/head/f13/headscarf,
+	/obj/item/clothing/mask/bandana/f13/headscarf,
 	/obj/item/clothing/head/f13/pot,
 	/obj/item/clothing/under/pants/f13/ghoul,
 	/obj/item/clothing/under/f13/rag,
@@ -300,7 +296,7 @@
 
 /datum/outfit/job/prime
 	name = "Prime"
-	id = /obj/item/card/id/legprime
+	id = /obj/item/weapon/card/id/legprime
 	uniform = /obj/item/clothing/under/pants/f13/cloth
 	shoes = /obj/item/clothing/shoes/f13/military/legionleather
 	gloves = /obj/item/clothing/gloves/f13/leather

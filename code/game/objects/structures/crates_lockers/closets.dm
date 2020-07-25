@@ -1,6 +1,6 @@
 /obj/structure/closet
-	name = "шкафчик"
-	desc = "It's a basic storage unit."
+	name = "С€РєР°С„С‡РёРє"
+	desc = "РћР±С‹С‡РЅС‹Р№ С€РєР°С„."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "generic"
 	density = 1
@@ -28,22 +28,20 @@
 	var/mob_storage_capacity = 3 // how many human sized mob/living can fit together inside a closet.
 	var/storage_capacity = 300 //This is so that someone can't pack hundreds of items in a locker/crate then open it in a populated area to crash clients.
 	var/cutting_tool = /obj/item/weapon/weldingtool
-	var/open_sound = 'sound/machines/click.ogg'
-	var/close_sound = 'sound/machines/click.ogg'
+	var/open_sound = 'sound/machines/closet_open.ogg'
+	var/close_sound = 'sound/machines/closet_close.ogg'
+	var/open_sound_volume = 35
+	var/close_sound_volume = 50
 	var/cutting_sound = 'sound/items/Welder.ogg'
 	var/material_drop = /obj/item/stack/sheet/metal
 	var/material_drop_amount = 2
 	var/delivery_icon = "deliverycloset" //which icon to use when packagewrapped. null to be unwrappable.
 
-/obj/structure/closet/New()
+/obj/structure/closet/Initialize(mapload)
 	..()
-	update_icon()
-	take_contents()
-
-/obj/structure/closet/initialize()
-	..()
-	if(!opened)		// if closed, any item at the crate's loc is put in the contents
+	if(mapload && !opened)			// if closed, any item at the crate's loc is put in the contents
 		take_contents()
+	update_icon()
 
 /obj/structure/closet/Destroy()
 	if(obj_integrity == max_integrity)
@@ -84,9 +82,9 @@
 	if(anchored)
 		to_chat(user, "It is anchored to the ground.")
 	if(broken)
-		to_chat(user, "<span class='notice'>Похоже что он поврежден.</span>")
+		to_chat(user, "<span class='notice'>РџРѕС…РѕР¶Рµ С‡С‚Рѕ РѕРЅ РїРѕРІСЂРµР¶РґРµРЅ.</span>")
 	else if(secure && !opened)
-		to_chat(user, "<span class='notice'>Alt-click чтобы [locked ? "отпереть" : "запереть"].</span>")
+		to_chat(user, "<span class='notice'>Alt-click С‡С‚РѕР±С‹ [locked ? "РѕС‚РїРµСЂРµС‚СЊ" : "Р·Р°РїРµСЂРµС‚СЊ"].</span>")
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0)
 	if(height == 0 || wall_mounted)
@@ -135,10 +133,10 @@
 /obj/structure/closet/proc/open(mob/living/user)
 	if(opened || !can_open(user))
 		return
-	playsound(loc, open_sound, 15, 1, -3)
-	opened = 1
+	playsound(loc, open_sound, open_sound_volume, TRUE, -3)
+	opened = TRUE
 	if(!dense_when_open)
-		density = 0
+		density = FALSE
 	climb_time *= 0.5 //it's faster to climb onto an open thing
 	dump_contents()
 	update_icon()
@@ -185,14 +183,14 @@
 
 /obj/structure/closet/proc/close(mob/living/user)
 	if(!opened || !can_close(user))
-		return 0
+		return FALSE
 	take_contents()
-	playsound(loc, close_sound, 15, 1, -3)
+	playsound(loc, close_sound, close_sound_volume, TRUE, -3)
 	climb_time = initial(climb_time)
-	opened = 0
-	density = 1
+	opened = FALSE
+	density = TRUE
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/structure/closet/proc/toggle(mob/living/user)
 	if(opened)

@@ -29,7 +29,7 @@
 	var/nojumpsuit = 0	// this is sorta... weird. it basically lets you equip stuff that usually needs jumpsuits without one, like belts and pockets and ids
 	var/blacklisted = 0 //Flag to exclude from green slime core species.
 	var/dangerous_existence = null //A flag for transformation spells that tells them "hey if you turn a person into one of these without preperation, they'll probably die!"
-	var/say_mod = "говорит"	// affects the speech message
+	var/say_mod = "РіРѕРІРѕСЂРёС‚"	// affects the speech message
 	var/list/default_features = list() // Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
 	var/list/mutant_bodyparts = list() 	// Parts of the body that are diferent enough from the standard human model that they cause clipping with some equipment
 	var/list/mutant_organs = list(/obj/item/organ/tongue)		//Internal organs that are unique to this race.
@@ -53,7 +53,7 @@
 	// species flags. these can be found in flags.dm
 	var/list/species_traits = list()
 
-	var/attack_verb = "бьет"	// punch-specific attack verb
+	var/attack_verb = "Р±СЊРµС‚"	// punch-specific attack verb
 	var/sound/attack_sound = 'sound/weapons/punch1.ogg'
 	var/sound/miss_sound = 'sound/weapons/punchmiss.ogg'
 
@@ -183,22 +183,22 @@
 	if(H.facial_hair_style && (FACEHAIR in species_traits) && !facialhair_hidden)
 		S = facial_hair_styles_list[H.facial_hair_style]
 		if(S)
-			var/image/img_facial_s = image("icon" = S.icon, "icon_state" = "[S.icon_state]_s", "layer" = -HAIR_LAYER)
+			var/image/img_facial = image("icon" = S.icon, "icon_state" = "[S.icon_state]", "layer" = -HAIR_LAYER)
 
 			if(!forced_colour)
 				if(hair_color)
 					if(hair_color == "mutcolor")
-						img_facial_s.color = "#" + H.dna.features["mcolor"]
+						img_facial.color = "#" + H.dna.features["mcolor"]
 					else
-						img_facial_s.color = "#" + hair_color
+						img_facial.color = "#" + hair_color
 				else
-					img_facial_s.color = "#" + H.facial_hair_color
+					img_facial.color = "#" + H.facial_hair_color
 			else
-				img_facial_s.color = forced_colour
+				img_facial.color = forced_colour
 
-			img_facial_s.alpha = hair_alpha
+			img_facial.alpha = hair_alpha
 
-			standing += img_facial_s
+			standing += img_facial
 
 	//we check if our hat or helmet hides our hair.
 	if(H.head)
@@ -212,28 +212,26 @@
 	if(!hair_hidden)
 		if(!H.getorgan(/obj/item/organ/brain)) //Applies the debrained overlay if there is no brain
 			if(!(NOBLOOD in species_traits))
-				standing += image("icon"='icons/mob/human_face.dmi', "icon_state" = "debrained_s", "layer" = -HAIR_LAYER)
+				standing += image("icon"='icons/mob/human_face.dmi', "icon_state" = "debrained", "layer" = -HAIR_LAYER)
 
 		else if(H.hair_style && (HAIR in species_traits))
 			S = hair_styles_list[H.hair_style]
 			if(S)
-				var/image/img_hair_s = image("icon" = S.icon, "icon_state" = "[S.icon_state]_s", "layer" = -HAIR_LAYER)
-
-				img_hair_s = image("icon" = S.icon, "icon_state" = "[S.icon_state]_s", "layer" = -HAIR_LAYER)
+				var/image/img_hair = image("icon" = S.icon, "icon_state" = "[S.icon_state]", "layer" = -HAIR_LAYER)
 
 				if(!forced_colour)
 					if(hair_color)
 						if(hair_color == "mutcolor")
-							img_hair_s.color = "#" + H.dna.features["mcolor"]
+							img_hair.color = "#" + H.dna.features["mcolor"]
 						else
-							img_hair_s.color = "#" + hair_color
+							img_hair.color = "#" + hair_color
 					else
-						img_hair_s.color = "#" + H.hair_color
+						img_hair.color = "#" + H.hair_color
 				else
-					img_hair_s.color = forced_colour
-				img_hair_s.alpha = hair_alpha
+					img_hair.color = forced_colour
+				img_hair.alpha = hair_alpha
 
-				standing += img_hair_s
+				standing += img_hair
 
 	if(standing.len)
 		H.overlays_standing[HAIR_LAYER]	= standing
@@ -250,34 +248,35 @@
 	if(!(H.disabilities & HUSK))
 		// lipstick
 		if(H.lip_style && (LIPS in species_traits) && HD)
-			var/image/lips = image("icon"='icons/mob/human_face.dmi', "icon_state"="lips_[H.lip_style]_s", "layer" = -BODY_LAYER)
+			var/image/lips = image("icon"='icons/mob/human_face.dmi', "icon_state"="lips_[H.lip_style]", "layer" = -BODY_LAYER)
 			lips.color = H.lip_color
 			standing	+= lips
 
 		// eyes
 		if((EYECOLOR in species_traits) && HD)
-			var/image/img_eyes_s = image("icon" = 'icons/mob/human_face.dmi', "icon_state" = "[eyes]_s", "layer" = -BODY_LAYER)
-			img_eyes_s.color = "#" + H.eye_color
-			standing	+= img_eyes_s
+			if(H.stat != DEAD)
+				var/image/img_eyes = image("icon" = 'icons/mob/human_face.dmi', "icon_state" = "[eyes]", "layer" = -BODY_LAYER)
+				img_eyes.color = "#" + H.eye_color
+				standing	+= img_eyes
 
-//	//Underwear, Undershirts & Socks
-//	if(H.underwear)
-//		var/datum/sprite_accessory/underwear/U = underwear_list[H.underwear]
-//		if(U)
-//			standing	+= image("icon"=U.icon, "icon_state"="[U.icon_state]_s", "layer"=-BODY_LAYER)
+	//Underwear, Undershirts & Socks
+	if(H.underwear)
+		var/datum/sprite_accessory/underwear/underwear = underwear_list[H.underwear]
+		if(underwear)
+			standing	+= image("icon"=underwear.icon, "icon_state"="[underwear.icon_state]", "layer"=-BODY_LAYER)
 
-//	if(H.undershirt)
-//		var/datum/sprite_accessory/undershirt/U2 = undershirt_list[H.undershirt]
-//		if(U2)
-//			if(H.dna.species.sexes && H.gender == FEMALE)
-//				standing	+=	wear_female_version("[U2.icon_state]_s", U2.icon, BODY_LAYER)
-//			else
-//				standing	+= image("icon"=U2.icon, "icon_state"="[U2.icon_state]_s", "layer"=-BODY_LAYER)
+	if(H.undershirt)
+		var/datum/sprite_accessory/undershirt/undershirt = undershirt_list[H.undershirt]
+		if(undershirt)
+			if(H.dna.species.sexes && H.gender == FEMALE)
+				standing	+=	wear_female_version("[undershirt.icon_state]", undershirt.icon, BODY_LAYER)
+			else
+				standing	+= image("icon"=undershirt.icon, "icon_state"="[undershirt.icon_state]", "layer"=-BODY_LAYER)
 
-//	if(H.socks && H.get_num_legs() >= 2 && !(DIGITIGRADE in species_traits))
-//		var/datum/sprite_accessory/socks/U3 = socks_list[H.socks]
-//		if(U3)
-//			standing	+= image("icon"=U3.icon, "icon_state"="[U3.icon_state]_s", "layer"=-BODY_LAYER)
+	if(H.socks && H.get_num_legs() >= 2 && !(DIGITIGRADE in species_traits))
+		var/datum/sprite_accessory/socks/socks = socks_list[H.socks]
+		if(socks)
+			standing	+= image("icon"=socks.icon, "icon_state"="[socks.icon_state]", "layer"=-BODY_LAYER)
 
 	if(standing.len)
 		H.overlays_standing[BODY_LAYER] = standing
@@ -770,12 +769,16 @@
 		H.metabolism_efficiency = 1
 	else if(H.nutrition > NUTRITION_LEVEL_FED && H.satiety > 80)
 		if(H.metabolism_efficiency != 1.25 && (H.dna && H.dna.species && !(NOHUNGER in H.dna.species.species_traits)))
-			to_chat(H, "<span class='notice'>Вы чувствуете себя сытым.</span>")
+			if(world.time > H.last_hunger_message + 600)
+				to_chat(H, pick("<span class='notice'>Р’С‹ С‡СѓРІСЃС‚РІСѓРµС‚Рµ СЃРµР±СЏ СЃС‹С‚С‹Рј.</span>", "<span class='notice'>Р’С‹ РІРґРѕРІРѕР»СЊ РЅР°РµР»РёСЃСЊ.</span>", "<span class='notice'>Р’С‹ Р±РѕР»СЊС€Рµ РЅРµ С…РѕС‚РёС‚Рµ РµСЃС‚СЊ.</span>"))
+				H.last_hunger_message = world.time
 			H.metabolism_efficiency = 1.25
 	else if(H.nutrition < NUTRITION_LEVEL_STARVING + 50)
 		if(H.metabolism_efficiency != 0.8)
-			to_chat(H, "<span class='notice'>Вы чувствуете что хотите есть.</span>")
-		H.metabolism_efficiency = 0.8
+			if(world.time > H.last_hunger_message + 600)
+				to_chat(H, pick("<span class='notice'>Р’С‹ С‡СѓРІСЃС‚РІСѓРµС‚Рµ С‡С‚Рѕ С…РѕС‚РёС‚Рµ РµСЃС‚СЊ.</span>", "<span class='notice'>Р’С‹ РѕС‰СѓС‰Р°РµС‚Рµ РіРѕР»РѕРґ.</span>", "<span class='notice'>РЈ РІР°СЃ СѓСЂС‡РёС‚ Р¶РёРІРѕС‚.</span>", "<span class='notice'>Р’С‹ РѕС‰СѓС‰Р°РµС‚Рµ СЃР»Р°Р±СѓСЋ Р±РѕР»СЊ РІ РѕР±Р»Р°СЃС‚Рё Р¶РµР»СѓРґРєР°.</span>", "<span class='notice'>РќР°Р№РґРёС‚Рµ С‡С‚Рѕ-РЅРёР±СѓРґСЊ РїРѕРµСЃС‚СЊ.</span>"))
+				H.last_hunger_message = world.time
+			H.metabolism_efficiency = 0.8
 	else
 		if(H.metabolism_efficiency == 1.25)
 			to_chat(H, "<span class='notice'>You no longer feel vigorous.</span>")
@@ -867,25 +870,25 @@
 				if(!H.weakened)
 					H.emote("collapse")
 				H.Weaken(10)
-				to_chat(H, "<span class='danger'>Вы ощущаете слабость.</span>")
+				to_chat(H, "<span class='danger'>Р’С‹ РѕС‰СѓС‰Р°РµС‚Рµ СЃР»Р°Р±РѕСЃС‚СЊ.</span>")
 			switch(H.radiation)
 				if(50 to 75)
 					if(prob(5))
 						if(!H.weakened)
-							H.emote("падает")
+							H.emote("collapse")
 						H.Weaken(3)
-						to_chat(H, "<span class='danger'>Вы ощущаете слабость.</span>")
+						to_chat(H, "<span class='danger'>Р’С‹ РѕС‰СѓС‰Р°РµС‚Рµ СЃР»Р°Р±РѕСЃС‚СЊ.</span>")
 
 					if(prob(15))
 						if(!( H.hair_style == "Shaved") || !(H.hair_style == "Bald") || (HAIR in species_traits))
-							to_chat(H, "<span class='danger'>Ваши волосы начали выпадать <span>")
+							to_chat(H, "<span class='danger'>Р’Р°С€Рё РІРѕР»РѕСЃС‹ РЅР°С‡Р°Р»Рё РІС‹РїР°РґР°С‚СЊ <span>")
 							addtimer(CALLBACK(src, .proc/go_bald, H), 50)
 
 				if(75 to 100)
 					if(prob(1))
-						to_chat(H, "<span class='danger'>Вы мутируете!</span>")
+						to_chat(H, "<span class='danger'>Р’С‹ РјСѓС‚РёСЂСѓРµС‚Рµ!</span>")
 						H.randmutb()
-						H.emote("задыхается")
+						H.emote("Р·Р°РґС‹С…Р°РµС‚СЃСЏ")
 						H.domutcheck()
 		return 0
 	else if ((RADREGEN in species_traits))
@@ -893,7 +896,7 @@
 			H.adjustBruteLoss(-5)
 			H.adjustFireLoss(-5)
 			H.adjustToxLoss(-5)
-			to_chat(H, "<span class='green'>Твои раны медленно регенирируют.</span>")
+			to_chat(H, "<span class='green'>РўРІРѕРё СЂР°РЅС‹ РјРµРґР»РµРЅРЅРѕ СЂРµРіРµРЅРёСЂРёСЂСѓСЋС‚.</span>")
 
 	H.radiation = 0
 	return 1
@@ -1297,7 +1300,7 @@
 		missProb = 0
 
 	if(prob(missProb))
-		H.visible_message("<font color='green'>[H] имеет большую удачу!</font>")
+		H.visible_message("<font color='green'>[H] РёРјРµРµС‚ Р±РѕР»СЊС€СѓСЋ СѓРґР°С‡Сѓ!</font>")
 		hit_percent = 0
 
 	if(!damage || hit_percent <= 0)

@@ -1,13 +1,13 @@
 //Fallout 13 base of Wasteland economics
 
 /obj/item/stack/caps
-	name = "caps"
-	desc = "Пост-Апокалиптические деньги. <br>ALT + Click чтобы разделить."
+	name = "РєСЂС‹С€РєРё"
+	desc = "РџРѕСЃС‚-РђРїРѕРєР°Р»РёРїС‚РёС‡РµСЃРєРёРµ РґРµРЅСЊРіРё. <br>ALT + Click С‡С‚РѕР±С‹ СЂР°Р·РґРµР»РёС‚СЊ."
 	singular_name = "cap"
 	icon = 'icons/fallout/objects/bottlecaps.dmi'
 	icon_state = "1"
 	amount = 1
-	max_amount = 3000000
+	max_amount = 50000
 	throwforce = 0
 	throw_speed = 2
 	throw_range = 2
@@ -24,7 +24,7 @@
 		icon_state = "[amount]"
 
 /obj/item/stack/caps/random/New()
-	amount = rand(1,8)
+	amount = rand(1,200)
 
 	spawn(10)
 		var/obj/item/stack/caps/target/newEngineAndColor = new /obj/item/stack/caps/target()

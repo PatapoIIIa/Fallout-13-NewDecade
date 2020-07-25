@@ -22,14 +22,9 @@
 	user.visible_message("<span class='suicide'>[user] hooks [user.p_them()]self to the electropack and spams the trigger! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return (FIRELOSS)
 
-/obj/item/device/electropack/initialize()
-	if(SSradio)
-		SSradio.add_object(src, frequency, RADIO_CHAT)
-
-/obj/item/device/electropack/New()
-	if(SSradio)
-		SSradio.add_object(src, frequency, RADIO_CHAT)
+/obj/item/device/electropack/Initialize()
 	..()
+	SSradio.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/device/electropack/Destroy()
 	if(SSradio)
@@ -138,7 +133,8 @@
 	if(!ishuman(user))
 		return
 	user.set_machine(src)
-	var/dat = {"<TT>Turned [on ? "On" : "Off"] -
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += {"<TT>Turned [on ? "On" : "Off"] -
 <A href='?src=\ref[src];power=1'>Toggle</A><BR>
 <B>Frequency/Code</B> for electropack:<BR>
 Frequency:
@@ -183,7 +179,7 @@ Code:
 	user.visible_message("<span class='suicide'>[user] hooks [user.p_them()]self to the slave_collar and spams the trigger! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return (FIRELOSS)
 
-/obj/item/device/slave_collar/initialize()
+/obj/item/device/slave_collar/Initialize()
 	if(SSradio)
 		SSradio.add_object(src, frequency, RADIO_CHAT)
 
@@ -275,7 +271,8 @@ Code:
 	if(!ishuman(user))
 		return
 	user.set_machine(src)
-	var/dat = {"<TT>Turned [on ? "On" : "Off"] -
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += {"<TT>Turned [on ? "On" : "Off"] -
 <A href='?src=\ref[src];power=1'>Toggle</A><BR>
 <B>Frequency/Code</B> for electropack:<BR>
 Frequency:

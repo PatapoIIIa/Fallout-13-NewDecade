@@ -6,11 +6,11 @@
 		if(!servantsonly && isobserver(M))
 			if(target)
 				var/link = FOLLOW_LINK(M, target)
-				to_chat(M, "[link] [message]")
+				M << "[link] [message]"
 			else
-				to_chat(M, message)
+				M << message
 		else if(is_servant_of_ratvar(M))
-			to_chat(M, message)
+			M << message
 	return TRUE
 
 //Sends a titled message from a mob to all servants of ratvar and ghosts.

@@ -1,8 +1,8 @@
 //Fallout 13 rubish decoration
 
-/obj/structure/car_rubish1
-	name = "pre-War rubish"
-	desc = "A rusty pre-War automobile carcass.<br>This car is damaged beyond repair."
+/obj/structure/car/rubish1
+	name = "остов автомобиля"
+	desc = "Ржавый каркас автомобиля.<br>Нет, это уже нельзя починить."
 	icon = 'icons/fallout/objects/structures/rubish.dmi'
 	icon_state = "car_rubish1"
 	anchored = 1
@@ -10,7 +10,7 @@
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE
 
-/obj/structure/car_rubish1/New()
+/obj/structure/car/rubish1/New()
 	..()
 
 	var/atom/movable/S = new (locate(x+1,y,z))
@@ -31,9 +31,9 @@
 	S.icon = null
 	S.verbs.Cut()
 
-/obj/structure/car_rubish2
-	name = "pre-War rubish"
-	desc = "A rusty pre-War automobile carcass.<br>This car is damaged beyond repair."
+/obj/structure/car/rubish2
+	name = "остов автомобиля"
+	desc = "Ржавый каркас автомобиля.<br>Нет, это уже нельзя починить."
 	icon = 'icons/fallout/objects/structures/rubish.dmi'
 	icon_state = "car_rubish2"
 	anchored = 1
@@ -41,7 +41,7 @@
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE
 
-/obj/structure/car_rubish2/New()
+/obj/structure/car/rubish2/New()
 	..()
 
 	var/atom/movable/S = new (locate(x+1,y,z))
@@ -62,9 +62,9 @@
 	S.icon = null
 	S.verbs.Cut()
 
-/obj/structure/car_rubish3
-	name = "pre-War rubish"
-	desc = "A rusty pre-War automobile carcass.<br>This car is damaged beyond repair."
+/obj/structure/car/rubish3
+	name = "остов автомобиля"
+	desc = "Ржавый каркас автомобиля.<br>Нет, это уже нельзя починить."
 	icon = 'icons/fallout/objects/structures/rubish.dmi'
 	icon_state = "car_rubish3"
 	anchored = 1
@@ -72,7 +72,7 @@
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE
 
-/obj/structure/car_rubish3/New()
+/obj/structure/car/rubish3/New()
 	..()
 
 	var/atom/movable/S = new (locate(x+1,y,z))
@@ -93,7 +93,7 @@
 	S.icon = null
 	S.verbs.Cut()
 
-/obj/structure/car_rubish4
+/obj/structure/car/rubish4
 	name = "pre-War rubish"
 	desc = "A rusty pre-War automobile carcass.<br>This car is damaged beyond repair."
 	icon = 'icons/fallout/objects/structures/rubish.dmi'
@@ -103,7 +103,7 @@
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE
 
-/obj/structure/car_rubish4/New()
+/obj/structure/car/rubish4/New()
 	..()
 
 	var/atom/movable/S = new (locate(x+1,y,z))
@@ -124,9 +124,9 @@
 	S.icon = null
 	S.verbs.Cut()
 
-/obj/structure/debris1
-	name = "pre-War building debris"
-	desc = "A pre-War building debris."
+/obj/structure/debris/v1
+	name = "обломки зданий"
+	desc = "Куча мусора, когда-то было зданием."
 	icon = 'icons/fallout/objects/structures/rubish.dmi'
 	icon_state = "debris1"
 	anchored = 1
@@ -134,7 +134,7 @@
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE
 
-/obj/structure/debris1/New()
+/obj/structure/debris/v1/New()
 	..()
 
 	var/atom/movable/S = new (locate(x+1,y,z))
@@ -155,9 +155,9 @@
 	S.icon = null
 	S.verbs.Cut()
 
-/obj/structure/debris2
-	name = "pre-War building debris"
-	desc = "A pre-War building debris."
+/obj/structure/debris/v2
+	name = "обломки зданий"
+	desc = "Куча мусора, когда-то было зданием."
 	icon = 'icons/fallout/objects/structures/rubish.dmi'
 	icon_state = "debris2"
 	anchored = 1
@@ -165,7 +165,7 @@
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE
 
-/obj/structure/debris2/New()
+/obj/structure/debris/v2/New()
 	..()
 
 	var/atom/movable/S = new (locate(x+1,y,z))
@@ -186,9 +186,9 @@
 	S.icon = null
 	S.verbs.Cut()
 
-/obj/structure/debris3
-	name = "pre-War building debris"
-	desc = "A pre-War building debris."
+/obj/structure/debris/v3
+	name = "обломки зданий"
+	desc = "Куча мусора, когда-то было зданием."
 	icon = 'icons/fallout/objects/structures/rubish.dmi'
 	icon_state = "debris3"
 	anchored = 1
@@ -196,7 +196,7 @@
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE
 
-/obj/structure/debris3/New()
+/obj/structure/debris/v3/New()
 	..()
 
 	var/atom/movable/S = new (locate(x+1,y,z))
@@ -217,9 +217,9 @@
 	S.icon = null
 	S.verbs.Cut()
 
-/obj/structure/debris4
-	name = "pre-War building debris"
-	desc = "A pre-War building debris."
+/obj/structure/debris/v4
+	name = "обломки зданий"
+	desc = "Куча мусора, когда-то было зданием."
 	icon = 'icons/fallout/objects/structures/rubish.dmi'
 	icon_state = "debris4"
 	anchored = 1
@@ -227,7 +227,7 @@
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE
 
-/obj/structure/debris4/New()
+/obj/structure/debris/v4/New()
 	..()
 
 	var/atom/movable/S = new (locate(x+1,y,z))
@@ -249,8 +249,8 @@
 	S.verbs.Cut()
 
 /obj/structure/statue_fal
-	name = "Ranger statue"
-	desc = "A big ranger statue."
+	name = "статуя Рейнджера"
+	desc = "Огромная статуя Рейнджера НКР."
 	icon = 'icons/fallout/objects/structures/statue.dmi'
 	icon_state = "statue1"
 	anchored = 1

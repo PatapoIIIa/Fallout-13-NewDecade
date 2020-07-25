@@ -93,7 +93,7 @@
 /datum/spellbook_entry/proc/GetInfo()
 	if(!S)
 		S = new spell_type()
-	var/dat =""
+	var/dat = {"<meta charset="UTF-8">"}
 	dat += "<b>[initial(S.name)]</b>"
 	if(S.charge_type == "recharge")
 		dat += " Cooldown:[S.charge_max/10]"
@@ -280,7 +280,7 @@
 	return 1
 
 /datum/spellbook_entry/item/GetInfo()
-	var/dat =""
+	var/dat = {"<meta charset="UTF-8">"}
 	dat += "<b>[name]</b>"
 	dat += " Cost:[cost]<br>"
 	dat += "<i>[desc]</i><br>"
@@ -472,7 +472,7 @@
 	return ..() && !active
 
 /datum/spellbook_entry/summon/GetInfo()
-	var/dat =""
+	var/dat = {"<meta charset="UTF-8">"}
 	dat += "<b>[name]</b>"
 	if(cost>0)
 		dat += " Cost:[cost]<br>"
@@ -568,7 +568,8 @@
 	else
 		to_chat(user, "It appears to have no author.")
 
-/obj/item/weapon/spellbook/proc/Initialize()
+/obj/item/weapon/spellbook/Initialize()
+	..()
 	var/entry_types = subtypesof(/datum/spellbook_entry) - /datum/spellbook_entry/item - /datum/spellbook_entry/summon
 	for(var/T in entry_types)
 		var/datum/spellbook_entry/E = new T
@@ -578,11 +579,6 @@
 		else
 			qdel(E)
 	tab = categories[1]
-
-/obj/item/weapon/spellbook/New()
-	..()
-	Initialize()
-
 
 /obj/item/weapon/spellbook/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/weapon/antag_spawner/contract))
@@ -605,7 +601,7 @@
 		qdel(O)
 
 /obj/item/weapon/spellbook/proc/GetCategoryHeader(category)
-	var/dat = ""
+	var/dat = {"<meta charset="UTF-8">"}
 	switch(category)
 		if("Offensive")
 			dat += "Spells and items geared towards debilitating and destroying.<BR><BR>"
@@ -635,8 +631,8 @@
 	return dat
 
 /obj/item/weapon/spellbook/proc/wrap(content)
-	var/dat = ""
-	dat +="<html><head><title>Spellbook</title></head>"
+	var/dat = {"<meta charset="UTF-8">"}
+	dat +="<html><meta charset=UTF-8><head><title>Spellbook</title></head>"
 	dat += {"
 	<head>
 		<style type="text/css">
@@ -663,7 +659,7 @@
 		to_chat(user, "<span class='warning'>The [name] does not recognize you as its owner and refuses to open!</span>")
 		return
 	user.set_machine(src)
-	var/dat = ""
+	var/dat = {"<meta charset="UTF-8">"}
 
 	dat += "<ul id=\"tabs\">"
 	var/list/cat_dat = list()

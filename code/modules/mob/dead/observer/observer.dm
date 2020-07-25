@@ -187,7 +187,7 @@ var/list/image/ghost_images_simple = list() //this is a list of all ghost images
 		if(facial_hair_style)
 			S = facial_hair_styles_list[facial_hair_style]
 			if(S)
-				facial_hair_image = image("icon" = S.icon, "icon_state" = "[S.icon_state]_s", "layer" = -HAIR_LAYER)
+				facial_hair_image = image("icon" = S.icon, "icon_state" = "[S.icon_state]", "layer" = -HAIR_LAYER)
 				if(facial_hair_color)
 					facial_hair_image.color = "#" + facial_hair_color
 				facial_hair_image.alpha = 200
@@ -196,7 +196,7 @@ var/list/image/ghost_images_simple = list() //this is a list of all ghost images
 		if(hair_style)
 			S = hair_styles_list[hair_style]
 			if(S)
-				hair_image = image("icon" = S.icon, "icon_state" = "[S.icon_state]_s", "layer" = -HAIR_LAYER)
+				hair_image = image("icon" = S.icon, "icon_state" = "[S.icon_state]", "layer" = -HAIR_LAYER)
 				if(hair_color)
 					hair_image.color = "#" + hair_color
 				hair_image.alpha = 200
@@ -213,15 +213,15 @@ var/list/image/ghost_images_simple = list() //this is a list of all ghost images
 	var/r_val
 	var/b_val
 	var/g_val
-	var/color_format = lentext(input_color)
+	var/color_format = length(input_color)
 	if(color_format == 3)
-		r_val = hex2num(copytext(input_color, 1, 2))*16
-		g_val = hex2num(copytext(input_color, 2, 3))*16
-		b_val = hex2num(copytext(input_color, 3, 0))*16
+		r_val = hex2num(copytext_char(input_color, 1, 2))*16
+		g_val = hex2num(copytext_char(input_color, 2, 3))*16
+		b_val = hex2num(copytext_char(input_color, 3, 0))*16
 	else if(color_format == 6)
-		r_val = hex2num(copytext(input_color, 1, 3))
-		g_val = hex2num(copytext(input_color, 3, 5))
-		b_val = hex2num(copytext(input_color, 5, 0))
+		r_val = hex2num(copytext_char(input_color, 1, 3))
+		g_val = hex2num(copytext_char(input_color, 3, 5))
+		b_val = hex2num(copytext_char(input_color, 5, 0))
 	else
 		return 0 //If the color format is not 3 or 6, you're using an unexpected way to represent a color.
 
@@ -244,7 +244,7 @@ Works together with spawning an observer, noted above.
 
 /mob/proc/ghostize(can_reenter_corpse = 1)
 	if(key && client.holder)
-		if(!cmptext(copytext(key,1,2),"@")) // Skip aghosts.
+		if(!cmptext(copytext_char(key,1,2),"@")) // Skip aghosts.
 			var/mob/dead/observer/ghost = new(src)	// Transfer safety to observer spawning proc.
 			SStgui.on_transfer(src, ghost) // Transfer NanoUIs.
 			ghost.can_reenter_corpse = can_reenter_corpse
@@ -324,9 +324,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!can_reenter_corpse)
 		to_chat(src, "<span class='warning'>You cannot re-enter your body.</span>")
 		return
-	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
+	if(mind.current.key && copytext_char(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
 		to_chat(usr, "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>")
 		return
+	client.view = world.view
 	SStgui.on_transfer(src, mind.current) // Transfer NanoUIs.
 	mind.current.key = key
 	return 1
@@ -395,7 +396,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	orbitsize -= (orbitsize/world.icon_size)*(world.icon_size*0.25)
 
 	if(orbiting && orbiting.orbiting != target)
-		to_chat(src, "<span class='notice'>Теперь наблюдаем за [target].</span>")
+		to_chat(src, "<span class='notice'>РўРµРїРµСЂСЊ РЅР°Р±Р»СЋРґР°РµРј Р·Р° [target].</span>")
 
 	var/rot_seg
 
@@ -449,6 +450,29 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 //				A.update_parallax_contents()
 			else
 				to_chat(A, "This mob is not located in the game world.")
+
+/mob/dead/observer/verb/change_view_range()
+	set category = "Ghost"
+	set name = "View Range"
+	set desc = "Change your view range."
+
+	var/max_view = client.prefs.unlock_content ? GHOST_MAX_VIEW_RANGE_MEMBER : GHOST_MAX_VIEW_RANGE_DEFAULT
+	if(client.view == world.view)
+		var/list/views = list()
+		for(var/i in 1 to max_view)
+			views |= i
+		var/new_view = input("Choose your new view", "Modify view range", 7) as null|anything in views
+		if(new_view)
+			client.view = Clamp(new_view, 1, max_view)
+	else
+		client.view = world.view
+
+/mob/dead/observer/verb/add_view_range(input as num)
+	set name = "Add View Range"
+	set hidden = TRUE
+	var/max_view = client.prefs.unlock_content ? GHOST_MAX_VIEW_RANGE_MEMBER : GHOST_MAX_VIEW_RANGE_DEFAULT
+	if(input)
+		client.view = Clamp(client.view + input, 1, max_view)
 
 /mob/dead/observer/verb/boo()
 	set category = "Ghost"
@@ -593,7 +617,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/pointed(atom/A as mob|obj|turf in view())
 	if(!..())
 		return 0
-	usr.visible_message("<span class='deadsay'><b>[src]</b> указывает на [A].</span>")
+	usr.visible_message("<span class='deadsay'><b>[src]</b> СѓРєР°Р·С‹РІР°РµС‚ РЅР° [A].</span>")
 	return 1
 
 /mob/dead/observer/verb/view_manifest()

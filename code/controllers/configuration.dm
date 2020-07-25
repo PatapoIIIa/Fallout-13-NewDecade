@@ -152,7 +152,7 @@
 
 	var/intercept = 1					//Whether or not to send a communications intercept report roundstart. This may be overriden by gamemodes.
 	var/alert_desc_green = "All threats to the Vault have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
-	var/alert_desc_blue_upto = "The Vault has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	var/alert_desc_blue_upto = "Главы получили информацию о возможной активности враждебных сил в Убежище. Служба Безопасности может носить оружие открыто и проводить обыски."
 	var/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
 	var/alert_desc_red_upto = "There is an immediate serious threat to the Vault. Security may have weapons unholstered at all times. Random searches are allowed and advised."
 	var/alert_desc_red_downto = "The Vault's destruction has been averted. There is still however an immediate serious threat to the Vault. Security may have weapons unholstered at all times, random searches are allowed and advised."
@@ -163,7 +163,7 @@
 	var/revival_brain_life = -1
 
 	var/rename_cyborg = 0
-	var/ooc_during_round = 0
+	var/ooc_during_round = 1
 	var/emojis = 0
 
 	//Used for modifying movement speed for mobs.
@@ -277,16 +277,16 @@
 		t = trim(t)
 		if(length(t) == 0)
 			continue
-		else if(copytext(t, 1, 2) == "#")
+		else if(copytext_char(t, 1, 2) == "#")
 			continue
 
-		var/pos = findtext(t, " ")
+		var/pos = findtext_char(t, " ")
 		var/name = null
 		var/value = null
 
 		if(pos)
-			name = lowertext(copytext(t, 1, pos))
-			value = copytext(t, pos + 1)
+			name = lowertext(copytext_char(t, 1, pos))
+			value = copytext_char(t, pos + 1)
 		else
 			name = lowertext(t)
 
@@ -587,13 +587,13 @@
 				if("midround_antag_life_check")
 					config.midround_antag_life_check = text2num(value)
 				if("min_pop")
-					var/pop_pos = findtext(value, " ")
+					var/pop_pos = findtext_char(value, " ")
 					var/mode_name = null
 					var/mode_value = null
 
 					if(pop_pos)
-						mode_name = lowertext(copytext(value, 1, pop_pos))
-						mode_value = copytext(value, pop_pos + 1)
+						mode_name = lowertext(copytext_char(value, 1, pop_pos))
+						mode_value = copytext_char(value, pop_pos + 1)
 						if(mode_name in config.modes)
 							config.min_pop[mode_name] = text2num(mode_value)
 						else
@@ -601,13 +601,13 @@
 					else
 						diary << "Incorrect minimum population configuration definition: [mode_name]  [mode_value]."
 				if("max_pop")
-					var/pop_pos = findtext(value, " ")
+					var/pop_pos = findtext_char(value, " ")
 					var/mode_name = null
 					var/mode_value = null
 
 					if(pop_pos)
-						mode_name = lowertext(copytext(value, 1, pop_pos))
-						mode_value = copytext(value, pop_pos + 1)
+						mode_name = lowertext(copytext_char(value, 1, pop_pos))
+						mode_value = copytext_char(value, pop_pos + 1)
 						if(mode_name in config.modes)
 							config.max_pop[mode_name] = text2num(mode_value)
 						else
@@ -631,13 +631,13 @@
 				if("traitor_objectives_amount")
 					config.traitor_objectives_amount = text2num(value)
 				if("probability")
-					var/prob_pos = findtext(value, " ")
+					var/prob_pos = findtext_char(value, " ")
 					var/prob_name = null
 					var/prob_value = null
 
 					if(prob_pos)
-						prob_name = lowertext(copytext(value, 1, prob_pos))
-						prob_value = copytext(value, prob_pos + 1)
+						prob_name = lowertext(copytext_char(value, 1, prob_pos))
+						prob_value = copytext_char(value, prob_pos + 1)
 						if(prob_name in config.modes)
 							config.probabilities[prob_name] = text2num(prob_value)
 						else
@@ -688,7 +688,7 @@
 					lawids += law_id
 				if("law_weight")
 					// Value is in the form "LAWID,NUMBER"
-					var/list/L = splittext(value, ",")
+					var/list/L = splittext_char(value, ",")
 					if(L.len != 2)
 						diary << "Invalid LAW_WEIGHT: " + t
 						continue
@@ -759,16 +759,16 @@
 		t = trim(t)
 		if(length(t) == 0)
 			continue
-		else if(copytext(t, 1, 2) == "#")
+		else if(copytext_char(t, 1, 2) == "#")
 			continue
 
-		var/pos = findtext(t, " ")
+		var/pos = findtext_char(t, " ")
 		var/command = null
 		var/data = null
 
 		if(pos)
-			command = lowertext(copytext(t, 1, pos))
-			data = copytext(t, pos + 1)
+			command = lowertext(copytext_char(t, 1, pos))
+			data = copytext_char(t, pos + 1)
 		else
 			command = lowertext(t)
 
@@ -809,16 +809,16 @@
 		t = trim(t)
 		if(length(t) == 0)
 			continue
-		else if(copytext(t, 1, 2) == "#")
+		else if(copytext_char(t, 1, 2) == "#")
 			continue
 
-		var/pos = findtext(t, " ")
+		var/pos = findtext_char(t, " ")
 		var/name = null
 		var/value = null
 
 		if(pos)
-			name = lowertext(copytext(t, 1, pos))
-			value = copytext(t, pos + 1)
+			name = lowertext(copytext_char(t, 1, pos))
+			value = copytext_char(t, pos + 1)
 		else
 			name = lowertext(t)
 

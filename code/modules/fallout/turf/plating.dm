@@ -1,7 +1,7 @@
 //Fallout 13 floor plating directory
 
 /turf/open/floor/plating/wooden
-	name = "house base"
+	name = "фундамент"
 	icon_state = "housebase"
 	icon = 'icons/fallout/turfs/ground.dmi'
 	intact = 0
@@ -14,7 +14,7 @@
 	return src
 
 /turf/open/floor/plating/tunnel
-	name = "metal floor"
+	name = "металлический пол"
 	icon_state = "tunneldirty"
 	icon = 'icons/fallout/turfs/ground.dmi'
 	baseturf = /turf/open/indestructible/ground/mountain

@@ -22,7 +22,7 @@
 	ranged_mousepointer = 'icons/effects/geis_target.dmi'
 
 /obj/effect/proc_holder/slab/geis/InterceptClickOn(mob/living/caller, params, atom/target)
-	if(..())
+	if(target == slab || ..())
 		return TRUE
 
 	var/turf/T = ranged_ability_user.loc
@@ -42,14 +42,14 @@
 		else
 			var/mob/living/L = target
 			if(L.null_rod_check())
-				to_chat(ranged_ability_user, "<span class='sevtug'>\"A void weapon? Really, you expect me to be able to do anything?\"</span>")
+				ranged_ability_user << "<span class='sevtug'>\"A void weapon? Really, you expect me to be able to do anything?\"</span>"
 				return TRUE
 			if(is_servant_of_ratvar(L))
 				if(L != ranged_ability_user)
-					to_chat(ranged_ability_user, "<span class='sevtug'>\"[L.p_they(TRUE)] already serve[L.p_s()] Ratvar. [text2ratvar("Perhaps [ranged_ability_user.p_theyre()] into bondage?")]\"</span>")
+					ranged_ability_user << "<span class='sevtug'>\"[L.p_they(TRUE)] already serve[L.p_s()] Ratvar. [text2ratvar("Perhaps [ranged_ability_user.p_theyre()] into bondage?")]\"</span>"
 				return TRUE
 			if(L.stat == DEAD)
-				to_chat(ranged_ability_user, "<span class='sevtug'>\"[L.p_theyre(TRUE)] dead, idiot.\"</span>")
+				ranged_ability_user << "<span class='sevtug'>\"[L.p_theyre(TRUE)] dead, idiot.\"</span>"
 				return TRUE
 
 			if(istype(L.buckled, /obj/structure/destructible/clockwork/geis_binding)) //if they're already bound, just stun them
@@ -96,10 +96,10 @@
 	if(isliving(target) && (target in view(7, get_turf(ranged_ability_user))))
 		var/mob/living/L = target
 		if(!is_servant_of_ratvar(L))
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L] does not yet serve Ratvar.\"</span>")
+			ranged_ability_user << "<span class='inathneq'>\"[L] does not yet serve Ratvar.\"</span>"
 			return TRUE
 		if(L.stat == DEAD)
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_they(TRUE)] [L.p_are()] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>")
+			ranged_ability_user << "<span class='inathneq'>\"[L.p_they(TRUE)] [L.p_are()] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>"
 			return TRUE
 
 		var/brutedamage = L.getBruteLoss()
@@ -107,7 +107,7 @@
 		var/oxydamage = L.getOxyLoss()
 		var/totaldamage = brutedamage + burndamage + oxydamage
 		if(!totaldamage && (!L.reagents || !L.reagents.has_reagent("holywater")))
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L] is unhurt and untainted.\"</span>")
+			ranged_ability_user << "<span class='inathneq'>\"[L] is unhurt and untainted.\"</span>"
 			return TRUE
 
 		successful = TRUE
@@ -120,21 +120,57 @@
 			L.adjustToxLoss(totaldamage * 0.5, TRUE, TRUE)
 			var/healseverity = max(round(totaldamage*0.05, 1), 1) //shows the general severity of the damage you just healed, 1 glow per 20
 			for(var/i in 1 to healseverity)
-				PoolOrNew(/obj/effect/overlay/temp/heal, list(targetturf, "#1E8CE1"))
+				new /obj/effect/overlay/temp/heal(targetturf, "#1E8CE1")
 			clockwork_say(ranged_ability_user, text2ratvar("Mend wounded flesh!"))
 			add_logs(ranged_ability_user, L, "healed with Sentinel's Compromise")
 		else
 			clockwork_say(ranged_ability_user, text2ratvar("Purge foul darkness!"))
 			add_logs(ranged_ability_user, L, "purged of holy water with Sentinel's Compromise")
-		to_chat(ranged_ability_user, "<span class='brass'>You bathe [L == ranged_ability_user ? "yourself":"[L]"] in Inath-neq's power!</span>")
+		ranged_ability_user << "<span class='brass'>You bathe [L == ranged_ability_user ? "yourself":"[L]"] in Inath-neq's power!</span>"
 		L.visible_message("<span class='warning'>A blue light washes over [L], mending [L.p_their()] bruises and burns!</span>", \
 		"<span class='heavy_brass'>You feel Inath-neq's power healing your wounds, but a deep nausea overcomes you!</span>")
 		playsound(targetturf, 'sound/magic/Staff_Healing.ogg', 50, 1)
 
 		if(L.reagents && L.reagents.has_reagent("holywater"))
 			L.reagents.remove_reagent("holywater", 1000)
-			to_chat(L, "<span class='heavy_brass'>Ratvar's light flares, banishing the darkness. Your devotion remains intact!</span>")
+			L << "<span class='heavy_brass'>Ratvar's light flares, banishing the darkness. Your devotion remains intact!</span>"
 
+		remove_ranged_ability()
+
+	return TRUE
+
+//For the Volt Void scripture, fires a ray of energy at a target location
+/obj/effect/proc_holder/slab/volt
+	ranged_mousepointer = 'icons/effects/volt_target.dmi'
+
+/obj/effect/proc_holder/slab/volt/InterceptClickOn(mob/living/caller, params, atom/target)
+	if(..())
+		return TRUE
+
+	var/turf/T = ranged_ability_user.loc
+	if(!isturf(T))
+		return TRUE
+
+	if(target in view(7, get_turf(ranged_ability_user)))
+		successful = TRUE
+		ranged_ability_user.visible_message("<span class='warning'>[ranged_ability_user] fires a ray of energy at [target]!</span>", "<span class='nzcrentr'>You fire a volt ray at [target].</span>")
+		playsound(ranged_ability_user, 'sound/effects/light_flicker.ogg', 50, 1)
+		var/turf/targetturf = get_turf(target)
+		var/obj/structure/destructible/clockwork/powered/volt_checker/VC = new/obj/structure/destructible/clockwork/powered/volt_checker(get_turf(ranged_ability_user))
+		var/multiplier = 1
+		var/usable_power = min(Floor(VC.total_accessable_power() * 0.2, MIN_CLOCKCULT_POWER), 1000)
+		if(VC.try_use_power(usable_power))
+			multiplier += (usable_power * 0.001) //should be a multiplier of 2 at maximum power usage
+		if(iscyborg(ranged_ability_user))
+			var/mob/living/silicon/robot/C = ranged_ability_user
+			if(C.cell)
+				var/prev_power = usable_power //we don't want to increase the multiplier past 2
+				usable_power = min(Floor(C.cell.charge * 0.2, MIN_CLOCKCULT_POWER), 1000) - prev_power
+				if(usable_power > 0 && C.cell.use(usable_power))
+					multiplier += (usable_power * 0.001)
+		qdel(VC)
+		new/obj/effect/overlay/temp/ratvar/volt_hit/true(targetturf, ranged_ability_user, multiplier)
+		add_logs(ranged_ability_user, targetturf, "fired a volt ray")
 		remove_ranged_ability()
 
 	return TRUE
@@ -154,13 +190,13 @@
 	if(isliving(target) && (target in view(7, get_turf(ranged_ability_user))))
 		var/mob/living/L = target
 		if(!is_servant_of_ratvar(L))
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L] does not yet serve Ratvar.\"</span>")
+			ranged_ability_user << "<span class='inathneq'>\"[L] does not yet serve Ratvar.\"</span>"
 			return TRUE
 		if(L.stat == DEAD)
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_they(TRUE)] [L.p_are()] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>")
+			ranged_ability_user << "<span class='inathneq'>\"[L.p_they(TRUE)] [L.p_are()] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>"
 			return TRUE
 		if(islist(L.stun_absorption) && L.stun_absorption["vanguard"] && L.stun_absorption["vanguard"]["end_time"] > world.time)
-			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_they(TRUE)] [L.p_are()] already shielded by a Vanguard.\"</span>")
+			ranged_ability_user << "<span class='inathneq'>\"[L.p_they(TRUE)] [L.p_are()] already shielded by a Vanguard.\"</span>"
 			return TRUE
 
 		successful = TRUE

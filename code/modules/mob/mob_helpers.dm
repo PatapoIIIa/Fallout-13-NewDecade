@@ -62,7 +62,7 @@
 		return 0
 
 /proc/stars(n, pr)
-	n = html_encode_ru(n)
+	n = html_encode(n)
 	if (pr == null)
 		pr = 25
 	if (pr <= 0)
@@ -76,8 +76,8 @@
 	var/p = null
 	p = 1
 	while(p <= n)
-		if ((copytext(te, p, p + 1) == " " || prob(pr)))
-			t = text("[][]", t, copytext(te, p, p + 1))
+		if ((copytext_char(te, p, p + 1) == " " || prob(pr)))
+			t = text("[][]", t, copytext_char(te, p, p + 1))
 		else
 			t = text("[]*", t)
 		p++
@@ -85,28 +85,28 @@
 
 /proc/slur(n)
 	var/phrase = html_decode(n)
-	var/leng = lentext(phrase)
-	var/counter=lentext(phrase)
+	var/leng = length(phrase)
+	var/counter=length(phrase)
 	var/newphrase=""
 	var/newletter=""
 	while(counter>=1)
-		newletter=copytext(phrase,(leng-counter)+1,(leng-counter)+2)
+		newletter=copytext_char(phrase,(leng-counter)+1,(leng-counter)+2)
 		if(rand(1,3)==3)
 			if(lowertext(newletter)=="o")
 				newletter="u"
 			if(lowertext(newletter)=="s")
 				newletter="ch"
 			if(lowertext(newletter)=="a")
-				newletter="ah"
+				newletter="ах"
 			if(lowertext(newletter)=="u")
 				newletter="oo"
 			if(lowertext(newletter)=="c")
 				newletter="k"
 		if(rand(1,20)==20)
 			if(newletter==" ")
-				newletter="...huuuhhh..."
+				newletter="...о-о-ох..."
 			if(newletter==".")
-				newletter=" *BURP*."
+				newletter=" *РЫГАЕТ*."
 		switch(rand(1,20))
 			if(1)
 				newletter+="'"
@@ -120,12 +120,12 @@
 
 /proc/cultslur(n) // Inflicted on victims of a stun talisman
 	var/phrase = html_decode(n)
-	var/leng = lentext(phrase)
-	var/counter=lentext(phrase)
+	var/leng = length(phrase)
+	var/counter=length(phrase)
 	var/newphrase=""
 	var/newletter=""
 	while(counter>=1)
-		newletter=copytext(phrase,(leng-counter)+1,(leng-counter)+2)
+		newletter=copytext_char(phrase,(leng-counter)+1,(leng-counter)+2)
 		if(rand(1,2)==2)
 			if(lowertext(newletter)=="o")
 				newletter="u"
@@ -167,7 +167,7 @@
 	var/p = null
 	p = 1//1 is the start of any word
 	while(p <= n)//while P, which starts at 1 is less or equal to N which is the length.
-		var/n_letter = copytext(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
+		var/n_letter = copytext_char(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
 		if (prob(80) && (ckey(n_letter) in list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z")))
 			if (prob(10))
 				n_letter = text("[n_letter]-[n_letter]-[n_letter]-[n_letter]")//replaces the current letter with this instead.
@@ -181,18 +181,18 @@
 						n_letter = text("[n_letter]-[n_letter]")
 		t = text("[t][n_letter]")//since the above is ran through for each letter, the text just adds up back to the original word.
 		p++//for each letter p is increased to find where the next letter will be.
-	return copytext(sanitize(t),1,MAX_MESSAGE_LEN)
+	return copytext_char(sanitize(t),1,MAX_MESSAGE_LEN)
 
 /proc/derpspeech(message, stuttering)
-	message = replacetext(message, " am ", " ")
-	message = replacetext(message, " is ", " ")
-	message = replacetext(message, " are ", " ")
-	message = replacetext(message, "you", "u")
-	message = replacetext(message, "help", "halp")
-	message = replacetext(message, "grief", "grife")
-	message = replacetext(message, "space", "spess")
-	message = replacetext(message, "carp", "crap")
-	message = replacetext(message, "reason", "raisin")
+	message = replacetext_char(message, " am ", " ")
+	message = replacetext_char(message, " is ", " ")
+	message = replacetext_char(message, " are ", " ")
+	message = replacetext_char(message, "you", "u")
+	message = replacetext_char(message, "help", "halp")
+	message = replacetext_char(message, "grief", "grife")
+	message = replacetext_char(message, "space", "spess")
+	message = replacetext_char(message, "carp", "crap")
+	message = replacetext_char(message, "reason", "raisin")
 	if(prob(50))
 		message = uppertext(message)
 		message += "[stutter(pick("!", "!!", "!!!"))]"
@@ -206,7 +206,7 @@
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
 
-		var/letter = copytext(t, i, i+1)
+		var/letter = copytext_char(t, i, i+1)
 		if(prob(50))
 			if(p >= 70)
 				letter = ""
@@ -233,9 +233,9 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		var/n_letter
 		var/n_mod = rand(1,4)
 		if(p+n_mod>n+1)
-			n_letter = copytext(te, p, n+1)
+			n_letter = copytext_char(te, p, n+1)
 		else
-			n_letter = copytext(te, p, p+n_mod)
+			n_letter = copytext_char(te, p, p+n_mod)
 		if (prob(50))
 			if (prob(30))
 				n_letter = text("[n_letter]-[n_letter]-[n_letter]")
@@ -245,7 +245,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 			n_letter = text("[n_letter]")
 		t = text("[t][n_letter]")
 		p=p+n_mod
-	return copytext(sanitize(t),1,MAX_MESSAGE_LEN)
+	return copytext_char(sanitize(t),1,MAX_MESSAGE_LEN)
 
 
 /proc/shake_camera(mob/M, duration, strength=1)
@@ -274,6 +274,12 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 			return M
 	return 0
 
+var/static/regex/firstname = new("^\[^\\s-\]+") //First word before whitespace or "-"
+
+/mob/proc/first_name()
+	firstname.Find(real_name)
+	return firstname.match
+
 /mob/proc/abiotic(full_body = 0)
 	for(var/obj/item/I in held_items)
 		if(!(I.flags & NODROP))
@@ -285,49 +291,33 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ishuman(src) || isalienadult(src) || isbrain(src))
-		switch(input)
-			if(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, INTENT_HARM)
-				a_intent = input
-			if(INTENT_HOTKEY_RIGHT)
-				switch (a_intent)
-					if(INTENT_HELP)
-						a_intent = INTENT_DISARM
-					if(INTENT_DISARM)
-						a_intent = INTENT_GRAB
-					if(INTENT_GRAB)
-						a_intent = INTENT_HARM
-					if(INTENT_HARM)
-						a_intent = INTENT_HELP
-			if(INTENT_HOTKEY_LEFT)
-				switch (a_intent)
-					if(INTENT_HELP)
-						a_intent = INTENT_HARM
-					if(INTENT_DISARM)
-						a_intent = INTENT_HELP
-					if(INTENT_GRAB)
-						a_intent = INTENT_DISARM
-					if(INTENT_HARM)
-						a_intent = INTENT_GRAB
+	if(!possible_a_intents || !possible_a_intents.len)
+		return
 
-		if(hud_used && hud_used.action_intent)
-			hud_used.action_intent.icon_state = "[a_intent]"
+	if(input in possible_a_intents)
+		a_intent = input
+	else
+		var/current_intent = possible_a_intents.Find(a_intent)
 
-	else if(iscyborg(src) || ismonkey(src) || islarva(src))
-		switch(input)
-			if(INTENT_HELP)
-				a_intent = INTENT_HELP
-			if(INTENT_HARM)
-				a_intent = INTENT_HARM
-			if(INTENT_HOTKEY_RIGHT, INTENT_HOTKEY_LEFT)
-				switch (a_intent)
-					if(INTENT_HELP)
-						a_intent = INTENT_HARM
-					if(INTENT_HARM)
-						a_intent = INTENT_HELP
+		if(!current_intent)
+			// Failsafe. Just in case some badmin was playing with VV.
+			current_intent = 1
 
-		if(hud_used && hud_used.action_intent)
-			hud_used.action_intent.icon_state = "[a_intent]"
+		if(input == INTENT_HOTKEY_RIGHT)
+			current_intent += 1
+		if(input == INTENT_HOTKEY_LEFT)
+			current_intent -= 1
+
+		// Handle looping
+		if(current_intent < 1)
+			current_intent = possible_a_intents.len
+		if(current_intent > possible_a_intents.len)
+			current_intent = 1
+
+		a_intent = possible_a_intents[current_intent]
+
+	if(hud_used && hud_used.action_intent)
+		hud_used.action_intent.icon_state = "[a_intent]"
 
 /proc/is_blind(A)
 	if(ismob(A))
@@ -485,3 +475,12 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		return 1
 	else
 		return 0
+
+mob/proc/click_random_mob()
+	var/list/nearby_mobs = list()
+	for(var/mob/living/L in range(1, src))
+		if(L!=src)
+			nearby_mobs |= L
+	if(nearby_mobs.len)
+		var/mob/living/T = pick(nearby_mobs)
+		ClickOn(T)

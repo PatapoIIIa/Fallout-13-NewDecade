@@ -1,6 +1,6 @@
 /mob/living/carbon/verb/give()
 	set category = "IC"
-	set name = "Give"
+	set name = "РџРµСЂРµРґР°С‚СЊ"
 	set src in view(1)
 
 	if(src == usr)
@@ -8,12 +8,12 @@
 		return
 
 	if(!ismonkey(src)&&!ishuman(src) || isalien(src) || src.stat || usr.stat || !src.client)
-		to_chat(usr,"<span class='warning'>[src.name] не может взять что-либо</span>")
+		to_chat(usr,"<span class='warning'>[src.name] РЅРµ РјРѕР¶РµС‚ РІР·СЏС‚СЊ С‡С‚Рѕ-Р»РёР±Рѕ</span>")
 		return
 
 	var/obj/item/I = usr.get_active_held_item()
 	if(!I)
-		to_chat(usr,"<span class='warning'>У вас нет ничего что вы бы могли дать [src].</span>")
+		to_chat(usr,"<span class='warning'>РЈ РІР°СЃ РЅРµС‚ РЅРёС‡РµРіРѕ С‡С‚Рѕ РІС‹ Р±С‹ РјРѕРіР»Рё РґР°С‚СЊ [src].</span>")
 		return
 
 	if(!usr.canUnEquip(I))
@@ -21,41 +21,40 @@
 
 	var/list/empty_hands = get_empty_held_indexes()
 	if(!empty_hands.len)
-		to_chat(usr,"<span class='warning'>Руки [src] полны.</span>")
+		to_chat(usr,"<span class='warning'>Р СѓРєРё [src] РїРѕР»РЅС‹.</span>")
 		return
-
-	switch(alert(src,"[usr] хочет передать вам [I]?",,"Yes","No"))
+	switch(alert(src,"[usr] trying to give you something, take [I]?",,"Yes","No"))
 		if("Yes")
 			if(!I || !usr)
 				return
 			if(!Adjacent(usr))
-				to_chat(usr,"<span class='warning'>You need to stay in reaching distance while giving an object.</span>")
-				to_chat(usr,"<span class='warning'>[usr] moved too far away.</span>")
+				to_chat(usr,"<span class='warning'>Р’С‹ СЃР»РёС€РєРѕРј РґР°Р»РµРєРѕ.</span>")
+				to_chat(usr,"<span class='warning'>[usr] СѓС€РµР» СЃР»РёС€РєРѕРј РґР°Р»РµРєРѕ.</span>")
 				return
 
 			if(I != usr.get_active_held_item())
-				to_chat(usr,"<span class='warning'>You need to keep the item in your active hand.</span>")
-				to_chat(usr,"<span class='warning'>[name] seem to have given up on giving [I] to you.</span>")
+				to_chat(usr,"<span class='warning'>Р’Р°Рј РЅРµРѕР±С…РѕРґРёРјРѕ РґРµСЂР¶Р°С‚СЊ РїСЂРµРґРјРµС‚ РІ Р°РєС‚РёРІРЅРѕР№ СЂСѓРєРµ.</span>")
+				to_chat(usr,"<span class='warning'>[name] РїРѕС…РѕР¶Рµ, СЃРґР°РµС‚СЃСЏ, РІ РїРѕРїС‹С‚РєР°С… РІСЃС‘-Р¶Рµ РґР°С‚СЊ РІР°Рј [I].</span>")
 				return
 
 			if(src.lying || src.handcuffed)
-				to_chat(usr,"<span class='warning'>В наручниках.</span>")
+				to_chat(usr,"<span class='warning'>Р’ РЅР°СЂСѓС‡РЅРёРєР°С….</span>")
 				return
 
 			empty_hands = get_empty_held_indexes()
 			if(!empty_hands.len)
-				to_chat(usr,"<span class='warning'>Ваши руки заполнены.</span>")
-				to_chat(usr,"<span class='warning'>Руки заполнены.</span>")
+				to_chat(usr,"<span class='warning'>Р’Р°С€Рё СЂСѓРєРё Р·Р°РЅСЏС‚С‹.</span>")
+				to_chat(usr,"<span class='warning'>Р СѓРєРё Р·Р°РЅСЏС‚С‹.</span>")
 				return
 
-			if(usr.drop_item_v())
+			if(!usr.drop_item_v())
 				return
 
 			if(!put_in_hands(I))
-				to_chat(usr,"<span class='warning'>Вы не можете взять [I], так что [usr] сдается!</span>")
-				to_chat(usr,"<span class='warning'>[src] не может взять [I]!</span>")
+				to_chat(usr,"<span class='warning'>Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РІР·СЏС‚СЊ [I], С‚Р°Рє С‡С‚Рѕ [usr] СЃРґР°РµС‚СЃСЏ!</span>")
+				to_chat(usr,"<span class='warning'>[src] РЅРµ РјРѕР¶РµС‚ РІР·СЏС‚СЊ [I]!</span>")
 				return
 
-			src.visible_message("<span class='notice'>[usr] передал [I] в руки [src].</span>")
+			src.visible_message("<span class='notice'>[usr] РїРµСЂРµРґР°Р» [I] РІ СЂСѓРєРё [src].</span>")
 		if("No")
-			src.visible_message("<span class='warning'>[usr] пытается передать [I] в руки [src], но [src] отказывается брать.</span>")
+			src.visible_message("<span class='warning'>[usr] РїС‹С‚Р°РµС‚СЃСЏ РїРµСЂРµРґР°С‚СЊ [I] РІ СЂСѓРєРё [src], РЅРѕ [src] РѕС‚РєР°Р·С‹РІР°РµС‚СЃСЏ Р±СЂР°С‚СЊ.</span>")

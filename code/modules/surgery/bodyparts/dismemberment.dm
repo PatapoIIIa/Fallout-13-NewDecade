@@ -186,7 +186,6 @@
 
 /obj/item/bodypart/r_leg/drop_limb(special)
 	if(owner && !special)
-		owner.Weaken(2)
 		if(owner.legcuffed)
 			owner.legcuffed.forceMove(owner.loc)
 			owner.legcuffed.dropped(owner)
@@ -198,7 +197,6 @@
 
 /obj/item/bodypart/l_leg/drop_limb(special) //copypasta
 	if(owner && !special)
-		owner.Weaken(2)
 		if(owner.legcuffed)
 			owner.legcuffed.forceMove(owner.loc)
 			owner.legcuffed.dropped(owner)
@@ -214,7 +212,7 @@
 		for(var/X in list(owner.glasses, owner.ears, owner.wear_mask, owner.head))
 			var/obj/item/I = X
 			owner.unEquip(I, 1)
-	name = "[owner]'s head"
+	name = "[owner.real_name]'s head"
 	..()
 
 

@@ -1,7 +1,7 @@
 /datum/admins/proc/player_panel_new()//The new one
 	if(!check_rights())
 		return
-	var/dat = "<html><head><title>Player Panel</title></head>"
+	var/dat = "<html><meta charset=UTF-8><head><title>Панель Игроков</title></head>"
 
 	//javascript, the part that does most of the work~
 	dat += {"
@@ -71,7 +71,7 @@
 
 					body += "</td><td align='center'>";
 
-					body += "<font size='2'><b>"+job+" "+name+"</b><br><b>Real name "+real_name+"</b><br><b>Played by "+key+" ("+ip+")</b></font>"
+					body += "<font size='2'><b>"+job+" "+name+"</b><br><b>Real name "+real_name+"</b><br><b>Игрок: "+key+" ("+ip+")</b></font>"
 
 					body += "</td><td align='center'>";
 
@@ -193,14 +193,14 @@
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable'>
 			<tr id='title_tr'>
 				<td align='center'>
-					<font size='5'><b>Player panel</b></font><br>
-					Hover over a line to see more information - <a href='?_src_=holder;check_antagonist=1'>Check antagonists</a> - Kick <a href='?_src_=holder;kick_all_from_lobby=1;afkonly=0'>everyone</a>/<a href='?_src_=holder;kick_all_from_lobby=1;afkonly=1'>AFKers</a> in lobby
+					<font size='5'><b>Панель Игроков</b></font><br>
+					Наведитесь чтобы увидеть больше информации - <a href='?_src_=holder;check_antagonist=1'>Проверить спец.роли</a> - Кикнуть <a href='?_src_=holder;kick_all_from_lobby=1;afkonly=0'>всех</a>/<a href='?_src_=holder;kick_all_from_lobby=1;afkonly=1'>АФКшников</a> в лобби
 					<p>
 				</td>
 			</tr>
 			<tr id='search_tr'>
 				<td align='center'>
-					<b>Search:</b> <input type='text' id='filter' value='' style='width:300px;'>
+					<b>Поиск:</b> <input type='text' id='filter' value='' style='width:300px;'>
 				</td>
 			</tr>
 	</table>
@@ -270,9 +270,9 @@
 				else
 					M_job = "Ghost"
 
-			var/M_name = html_encode_ru(M.name)
-			var/M_rname = html_encode_ru(M.real_name)
-			var/M_key = html_encode_ru(M.key)
+			var/M_name = html_encode(M.name)
+			var/M_rname = html_encode(M.real_name)
+			var/M_key = html_encode(M.key)
 
 			//output for each mob
 			dat += {"
@@ -310,7 +310,7 @@
 
 /datum/admins/proc/check_antagonists()
 	if (ticker && ticker.current_state >= GAME_STATE_PLAYING)
-		var/dat = "<html><head><title>Round Status</title></head><body><h1><B>Round Status</B></h1>"
+		var/dat = "<html><meta charset=UTF-8><head><title>Round Status</title></head><body><h1><B>Round Status</B></h1>"
 		if(ticker.mode.replacementmode)
 			dat += "Former Game Mode: <B>[ticker.mode.name]</B><BR>"
 			dat += "Replacement Game Mode: <B>[ticker.mode.replacementmode.name]</B><BR>"

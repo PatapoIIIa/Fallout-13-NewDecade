@@ -82,7 +82,7 @@
 	var/turf/target_loca = get_turf(target)
 	if(!isliving(target))
 		if(impact_effect_type)
-			PoolOrNew(impact_effect_type, list(target_loca, target, src))
+			new impact_effect_type(target_loca, target, src)
 		return 0
 	var/mob/living/L = target
 	if(blocked != 100) // not completely blocked
@@ -91,18 +91,18 @@
 			if(starting)
 				splatter_dir = get_dir(starting, target_loca)
 			if(isalien(L))
-				PoolOrNew(/obj/effect/overlay/temp/dir_setting/bloodsplatter/xenosplatter, list(target_loca, splatter_dir))
+				new /obj/effect/overlay/temp/dir_setting/bloodsplatter/xenosplatter(target_loca, splatter_dir)
 			else
-				PoolOrNew(/obj/effect/overlay/temp/dir_setting/bloodsplatter, list(target_loca, splatter_dir))
+				new /obj/effect/overlay/temp/dir_setting/bloodsplatter(target_loca, splatter_dir)
 			if(prob(33))
 				L.add_splatter_floor(target_loca)
 		else if(impact_effect_type)
-			PoolOrNew(impact_effect_type, list(target_loca, target, src))
+			new impact_effect_type(target_loca, target, src)
 
 		var/organ_hit_text = ""
 		var/limb_hit = L.check_limb_hit(def_zone)//to get the correct message info.
 		if(limb_hit)
-			organ_hit_text = " в [parse_zone(limb_hit)]"
+			organ_hit_text = " РІ [parse_zone(limb_hit)]"
 		if(suppressed)
 			playsound(loc, hitsound, 5, 1, -1)
 			to_chat(L, "<span class='userdanger'>You're shot by \a [src][organ_hit_text]!</span>")
@@ -110,8 +110,8 @@
 			if(hitsound)
 				var/volume = vol_by_damage()
 				playsound(loc, hitsound, volume, 1, -1)
-			L.visible_message("<span class='danger'>[L] получает урон от [src][organ_hit_text]!</span>", \
-					"<span class='userdanger'>[L] получает урон от [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
+			L.visible_message("<span class='danger'>[L] РїРѕР»СѓС‡Р°РµС‚ СѓСЂРѕРЅ РѕС‚ [src][organ_hit_text]!</span>", \
+					"<span class='userdanger'>[L] РїРѕР»СѓС‡Р°РµС‚ СѓСЂРѕРЅ РѕС‚ [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
 		L.on_hit(src)
 
 	var/reagent_note
@@ -273,13 +273,13 @@
 			src.p_y = text2num(mouse_control["icon-y"])
 		if(mouse_control["screen-loc"])
 			//Split screen-loc up into X+Pixel_X and Y+Pixel_Y
-			var/list/screen_loc_params = splittext(mouse_control["screen-loc"], ",")
+			var/list/screen_loc_params = splittext_char(mouse_control["screen-loc"], ",")
 
 			//Split X+Pixel_X up into list(X, Pixel_X)
-			var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+			var/list/screen_loc_X = splittext_char(screen_loc_params[1],":")
 
 			//Split Y+Pixel_Y up into list(Y, Pixel_Y)
-			var/list/screen_loc_Y = splittext(screen_loc_params[2],":")
+			var/list/screen_loc_Y = splittext_char(screen_loc_params[2],":")
 //			to_chat(world, "X: [screen_loc_X[1]] PixelX: [screen_loc_X[2]] / Y: [screen_loc_Y[1]] PixelY: [screen_loc_Y[2]]")
 			var/x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 32
 			var/y = text2num(screen_loc_Y[1]) * 32 + text2num(screen_loc_Y[2]) - 32

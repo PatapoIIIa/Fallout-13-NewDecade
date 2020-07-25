@@ -1,8 +1,8 @@
 //Fallout 13 npc ghouls directory
 
 /mob/living/simple_animal/hostile/ghost_man
-	name = "Ghost Man"
-	desc = "I'd sooner ask what makes me an undying son of a bitch than spend any thought as to why they crawled to life here."
+	name = "призрак"
+	desc = "Существо в химзащитном костюме, из глаз идет зеленоватое свечение."
 	icon = 'icons/fallout/mobs/animal.dmi'
 	icon_state = "ghost_man"
 	icon_living = "ghost_man"
@@ -30,11 +30,11 @@
 
 	death_sound = 'sound/f13npc/ghoul_death.ogg'
 
-	melee_damage_lower = 15
-	melee_damage_upper = 30
+	melee_damage_lower = 25
+	melee_damage_upper = 35
 	aggro_vision_range = 10
 	idle_vision_range = 5
-	attacktext = "��������"
+	attacktext = "царапает"
 	attack_sound = "punch"
 	light_color = LIGHT_COLOR_GREEN
 	light_power = 1
@@ -42,11 +42,11 @@
 	check_friendly_fire = 1
 	del_on_death = 1
 	loot = list(/obj/effect/mine/ghost_man)
-	XP = 55
+	XP = 5
 
 /mob/living/simple_animal/hostile/ghost_man_bear_trap
-	name = "Ghost trapper"
-	desc = "Where there's a bear trap, Ghost People aren't far behind."
+	name = "Призрак-охотник"
+	desc = "Если видише медвежий капкан, значит, призраки неподалёку."
 	icon = 'icons/fallout/mobs/animal.dmi'
 	icon_state = "ghost_man_bear_trap"
 	icon_living = "ghost_man_bear_trap"
@@ -78,7 +78,7 @@
 	melee_damage_upper = 45
 	aggro_vision_range = 10
 	idle_vision_range = 5
-	attacktext = "��������"
+	attacktext = "царапает"
 	attack_sound = "punch"
 	light_color = LIGHT_COLOR_GREEN
 	light_power = 1
@@ -86,11 +86,11 @@
 	check_friendly_fire = 1
 	del_on_death = 1
 	loot = list(/obj/effect/mine/ghost_man, /obj/item/weapon/beartrapfist)
-	XP = 75
+	XP = 5
 
 /mob/living/simple_animal/hostile/ghost_man_spear
-	name = "Ghost harvester"
-	desc = "Ghost harvesters are the most common variant of ghost people. They are the smallest variant and are easily distinguished by their hoods and smaller gas masks."
+	name = "Призрак-жнец"
+	desc = "Призраки-жнецы - самый распространённый вид людей-призраков. Они наименьшие в своём роде и легко различимы по своим капюшонам и меньшим противогазам."
 	icon = 'icons/fallout/mobs/animal.dmi'
 	icon_state = "ghost_man_spear"
 	icon_living = "ghost_man_spear"
@@ -129,7 +129,7 @@
 	melee_damage_upper = 35
 	aggro_vision_range = 10
 	idle_vision_range = 5
-	attacktext = "��������"
+	attacktext = "царапает"
 	attack_sound = "punch"
 	light_color = LIGHT_COLOR_GREEN
 	light_power = 1
@@ -137,4 +137,4 @@
 	check_friendly_fire = 1
 	del_on_death = 1
 	loot = list(/obj/effect/mine/ghost_man, /obj/item/stack/spear)
-	XP = 90
+	XP = 10

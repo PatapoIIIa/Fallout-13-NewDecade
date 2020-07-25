@@ -1,20 +1,17 @@
 //Fallout 13 campfire directory
 
 /obj/structure/campfire
-	name = "campfire"
-
+	name = "костёр"
+	desc = "Тёплый и яркий. Что может быть лучше костра? Еда конечно."
+	icon = 'icons/fallout/objects/structures/campfire.dmi'
+	icon_state = "campfire20"
 	density = 0
 	anchored = 1
 	opacity = 0
-
 	var/fired = 0
 	var/fuel = 300
 	light_color = LIGHT_COLOR_FIRE
 	var/burned = 0
-	desc = "A warm, bright, and hopeful fire source - when it's burning, of course."
-
-	icon = 'icons/fallout/objects/structures/campfire.dmi'
-	icon_state = "campfire20"
 
 /obj/structure/campfire/Destroy()
 	SSobj.processing.Remove(src)
@@ -114,8 +111,8 @@
 	..()
 
 /obj/structure/campfire/extinguish()
-	name = "burned campfire"
-	desc = "It has burned to ashes..."
+	name = "потухший костёр"
+	desc = "Потух и осталась лишь кучка пепла..."
 	icon_state = "campfire0"
 	fired = 0
 	burned = 1
@@ -125,8 +122,10 @@
 	update_icon()
 
 /obj/structure/burnbarrel
-	name = "burnbarrel"
-
+	name = "бочка"
+	desc = "Теплый и яркий источник огня в бочке. Мило."
+	icon = 'icons/fallout/objects/structures/stationary.dmi'
+	icon_state = "barrel_rust"
 	density = 1
 	anchored = 1
 	opacity = 0
@@ -135,10 +134,6 @@
 	var/fuel = 30000
 	light_color = LIGHT_COLOR_FIRE
 	var/burned = 0
-	desc = "A warm, bright, and hopeful fire source - when it's burning, of course."
-
-	icon = 'icons/fallout/objects/structures/stationary.dmi'
-	icon_state = "barrel_rust"
 
 /obj/structure/burnbarrel/Destroy()
 	SSobj.processing.Remove(src)
@@ -233,8 +228,8 @@
 	..()
 
 /obj/structure/burnbarrel/extinguish()
-	name = "burnbarrel"
-	desc = "A warm, bright, and hopeful fire source - when it's burning, of course."
+	name = "бочка"
+	desc = "Теплый и яркий источник огня в бочке. Мило."
 	icon_state = "burnbarrel"
 	fired = 0
 	set_light(0)

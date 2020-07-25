@@ -5,7 +5,7 @@
 	item_state = "headset"
 	materials = list(MAT_METAL=75)
 	subspace_transmission = 1
-	canhear_range = 0 // can't hear headsets from very far away
+	canhear_range = 1 // can't hear headsets from very far away
 
 	slot_flags = SLOT_EARS
 	var/obj/item/device/encryptionkey/keyslot2 = null
@@ -289,3 +289,24 @@
 		secure_radio_connections[ch_name] = add_radio(src, radiochannels[ch_name])
 
 	return
+
+/obj/item/device/radio/headset/enclave
+	name = "радиогарнитура анклава"
+	desc = "This is used by your elite security force. Protects ears from flashbangs."
+	flags = EARBANGPROTECT
+	icon_state = "sec_headset_alt"
+	item_state = "sec_headset_alt"
+	freqlock = 6359
+	frequency = 6359
+	key = 343
+
+
+/obj/item/device/radio/headset/bs
+	name = "радиогарнитура братства"
+	desc = "This is used by your elite security force. Protects ears from flashbangs."
+	flags = EARBANGPROTECT
+	icon_state = "sec_headset_alt"
+	item_state = "sec_headset_alt"
+	freqlock = 1919
+	frequency = 1919
+	key = 1501

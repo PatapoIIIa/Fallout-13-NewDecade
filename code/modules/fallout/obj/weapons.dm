@@ -1,14 +1,14 @@
 //Fallout 13 melee weapons directory
 
 /obj/item/stack/spear
-	name = "Throwing spears"
-	desc = "A lightweight throwing spear made to be thrown at assailants, has a pretty sharp point."
+	name = "РјРµС‚Р°С‚РµР»СЊРЅС‹Рµ РєРѕРїСЊСЏ"
+	desc = "Р›С‘РіРєРёРµ РєРѕРїСЊСЏ РґР»СЏ РјРµС‚Р°РЅРёСЏ СЃ РѕСЃС‚СЂС‹Рј РєРѕРЅС†РѕРј."
 	singular_name = "Throwing spear"
 	icon_state = "throw_spear"
 	icon = 'icons/fallout/objects/melee.dmi'
 	item_state = "tribalspear"
 	flags = CONDUCT
-	w_class = 3
+	self_weight = 3.000
 	force = 20
 	throwforce = 50		//I need to add armor pen eventually.
 	throw_speed = 3
@@ -31,8 +31,8 @@
 	amount = 5
 
 /obj/item/weapon/twohanded/baseball
-	name = "baseball bat"
-	desc = "Деревянный источник боли и веселья."
+	name = "Р±РµР№СЃР±РѕР»СЊРЅР°СЏ Р±РёС‚Р°"
+	desc = "Р”РµСЂРµРІСЏРЅРЅС‹Р№ РёСЃС‚РѕС‡РЅРёРє Р±РѕР»Рё Рё РІРµСЃРµР»СЊСЏ."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "baseball0"
 	force = 5
@@ -64,6 +64,7 @@
 	desc = "This big, long, sharp blade is good for cleaving limbs off of the native Joshua trees or from an unlucky mutant. It appears as a long, sharpened lawn mower blade taped to a wooden handle."
 	icon_state = "imp_machete"
 	force = 18
+	price = 900
 
 /obj/item/weapon/machete/serratedmachete
 	name = "Serrated machete"
@@ -72,7 +73,7 @@
 	force = 32
 
 /obj/item/weapon/pipe
-	name = "lead pipe"
+	name = "СЃРІРёРЅС†РѕРІР°СЏ С‚СЂСѓР±Р°"
 	desc = "One of the ends has tape wrapped around it to improve grip, while the other is heavily corroded and/or bloodstained, and topped with a pipe fitting.<br>Though it has a short reach, it has decent damage and a fast swing."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "pipe"
@@ -83,6 +84,7 @@
 	throw_range = 4
 	throwforce = 10
 	w_class = 3
+	price = 450
 
 /obj/item/weapon/pipe/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide.</span>")
@@ -136,7 +138,7 @@
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/weapon/pan
-	name = "frying pan"
+	name = "СЃРєРѕРІРѕСЂРѕРґРєР°"
 	desc = "An ancient cast iron frying pan.<br>It's heavy, but fairly useful if you need to keep the mutants away, and don't have a better weapon around."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "pan"
@@ -154,7 +156,7 @@
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/weapon/harpoon
-	name = "harpoon"
+	name = "РіР°СЂРїСѓРЅ"
 	desc = "A rusty spear-like instrument previously used in fishing, whaling and sealing - now used for robbing, raiding and manhunting."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "harpoon"
@@ -194,7 +196,7 @@
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/weapon/twohanded/tribal_spear
-	name = "tribal spear"
+	name = "РїР»РµРјРµРЅРЅРѕРµ РєРѕРїСЊС‘"
 	desc = "A haphazardly-constructed, yet still deadly weapon of an ancient design."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "tribalspear0"
@@ -209,13 +211,13 @@
 	armour_penetration = 10
 	materials = list(MAT_METAL=1150, MAT_WOOD=2075)
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
+	attack_verb = list("Р°С‚Р°РєСѓРµС‚", "С‚С‹РєР°РµС‚", "РїСЂРѕС‚С‹РєР°РµС‚", "СЂРµР¶РµС‚")
 	sharpness = IS_SHARP
 	obj_integrity = 200
 	max_integrity = 200
 
 /obj/item/weapon/twohanded/legionspear
-	name = "legionspear"
+	name = "РєРѕРїСЊС‘ Р»Р°РЅРіРёСЂР°"
 	desc = "A haphazardly-constructed, yet still deadly weapon of an ancient design."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "legionspear0"
@@ -236,8 +238,8 @@
 	max_integrity = 200
 
 /obj/item/weapon/spear
-	name = "throwing spear"
-	desc = "Крайне смертоносное оружие, с допотопным дизайном."
+	name = "РјРµС‚Р°С‚РµР»СЊРЅРѕРµ РєРѕРїСЊС‘"
+	desc = "РљСЂР°Р№РЅРµ СЃРјРµСЂС‚РѕРЅРѕСЃРЅРѕРµ РѕСЂСѓР¶РёРµ, СЃ РґРѕРїРѕС‚РѕРїРЅС‹Рј РґРёР·Р°Р№РЅРѕРј."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "spear"
 	force = 10
@@ -269,7 +271,7 @@
 	w_class = 2
 
 /obj/item/weapon/hammer
-	name = "hammer"
+	name = "РјРѕР»РѕС‚РѕРє"
 	desc = "A simple construction tool, that can also be used to bring the revenge upon those who kidnapped you and kept you in the basement for several years." //Old Boy (2003)
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "hammer"
@@ -279,10 +281,11 @@
 	w_class = 3
 	obj_integrity = 200
 	max_integrity = 200
+	price = 350
 
 /obj/item/weapon/twohanded/sledgehammer
-	name = "sledgehammer"
-	desc = "Strong but heavy weapon of destruction, that works well only if you know how to use it properly."
+	name = "РєСѓРІР°Р»РґР°"
+	desc = "РЎРёР»СЊРЅРѕРµ, РЅРѕ С‚СЏР¶РµР»РѕРµ РѕСЂСѓРґРёРµ СЂР°Р·СЂСѓС€РµРЅРёСЏ, СЌС„С„РµРєС‚РёРІРЅРѕ Р»РёС€СЊ С‚РѕРіРґР°, РєРѕРіРґР° Р·РЅР°РµС€СЊ РєР°Рє СЌС‚РёРј РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "sledgehammer0"
 	flags = CONDUCT
@@ -297,8 +300,8 @@
 	origin_tech = "combat=3;powerstorage=3"
 
 /obj/item/weapon/twohanded/largehammer
-	name = "large sledgehammer"
-	desc = "Большое, сильное, оружие РАЗРУШЕНИЯ."
+	name = "Р±РѕР»СЊС€Р°СЏ РєСѓРІР°Р»РґР°"
+	desc = "Р‘РѕР»СЊС€РѕРµ, СЃРёР»СЊРЅРѕРµ, РѕСЂСѓР¶РёРµ Р РђР—Р РЈРЁР•РќРРЇ."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "largesledgehammer0"
 	flags = CONDUCT
@@ -313,8 +316,8 @@
 	origin_tech = "combat=4;powerstorage=4"
 
 /obj/item/weapon/twohanded/superhammer
-	name = "super sledge"
-	desc = "Суперкувалда - Братство разработало эту хреновину.<br>Это снаряжено небольшим генератором для ускорения импулься."
+	name = "СЃСѓРїРµСЂРєСѓРІР°Р»РґР°"
+	desc = "РЎСѓРїРµСЂРєСѓРІР°Р»РґР° - Р‘СЂР°С‚СЃС‚РІРѕ СЂР°Р·СЂР°Р±РѕС‚Р°Р»Рѕ СЌС‚Сѓ С…СЂРµРЅРѕРІРёРЅСѓ.<br>Р­С‚Рѕ СЃРЅР°СЂСЏР¶РµРЅРѕ РЅРµР±РѕР»СЊС€РёРј РіРµРЅРµСЂР°С‚РѕСЂРѕРј РґР»СЏ СѓСЃРєРѕСЂРµРЅРёСЏ РёРјРїСѓР»СЊСЃСЏ."
 	icon = 'icons/fallout/objects/melee.dmi'
 	icon_state = "supersledgehammer0"
 	flags = CONDUCT
@@ -327,14 +330,15 @@
 	w_class = 5
 	var/charged = 1
 	origin_tech = "combat=5;powerstorage=5"
+	price = 4500
 
 /obj/item/weapon/twohanded/superhammer/proc/shock(mob/living/target)
 	var/datum/effect_system/lightning_spread/s = new /datum/effect_system/lightning_spread
 	s.set_up(5, 1, target.loc)
 	s.start()
-	target.visible_message("<span class='danger'>[target.name] оглушен [src.name]!</span>", \
-		"<span class='userdanger'>Вы ощущаете мощный разряд прошедший через ваше тело и отправивший Вас в полёт!</span>", \
-		"<span class='italics'>Вы слышите электрический стрекот!</span>")
+	target.visible_message("<span class='danger'>[target.name] РѕРіР»СѓС€РµРЅ [src.name]!</span>", \
+		"<span class='userdanger'>Р’С‹ РѕС‰СѓС‰Р°РµС‚Рµ РјРѕС‰РЅС‹Р№ СЂР°Р·СЂСЏРґ РїСЂРѕС€РµРґС€РёР№ С‡РµСЂРµР· РІР°С€Рµ С‚РµР»Рѕ Рё РѕС‚РїСЂР°РІРёРІС€РёР№ Р’Р°СЃ РІ РїРѕР»С‘С‚!</span>", \
+		"<span class='italics'>Р’С‹ СЃР»С‹С€РёС‚Рµ СЌР»РµРєС‚СЂРёС‡РµСЃРєРёР№ СЃС‚СЂРµРєРѕС‚!</span>")
 	var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
 	target.throw_at(throw_target, 200, 4)
 	charged = 0
@@ -359,10 +363,11 @@
 		shock(L)
 
 /obj/item/weapon/pickaxe/rust
-	name = "rusty pickaxe"
-	desc = "Эта кирка знала лучшие дни."
+	name = "СЂР¶Р°РІР°СЏ РєРёСЂРєР°"
+	desc = "Р­С‚Р° РєРёСЂРєР° Р·РЅР°Р»Р° Р»СѓС‡С€РёРµ РґРЅРё."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "pickaxe_rust"
 	force = 12
 	throwforce = 8
 	digspeed = 45
+	price = 1000

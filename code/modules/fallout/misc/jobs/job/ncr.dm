@@ -10,7 +10,7 @@
 	status = "ncr_general"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "ˆÂÌÚ‡Î¸ÌÓÏÛ ¯Ú‡·Û Õ –"
+	supervisors = "—Ü–µ–Ω—Ç—Ä–∞–ª—å–Ω–æ–º—É —à—Ç–∞–±—É –ù–ö–†"
 	selection_color = "#9d9fec"
 	minimal_player_age = 36
 	whitelist_on = 1
@@ -20,7 +20,6 @@
 	required_items = list(
 	/obj/item/clothing/glasses/sunglasses,
 	/obj/item/weapon/kitchen/knife/combat,
-	/obj/item/device/radio,
 	/obj/item/weapon/lighter/gold,
 	/obj/item/weapon/reagent_containers/f13stimpack,
 	/obj/item/weapon/reagent_containers/f13stimpack/super
@@ -28,7 +27,7 @@
 
 	denied_items = list(
 	/obj/item/clothing/shoes/f13/rag,
-	/obj/item/clothing/head/f13/headscarf,
+	/obj/item/clothing/mask/bandana/f13/headscarf,
 	/obj/item/clothing/head/f13/pot,
 	/obj/item/clothing/under/pants/f13/ghoul,
 	/obj/item/clothing/under/pants/f13/cloth,
@@ -50,7 +49,7 @@
 
 /datum/outfit/job/general
 	name = "general"
-	id = /obj/item/card/id/ncrgeneral
+	id = /obj/item/weapon/card/id/ncrgeneral
 	gloves = /obj/item/clothing/gloves/f13/military
 	uniform = /obj/item/clothing/under/f13/general
 	shoes = /obj/item/clothing/shoes/laceup
@@ -62,8 +61,7 @@
 	belt_contents = list(/obj/item/ammo_box/magazine/F13/m556 = 1, \
 		/obj/item/ammo_box/magazine/F13/m556/armourpiercing = 1, \
 		/obj/item/weapon/reagent_containers/f13stimpack = 1, \
-		/obj/item/weapon/reagent_containers/food/drinks/flask/survival = 1, \
-		/obj/item/device/radio = 1, \
+		/obj/item/weapon/reagent_containers/food/drinks/flask/survival = 1,
 		/obj/item/device/flashlight/torch/flare/blue = 1)
 //NCR Sergeant
 
@@ -77,10 +75,10 @@
 	status = "ncr_sergeant"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "„ÂÌÂ‡ÎÛ"
+	supervisors = "–≥–µ–Ω–µ—Ä–∞–ª—É"
 	selection_color = "#9d9fec"
 	minimal_player_age = 31
-
+	whitelist_on = 1
 	allowed_packs = list("starter", "cigarettes", "follower", "bard", "super_ten", "trooper_armor", "heavy_trooper", "specops")
 
 	required_items = list(
@@ -93,7 +91,7 @@
 
 	denied_items = list(
 	/obj/item/clothing/shoes/f13/rag,
-	/obj/item/clothing/head/f13/headscarf,
+	/obj/item/clothing/mask/bandana/f13/headscarf,
 	/obj/item/clothing/head/f13/pot,
 	/obj/item/clothing/under/pants/f13/ghoul,
 	/obj/item/clothing/under/pants/f13/cloth,
@@ -115,7 +113,7 @@
 
 /datum/outfit/job/ncr_sergeant
 	name = "Sergeant NCR"
-	id = /obj/item/card/id/ncrsergeant
+	id = /obj/item/weapon/card/id/ncrsergeant
 	gloves = /obj/item/clothing/gloves/f13/military
 	uniform = /obj/item/clothing/under/f13/ncr_officer
 	r_pocket = /obj/item/clothing/tie/medal/silver/ncrSGT
@@ -128,7 +126,6 @@
 		/obj/item/ammo_box/magazine/F13/m556/armourpiercing = 1, \
 		/obj/item/weapon/reagent_containers/f13stimpack = 1, \
 		/obj/item/weapon/reagent_containers/food/drinks/flask/survival = 1, \
-		/obj/item/device/radio = 1, \
 		/obj/item/device/flashlight/torch/flare/blue = 1)
 
 /datum/job/vranger
@@ -141,12 +138,12 @@
 	status = "vranger"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "ˆÂÌÚ‡Î¸ÌÓÏÛ ¯Ú‡·Û Õ –"
+	supervisors = "—Ü–µ–Ω—Ç—Ä–∞–ª—å–Ω–æ–º—É —à—Ç–∞–±—É –ù–ö–†"
 	selection_color = "#9d9fec"
 	minimal_player_age = 25
-
+	whitelist_on = 1
 	outfit = /datum/outfit/job/vranger
-
+	whitelist_on = 1
 	allowed_packs = list("starter", "cigarettes", "follower", "bard", "super_ten", "specops")
 
 	required_items = list(
@@ -157,7 +154,7 @@
 
 	denied_items = list(
 	/obj/item/clothing/shoes/f13/rag,
-	/obj/item/clothing/head/f13/headscarf,
+	/obj/item/clothing/mask/bandana/f13/headscarf,
 	/obj/item/clothing/head/f13/pot,
 	/obj/item/clothing/under/pants/f13/ghoul,
 	/obj/item/clothing/under/pants/f13/cloth,
@@ -177,7 +174,8 @@
 
 /datum/outfit/job/vranger
 	name = "Veteran Ranger"
-	id = /obj/item/card/id/ncrranger
+	backpack = /obj/item/device/radio/prc
+	id = /obj/item/weapon/card/id/ncrranger
 	gloves = /obj/item/clothing/gloves/f13/military
 	uniform = /obj/item/clothing/under/f13/mechanic
 	shoes = /obj/item/clothing/shoes/f13/military/light
@@ -187,8 +185,7 @@
 	weapon = /obj/item/weapon/gun/ballistic/revolver/magnum
 	belt_contents = list(/obj/item/weapon/restraints/handcuffs = 1,
 		/obj/item/weapon/reagent_containers/f13stimpack = 1,
-		/obj/item/ammo_box/F13/m44 = 2,
-		/obj/item/device/radio = 1)
+		/obj/item/ammo_box/F13/m44 = 2)
 
 
 /datum/job/trooper
@@ -201,10 +198,10 @@
 	status = "trooper"
 	total_positions = 6
 	spawn_positions = 6
-	supervisors = "„ÂÌÂ‡ÎÛ"
+	supervisors = "–≥–µ–Ω–µ—Ä–∞–ª—É"
 	selection_color = "#9d9fec"
 	minimal_player_age = 16
-
+	whitelist_on = 0
 	allowed_packs = list("starter", "cigarettes", "follower", "bard", "super_ten", "trooper_armor", "heavy_trooper", "specops")
 
 	required_items = list(
@@ -214,7 +211,7 @@
 
 	denied_items = list(
 	/obj/item/clothing/shoes/f13/rag,
-	/obj/item/clothing/head/f13/headscarf,
+	/obj/item/clothing/mask/bandana/f13/headscarf,
 	/obj/item/clothing/head/f13/pot,
 	/obj/item/clothing/under/pants/f13/ghoul,
 	/obj/item/clothing/under/pants/f13/cloth,
@@ -236,7 +233,7 @@
 
 /datum/outfit/job/trooper
 	name = "Trooper"
-	id = /obj/item/card/id/ncrtrooper
+	id = /obj/item/weapon/card/id/ncrtrooper
 	gloves = /obj/item/clothing/gloves/f13/ncr
 	uniform = /obj/item/clothing/under/f13/ncr
 	r_pocket = /obj/item/clothing/tie/medal/silver/ncrTPR
@@ -246,8 +243,7 @@
 	glasses = /obj/item/clothing/glasses/f13/biker
 	belt = /obj/item/weapon/storage/belt/military/army
 	weapon = /obj/item/weapon/gun/ballistic/automatic/garand
-	belt_contents = list(/obj/item/weapon/reagent_containers/f13stimpack = 2, \
-	/obj/item/device/radio = 1, /obj/item/ammo_box/magazine/F13/g308 = 3)
+	belt_contents = list(/obj/item/weapon/reagent_containers/f13stimpack = 2, /obj/item/ammo_box/magazine/F13/g308 = 3)
 
 	//weapon = /obj/item/weapon/gun/ballistic/automatic/pistol
 	//belt_contents = list(/obj/item/weapon/reagent_containers/f13stimpack = 2, \

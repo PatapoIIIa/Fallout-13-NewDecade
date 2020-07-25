@@ -4,7 +4,7 @@
 	var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","alien","as", "i")
 
 	//explode the input msg into a list
-	var/list/msglist = splittext(msg, " ")
+	var/list/msglist = splittext_char(msg, " ")
 
 	//generate keywords lookup
 	var/list/surnames = list()
@@ -17,7 +17,7 @@
 			indexing += M.mind.name
 
 		for(var/string in indexing)
-			var/list/L = splittext(string, " ")
+			var/list/L = splittext_char(string, " ")
 			var/surname_found = 0
 			//surnames
 			for(var/i=L.len, i>=1, i--)
@@ -57,7 +57,7 @@
 							var/is_antag = 0
 							if(found.mind && found.mind.special_role)
 								is_antag = 1
-							founds += "Имя: [found.name]([found.real_name]) Ник: [found.ckey] [is_antag ? "(Antag)" : null] "
+							founds += "РРјСЏ: [found.name]([found.real_name]) РќРёРє: [found.ckey] [is_antag ? "(Antag)" : null] "
 							msg += "[original_word]<font size='1' color='[is_antag ? "red" : "black"]'>(<A HREF='?_src_=holder;adminmoreinfo=\ref[found]'>?</A>|<A HREF='?_src_=holder;adminplayerobservefollow=\ref[found]'>F</A>)</font> "
 							continue
 		msg += "[original_word] "
@@ -86,7 +86,7 @@
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<span class='danger'>Ошибка: Admin-PM: Вы не можете присылать сообщения (Мут).</span>")
+		to_chat(src, "<span class='danger'>РћС€РёР±РєР°: Admin-PM: Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїСЂРёСЃС‹Р»Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ (РњСѓС‚).</span>")
 		return
 	if(src.handle_spam_prevention(msg,MUTE_ADMINHELP))
 		return
@@ -94,7 +94,7 @@
 	//clean the input msg
 	if(!msg)
 		return
-	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
+	msg = sanitize(copytext_char(msg,1,MAX_MESSAGE_LEN))
 	if(!msg)	return
 	var/original_msg = msg
 
@@ -109,25 +109,25 @@
 
 	var/ref_mob = "\ref[mob]"
 	var/ref_client = "\ref[src]"
-	msg = "<span class='adminnotice'><b><font color=red>ПОМОЩЬ: </font><A HREF='?priv_msg=[ckey];ahelp_reply=1'>[key_name(src)]</A> (<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservefollow=[ref_mob]'>FLW</A>) (<A HREF='?_src_=holder;traitor=[ref_mob]'>TP</A>) (<A HREF='?_src_=holder;rejectadminhelp=[ref_client]'>ОТКЛОНИТЬ</A>):</b> [msg]</span>"
+	msg = "<span class='adminnotice'><b><font color=red>РџРћРњРћР©Р¬: </font><A HREF='?priv_msg=[ckey];ahelp_reply=1'>[key_name(src)]</A> (<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservefollow=[ref_mob]'>FLW</A>) (<A HREF='?_src_=holder;traitor=[ref_mob]'>TP</A>) (<A HREF='?_src_=holder;rejectadminhelp=[ref_client]'>РћРўРљР›РћРќРРўР¬</A>):</b> [msg]</span>"
 
 	//send this msg to all admins
 
 	for(var/client/X in admins)
 		if(X.prefs.toggles & SOUND_ADMINHELP)
-			to_chat(X, 'sound/effects/-adminhelp.ogg')
+			to_chat(X, 'sound/effects/adminhelp.ogg')
 		window_flash(X)
 		to_chat(X, msg)
 
 
 	//show it to the person adminhelping too
-	to_chat(src, "<span class='adminnotice'>Вы отправили: [original_msg]</span>")
+	to_chat(src, "<span class='adminnotice'>Р’С‹ РѕС‚РїСЂР°РІРёР»Рё: [original_msg]</span>")
 
 	//send it to irc if nobody is on and tell us how many were on
 	var/admin_number_present = send2irc_adminless_only(ckey,original_msg)
 	log_admin("HELP: [key_name(src)]: [original_msg] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 	if(admin_number_present <= 0)
-		to_chat(src, "<span class='notice'>Извините ,но сейчас администрация не в сети.</span>")
+		to_chat(src, "<span class='notice'>РР·РІРёРЅРёС‚Рµ ,РЅРѕ СЃРµР№С‡Р°СЃ Р°РґРјРёРЅРёСЃС‚СЂР°С†РёСЏ РЅРµ РІ СЃРµС‚Рё.</span>")
 	feedback_add_details("admin_verb","AH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
@@ -175,7 +175,7 @@
 
 
 /proc/ircadminwho()
-	var/msg = "Админы: "
+	var/msg = "РђРґРјРёРЅС‹: "
 	for(var/client/C in admins)
 		msg += "[C] "
 

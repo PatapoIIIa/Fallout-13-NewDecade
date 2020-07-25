@@ -75,8 +75,8 @@
 
 			// Find the player's view resolution and set the falloff point to the edge
 			// of the client's screen.
-			var/x = findtext(world.view, "x")
-			S.falloff = x ? copytext(world.view, 1, x) : world.view
+			var/x = findtext_char(world.view, "x")
+			S.falloff = x ? copytext_char(world.view, 1, x) : world.view
 
 			// Change 'layer' to another variable if an altitude variable is used.
 			S.x = T.x - src.x
@@ -134,6 +134,8 @@
 				soundin = pick('sound/weapons/genhit1.ogg','sound/weapons/genhit2.ogg','sound/weapons/genhit3.ogg')
 			if ("hiss")
 				soundin = pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
+			if ("can_open")
+				soundin = pick('sound/effects/can_open1.ogg', 'sound/effects/can_open2.ogg', 'sound/effects/can_open3.ogg')
 			if ("pageturn")
 				soundin = pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
 			if ("gunshot")
@@ -150,6 +152,8 @@
 				soundin = pick('sound/machines/terminal_button01.ogg','sound/machines/terminal_button02.ogg','sound/machines/terminal_button03.ogg', \
 								'sound/machines/terminal_button04.ogg','sound/machines/terminal_button05.ogg','sound/machines/terminal_button06.ogg', \
 								'sound/machines/terminal_button07.ogg','sound/machines/terminal_button08.ogg')
+			if ("servostep")
+				soundin = pick('sound/f13effects/servostep.ogg')
 			if ("footsteps")
 				soundin = pick ('sound/effects/footsteps/footsteps.ogg', 'sound/effects/footsteps/footsteps2.ogg')
 			if ("erikafootsteps")

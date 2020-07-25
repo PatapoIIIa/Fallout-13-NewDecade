@@ -2,22 +2,22 @@
 //Here we get the basic mechanics as coded by WB! Praise him and other Unknown coder for this.
 
 /obj/item/weapon/holodisk
-	name = "holodisk"
+	name = "голозапись"
 	desc = "A durable laser-readable storage device produced by Wattz Electronics.<br>Based on tape holography technology, it can store information safely for extended periods of time."
 	icon = 'icons/fallout/objects/items.dmi'
 	icon_state = "holodisk"
 	item_state = "holodisk"
 	throwforce = 0
 	hitsound = null
-	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7
 	attack_verb = list("had a wonderful day, and was about to examine the holodisk, but suddenly noticed that someone nearby is making rather abusive gestures, and decided to hit")
 	var/busy = 0
 	var/soundLength = 50
 	var/soundFile = 'sound/f13music/mysterious_stranger.ogg'
+	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/weapon/holodisk/initialize()
+/obj/item/weapon/holodisk/Initialize()
         src.name = "holodisk #[rand(1,999)]"
         return ..()
 
@@ -103,14 +103,15 @@
 //Music box is based of holodisk
 
 /obj/item/weapon/holodisk/musicbox
-	name = "music box"
-	desc = "A pre-War music box - remainder of humanity from the good old days."
+	name = "музыкальная шкатулка"
+	desc = "Довоенное напоминание о былом человечестве и его искусстве..."
 	icon = 'icons/fallout/objects/items.dmi'
 	icon_state = "music1"
 	item_state = "music1"
 	soundFile =  'sound/f13items/music_box.ogg' //Amazing grace
 	soundLength = 320
+	price = 1000
 
-/obj/item/weapon/holodisk/musicbox/initialize()
+/obj/item/weapon/holodisk/musicbox/Initialize()
 	..()
 	name = "music box"

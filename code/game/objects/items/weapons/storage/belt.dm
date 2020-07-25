@@ -1,5 +1,5 @@
 /obj/item/weapon/storage/belt
-	name = "пояс"
+	name = "РїРѕСЏСЃ"
 	desc = "Can hold various things."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
@@ -16,8 +16,8 @@
 	..()
 
 /obj/item/weapon/storage/belt/utility
-	name = "пояс для инструментов" //Carn: utility belt is nicer, but it bamboozles the text parsing.
-	desc = "Holds tools."
+	name = "СЂРµРјРµРЅСЊ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё" //Carn: utility belt is nicer, but it bamboozles the text parsing.
+	desc = "РњРѕР¶РµС‚ РґРµСЂР¶Р°С‚СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹."
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	can_hold = list(
@@ -32,7 +32,6 @@
 		/obj/item/device/t_scanner,
 		/obj/item/device/analyzer,
 		/obj/item/weapon/extinguisher/mini,
-		/obj/item/device/radio,
 		/obj/item/clothing/gloves,
 		/obj/item/weapon/lighter,
 		/obj/item/weapon/storage/fancy/cigarettes,
@@ -104,7 +103,6 @@
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/device/sensor_device,
-		/obj/item/device/radio,
 		/obj/item/clothing/gloves/,
 		/obj/item/weapon/lazarus_injector,
 		/obj/item/weapon/bikehorn/rubberducky,
@@ -156,7 +154,6 @@
 		/obj/item/weapon/kitchen/knife/combat,
 		/obj/item/device/flashlight/seclite,
 		/obj/item/weapon/melee/classic_baton/telescopic,
-		/obj/item/device/radio,
 		/obj/item/clothing/gloves/,
 		/obj/item/weapon/restraints/legcuffs/bola
 		)
@@ -178,45 +175,7 @@
 	item_state = "explorer1"
 	storage_slots = 6
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = WEIGHT_CLASS_BULKY //Pickaxes are big.
-	max_combined_w_class = 20 //Not an issue with this whitelist, probably.
-	can_hold = list(
-		/obj/item/weapon/crowbar,
-		/obj/item/weapon/screwdriver,
-		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/wirecutters,
-		/obj/item/weapon/wrench,
-		/obj/item/device/flashlight,
-		/obj/item/stack/cable_coil,
-		/obj/item/device/analyzer,
-		/obj/item/weapon/extinguisher/mini,
-		/obj/item/device/radio,
-		/obj/item/clothing/gloves,
-		/obj/item/weapon/resonator,
-		/obj/item/device/mining_scanner,
-		/obj/item/weapon/pickaxe,
-		/obj/item/stack/sheet/animalhide,
-		/obj/item/stack/sheet/sinew,
-		/obj/item/stack/sheet/bone,
-		/obj/item/weapon/lighter,
-		/obj/item/weapon/storage/fancy/cigarettes,
-		/obj/item/weapon/reagent_containers/food/drinks/bottle,
-		/obj/item/stack/medical,
-		/obj/item/weapon/kitchen/knife,
-		/obj/item/weapon/reagent_containers/hypospray,
-		/obj/item/device/gps,
-		/obj/item/weapon/storage/bag/ore,
-		/obj/item/weapon/survivalcapsule,
-		/obj/item/device/t_scanner/adv_mining_scanner,
-		/obj/item/weapon/reagent_containers/pill,
-		/obj/item/weapon/storage/pill_bottle,
-		/obj/item/weapon/ore,
-		/obj/item/weapon/reagent_containers/food/drinks,
-		/obj/item/organ/hivelord_core,
-		/obj/item/device/wormhole_jaunter,
-		/obj/item/weapon/storage/bag/plants,
-
-		)
+	max_w_class = WEIGHT_CLASS_SMALL
 
 
 /obj/item/weapon/storage/belt/mining/vendor

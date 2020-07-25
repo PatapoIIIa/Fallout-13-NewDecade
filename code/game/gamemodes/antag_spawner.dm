@@ -70,7 +70,7 @@
 				to_chat(H, "Unable to reach your apprentice! You can either attack the spellbook with the contract to refund your points, or wait and try again later.")
 
 /obj/item/weapon/antag_spawner/contract/spawn_antag(client/C, turf/T, type = "")
-	PoolOrNew(/obj/effect/particle_effect/smoke, T)
+	new /obj/effect/particle_effect/smoke(T)
 	var/mob/living/carbon/human/M = new/mob/living/carbon/human(T)
 	C.prefs.copy_to(M)
 	M.key = C.key
@@ -111,7 +111,7 @@
 	M.mind.special_role = "apprentice"
 	ticker.mode.update_wiz_icons_added(M.mind)
 	to_chat(M, sound('sound/effects/magic.ogg'))
-	var/newname = copytext(sanitize(input(M, "You are [wizard_name]'s apprentice. Would you like to change your name to something else?", "Name change", randomname) as null|text),1,MAX_NAME_LEN)
+	var/newname = copytext_char(sanitize(input(M, "You are [wizard_name]'s apprentice. Would you like to change your name to something else?", "Name change", randomname) as null|text),1,MAX_NAME_LEN)
 	if (!newname)
 		newname = randomname
 	M.mind.name = newname
@@ -257,7 +257,7 @@
 
 /obj/item/weapon/antag_spawner/slaughter_demon/spawn_antag(client/C, turf/T, type = "")
 
-	var /obj/effect/dummy/slaughter/holder = PoolOrNew(/obj/effect/dummy/slaughter,T)
+	var /obj/effect/dummy/slaughter/holder = new /obj/effect/dummy/slaughter(T)
 	var/mob/living/simple_animal/slaughter/S = new demon_type(holder)
 	S.holder = holder
 	S.key = C.key

@@ -5,11 +5,19 @@
 	self_weight = 0.1
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10, fire = 10, acid = 10)
 
+/obj/item/clothing/glasses/f13/old
+	name = "старые очки"
+	desc = "Очки, удивительно что эти вообще целые, они кажутся настолько хрупкими... Выглядят старомодно."
+	icon_state = "old"
+	item_state = "glasses"
+	price = 250
+
 /obj/item/clothing/glasses/f13/biker
-	name = "���� �������"
+	name = "очки байкера"
 	desc = "B-B-B-B-Bad,<br>B-B-B-B-Bad,<br>B-B-B-B-Bad,<br>Bad to the bone!"
 	icon_state = "biker"
 	item_state = "biker"
+	price = 300
 
 /obj/item/clothing/glasses/f13/supermutant_glasses
 	name = "supermutant biker goggles"
@@ -17,6 +25,7 @@
 	icon_state = "supermutant_glasses"
 	item_state = "supermutant_glasses"
 	species_exception = list(/datum/species/supermutant)
+	price = 400
 
 //Fallout 13 sunglasses
 
@@ -24,6 +33,7 @@
 	icon = 'icons/fallout/clothing/glasses.dmi'
 	self_weight = 0.1
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10, fire = 10, acid = 10)
+	price = 500
 
 /obj/item/clothing/glasses/sunglasses/f13/legion
 	name = "military goggles"
@@ -32,6 +42,7 @@
 	item_state = "legion"
 	flash_protect = 2
 	tint = 0
+	price = 600
 
 //Fallout 13 thermals
 
@@ -74,6 +85,7 @@
 	icon = 'icons/fallout/clothing/glasses.dmi'
 	self_weight = 0.1
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10, fire = 10, acid = 10)
+	price = 1000
 
 /obj/item/clothing/glasses/hud/health/f13/eye
 	name = "augmented eye"
@@ -84,3 +96,4 @@
 	invis_view = SEE_INVISIBLE_MINIMUM
 	flags = NODROP
 	glass_colour_type = /datum/client_colour/glass_colour/lightorange
+	price = 2500

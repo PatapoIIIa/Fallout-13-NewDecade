@@ -1,7 +1,7 @@
 //Fallout 13 ballistic firearms directory
 
 /obj/item/weapon/gun/ballistic/automatic/pistol/n99
-	name = "10-мм пистолет"
+	name = "10-РјРј РїРёСЃС‚РѕР»РµС‚"
 	desc = "The N99 self-loading pistol is known for its ability to survive in the harshest of conditions.<br>This great weapon is able to be reliably restored to working condition, even after extended exposure to hard elements without maintenance."
 	icon_state = "n99"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
@@ -22,8 +22,25 @@
 	icon_state = "[initial(icon_state)][magazine && magazine.max_ammo == 12 ? "-[magazine.max_ammo]" : ""][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"
 	return
 
+/obj/item/weapon/gun/ballistic/automatic/pistol/n99/executive
+	name = "РґРѕР»Р¶РЅРѕСЃС‚РЅРѕР№ РїРёСЃС‚РѕР»РµС‚"
+	desc = "The N99 self-loading pistol is known for its ability to survive in the harshest of conditions.<br>This great weapon is able to be reliably restored to working condition, even after extended exposure to hard elements without maintenance."
+	icon_state = "executive"
+	icon = 'icons/fallout/objects/guns/ballistic.dmi'
+	origin_tech = "combat=2;materials=2;prewar=2"
+	mag_type = /obj/item/ammo_box/magazine/F13/m10
+	fire_sound = "10mmfire"
+	force = 13
+	can_suppress = 1
+	burst_size = 1
+	fire_delay = 0
+	w_class = 2
+	price = 900
+	recoil = 1
+	small_gun = 1
+
 /obj/item/weapon/gun/ballistic/revolver/magnum
-	name = "Магнум"
+	name = "РњР°РіРЅСѓРј"
 	icon_state = "44magnum"
 	desc = "The Smith & Wesson Model 29 is a powerful six-shot double-action revolver, manufactured by the U.S. company Smith & Wesson since 1955.<br>Centuries later, copies of it can still be found in the wastes."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
@@ -43,7 +60,7 @@
 	small_gun = 1
 
 /obj/item/weapon/gun/ballistic/automatic/rifle
-	name = "Автоматическая винтовка .308"
+	name = "РђРІС‚РѕРјР°С‚РёС‡РµСЃРєР°СЏ РІРёРЅС‚РѕРІРєР° .308"
 	icon_state = "rifle-automatic"
 	item_state = "rifle308"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
@@ -58,13 +75,13 @@
 	mag_unload_sound = 'sound/effects/wep_magazines/ar_unload.ogg'
 	chamber_sound = 'sound/effects/wep_magazines/ar_chamber.ogg'
 	recoil = 2
-	price = 1000
+	price = 4000
 	small_gun = 1
 
 //crc
 /obj/item/weapon/gun/ballistic/automatic/garand
-	name = "Гаранд M1"
-	desc = "Винтажная полу-автоматическая винтовка."
+	name = "Р“Р°СЂР°РЅРґ M1"
+	desc = "Р’РёРЅС‚Р°Р¶РЅР°СЏ РїРѕР»Сѓ-Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєР°СЏ РІРёРЅС‚РѕРІРєР°."
 	icon_state = "garand"
 	item_state = "garand"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
@@ -88,7 +105,7 @@
 /obj/item/weapon/gun/ballistic/automatic/garand/shoot_with_empty_chamber(mob/living/user as mob)
 	if(magazine)
 		if(magazine.ammo_left <= 1)
-			to_chat(user, "<span class='notice'>обойма изъята!</span>")
+			to_chat(user, "<span class='notice'>РѕР±РѕР№РјР° РёР·СЉСЏС‚Р°!</span>")
 			magazine.dropped()
 			magazine.forceMove(get_turf(src.loc))
 			magazine.update_icon()
@@ -123,8 +140,8 @@
 
 
 /obj/item/weapon/gun/ballistic/shotgun/rifle
-	name = "охотничья винтовка"
-	desc = "Довоенная охотничья винтовка."
+	name = "РѕС…РѕС‚РЅРёС‡СЊСЏ РІРёРЅС‚РѕРІРєР°"
+	desc = "Р”РѕРІРѕРµРЅРЅР°СЏ РѕС…РѕС‚РЅРёС‡СЊСЏ РІРёРЅС‚РѕРІРєР°."
 	icon_state = "rifle"
 	item_state = "rifle"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
@@ -138,12 +155,13 @@
 	pumpsound = 'sound/weapons/boltpump.ogg'
 	mag_load_sound = 'sound/effects/wep_magazines/rifle_load.ogg'
 	recoil = 2
-	price = 500
+	price = 5000
 	small_gun = 1
 
 /obj/item/weapon/gun/ballistic/shotgun/rifle/scope
-	icon_state = "охотничья винтовка с прицелом"
-	item_state = "rifle_scope"
+	name = "РѕС…РѕС‚РЅРёС‡СЊСЏ РІРёРЅС‚РѕРІРєР° СЃ РїСЂРёС†РµР»РѕРј"
+	icon_state = "rifle_scope"
+	item_state = "rifle308scope"
 	can_suppress = 1
 	zoomable = TRUE
 	zoom_amt = 12
@@ -151,12 +169,12 @@
 	slot_flags = SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	scopetype = /obj/screen/fullscreen/scope/medium
-	price = 800
+	price = 6500
 	small_gun = 1
 
 /obj/item/weapon/gun/ballistic/automatic/smg10mm
-	name = "10-мм пистолет-пулемёт"
-	desc = "H&K MP9 пистолет-пулемёт (10мм калибра). Неплохой пистолёт-пулемёт который может стрелять в двух режимах."
+	name = "10-РјРј РїРёСЃС‚РѕР»РµС‚-РїСѓР»РµРјС‘С‚"
+	desc = "H&K MP9 РїРёСЃС‚РѕР»РµС‚-РїСѓР»РµРјС‘С‚ (10РјРј РєР°Р»РёР±СЂР°). РќРµРїР»РѕС…РѕР№ РїРёСЃС‚РѕР»С‘С‚-РїСѓР»РµРјС‘С‚ РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ СЃС‚СЂРµР»СЏС‚СЊ РІ РґРІСѓС… СЂРµР¶РёРјР°С…."
 	icon_state = "smg10mm"
 	item_state = "smg10mm"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
@@ -167,13 +185,13 @@
 	burst_size = 3
 	casing_ejector = 1
 	w_class = WEIGHT_CLASS_NORMAL
-	price = 800
+	price = 4500
 	recoil = 1
 	small_gun = 1
 
 /obj/item/weapon/gun/ballistic/shotgun/pipe
-	name = "самопал"
-	desc = "Самодельный дробовик что может нести в себе лишь один патрон."
+	name = "СЃР°РјРѕРїР°Р»"
+	desc = "РЎР°РјРѕРґРµР»СЊРЅС‹Р№ РґСЂРѕР±РѕРІРёРє С‡С‚Рѕ РјРѕР¶РµС‚ РЅРµСЃС‚Рё РІ СЃРµР±Рµ Р»РёС€СЊ РѕРґРёРЅ РїР°С‚СЂРѕРЅ."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "pipe-gun"
 	item_state = "shotgun"
@@ -182,13 +200,13 @@
 	casing_ejector = 1
 	weapon_weight = WEAPON_HEAVY
 	w_class = WEIGHT_CLASS_BULKY
-	price = 100
+	price = 1200
 	recoil = 1
 	small_gun = 1
 
 /obj/item/weapon/gun/ballistic/shotgun/trail
-	name = "карабин следопыта"
-	desc = "Ложе и цевьё этой винтовки изготовлены из светлой породы дерева, на ствольной коробке отсутствует дополнительный прицел; также у этой винтовки трубка магазина длиннее.."
+	name = "РєР°СЂР°Р±РёРЅ СЃР»РµРґРѕРїС‹С‚Р°"
+	desc = "Р›РѕР¶Рµ Рё С†РµРІСЊС‘ СЌС‚РѕР№ РІРёРЅС‚РѕРІРєРё РёР·РіРѕС‚РѕРІР»РµРЅС‹ РёР· СЃРІРµС‚Р»РѕР№ РїРѕСЂРѕРґС‹ РґРµСЂРµРІР°, РЅР° СЃС‚РІРѕР»СЊРЅРѕР№ РєРѕСЂРѕР±РєРµ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РїСЂРёС†РµР»; С‚Р°РєР¶Рµ Сѓ СЌС‚РѕР№ РІРёРЅС‚РѕРІРєРё С‚СЂСѓР±РєР° РјР°РіР°Р·РёРЅР° РґР»РёРЅРЅРµРµ.."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "trail-carbine"
 	item_state = "huntingshotgun"
@@ -200,12 +218,12 @@
 	w_class = WEIGHT_CLASS_BULKY
 	pumpsound = 'sound/f13weapons/repeater_reload.ogg'
 	recoil = 2
-	price = 400
+	price = 4000
 	small_gun = 1
 
 /obj/item/weapon/gun/ballistic/automatic/assault_rifle
-	name = "Боевая винтовка АР15"
-	desc = "Так-же известная как Боевая Винтовка НКР, винтовка использует обычные боеприпасы калибра 5.56мм и имеет вместимость магазина в 20 патрон."
+	name = "Р‘РѕРµРІР°СЏ РІРёРЅС‚РѕРІРєР° РђР 15"
+	desc = "РўР°Рє-Р¶Рµ РёР·РІРµСЃС‚РЅР°СЏ РєР°Рє Р‘РѕРµРІР°СЏ Р’РёРЅС‚РѕРІРєР° РќРљР , РІРёРЅС‚РѕРІРєР° РёСЃРїРѕР»СЊР·СѓРµС‚ РѕР±С‹С‡РЅС‹Рµ Р±РѕРµРїСЂРёРїР°СЃС‹ РєР°Р»РёР±СЂР° 5.56РјРј Рё РёРјРµРµС‚ РІРјРµСЃС‚РёРјРѕСЃС‚СЊ РјР°РіР°Р·РёРЅР° РІ 20 РїР°С‚СЂРѕРЅ."
 	icon_state = "assault-rifle"
 	item_state = "assault"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
@@ -222,18 +240,41 @@
 	mag_unload_sound = 'sound/effects/wep_magazines/ar_unload.ogg'
 	chamber_sound = 'sound/effects/wep_magazines/ar_chamber.ogg'
 	wielded_icon = "assault-wielded"//Two handing
-	price = 500
+	price = 5700
 	recoil = 2
 	small_gun = 1
 
+/obj/item/weapon/gun/ballistic/automatic/service_rifle
+	name = "РЎР»СѓР¶РµР±РЅР°СЏ РІРёРЅС‚РѕРІРєР° РђР 15"
+	desc = "РўР°Рє-Р¶Рµ РёР·РІРµСЃС‚РЅР°СЏ РєР°Рє РЎР»СѓР¶РµР±РЅР°СЏ Р’РёРЅС‚РѕРІРєР° РќРљР , РІРёРЅС‚РѕРІРєР° РёСЃРїРѕР»СЊР·СѓРµС‚ РѕР±С‹С‡РЅС‹Рµ Р±РѕРµРїСЂРёРїР°СЃС‹ РєР°Р»РёР±СЂР° 5.56РјРј Рё РёРјРµРµС‚ РІРјРµСЃС‚РёРјРѕСЃС‚СЊ РјР°РіР°Р·РёРЅР° РІ 18 РїР°С‚СЂРѕРЅ."
+	icon_state = "service_rifle"
+	item_state = "assault"
+	icon = 'icons/fallout/objects/guns/ballistic.dmi'
+	origin_tech = "combat=3;materials=2;prewar=3"
+	mag_type = /obj/item/ammo_box/magazine/F13/service
+	fire_sound = 'sound/f13weapons/assaultrifle_fire.ogg'
+	burst_size = 2
+	can_suppress = 0
+	casing_ejector = 1
+	weapon_weight = WEAPON_HEAVY
+	slot_flags = SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	mag_load_sound = 'sound/effects/wep_magazines/ar_load.ogg'
+	mag_unload_sound = 'sound/effects/wep_magazines/ar_unload.ogg'
+	chamber_sound = 'sound/effects/wep_magazines/ar_chamber.ogg'
+	wielded_icon = "assault-wielded"//Two handing
+	price = 6100
+	recoil = 3
+	small_gun = 1
+
 /obj/item/weapon/gun/ballistic/automatic/assault_rifle/marksman
-	name = "Карабин Стрелка"
-	desc = "Винтовка калибра 5.56, использовалась военными силами США до войны."
+	name = "РљР°СЂР°Р±РёРЅ РЎС‚СЂРµР»РєР°"
+	desc = "Р’РёРЅС‚РѕРІРєР° РєР°Р»РёР±СЂР° 5.56, РёСЃРїРѕР»СЊР·РѕРІР°Р»Р°СЃСЊ РІРѕРµРЅРЅС‹РјРё СЃРёР»Р°РјРё РЎРЁРђ РґРѕ РІРѕР№РЅС‹."
 	icon_state = "marksman_rifle"
 	origin_tech = "combat=4;materials=2;prewar=4"
 	fire_sound = 'sound/f13weapons/marksman_rifle.ogg'
 	burst_size = 2
-	price = 1000
+	price = 10000
 	scopetype = /obj/screen/fullscreen/scope/medium
 	zoomable = TRUE
 	zoom_amt = 7
@@ -246,7 +287,7 @@
 	origin_tech = "combat=5;materials=2;prewar=5"
 	fire_sound = 'sound/f13weapons/infiltrator.ogg'
 	burst_size = 2
-	price = 1400
+	price = 25000
 	scopetype = /obj/screen/fullscreen/scope/medium
 	can_suppress = 1
 	suppressed = 1
@@ -255,33 +296,33 @@
 	small_gun = 1
 
 /obj/item/weapon/gun/ballistic/automatic/assault_rifle/chinese
-	name = "Китайский автомат"
+	name = "РљРёС‚Р°Р№СЃРєРёР№ Р°РІС‚РѕРјР°С‚"
 	desc = "The Type 93 Chinese assault rifle was designed and manufactured by a Chinese industrial conglomerate for the People's Liberation Army during the Resource Wars, for the purpose of equipping the Chinese infiltrators and American fifth-columnists. To this end, it was chambered for the abundant 5.56mm round and utilizes a 20-round magazine. Thousands of these weapons were smuggled into the US for use by Chinese operatives and sympathizers on the East Coast, and many remain functional even two hundred years after the Great War. These rifles are also proven to be ready for manufacturing in post-War conditions."
 	icon_state = "chinese"
 	item_state = "chinese"
 	mag_type = /obj/item/ammo_box/magazine/F13/chinese
 	fire_sound = 'sound/f13weapons/chinese.ogg'
 	burst_size = 2
-	price = 400
+	price = 4000
 	small_gun = 1
 
 /obj/item/weapon/gun/ballistic/automatic/assault_rifle/fnfal
-	name = "ФН-Фал"
-	icon_state = "fnfal"
+	name = "Р¤Рќ-Р¤Р°Р»"
 	desc = "The FN FAL is a battle rifle designed by Belgian small arms designers Dieudonne Saive and Ernest Vervier and manufactured by FN Herstal. During the Cold War the FAL was adopted by many countries of the North Atlantic Treaty Organization (NATO), with the notable exception of the United States. It is one of the most widely used rifles in history, having been used by more than 90 countries. This particular model sports wooden furniture and an aftermarket conversion that allows it to fire more readily available .308 Winchester ammunition, which is very similar in size to the 7.62?51mm NATO it was originally chambered in."
+	icon_state = "fnfal"
 	mag_type = /obj/item/ammo_box/magazine/F13/fnfal
 	origin_tech = "combat=4;materials=2;prewar=4"
 	fire_sound = 'sound/f13weapons/marksman_rifle.ogg'
 	burst_size = 2
-	price = 1000
+	price = 5890
 	scopetype = /obj/screen/fullscreen/scope/medium
 	zoomable = FALSE
 	zoom_amt = 7
 	small_gun = 1
 
 /obj/item/weapon/gun/ballistic/automatic/assault_rifle/morita
-	name = "Морита MK2"
-	desc = "ЛУЧШЕЕ оружие для войн между жуками и людьми."
+	name = "РњРѕСЂРёС‚Р° MK2"
+	desc = "Р›РЈР§РЁР•Р• РѕСЂСѓР¶РёРµ РґР»СЏ РІРѕР№РЅ РјРµР¶РґСѓ Р¶СѓРєР°РјРё Рё Р»СЋРґСЊРјРё."
 	icon_state = "morita"
 	item_state = "morita"
 	mag_type = /obj/item/ammo_box/magazine/F13/sst_stanag
@@ -291,14 +332,14 @@
 	mag_unload_sound = 'sound/f13weapons/gunporn/m16_magout.ogg'
 	chamber_sound = 'sound/f13weapons/gunporn/m16_chargeback.ogg'
 	burst_size = 2
-	price = 3000
+	price = 30000
 	scopetype = /obj/screen/fullscreen/scope/medium
 	zoomable = TRUE
 	zoom_amt = 7
 	small_gun = 1
 
 /obj/item/weapon/gun/ballistic/automatic/bozar
-	name = "\improper Bozar"
+	name = "Р‘РѕР·Р°СЂ"
 	desc = "The ultimate refinement of the sniper's art.<br>Although somewhat finicky and prone to jamming if not kept immacuately clean, its accuracy more than makes up for its extra maintenance requirements."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "bozar"
@@ -320,9 +361,9 @@
 	big_gun = 1
 
 /obj/item/weapon/gun/ballistic/revolver/sequoia
-	name = "«Секвойя» рейнджера"
+	name = "В«РЎРµРєРІРѕР№СЏВ» СЂРµР№РЅРґР¶РµСЂР°"
+	desc = "В«РЎРµРєРІРѕР№СЏВ» СЂРµР№РЅРґР¶РµСЂР°, РїРѕРїСѓР»СЏСЂРЅР°СЏ РјРѕРґРµР»СЊ СЂРµРІРѕР»СЊРІРµСЂР° РЅР° РїСѓСЃС‚РѕС€Рё, РёРјРµСЋС‰Р°СЏ Р±РѕРіР°С‚СѓСЋ СЂСѓРєРѕСЏС‚РєСѓ. Р­С‚РѕС‚ РѕС‚Р»РёС‡Р°РµС‚СЃСЏ РѕС‚ РѕСЃС‚Р°Р»СЊРЅС‹С… РјРѕРґРµР»РµР№, Рё РёРјРµРµС‚ СЃРµСЂРёР№РЅС‹Р№ РЅРѕРјРµСЂ РЅР° РґСѓР»Рµ."
 	icon_state = "sequoia"
-	desc = "«Секвойя» рейнджера, популярная модель револьвера на пустоши, имеющая богатую рукоятку. Этот отличается от остальных моделей, и имеет серийный номер на дуле."
 	item_state = "liquidsequoia"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	origin_tech = "combat=2;materials=2;prewar=2"
@@ -339,3 +380,67 @@
 	scopetype = /obj/screen/fullscreen/scope/short
 	price = 2500
 	small_gun = 1
+
+
+//fallout 4 Р±Р»СЏС‚СЊ
+
+/obj/item/weapon/gun/ballistic/automatic/pistol/f4
+	icon = 'icons/fallout/objects/guns/ballistic.dmi'
+	icon_state = "f4"
+
+/obj/item/weapon/gun/ballistic/automatic/pistol/f4/pipe_pistol
+	name = "РіР»Р°РґРєРѕСЃС‚РІРѕР» СЃ РїР°С‚СЂРѕРЅРЅРёРєРѕРј"
+	desc = "РЎР°РјРѕРґРµР»СЊРЅС‹Р№ РїРёСЃС‚РѕР»РµС‚ РёР· Р±Р»РёР¶Р°Р№С€РµРіРѕ РјСѓСЃРѕСЂР°. Р›СѓС‡С€Рµ С‚Р°Рє, С‡РµРј РЅРёС‡РµРіРѕ."
+	icon_state = "zipgun"
+	origin_tech = "combat=2;materials=2"
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/piperev
+	fire_sound = 'sound/f13weapons/magnum_fire.ogg'
+	force = 5
+	can_suppress = 0
+	burst_size = 1
+	fire_delay = 2
+	w_class = 2
+	price = 500
+	recoil = 3
+	small_gun = 1
+
+/obj/item/weapon/gun/ballistic/automatic/sniper_rifle/f13
+	name = "СЃРЅР°Р№РїРµСЂСЃРєР°СЏ РІРёРЅС‚РѕРІРєР°"
+	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
+	icon = 'icons/fallout/objects/guns/ballistic.dmi'
+	icon_state = "sniper_rifle"
+	item_state = "sniper"
+	recoil = 3
+	weapon_weight = WEAPON_HEAVY
+	mag_type = /obj/item/ammo_box/magazine/sniper_rounds
+	fire_delay = 40
+	burst_size = 1
+	origin_tech = "combat=7"
+	can_unsuppress = 0
+	can_suppress = 0
+	w_class = WEIGHT_CLASS_NORMAL
+	zoomable = TRUE
+	zoom_amt = 7 //Long range, enough to see in front of you, but no tiles behind you.
+	slot_flags = SLOT_BACK
+	small_gun = 1
+
+///РєР°Рє РєРѕРґРёС‚СЊ РґР»СЏ РјР°Р»С‹С€РµР№:
+
+/obj/item/weapon/gun/ballistic/automatic/pistol/f13/stal //РѕР±СЉСЏРІР»СЏРµРј РґРёСЂРµРєС‚РѕСЂРёСЋ РѕР±СЉРµРєС‚РѕРІ
+	icon = 'icons/obj/guns/stalker.dmi' //РіРѕРІРѕСЂРёРј Р±СѓР»СЊРѕРЅСѓ РѕС‚РєСѓРґР° Р¶СЂР°С‚СЊ С‚РµРєСЃС‚СѓСЂРєСѓ РґР»СЏ РѕР±СЉРµРєС‚Р°
+	w_class = WEIGHT_CLASS_NORMAL //Р·Р°С‡РµРј РїСЂРѕРїРёСЃС‹РІР°С‚СЊ РєР°Р¶РґС‹Р№ СЂР°Р· РѕРґРЅРѕ Рё С‚Рѕ-Р¶Рµ?
+	can_suppress = 0
+	small_gun = 1
+	mag_type = /obj/item/ammo_box/magazine/m45 //РіРѕРІРѕСЂРёРј Р±СѓР»СЊРѕРЅСѓ С‡С‚Рѕ СЌС‚Рѕ РѕСЂСѓР¶РёРµ РєСѓС€Р°РµС‚ С‚Р°РєРёРµ РјР°РіР°Р·РёРЅС‹
+
+/obj/item/weapon/gun/ballistic/automatic/pistol/f13/stal/pm
+	name = "РџРњ" //Р“РѕРІРѕСЂРёРј Р±СѓР»СЊРѕРЅСѓ РёРјСЏ РѕР±СЉРµРєС‚Р°
+	desc = "РџРёСЃС‚РѕР»РµС‚ РњР°РєР°СЂРѕРІР°, РїСЂСЏРјРѕ РёР· РЎРЎРЎР !" //РіРѕРІРѕСЂРёРј Р±СѓР»СЊРѕРЅСѓ РїРёСЃС‚РѕР»РµС‚ СЌС‚Рѕ РєС‚Рѕ?(who?)
+	icon_state = "pm" // РґР°С‘Рј РёРєРѕРЅРєСѓ
+
+//РїСЂР°РєС‚РёРєР°.
+
+/obj/item/weapon/gun/ballistic/automatic/pistol/f13/stal/fort12
+	name = "Р¤РѕСЂР°-12"
+	desc = "РџРёСЃС‚РѕР»РµС‚ Р¤РѕСЂР°, РїСЂСЏРјРѕ РёР· РЈРљР РЎРЎР !"
+	icon_state = "fort12"

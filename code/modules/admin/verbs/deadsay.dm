@@ -14,14 +14,14 @@
 	if (src.handle_spam_prevention(msg,MUTE_DEADCHAT))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	log_dsay("[key_name(src)] : [msg]")
 
 	if (!msg)
 		return
 	var/nicknames = file2list("config/admin_nicknames.txt")
 
-	var/rendered = "<span class='game deadsay'><span class='prefix'>̨���:</span> <span class='name'>ADMIN([src.holder.fakekey ? pick(nicknames) : src.key])</span> says, <span class='message'>\"[msg]\"</span></span>"
+	var/rendered = "<span class='game deadsay'><span class='prefix'>МЁРТВ:</span> <span class='name'>ADMIN([src.holder.fakekey ? pick(nicknames) : src.key])</span> says, <span class='message'>\"[msg]\"</span></span>"
 
 	for (var/mob/M in player_list)
 		if(isnewplayer(M))

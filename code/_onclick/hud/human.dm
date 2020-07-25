@@ -17,10 +17,13 @@
 	if(usr.hud_used.inventory_shown && targetmob.hud_used)
 		usr.hud_used.inventory_shown = 0
 		usr.client.screen -= targetmob.hud_used.toggleable_inventory
+		icon_state = "toggle2"
+		to_chat(usr, 'sound/f13effects/Bruh.ogg')
 	else
 		usr.hud_used.inventory_shown = 1
 		usr.client.screen += targetmob.hud_used.toggleable_inventory
-
+		icon_state = "toggle"
+		to_chat(usr, 'sound/f13effects/Bruh.ogg')
 	targetmob.hud_used.hidden_inventory_update(usr)
 
 /obj/screen/human/equip
@@ -107,12 +110,11 @@
 	using.icon = ui_style
 	static_inventory += using
 
-	using = new /obj/screen/act_intent()
-	using.icon_state = mymob.a_intent
-	static_inventory += using
-	action_intent = using
+	action_intent = new /obj/screen/act_intent/segmented
+	action_intent.icon_state = mymob.a_intent
+	static_inventory += action_intent
 
-	using = new /obj/screen/mov_intent()
+	using = new /obj/screen/mov_intent
 	using.icon = ui_style
 	using.icon_state = (mymob.m_intent == MOVE_INTENT_RUN ? "running" : "walking")
 	using.screen_loc = ui_movi
@@ -120,7 +122,7 @@
 
 	using = new /obj/screen/drop()
 	using.icon = ui_style
-	using.screen_loc = ui_drop_throw
+	using.screen_loc = ui_drop
 	static_inventory += using
 
 	inv_box = new /obj/screen/inventory()
@@ -203,7 +205,7 @@
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "storage2"
 	inv_box.icon = ui_style
-	inv_box.icon_state = "pocket"
+	inv_box.icon_state = "pocket2"
 //	inv_box.icon_full = "template_small"
 	inv_box.screen_loc = ui_storage2
 	inv_box.slot_id = slot_r_store
@@ -220,7 +222,7 @@
 
 	using = new /obj/screen/resist()
 	using.icon = ui_style
-	using.screen_loc = ui_pull_resist
+	using.screen_loc = ui_resist
 	hotkeybuttons += using
 
 	using = new /obj/screen/human/toggle()
@@ -289,7 +291,7 @@
 
 	throw_icon = new /obj/screen/throw_catch()
 	throw_icon.icon = ui_style
-	throw_icon.screen_loc = ui_drop_throw
+	throw_icon.screen_loc = ui_throw
 	hotkeybuttons += throw_icon
 
 //	internals = new /obj/screen/internals()
@@ -304,7 +306,7 @@
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = ui_style
 	pull_icon.update_icon(mymob)
-	pull_icon.screen_loc = ui_pull_resist
+	pull_icon.screen_loc = ui_pull
 	static_inventory += pull_icon
 
 	mymob.fov = new /obj/screen()//Vision_cone

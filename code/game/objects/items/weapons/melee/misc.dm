@@ -10,8 +10,8 @@
 
 
 /obj/item/weapon/melee/chainofcommand
-	name = "chain of command"
-	desc = "A tool used by great men to placate the frothing masses."
+	name = "цепь командования"
+	desc = "Инструмент хороших парней, в их нелегком деле - подчинять других."
 	icon_state = "chain"
 	item_state = "chain"
 	flags = CONDUCT
@@ -36,13 +36,15 @@
 	item_state = "arm_blade"
 	origin_tech = "combat=5,biotech=5"
 	w_class = WEIGHT_CLASS_HUGE
-	force = 15
+	force = 20
 	throwforce = 10
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharpness = IS_SHARP
 
 /obj/item/weapon/melee/sabre
-	name = "officer's sabre"
-	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
+	name = "сабля"
+	desc = "Элегантное оружие, которое просто создано для разрезания плоти и костей."
 	icon_state = "sabre"
 	item_state = "sabre"
 	flags = CONDUCT
@@ -64,8 +66,8 @@
 	return ..()
 
 /obj/item/weapon/melee/classic_baton
-	name = "police baton"
-	desc = "A wooden truncheon for beating criminal scum."
+	name = "полицейская дубинка"
+	desc = "Деревянная дубинка чтобы делать фарш из криминальных лиц."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "baton"
 	item_state = "classic_baton"
@@ -120,8 +122,8 @@
 			cooldown = world.time + 40
 
 /obj/item/weapon/melee/classic_baton/telescopic
-	name = "telescopic baton"
-	desc = "A compact yet robust personal defense weapon. Can be concealed when folded."
+	name = "телескопическая дубинка"
+	desc = "Компактное орудие службы безопасности любого населенного пункта. А еще она складывается."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "telebaton_0"
 	item_state = null
@@ -171,8 +173,8 @@
 	add_fingerprint(user)
 
 /obj/item/weapon/melee/supermatter_sword
-	name = "supermatter sword"
-	desc = "In a station full of bad ideas, this might just be the worst."
+	name = "меч из осколка суперматерии"
+	desc = "Если всё хреново, что может быть хуже? Парень с этой штукой..."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "supermatter_sword"
 	item_state = "supermatter_sword"
@@ -281,3 +283,43 @@
 		H.drop_all_held_items()
 		H.visible_message("<span class='danger'>[user] disarms [H]!</span>", "<span class='userdanger'>[user] disarmed you!</span>")
 	..()
+
+/obj/item/weapon/melee/curator_whip/black
+	name = "плеть сутенёра"
+	desc = "Черная плеть, скорее всего используется для.. плотских утех..."
+	icon_state = "whip_black"
+	force = 25
+
+/obj/item/weapon/melee/ripper
+	name = "потрошитель"
+	desc = "Для работы там, где обычного резака недостаточно."
+	icon = 'icons/fallout/objects/melee.dmi'
+	icon_state = "ripper_off"
+	hitsound = 'sound/weapons/circsawhit.ogg'
+	throwhitsound =  'sound/weapons/pierce.ogg'
+	throwforce = 1
+	throw_speed = 2
+	throw_range = 5
+	materials = list(MAT_METAL=4000, MAT_GLASS=1000)
+	origin_tech = "biotech=1;combat=1"
+	attack_verb = list("attacked", "slashed", "sawed", "cut")
+	sharpness = IS_SHARP
+	var/on = 0
+
+/obj/item/weapon/melee/ripper/attack_self(mob/user)
+	on = !on
+	if(on)
+		to_chat(user, "<span class ='warning'>You press the button.</span>")
+		icon_state = "ripper_on"
+		item_state = "chainswordon"
+		w_class = WEIGHT_CLASS_BULKY //doesnt fit in backpack when its on for balance
+		force = 10
+		attack_verb = list("attacked", "slashed", "sawed", "cut")
+	else
+		to_chat(user, "<span class ='notice'>You press the button.</span>")
+		icon_state = "ripper_off"
+		item_state = "chainswordoff"
+		slot_flags = SLOT_BELT
+		w_class = WEIGHT_CLASS_SMALL
+		force = 2 //not so robust now
+		attack_verb = list("hit", "poked")

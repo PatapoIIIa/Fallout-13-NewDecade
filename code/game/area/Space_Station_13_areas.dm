@@ -30,8 +30,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "start"
 
 /area/admin
-	name = "Admin room"
+	name = "Педальная Комнатка Отдыха"
 	icon_state = "start"
+	has_gravity = 1
 
 /area/space
 	icon_state = "space"

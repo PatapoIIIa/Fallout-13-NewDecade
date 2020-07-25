@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/color/yellow
-	desc = "These gloves will protect the wearer from electric shock."
-	name = "insulated gloves"
+	name = "изоляционные перчатки"
+	desc = "Эти перчатки защищают от электрического разряда."
 	icon_state = "yellow"
 	item_state = "ygloves"
 	siemens_coefficient = 0
@@ -8,9 +8,9 @@
 	item_color="yellow"
 	resistance_flags = 0
 
-/obj/item/clothing/gloves/color/fyellow                             //Cheap Chinese Crap
-	desc = "These gloves are cheap knockoffs of the coveted ones - no way this can end badly."
-	name = "budget insulated gloves"
+/obj/item/clothing/gloves/color/fyellow                             //Дешевоё китайское дерьмо
+	name = "бюджетные изоляционные перчатки"
+	desc = "Эти перчатки точно защитят вас от электрического разряда, а еще они супер дешевые!"
 	icon_state = "yellow"
 	item_state = "ygloves"
 	siemens_coefficient = 1			//Set to a default of 1, gets overridden in New()
@@ -23,8 +23,8 @@
 	siemens_coefficient = pick(0,0.5,0.5,0.5,0.5,0.75,1.5)
 
 /obj/item/clothing/gloves/color/black
-	desc = "These gloves are fire-resistant."
-	name = "black gloves"
+	name = "чёрные перчатки"
+	desc = "У этих перчаток хорошая термозащита."
 	icon_state = "black"
 	item_state = "blackgloves"
 	item_color="black"
@@ -149,8 +149,8 @@
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 70, acid = 50)
 
 /obj/item/clothing/gloves/color/latex
-	name = "latex gloves"
-	desc = "Cheap sterile gloves made from latex."
+	name = "латексные перчатки"
+	desc = "Дешевые перчатки из латекса, стерильные."
 	icon_state = "latex"
 	item_state = "lgloves"
 	siemens_coefficient = 0.30
@@ -160,16 +160,16 @@
 	resistance_flags = 0
 
 /obj/item/clothing/gloves/color/latex/nitrile
-	name = "nitrile gloves"
-	desc = "Pricy sterile gloves that are stronger than latex."
+	name = "нитриловые перчатки"
+	desc = "Более дорогие стерильные перчатки, эти прочнее латексных."
 	icon_state = "nitrile"
 	item_state = "nitrilegloves"
 	item_color = "cmo"
 	transfer_prints = FALSE
 
 /obj/item/clothing/gloves/color/white
-	name = "white gloves"
-	desc = "These look pretty fancy."
+	name = "белые перчатки"
+	desc = "Выглядят стильно."
 	icon_state = "white"
 	item_state = "wgloves"
 	item_color="mime"

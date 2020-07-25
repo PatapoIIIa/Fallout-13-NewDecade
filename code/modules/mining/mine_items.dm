@@ -164,8 +164,8 @@
 /*****************************Shovel********************************/
 
 /obj/item/weapon/shovel
-	name = "shovel"
-	desc = "A large tool for digging and moving dirt."
+	name = "лопата"
+	desc = "Инструмент для копания земли, песка и прочих сыпучих вещей."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "shovel"
 	flags = CONDUCT
@@ -181,8 +181,8 @@
 	sharpness = IS_SHARP
 
 /obj/item/weapon/shovel/spade
-	name = "spade"
-	desc = "A small tool for digging and moving dirt."
+	name = "лопатка"
+	desc = "Небольшая лопатка. Такими еще садовники пользовались."
 	icon_state = "spade"
 	item_state = "spade"
 	force = 5
@@ -190,7 +190,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/weapon/emptysandbag
-	name = "empty sandbag"
+	name = "пустой мешок с песком"
 	desc = "A bag to be filled with sand."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "sandbag"
@@ -285,7 +285,7 @@
 			message_admins("[key_name_admin(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservefollow=\ref[usr]'>FLW</A>) activated a bluespace capsule away from the mining level! (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
 			log_admin("[key_name(usr)] activated a bluespace capsule away from the mining level at [T.x], [T.y], [T.z]")
 		template.load(deploy_location, centered = TRUE)
-		PoolOrNew(/obj/effect/particle_effect/smoke, get_turf(src))
+		new /obj/effect/particle_effect/smoke(get_turf(src))
 		qdel(src)
 
 

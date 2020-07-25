@@ -1,7 +1,7 @@
 //Fallout 13 dune buggy directory
 
 /obj/vehicle/fuel/motorcycle/buggy
-	name = "�����"
+	name = "багги"
 	desc = "<i>Ain't no place for fancy cars on the wasteland.<br>No place for classy brands, but nicknames.<br>Only the rusty and trusty death machines.<br>Only fuel and blood.</i>"
 	icon = 'icons/fallout/vehicles/medium_vehicles.dmi'
 	icon_state = "buggy_dune"
@@ -22,17 +22,18 @@
 	name = pick(names)
 
 /obj/item/key/buggy
-	name = "�����"
-	desc = "A keyring with a small steel key.<br>By the look of the key cuts, it likely belongs to an automobile."
+	name = "ключи"
+	desc = "Колечко с ключиком.<br>При осмотре ключа, вы делаете вывод что это используется для автомобиля."
 	icon = 'icons/fallout/vehicles/small_vehicles.dmi'
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/key/buggy/New()
 	..()
 	icon_state = pick("key-buggy-r","key-buggy-y","key-buggy-g","key-buggy-b")
 
 /obj/item/key/buggy/wheel //I am the man... Who grabs the sun... RIDING TO VALHALLA!
-	name = "steering wheel"
-	desc = "A vital part of an automobile that is made of metal and decorated with a freaky skull.<br>Oh, what a day... What a lovely day for taking a ride!"
+	name = "руль"
+	desc = "Важная часть авто, сделанная из металла и с черепом посередине, выполненным из металла. <br>Ох, что за день... Что за чудный день чтобы прокатиться!"
 	icon_state = "wheel"
 
 /obj/item/key/buggy/wheel/New()
@@ -79,12 +80,16 @@
 	names = list("Interceptor")
 
 /obj/vehicle/fuel/motorcycle/buggy/tank
-	name = "MTV"
-	names = list("��������� 2", "CVR-T", "U.N.I.T CVR", "Igniter", "Heat", "Est Probitie", "Pollywog")
+	name = "CVR"
+	desc = "Танк, ТАНК МАТЬ ЕГО!"
+	names = list("Коробочка Два", "CVR-T", "U.N.I.T CVR", "Зажигатель", "Тёплый", "Есть Пробитие", "T-90")
 	icon = 'icons/fallout/vehicles/CVR.dmi'
 	icon_state = "CVR(T)-WFLV_207"
-	desc = "FUCKING TANK!"
 	layer = 5
 	fuel = 1000
 	max_fuel = 1000
 	self_weight = 2000
+	engine_loop_sound = 'sound/f13machines/tank_moving.ogg'
+
+/datum/riding/motorcycle/buggy/tank
+	vehicle_move_delay = 2.5

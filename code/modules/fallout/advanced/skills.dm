@@ -18,6 +18,44 @@
 
 	var/mob/living/carbon/human/owner
 
+/datum/skills/proc/skillSuccessChance(var/skill_name)
+	var/chance = 100
+
+	var/I = getPoint(skill_name)
+	if(!I)
+		return chance
+
+	switch(I)
+		if(1) chance = 5
+		if(2) chance = 10
+		if(3) chance = 15
+		if(4) chance = 20
+		if(5) chance = 25
+		if(6) chance = 40
+		if(7) chance = 50
+		if(8) chance = 60
+		if(9) chance = 70
+		if(10) chance = 80
+	return chance
+
+/datum/skills/proc/skillSpeedMod(var/skill_name, var/duration)
+	var/I = getPoint(skill_name)
+	if(!I)
+		return duration
+
+	switch(I)
+		if(1) duration = duration * 4
+		if(2) duration = duration * 3
+		if(3) duration = round(duration * 2.75)
+		if(4) duration = round(duration * 2.50)
+		if(5) duration = round(duration * 2.25)
+		if(6) duration = duration * 2
+		if(7) duration = round(duration * 1.75)
+		if(8) duration = round(duration * 1.50)
+		if(9) duration = round(duration * 1.25)
+	return duration
+
+
 /datum/skills/proc/reagent(type)
 	if(!owner)
 		return FALSE
@@ -56,7 +94,7 @@
 		if("science")
 			. = science
 		else
-			. = 26
+			. = FALSE
 
 /datum/skills/proc/getSpentPoints()
 	return small_guns + big_guns + barter + energy_weapons +  explosives + lockpick + medicine + melee_weapons + repair + sneak + speech + unarmed + science
@@ -92,34 +130,33 @@
 
 /datum/skills/proc/getPointDescription(type)
 	var/description
-
 	switch(type)
 		if("small_guns")
-			description = "The use, care and general knowledge of small firearms - pistols, SMGs and rifles."
+			description = "Общие знания об мелком и среднем оружии и его обслуживании - пистолеты, ПП и винтовки."
 		if("big_guns")
-			description = "The operation and maintenance of really big guns - miniguns, rocket launchers, flamethrowers and such.)"
+			description = "Общие знания об крупном оружии и его обслуживании - миниганы, ракетницы, огнемёты."
 		if("barter")
-			description = "Trading and trade-related tasks. The ability to get better prices for items you sell, and lower prices for items you buy."
+			description = "Торвгля. Возможность договариваться, снижая цену у торговцев."
 		if("energy_weapons")
-			description = "The care and feeding of energy-based weapons. How to arm and operate weapons that use laser or plasma technology."
+			description = "Общие знания об энергитическом оружии и его обслуживании - лазерное и плазменное."
 		if("explosives")
-			description = "The finding and removal of traps. Also the setting of explosives for demolition purposes."
+			description = "Способность замечать ловушки и взрывчатку. А так-же знания о том, как этой взрывчаткой пользоваться."
 		if("lockpick")
-			description = "The skill of opening locks without the proper key. The use of lockpicks or electronic lockpicks will greatly enhance this skill."
+			description = "Способность взламывать двери и не только. Отмычки, хорошо дополняют это умение."
 		if("medicine")
-			description = "The higher a player's Medicine skill, the more hit points they will replenish when using a stimpak and the more effective they are at using any other medicinal item (such as Rad-X or RadAway)."
+			description = "Чем выше этот навык, тем больше очков здоровья вы получите при использовании стимуляторов, АнтиРадина или РадИкс."
 		if("melee_weapons")
-			description = "Using non-ranged weapons in hand-to-hand or melee combat - knives, sledgehammers, spears, clubs and so on."
+			description = "Общие знания об оружии ближнего боя - ножи, биты, трубы и прочее."
 		if("repair")
-			description = "The practical application of the Science skill, for fixing of broken equipment, machinery and electronics."
+			description = "Практическое воплощение Науки, способность ремонтировать вещи, элеектронику и.т.п."
 		if("sneak")
-			description = "Quiet movement, and the ability to remain unnoticed. If successful, you will be much harder to locate. You cannot run and sneak at the same time."
+			description = "Способность незаметно передвигаться, очень важна если вы плохо сражаетесь."
 		if("speech")
-			description = "The ability to communicate in a practical and efficient manner. The skill of convincing others that your position is correct. The ability to lie and not get caught."
+			description = "Умение вести диалог, одно из лучших умений для выживания на пустоши."
 		if("unarmed")
-			description = "A combination of martial arts, boxing and other hand-to-hand martial arts. Combat with your hands and feet."
+			description = "Общие знания о том, как драться не имея ничего под рукой."
 		if("science")
-			description = "Covers a variety of high-technology skills, such as computers, biology, physics, and geology."
+			description = "Благодаря этому, определяются ваши познания в физике, биологии и прочих науках."
 	return description
 
 /*
@@ -152,15 +189,15 @@
 			var/current = getPoint(type, TRUE)
 			var/left = max(0, SKILLS_POINTS - getSpentPoints())
 
-			html += "<br>������/Current: [current] (��������/left [left])<br>"
+			html += "<br>пїЅпїЅпїЅпїЅпїЅпїЅ/Current: [current] (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/left [left])<br>"
 
 			if((current > 1))
-				html += "<a href='byond://?src=\ref[src];dec=[type]'>��������/Reduce</a>"
+				html += "<a href='byond://?src=\ref[src];dec=[type]'>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/Reduce</a>"
 
 			if((left > 0) & (current < 10))
-				html += "<a href='byond://?src=\ref[src];inc=[type]'>��������/Increace</a>"
+				html += "<a href='byond://?src=\ref[src];inc=[type]'>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/Increace</a>"
 
-			html += "<br><a href='byond://?src=\ref[src];back=1'>�����/Back</a> <br>"
+			html += "<br><a href='byond://?src=\ref[src];back=1'>пїЅпїЅпїЅпїЅпїЅ/Back</a> <br>"
 
 	popup.set_content(html)
 	popup.open()
@@ -173,7 +210,7 @@
 		var/mob/living/carbon/human/user = usr
 
 		if(getSpentPoints() != SKILLS_POINTS)
-			to_chat(usr, "<span class='warning'>�� ������ ������������ ����!</span>")
+			to_chat(usr, "<span class='warning'>пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ!</span>")
 			return
 
 		user.skills = src

@@ -1,6 +1,6 @@
 /obj/item/device/assembly/signaler
 	name = "remote signaling device"
-	desc = "Used to remotely activate devices."
+	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another."
 	icon_state = "signaller"
 	item_state = "signaler"
 	materials = list(MAT_METAL=400, MAT_GLASS=120)
@@ -42,7 +42,8 @@
 	//		t1 = text("-------<BR>\nGreen Wire: []<BR>\nRed Wire:   []<BR>\nBlue Wire:  []<BR>\n", (src.wires & 4 ? text("<A href='?src=\ref[];wires=4'>Cut Wire</A>", src) : text("<A href='?src=\ref[];wires=4'>Mend Wire</A>", src)), (src.wires & 2 ? text("<A href='?src=\ref[];wires=2'>Cut Wire</A>", src) : text("<A href='?src=\ref[];wires=2'>Mend Wire</A>", src)), (src.wires & 1 ? text("<A href='?src=\ref[];wires=1'>Cut Wire</A>", src) : text("<A href='?src=\ref[];wires=1'>Mend Wire</A>", src)))
 	//	else
 	//		t1 = "-------"	Speaker: [src.listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
-		var/dat = {"
+
+		var/dat = {"<meta charset="UTF-8">
 <TT>
 
 <A href='byond://?src=\ref[src];send=1'>Send Signal</A><BR>
@@ -96,6 +97,15 @@ Code:
 
 	return
 
+/obj/item/device/assembly/signaler/attackby(obj/item/weapon/W, mob/user, params)
+	if(issignaler(W))
+		var/obj/item/device/assembly/signaler/signaler2 = W
+		if(secured && signaler2.secured)
+			code = signaler2.code
+			frequency = signaler2.frequency
+			user << "You transfer the frequency and code of \the [signaler2.name] to \the [name]"
+	else
+		..()
 
 /obj/item/device/assembly/signaler/proc/signal()
 	if(!radio_connection) return

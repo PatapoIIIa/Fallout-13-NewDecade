@@ -58,7 +58,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/grown/attackby(obj/item/O, mob/user, params)
 	..()
 	if (istype(O, /obj/item/device/plant_analyzer))
-		var/msg = "<span class='info'>*---------*\n This is \a <span class='name'>[src]</span>.\n"
+		var/msg = "<span class='info'>*---------*\n Это <span class='name'>[src]</span>.\n"
 		if(seed)
 			msg += seed.get_analyzer_text()
 		var/reag_txt = ""
@@ -128,7 +128,6 @@
 			T.on_cross(src, AM)
 	..()
 
-
 /obj/item/weapon/reagent_containers/food/snacks/grown/generate_trash(atom/location)
 	if(trash && ispath(trash, /obj/item/weapon/grown))
 		. = new trash(location, seed)
@@ -138,10 +137,9 @@
 
 // For item-containing growns such as eggy or gatfruit
 /obj/item/weapon/reagent_containers/food/snacks/grown/shell/attack_self(mob/user)
-	var/obj/item/T
+	user.unEquip(src)
 	if(trash)
-		T = generate_trash()
-	qdel(src)
-	if(trash)
+		var/obj/item/T = generate_trash()
 		user.put_in_hands(T)
 		to_chat(user, "<span class='notice'>You open [src]\'s shell, revealing \a [T].</span>")
+	qdel(src)

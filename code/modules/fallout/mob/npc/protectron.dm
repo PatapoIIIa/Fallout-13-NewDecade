@@ -1,8 +1,8 @@
 //Fallout 13 protectron directory
 
 /mob/living/simple_animal/hostile/protectron
-	name = "Протектрон"
-	desc = "Довоенный вид протектронов.<br>Очень опасная машина."
+	name = "РџСЂРѕС‚РµРєС‚СЂРѕРЅ"
+	desc = "Р”РѕРІРѕРµРЅРЅС‹Р№ РІРёРґ РїСЂРѕС‚РµРєС‚СЂРѕРЅРѕРІ.<br>РћС‡РµРЅСЊ РѕРїР°СЃРЅР°СЏ РјР°С€РёРЅР°."
 	icon = 'icons/fallout/mobs/animal.dmi'
 	icon_state = "protectron_old"
 	icon_living = "protectron_old"
@@ -11,9 +11,9 @@
 	speak_chance = 0
 	turns_per_move = 5
 	environment_smash = 0
-	response_help = "тыкает"
-	response_disarm = "пихает"
-	response_harm = "бьёт"
+	response_help = "С‚С‹РєР°РµС‚"
+	response_disarm = "РїРёС…Р°РµС‚"
+	response_harm = "Р±СЊС‘С‚"
 	move_to_delay = 5
 	stat_attack = 1
 	robust_searching = 1
@@ -21,23 +21,18 @@
 	health = 350
 	self_weight = 200
 	healable = 0
-
 	faction = list("hostile", "robot")
-
 	sound_speak_chance = 50
-	sound_speak = list('sound/f13npc/robot_charge1.ogg','sound/f13npc/robot_charge2.ogg','sound/f13npc/robot_charge3.ogg')
-
+	sound_speak = list('sound/f13npc/protectron/idle_1.ogg','sound/f13npc/protectron/idle_2.ogg','sound/f13npc/protectron/idle_3.ogg','sound/f13npc/protectron/idle_4.ogg','sound/f13npc/protectron/idle_5.ogg','sound/f13npc/protectron/idle_6.ogg','sound/f13npc/protectron/idle_7.ogg')
 	aggro_sound_chance = 50
-	aggro_sound = 'sound/f13npc/robot_alert.ogg'
-
-	death_sound = 'sound/f13npc/robot_death.ogg'
-
+	aggro_sound = list('sound/f13npc/protectron/attack_1.ogg', 'sound/f13npc/protectron/attack_2.ogg', 'sound/f13npc/protectron/attack_3.ogg', 'sound/f13npc/protectron/attack_4.ogg', 'sound/f13npc/protectron/attack_5.ogg', 'sound/f13npc/protectron/attack_6.ogg', 'sound/f13npc/protectron/attack_7.ogg', 'sound/f13npc/protectron/attack_8.ogg', 'sound/f13npc/protectron/attack_9.ogg', 'sound/f13npc/protectron/attack_10.ogg', 'sound/f13npc/protectron/attack_11.ogg', 'sound/f13npc/protectron/attack_12.ogg', 'sound/f13npc/protectron/attack_13.ogg')
+	death_sound = list('sound/f13npc/protectron/death_1.ogg', 'sound/f13npc/protectron/death_7.ogg', 'sound/f13npc/protectron/death_2.ogg', 'sound/f13npc/protectron/death_3.ogg', 'sound/f13npc/protectron/death_4.ogg', 'sound/f13npc/protectron/death_5.ogg', 'sound/f13npc/protectron/death_6.ogg', 'sound/f13npc/protectron/death_7.ogg')
 	harm_intent_damage = 5
-	melee_damage_lower = 5
-	melee_damage_upper = 10
+	melee_damage_lower = 10
+	melee_damage_upper = 20
 	minimum_distance = 4
 	retreat_distance = 7
-	attacktext = "бьёт"
+	attacktext = "Р±СЊС‘С‚"
 	attack_sound = "punch"
 	a_intent = "harm"
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -93,7 +88,7 @@
 	butcher_results = list(/obj/effect/gibspawner/robot = 1)
 
 /mob/living/simple_animal/pet/dog/protectron_kebab //Not an actual dog
-	name = "Протектрон РХ-2"
+	name = "РџСЂРѕС‚РµРєС‚СЂРѕРЅ Р РҐ-2"
 	desc = "A standard RobCo RX2 V1.16.4 \"PROTECT-RONE\", loaded with basic protocols.<br>Looks like it was kept operational for an indefinite period of time. Its body is covered in cracks and dents of various sizes.<br>As it has been repaired countless times, it's amazing the machine is still functioning at all."
 	icon = 'icons/fallout/mobs/animal.dmi'
 	icon_state = "protectron_k"
@@ -102,11 +97,11 @@
 	maxHealth = 50
 	health = 50
 	speak_chance = 30
-	speak = list("Добро пожаловать в Кебабтаун! Город возможностей и спокойной жизни!", "Приветствую, путник! Как я могу вам помочь? Загляните в городские магазины!", "Мэр Кебабтауна - лучший человек в пустоши.", "Загляните в бар Пуля, лучшее место чтобы пораскинут ьмозгами.", "Вы пробовали местную воду? Попробуйте!", "Запомните три простых правила пребывания в городе: 1. Не убивайте. 2. Не носите оружие открыто. 3. Не воруйте.", "Ответ на вопрос о смысле жизни - 42.", "Рады видеть вас в нашем городе!")
+	speak = list("Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РІ РљРµР±Р°Р±С‚Р°СѓРЅ! Р“РѕСЂРѕРґ РІРѕР·РјРѕР¶РЅРѕСЃС‚РµР№ Рё СЃРїРѕРєРѕР№РЅРѕР№ Р¶РёР·РЅРё!", "РџСЂРёРІРµС‚СЃС‚РІСѓСЋ, РїСѓС‚РЅРёРє! РљР°Рє СЏ РјРѕРіСѓ РІР°Рј РїРѕРјРѕС‡СЊ? Р—Р°РіР»СЏРЅРёС‚Рµ РІ РіРѕСЂРѕРґСЃРєРёРµ РјР°РіР°Р·РёРЅС‹!", "РњСЌСЂ РљРµР±Р°Р±С‚Р°СѓРЅР° - Р»СѓС‡С€РёР№ С‡РµР»РѕРІРµРє РІ РїСѓСЃС‚РѕС€Рё.", "Р—Р°РіР»СЏРЅРёС‚Рµ РІ Р±Р°СЂ РџСѓР»СЏ, Р»СѓС‡С€РµРµ РјРµСЃС‚Рѕ С‡С‚РѕР±С‹ РїРѕСЂР°СЃРєРёРЅСѓС‚ СЊРјРѕР·РіР°РјРё.", "Р’С‹ РїСЂРѕР±РѕРІР°Р»Рё РјРµСЃС‚РЅСѓСЋ РІРѕРґСѓ? РџРѕРїСЂРѕР±СѓР№С‚Рµ!", "Р—Р°РїРѕРјРЅРёС‚Рµ С‚СЂРё РїСЂРѕСЃС‚С‹С… РїСЂР°РІРёР»Р° РїСЂРµР±С‹РІР°РЅРёСЏ РІ РіРѕСЂРѕРґРµ: 1. РќРµ СѓР±РёРІР°Р№С‚Рµ. 2. РќРµ РЅРѕСЃРёС‚Рµ РѕСЂСѓР¶РёРµ РѕС‚РєСЂС‹С‚Рѕ. 3. РќРµ РІРѕСЂСѓР№С‚Рµ.", "РћС‚РІРµС‚ РЅР° РІРѕРїСЂРѕСЃ Рѕ СЃРјС‹СЃР»Рµ Р¶РёР·РЅРё - 42.", "Р Р°РґС‹ РІРёРґРµС‚СЊ РІР°СЃ РІ РЅР°С€РµРј РіРѕСЂРѕРґРµ!")
 	speak_emote = list("beeps", "buzzes")
-	emote_hear = list("beeps", "buzzes", "сканирует окружение","сенсоры в его голове крутятся и издают всякие звуки")
-	emote_see = list("машет манипуляторами", "просчитывает шансы на выживание", "просчитывает что-то в ЦП", "восстановился от очередного рантайма")
-	response_help  = "стучит по стеклу"
+	emote_hear = list("beeps", "buzzes", "СЃРєР°РЅРёСЂСѓРµС‚ РѕРєСЂСѓР¶РµРЅРёРµ","СЃРµРЅСЃРѕСЂС‹ РІ РµРіРѕ РіРѕР»РѕРІРµ РєСЂСѓС‚СЏС‚СЃСЏ Рё РёР·РґР°СЋС‚ РІСЃСЏРєРёРµ Р·РІСѓРєРё")
+	emote_see = list("РјР°С€РµС‚ РјР°РЅРёРїСѓР»СЏС‚РѕСЂР°РјРё", "РїСЂРѕСЃС‡РёС‚С‹РІР°РµС‚ С€Р°РЅСЃС‹ РЅР° РІС‹Р¶РёРІР°РЅРёРµ", "РїСЂРѕСЃС‡РёС‚С‹РІР°РµС‚ С‡С‚Рѕ-С‚Рѕ РІ Р¦Рџ", "РІРѕСЃСЃС‚Р°РЅРѕРІРёР»СЃСЏ РѕС‚ РѕС‡РµСЂРµРґРЅРѕРіРѕ СЂР°РЅС‚Р°Р№РјР°")
+	response_help  = "СЃС‚СѓС‡РёС‚ РїРѕ СЃС‚РµРєР»Сѓ"
 	response_disarm = "pushes"
 	response_harm   = "punches"
 	attack_sound = 'sound/voice/liveagain.ogg'

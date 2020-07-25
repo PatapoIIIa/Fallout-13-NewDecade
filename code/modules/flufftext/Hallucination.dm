@@ -306,7 +306,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 			if("corgi")//Corgi
 				A = image('icons/mob/pets.dmi',H,"corgi")
 			if("skeleton")//Skeletons
-				A = image('icons/mob/human.dmi',H,"skeleton_s")
+				A = image('icons/mob/human.dmi',H,"skeleton")
 			if("demon")//Demon
 				A = image('icons/mob/mob.dmi',H,"daemon")
 			if("custom")
@@ -384,7 +384,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	user.do_attack_animation(src)
 	to_chat(my_target, sound(pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')))
 	my_target.visible_message("<span class='danger'>[my_target] flails around wildly.</span>", \
-							"<span class='danger'>[my_target] has attacked [src]!</span>")
+							"<span class='danger'>[my_target] атакует [src]!</span>")
 
 	obj_integrity -= P.force
 
@@ -435,7 +435,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 				do_attack_animation(my_target, ATTACK_EFFECT_PUNCH)
 				if(weapon_name)
 					to_chat(my_target, sound(pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')))
-					my_target.show_message("<span class='danger'>[src.name] has attacked [my_target] with [weapon_name]!</span>", 1)
+					my_target.show_message("<span class='danger'>[src.name] атакует [my_target] с помощью [weapon_name]!</span>", 1)
 					my_target.staminaloss += 30
 					if(prob(20))
 						my_target.blur_eyes(3)
@@ -715,13 +715,13 @@ var/list/non_fakeattack_weapons = list(/obj/item/weapon/gun/ballistic, /obj/item
 					var/turf/open/floor/target = pick(possible_points)
 					switch(rand(1,4))
 						if(1)
-							var/image/body = image('icons/mob/human.dmi',target,"husk_s",TURF_LAYER)
+							var/image/body = image('icons/mob/human.dmi',target,"husk",TURF_LAYER)
 							var/matrix/M = matrix()
 							M.Turn(90)
 							body.transform = M
 							halbody = body
 						if(2,3)
-							halbody = image('icons/mob/human.dmi',target,"husk_s",TURF_LAYER)
+							halbody = image('icons/mob/human.dmi',target,"husk",TURF_LAYER)
 						if(4)
 							halbody = image('icons/fallout/mobs/animal.dmi',target,"grey_dead",TURF_LAYER)
 

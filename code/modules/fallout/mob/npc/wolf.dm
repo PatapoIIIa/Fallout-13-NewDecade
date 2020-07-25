@@ -1,8 +1,8 @@
 //Fallout 13 wolf directory
 
 /mob/living/simple_animal/hostile/wolf
-	name = "����� ������"
-	desc = "The dogs that survived the Great War are a larger, and tougher breed, size of a wolf.<br>This one seems to be severely malnourished and its eyes are bloody red."
+	name = "Дикая собака"
+	desc = "Собаки пережили Великую Войну и даже смогли расплодиться. Они сейчас очень похожи на волков."
 	icon = 'icons/fallout/mobs/animal.dmi'
 	icon_state = "dog_angry"
 	icon_living = "dog_angry"
@@ -33,15 +33,15 @@
 	melee_damage_upper = 5
 	aggro_vision_range = 15
 	idle_vision_range = 7
-	attacktext = "bites"
+	attacktext = "кусает"
 	attack_sound = 'sound/weapons/bite.ogg'
 	move_to_delay = 2
 
 	XP = 7
 
 /mob/living/simple_animal/hostile/wolf/alpha
-	name = "����� ������ �����"
-	desc = "The dogs that survived the Great War are a larger, and tougher breed, size of a wolf.<br>Wait... This one's a wolf!"
+	name = "волк"
+	desc = "Собаки пережили Великую Войну и даже смогли расплодиться. Они сейчас очень похожи на волков... Постойте, ЭТО ЖЕ И ЕСТЬ ВОЛК!"
 	icon_state = "wolf_angry"
 	icon_living = "wolf_angry"
 	icon_dead = "wolf_dead"

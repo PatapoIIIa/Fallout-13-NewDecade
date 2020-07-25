@@ -1,8 +1,8 @@
 //Fallout 13 eyebot directory
 
 /mob/living/simple_animal/hostile/eyebot
-	name = "��������"
-	desc = "A hovering, propaganda-spewing reconnaissance and surveillance robot with radio antennas pointing out its back and loudspeakers blaring out the front."
+	name = "Робоглаз"
+	desc = "Летающий робот, играющий пропагандисткие речи и песни, на корпусе расположены антены и динамики, что выглядывают сбоку."
 	icon = 'icons/fallout/mobs/animal.dmi'
 	icon_state = "eyebot"
 	icon_living = "eyebot"
@@ -36,8 +36,8 @@
 	death_sound = 'sound/f13npc/robot_death.ogg'
 
 	harm_intent_damage = 10
-	melee_damage_lower = 2
-	melee_damage_upper = 3
+	melee_damage_lower = 5
+	melee_damage_upper = 10
 	minimum_distance = 6
 	retreat_distance = 14
 	attacktext = "punches"
@@ -67,8 +67,8 @@
 		builtInCamera.c_tag = name
 
 /mob/living/simple_animal/hostile/eyebot/floatingeye
-	name = "floating eyebot"
-	desc = "A quick-observation robot commonly found in pre-War military installations.<br>The floating eyebot uses a powerful taser to keep intruders in line."
+	name = "Парящий робоглаз"
+	desc = "Быстрый разведовательный робот, чаще всего находящихся на послевоенных военных объектах. <br> Парящий робоглаз использует мощный тазер чтобы держать нарушителей в строю."
 	icon_state = "floatingeye"
 	icon_living = "floatingeye"
 	icon_dead = "floatingeye_d"

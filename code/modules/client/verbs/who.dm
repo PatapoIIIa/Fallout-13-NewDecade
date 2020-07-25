@@ -1,8 +1,8 @@
 /client/verb/who()
-	set name = "Who"
+	set name = "РџСЂРѕРІРµСЂРёС‚СЊ РѕРЅР»Р°Р№РЅ"
 	set category = "OOC"
 
-	var/msg = "<b>Текущие игроки:</b>\n"
+	var/msg = "<b>РўРµРєСѓС‰РёРµ РёРіСЂРѕРєРё:</b>\n"
 
 	var/list/Lines = list()
 
@@ -10,29 +10,29 @@
 		if (check_rights(R_ADMIN,0) && isobserver(src.mob))//If they have +ADMIN and are a ghost they can see players IC names and statuses.
 			var/mob/dead/observer/G = src.mob
 			if(!G.started_as_observer)//If you aghost to do this, KorPhaeron will deadmin you in your sleep.
-				log_admin("[key_name(usr)] checked advanced who in-round")
+				log_admin("[key_name(usr)] РїСЂРѕРІРµСЂРёР» РѕРЅР»Р°Р№РЅ Рё СЂРѕР»Рё")
 			for(var/client/C in clients)
 				var/entry = "\t[C.key]"
 				if(C.holder && C.holder.fakekey)
-					entry += " <i>(as [C.holder.fakekey])</i>"
+					entry += " <i>(РєР°Рє [C.holder.fakekey])</i>"
 				if (isnewplayer(C.mob))
-					entry += " - <font color='darkgray'><b>В лобби</b></font>"
+					entry += " - <font color='darkgray'><b>Р’ Р»РѕР±Р±Рё</b></font>"
 				else
-					entry += " - Играет за [C.mob.real_name]"
+					entry += " - РРіСЂР°РµС‚ Р·Р° [C.mob.real_name]"
 					switch(C.mob.stat)
 						if(UNCONSCIOUS)
-							entry += " - <font color='darkgray'><b>Без сознания</b></font>"
+							entry += " - <font color='darkgray'><b>Р‘РµР· СЃРѕР·РЅР°РЅРёСЏ</b></font>"
 						if(DEAD)
 							if(isobserver(C.mob))
 								var/mob/dead/observer/O = C.mob
 								if(O.started_as_observer)
-									entry += " - <font color='gray'>Наблюдает</font>"
+									entry += " - <font color='gray'>РќР°Р±Р»СЋРґР°РµС‚</font>"
 								else
-									entry += " - <font color='black'><b>МЕРТВ</b></font>"
+									entry += " - <font color='black'><b>РњРЃР РўР’</b></font>"
 							else
-								entry += " - <font color='black'><b>МЕРТВ</b></font>"
+								entry += " - <font color='black'><b>РњРЃР РўР’</b></font>"
 					if(is_special_character(C.mob))
-						entry += " - <b><font color='red'>Антагонист</font></b>"
+						entry += " - <b><font color='red'>РђРЅС‚Р°РіРѕРЅРёСЃС‚</font></b>"
 				entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
 				entry += " ([round(C.avgping, 1)]ms)"
 				Lines += entry
@@ -40,7 +40,7 @@
 			for(var/client/C in clients)
 				var/entry = "\t[C.key]"
 				if(C.holder && C.holder.fakekey)
-					entry += " <i>(as [C.holder.fakekey])</i>"
+					entry += " <i>(РєР°Рє [C.holder.fakekey])</i>"
 				entry += " ([round(C.avgping, 1)]ms)"
 				Lines += entry
 	else
@@ -53,27 +53,26 @@
 	for(var/line in sortList(Lines))
 		msg += "[line]\n"
 
-	msg += "<b>Всего игроков: [length(Lines)]</b>"
+	msg += "<b>РћРЅР»Р°Р№РЅ: [length(Lines)]</b>"
 	to_chat(src, msg)
 
 /client/verb/adminwho()
 	set category = "Admin"
-	set name = "Adminwho"
-
-	var/msg = "<b>Текущие админы:</b>\n"
+	set name = "РђРґРјРёРЅРёРЅСЃС‚СЂР°С†РёСЏ РѕРЅР»Р°Р№РЅ"
+	var/msg = "<b>РўРµРєСѓС‰РёРµ Р°РґРјРёРЅРёСЃС‚СЂР°С†РёСЏ РѕРЅР»Р°Р№РЅ:</b>\n"
 	if(holder)
 		for(var/client/C in admins)
-			msg += "\t[C] is a [C.holder.rank]"
+			msg += "\t[C] РёРјРµРµС‚ СЂР°РЅРі [C.holder.rank]"
 
 			if(C.holder.fakekey)
-				msg += " <i>(as [C.holder.fakekey])</i>"
+				msg += " <i>(РєР°Рє [C.holder.fakekey])</i>"
 
 			if(isobserver(C.mob))
-				msg += " - Observing"
+				msg += " - РќР°Р±Р»СЋРґР°РµС‚"
 			else if(isnewplayer(C.mob))
-				msg += " - В лобби"
+				msg += " - Р’ Р»РѕР±Р±Рё"
 			else
-				msg += " - В игре"
+				msg += " - Р’ РёРіСЂРµ"
 
 			if(C.is_afk())
 				msg += " (AFK)"

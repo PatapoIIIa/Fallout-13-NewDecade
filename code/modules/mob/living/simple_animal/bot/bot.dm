@@ -16,9 +16,9 @@
 	has_unlimited_silicon_privilege = 1
 	sentience_type = SENTIENCE_ARTIFICIAL
 	status_flags = NONE //no default canpush
-	verb_say = "ξαϊÿβλÿες"
+	verb_say = "ΠΎΠ±ΡΡΠ²Π»ΡΠµΡ‚"
 	verb_ask = "queries"
-	verb_exclaim = "ξαϊÿβλÿες"
+	verb_exclaim = "ΠΎΠ±ΡΡΠ²Π»ΡΠµΡ‚"
 	verb_yell = "alarms"
 	bubble_icon = "machine"
 
@@ -302,7 +302,7 @@
 /mob/living/simple_animal/bot/emp_act(severity)
 	var/was_on = on
 	stat |= EMPED
-	PoolOrNew(/obj/effect/overlay/temp/emp, loc)
+	new /obj/effect/overlay/temp/emp(loc)
 	if(paicard)
 		paicard.emp_act(severity)
 		src.visible_message("[paicard] is flies out of [bot_name]!","<span class='warning'>You are forcefully ejected from [bot_name]!</span>")
@@ -733,7 +733,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 /mob/living/simple_animal/bot/proc/show_controls(mob/M)
 	users |= M
-	var/dat = ""
+	var/dat = {"<meta charset="UTF-8">"}
 	dat = get_controls(M)
 	var/datum/browser/popup = new(M,window_id,window_name,350,600)
 	popup.set_content(dat)

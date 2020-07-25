@@ -43,6 +43,8 @@ var/datum/subsystem/shuttle/SSshuttle
 	var/shuttle_purchased = FALSE //If the station has purchased a replacement escape shuttle this round
 	var/list/shuttle_purchase_requirements_met = list() //For keeping track of ingame events that would unlock new shuttles, such as defeating a boss or discovering a secret item
 
+	var/lockdown = FALSE	//disallow transit after nuke goes off
+
 /datum/subsystem/shuttle/New()
 	NEW_SS_GLOBAL(SSshuttle)
 
@@ -198,7 +200,7 @@ var/datum/subsystem/shuttle/SSshuttle
 			to_chat(user, "The emergency shuttle has been disabled by Centcom.")
 			return
 
-	call_reason = trim(html_encode_ru(call_reason))
+	call_reason = trim(html_encode(call_reason))
 
 	if(length(call_reason) < CALL_SHUTTLE_REASON_LENGTH && seclevel2num(get_security_level()) > SEC_LEVEL_GREEN)
 		to_chat(user, "You must provide a reason.")

@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet
-	name = "����"
-	desc = "Standard Security gear. Protects the head from impacts."
+	name = "шлем"
+	desc = "Стандартный шлем. Защищает голову от ударов."
 	icon_state = "helmet"
 	flags = HEADBANGPROTECT
 	item_state = "helmet"
@@ -24,8 +24,8 @@
 	can_flashlight = 1
 
 /obj/item/clothing/head/helmet/alt
-	name = "����������� ����"
-	desc = "A bulletproof combat helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	name = "пулестойкий шлем"
+	desc = "Пулестойкий боевой шлем."
 	icon_state = "helmetalt"
 	item_state = "helmetalt"
 	armor = list(melee = 15, bullet = 40, laser = 10, energy = 10, bomb = 40, bio = 0, rad = 0, fire = 50, acid = 50)
@@ -37,12 +37,12 @@
 	item_state = "blueshift"
 
 /obj/item/clothing/head/helmet/riot
-	name = "riot helmet"
-	desc = "It's a helmet specifically designed to protect against close range attacks."
+	name = "каска спецназа"
+	desc = "Каска специально разработанная для защиты против холодного и тупого оружия."
 	icon_state = "riot"
 	item_state = "helmet"
-	toggle_message = "�� �������� �������"
-	alt_toggle_message = "�� ������� �������"
+	toggle_message = "Вы спустили забрало"
+	alt_toggle_message = "Вы подняли забрало"
 	can_toggle = 1
 	flags = HEADBANGPROTECT
 	armor = list(melee = 45, bullet = 15, laser = 5,energy = 5, bomb = 5, bio = 2, rad = 0, fire = 50, acid = 50)
@@ -110,8 +110,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/swat/nanotrasen
-	name = "\improper SWAT helmet"
-	desc = "An extremely robust, space-worthy helmet with the Nanotrasen logo emblazoned on the top."
+	name = "каска SWAT"
+	desc = "Каска SWAT, очень прочная использовалась в Волт-Тек для службы безопасности."
 	icon_state = "swat"
 	item_state = "swat"
 
@@ -130,8 +130,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/helmet/roman
-	name = "roman helmet"
-	desc = "An ancient helmet made of bronze and leather."
+	name = "имперский шлем"
+	desc = "Древний шлем сделанный из кожи и бронзы."
 	flags_inv = HIDEEARS|HIDEHAIR
 	flags_cover = HEADCOVERSEYES
 	armor = list(melee = 25, bullet = 0, laser = 25, energy = 10, bomb = 10, bio = 0, rad = 0, fire = 100, acid = 50)
@@ -148,8 +148,8 @@
 	item_state = "roman_c"
 
 /obj/item/clothing/head/helmet/gladiator
-	name = "gladiator helmet"
-	desc = "Ave, Imperator, morituri te salutant."
+	name = "гладиаторский шлем"
+	desc = "Аве император!"
 	icon_state = "gladiator"
 	item_state = "gladiator"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR

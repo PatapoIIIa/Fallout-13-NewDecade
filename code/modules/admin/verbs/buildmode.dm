@@ -225,10 +225,10 @@
 		if(istype(M.client.click_intercept,/datum/buildmode))
 			var/datum/buildmode/B = M.client.click_intercept
 			B.quit()
-			log_admin("[key_name(usr)] has left build mode.")
+			log_admin("[key_name(usr)] выходит из режима строительства.")
 		else
 			new/datum/buildmode(M.client)
-			message_admins("[key_name(usr)] has entered build mode.")
+			message_admins("[key_name(usr)] переходит в режим строительства.")
 			log_admin("[key_name(usr)] has entered build mode.")
 
 
@@ -253,7 +253,7 @@
 				log_admin("Build Mode: [key_name(user)] built [T] at ([T.x],[T.y],[T.z])")
 				return
 			else if(right_click)
-				log_admin("Build Mode: [key_name(user)] ������ [object] � ([object.x],[object.y],[object.z])")
+				log_admin("Build Mode: [key_name(user)] удалил [object] в ([object.x],[object.y],[object.z])")
 				if(iswallturf(object))
 					var/turf/T = object
 					T.ChangeTurf(/turf/open/floor/plasteel)

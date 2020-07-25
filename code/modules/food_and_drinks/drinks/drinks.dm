@@ -36,16 +36,16 @@
 
 	if(fullness > THIRST_LEVEL_FULL)
 		if(M == user)
-			to_chat(M, "<span class='notice'>�� �� ������ ����.</span>")
+			to_chat(M, "<span class='notice'>Вы не хотите пить.</span>")
 		else
-			to_chat(user, "<span class='notice'>[M] �� ����� ������ ����.</span>")
+			to_chat(user, "<span class='notice'>[M] не может больше пить.</span>")
 		return 0
 
 	if(M == user)
-		to_chat(M, "<span class='notice'>�� ���������� �� [src].</span>")
+		to_chat(M, "<span class='notice'>Вы отхлебнули из [src].</span>")
 
 	else
-		M.visible_message("<span class='danger'>[user] attempts to feed the contents of [src] to [M].</span>", "<span class='userdanger'>[user] attempts to feed the contents of [src] to [M].</span>")
+		M.visible_message("<span class='danger'>[user] пытается напоить [M] содержимым [src].</span>", "<span class='userdanger'>[user] пытается споить[M]  содержимое [src].</span>")
 		if(!do_mob(user, M))
 			return
 		if(!reagents || !reagents.total_volume)
@@ -63,11 +63,11 @@
 	if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
 
 		if(!target.reagents.total_volume)
-			to_chat(user, "<span class='warning'>[target] ����.</span>")
+			to_chat(user, "<span class='warning'>[target] пуст.</span>")
 			return
 
 		if(reagents.total_volume >= reagents.maximum_volume)
-			to_chat(user, "<span class='warning'>[src] �����.</span>")
+			to_chat(user, "<span class='warning'>[src] полон.</span>")
 			return
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
@@ -75,11 +75,11 @@
 
 	else if(target.is_open_container()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!reagents.total_volume)
-			to_chat(user, "<span class='warning'>[src] ����.</span>")
+			to_chat(user, "<span class='warning'>[src] пуст.</span>")
 			return
 
 		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			to_chat(user, "<span class='warning'>[target] �����.</span>")
+			to_chat(user, "<span class='warning'>[target] полон.</span>")
 			return
 		var/refill = reagents.get_master_reagent_id()
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
@@ -95,7 +95,7 @@
 		var/added_heat = (I.is_hot() / 100) //ishot returns a temperature
 		if(reagents)
 			reagents.chem_temp += added_heat
-			to_chat(user, "<span class='notice'>�� ������� [src] � ������� [I].</span>")
+			to_chat(user, "<span class='notice'>Вы нагрели [src] с помощью [I].</span>")
 			reagents.handle_reactions()
 	..()
 
@@ -173,7 +173,7 @@
 	spillable = 1
 
 /obj/item/weapon/reagent_containers/food/drinks/mug/ // parent type is literally just so empty mug sprites are a thing
-	name = "mug"
+	name = "чашка"
 	desc = "A drink served in a classy mug."
 	icon_state = "tea"
 	item_state = "coffee"
@@ -202,7 +202,7 @@
 	list_reagents = list("dry_ramen" = 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/beer
-	name = "Space Beer"
+	name = "пиво"
 	desc = "Beer. In space."
 	icon_state = "beer"
 	list_reagents = list("beer" = 30)
@@ -274,7 +274,7 @@
 //	icon states.
 
 /obj/item/weapon/reagent_containers/food/drinks/shaker
-	name = "shaker"
+	name = "шейкер"
 	desc = "A metal shaker to mix drinks in."
 	icon_state = "shaker"
 	materials = list(MAT_METAL=1500)
@@ -282,20 +282,20 @@
 	volume = 100
 
 /obj/item/weapon/reagent_containers/food/drinks/flask
-	name = "flask"
+	name = "фляга"
 	desc = "Every good spaceman knows it's a good idea to bring along a couple of pints of whiskey wherever they go."
 	icon_state = "flask"
 	materials = list(MAT_METAL=250)
 	volume = 60
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/gold
-	name = "captain's flask"
+	name = "фляга смотрителя"
 	desc = "A gold flask belonging to the captain."
 	icon_state = "flask_gold"
 	materials = list(MAT_GOLD=500)
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/det
-	name = "detective's flask"
+	name = "фляга детектива"
 	desc = "The detective's only true friend."
 	icon_state = "detflask"
 	list_reagents = list("whiskey" = 30)
@@ -323,6 +323,14 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/soda_cans
 	name = "soda can"
+
+/obj/item/weapon/reagent_containers/food/drinks/soda_cans/proc/open_soda(mob/user)
+	to_chat(user, "You pull back the tab of \the [src] with a satisfying pop.") //Ahhhhhhhh
+	ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+	playsound(src, "can_open", 50, TRUE)
+	spillable = TRUE
+
+
 
 /obj/item/weapon/reagent_containers/food/drinks/soda_cans/attack(mob/M, mob/user)
 	if(M == user && !src.reagents.total_volume && user.a_intent == INTENT_HARM && user.zone_selected == "head")

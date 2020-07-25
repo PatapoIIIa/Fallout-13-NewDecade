@@ -13,7 +13,7 @@
 		to_chat(src, "Guests may not use OOC.")
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
 
 	if(!msg)
@@ -21,23 +21,23 @@
 
 	msg = emoji_parse(msg)
 
-	if((copytext(msg, 1, 2) in list(".",";",":","#")) || (findtext(lowertext(copytext(msg, 1, 5)), "say")))
+	if((copytext_char(msg, 1, 2) in list(".",";",":","#")) || (findtext_char(lowertext(copytext_char(msg, 1, 5)), "say")))
 		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
 			return
 
 	if(!(prefs.chat_toggles & CHAT_OOC))
-		to_chat(src, "<span class='danger'>У вас мут на ООС.</span>")
+		to_chat(src, "<span class='danger'>РЈ РІР°СЃ РјСѓС‚ РЅР° РћРћРЎ.</span>")
 		return
 
 	if(!holder)
 		if(!ooc_allowed)
-			to_chat(src, "<span class='danger'>OOC замучен.</span>")
+			to_chat(src, "<span class='danger'>OOC Р·Р°РјСѓС‡РµРЅ.</span>")
 			return
 		if(!dooc_allowed && (mob.stat == DEAD))
 			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "<span class='danger'>Вы не можете пользоваться OOC (мут).</span>")
+			to_chat(src, "<span class='danger'>Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ OOC (РјСѓС‚).</span>")
 			return
 		if(src.mob)
 			if(jobban_isbanned(src.mob, "OOC"))
@@ -45,7 +45,7 @@
 				return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
-		if(findtext(msg, "byond://"))
+		if(findtext_char(msg, "byond://"))
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
@@ -87,7 +87,7 @@
 		to_chat(src, "Guests may not use OOC.")
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	if(!msg)	return
 
 	if(!holder)
@@ -102,7 +102,7 @@
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
-		if(findtext(msg, "byond://"))
+		if(findtext_char(msg, "byond://"))
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
@@ -177,7 +177,7 @@
 			return
 	else //otherwise just toggle it
 		ooc_allowed = !ooc_allowed
-	to_chat(world, "<B>Отправлять сообщения в ООС [ooc_allowed ? "разрешено" : "запрещено"].</B>")
+	to_chat(world, "<B>РћС‚РїСЂР°РІР»СЏС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РІ РћРћРЎ [ooc_allowed ? "СЂР°Р·СЂРµС€РµРЅРѕ" : "Р·Р°РїСЂРµС‰РµРЅРѕ"].</B>")
 
 var/global/normal_ooc_colour = OOC_COLOR
 

@@ -127,7 +127,7 @@
 
 /turf/closed/wall/attack_hand(mob/user)
 	user.changeNext_move(CLICK_CD_MELEE)
-	to_chat(user, "<span class='notice'>You push the wall but nothing happens!</span>")
+	to_chat(user, "<span class='notice'>Вы давите на стену, но ничего не происходит!</span>")
 	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 	src.add_fingerprint(user)
 	..()
@@ -251,7 +251,7 @@
 	if(prob(20))
 		ChangeTurf(/turf/closed/wall/mineral/cult)
 
-/turf/closed/wall/ratvar_act(force)
+/turf/closed/wall/ratvar_act(force, ignore_mobs)
 	. = ..()
 	if(.)
 		ChangeTurf(/turf/closed/wall/clockwork)

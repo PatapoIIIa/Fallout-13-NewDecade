@@ -121,7 +121,7 @@
 				else
 					unique = FALSE
 					for(var/V in varsvars)
-						new_value = replacetext(new_value,"\[[V]]","[O.vars[V]]")
+						new_value = replacetext_char(new_value,"\[[V]]","[O.vars[V]]")
 
 			to_chat(src, "Finding items...")
 			var/list/items = get_all_of_type(O.type, method)
@@ -133,7 +133,7 @@
 				if(unique)
 					new_value = pre_processing
 					for(var/V in varsvars)
-						new_value = replacetext(new_value,"\[[V]]","[D.vars[V]]")
+						new_value = replacetext_char(new_value,"\[[V]]","[D.vars[V]]")
 
 				if (D.vv_edit_var(variable, new_value) != FALSE)
 					accepted++
@@ -193,7 +193,7 @@
 	if (rejected)
 		to_chat(src, "[rejected] out of [count] objects rejected your edit")
 
-	world.log << "### MassVarEdit by [src]: [O.type] (A/R [accepted]/[rejected]) [variable]=[html_encode_ru("[O.vars[variable]]")]([list2params(value)])"
+	world.log << "### MassVarEdit by [src]: [O.type] (A/R [accepted]/[rejected]) [variable]=[html_encode("[O.vars[variable]]")]([list2params(value)])"
 	log_admin("[key_name(src)] mass modified [original_name]'s [variable] to [O.vars[variable]] ([accepted] objects modified)")
 	message_admins("[key_name_admin(src)] mass modified [original_name]'s [variable] to [O.vars[variable]] ([accepted] objects modified)")
 

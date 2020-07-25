@@ -2,12 +2,15 @@
 /**********************Ore box**************************/
 
 /obj/structure/ore_box
+	name = "ящик для руды"
 	icon = 'icons/obj/mining.dmi'
-	icon_state = "orebox"
-	name = "ore box"
-	desc = "A heavy wooden box, which can be filled with a lot of ores."
+	icon_state = "orebox1"
+	desc = "Тяжёлый ящик для руды. Ржавый, но всё еще способен удерживать руду."
 	density = 1
 	pressure_resistance = 5*ONE_ATMOSPHERE
+
+/obj/structure/ore_box/New()
+	icon_state = "orebox[rand(1,4)]"
 
 /obj/structure/ore_box/attackby(obj/item/weapon/W, mob/user, params)
 	if (istype(W, /obj/item/weapon/ore))
@@ -37,7 +40,8 @@
 		show_contents(user)
 
 /obj/structure/ore_box/proc/show_contents(mob/user)
-	var/dat = text("<b>The contents of the ore box reveal...</b><br>")
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += "<b>The contents of the ore box reveal...</b><br>"
 	var/list/oretypes = list()
 	for(var/obj/item/weapon/ore/O in contents)
 		oretypes |= O.type

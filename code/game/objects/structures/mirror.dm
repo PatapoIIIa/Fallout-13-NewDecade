@@ -42,7 +42,7 @@
 
 		H.update_hair()
 
-/obj/structure/mirror/examine_status()
+/obj/structure/mirror/examine_status(mob/user)
 	if(broken)
 		return // no message spam
 	..()
@@ -124,7 +124,7 @@
 
 	switch(choice)
 		if("name")
-			var/newname = copytext(sanitize(input(H, "Who are we again?", "Name change", H.name) as null|text),1,MAX_NAME_LEN)
+			var/newname = copytext_char(sanitize(input(H, "Who are we again?", "Name change", H.name) as null|text),1,MAX_NAME_LEN)
 
 			if(!newname)
 				return

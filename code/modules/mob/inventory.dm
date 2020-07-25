@@ -6,13 +6,13 @@
 	return get_item_for_held_index(active_hand_index)
 
 
-//Finds the opposite limb for the active one (eg: upper left arm will find the item in upper right arm)
+//Find the opposite limb for the active one (eg: upper left arm will find the item in upper right arm)
 //So we're treating each "pair" of limbs as a team, so "both" refers to them
 /mob/proc/get_inactive_held_item()
 	return get_item_for_held_index(get_inactive_hand_index())
 
 
-//Finds the opposite index for the active one (eg: upper left arm will find the item in upper right arm)
+//Find the opposite index for the active one (eg: upper left arm will find the item in upper right arm)
 //So we're treating each "pair" of limbs as a team, so "both" refers to them
 /mob/proc/get_inactive_hand_index()
 	var/other_hand = 0
@@ -48,7 +48,7 @@
 	return has_hand_for_held_index(active_hand_index)
 
 
-//Finds the first available (null) index OR all available (null) indexes in held_items based on a side.
+//Find the first available (null) index OR all available (null) indexes in held_items based on a side.
 //Lefts: 1, 3, 5, 7...
 //Rights:2, 4, 6, 8...
 /mob/proc/get_empty_held_index_for_side(side = "left", all = FALSE)
@@ -132,10 +132,10 @@
 	var/num = 0
 	if(!(i % 2))
 		num = i-2
-		hand += "right hand"
+		hand += "РїСЂР°РІР°СЏ СЂСѓРєР°"
 	else
 		num = i-1
-		hand += "left hand"
+		hand += "Р»РµРІР°СЏ СЂСѓРєР°"
 	num -= (num*0.5)
 	if(num > 1) //"upper left hand #1" seems weird, but "upper left hand #2" is A-ok
 		hand += " #[num]"
@@ -356,7 +356,7 @@
 		S.handle_item_insertion(src)
 		return TRUE
 
-	to_chat(M, "<span class='warning'>Вы не можете экипировать это!</span>")
+	to_chat(M, "<span class='warning'>Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ СЌРєРёРїРёСЂРѕРІР°С‚СЊ СЌС‚Рѕ!</span>")
 	return FALSE
 
 

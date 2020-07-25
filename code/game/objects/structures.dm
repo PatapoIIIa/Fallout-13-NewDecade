@@ -67,11 +67,14 @@
 		density = 0
 		. = step(A,get_dir(A,src.loc))
 		density = 1
+		return TRUE
+	else
+		return FALSE
 
 /obj/structure/proc/climb_structure(mob/user)
 	src.add_fingerprint(user)
-	user.visible_message("<span class='warning'>[user] starts climbing onto [src].</span>", \
-								"<span class='notice'>You start climbing onto [src]...</span>")
+	user.visible_message("<span class='warning'>[user] начинает забираться на [src].</span>", \
+								"<span class='notice'>Вы начали забираться на[src]...</span>")
 	var/adjusted_climb_time = climb_time
 	if(user.restrained()) //climbing takes twice as long when restrained.
 		adjusted_climb_time *= 2
@@ -81,13 +84,13 @@
 	if(do_mob(user, user, adjusted_climb_time))
 		if(src.loc) //Checking if structure has been destroyed
 			if(do_climb(user))
-				user.visible_message("<span class='warning'>[user] ���������� �� [src].</span>", \
-									"<span class='notice'>�� ��������� �� [src].</span>")
+				user.visible_message("<span class='warning'>[user] забирается на [src].</span>", \
+									"<span class='notice'>Вы забрались на [src].</span>")
 				add_logs(user, src, "climbed onto")
 				user.Stun(climb_stun)
 				. = 1
 			else
-				to_chat(user, "<span class='warning'>�� �� ������ ��������� �� [src].</span>")
+				to_chat(user, "<span class='warning'>Вы не смогли забраться на [src].</span>")
 	structureclimber = null
 
 /obj/structure/examine(mob/user)
@@ -97,18 +100,18 @@
 			to_chat(user, "<span class='warning'>It's on fire!</span>")
 		if(broken)
 			to_chat(user, "<span class='notice'>It looks broken.</span>")
-		var/examine_status = examine_status()
+		var/examine_status = examine_status(user)
 		if(examine_status)
 			to_chat(user, examine_status)
 
-/obj/structure/proc/examine_status() //An overridable proc, mostly for falsewalls.
+/obj/structure/proc/examine_status(mob/user) //An overridable proc, mostly for falsewalls.
 	var/healthpercent = (obj_integrity/max_integrity) * 100
 	switch(healthpercent)
 		if(100 to INFINITY)
-			return  "It seems pristine and undamaged."
+			return  "Выглядит нетронутым."
 		if(50 to 100)
-			return  "It looks slightly damaged."
+			return  "Выглядит немного повреждённым."
 		if(25 to 50)
-			return  "It appears heavily damaged."
+			return  "Похоже, оно сильно повреждено."
 		if(0 to 25)
-			return  "<span class='warning'>It's falling apart!</span>"
+			return  "<span class='warning'>Похоже, оно вот-вот развалится!</span>"

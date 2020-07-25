@@ -14,9 +14,9 @@
 		if (length(HTMLstring) != 7)
 			CRASH("Given non-HTML argument!")
 			return
-	var/textr = copytext(HTMLstring, 2, 4)
-	var/textg = copytext(HTMLstring, 4, 6)
-	var/textb = copytext(HTMLstring, 6, 8)
+	var/textr = copytext_char(HTMLstring, 2, 4)
+	var/textg = copytext_char(HTMLstring, 4, 6)
+	var/textb = copytext_char(HTMLstring, 6, 8)
 	var/r = hex2num(textr)
 	var/g = hex2num(textg)
 	var/b = hex2num(textb)
@@ -174,7 +174,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
-	if (findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
+	if (findtext_char(key, "Guest-", 1, 7) != 1) //was findtextEx_char
 		return 0
 
 	var/i, ch, len = length(key)
@@ -481,9 +481,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/y = min(world.maxy, max(1, A.y + dy))
 	return locate(x,y,A.z)
 
+/*
 /proc/arctan(x)
 	var/y=arcsin(x/sqrt(1+x*x))
 	return y
+*/
 
 /atom/proc/GetAllContents()
 	var/list/processing_list = list(src)
@@ -824,7 +826,7 @@ var/list/WALLITEMS_INVERSE = typecacheof(list(
 	return 0
 
 /proc/format_text(text)
-	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
+	return replacetext_char(replacetext_char(text,"\proper ",""),"\improper ","")
 
 /obj/proc/atmosanalyzer_scan(datum/gas_mixture/air_contents, mob/user, obj/target = src)
 	var/obj/icon = target
@@ -891,11 +893,11 @@ var/list/WALLITEMS_INVERSE = typecacheof(list(
 /proc/params2turf(scr_loc, turf/origin)
 	if(!scr_loc)
 		return null
-	var/tX = splittext(scr_loc, ",")
-	var/tY = splittext(tX[2], ":")
+	var/tX = splittext_char(scr_loc, ",")
+	var/tY = splittext_char(tX[2], ":")
 	var/tZ = origin.z
 	tY = tY[1]
-	tX = splittext(tX[1], ":")
+	tX = splittext_char(tX[1], ":")
 	tX = tX[1]
 	tX = Clamp(origin.x + text2num(tX) - world.view - 1, 1, world.maxx)
 	tY = Clamp(origin.y + text2num(tY) - world.view - 1, 1, world.maxy)
@@ -904,10 +906,10 @@ var/list/WALLITEMS_INVERSE = typecacheof(list(
 /proc/screen_loc2turf(text, turf/origin)
 	if(!text)
 		return null
-	var/tZ = splittext(text, ",")
-	var/tX = splittext(tZ[1], "-")
+	var/tZ = splittext_char(text, ",")
+	var/tX = splittext_char(tZ[1], "-")
 	var/tY = text2num(tX[2])
-	tX = splittext(tZ[2], "-")
+	tX = splittext_char(tZ[2], "-")
 	tX = text2num(tX[2])
 	tZ = origin.z
 	tX = Clamp(origin.x + 7 - tX, 1, world.maxx)
@@ -1281,31 +1283,11 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 		return
 
 	C.color = flash_color
-	spawn(0)
-		animate(C, color = initial(C.color), time = flash_time)
+	animate(C, color = initial(C.color), time = flash_time)
 
 #define RANDOM_COLOUR (rgb(rand(0,255),rand(0,255),rand(0,255)))
 
-#define QDEL_IN(item, time) addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, item), time, TIMER_STOPPABLE)
-
-/proc/check_for_cleanbot_bug()
-	var/static/admins_warned //bet you didn't know you could do this!
-	var/icon/Icon_test = icon('icons/BadAss.dmi')
-	if(!istype(Icon_test))
-		var/msg = "Cleanbot bug detected in icons! Icons are mapping to [Icon_test]"
-		if (!admins_warned)
-			admins_warned = 1
-			spawn(25)
-				message_admins(msg)
-		stack_trace(msg)
-	var/sound/Sound_test = sound('sound/misc/null.ogg')
-	if(!istype(Sound_test))
-		var/msg = "Cleanbot bug detected in sounds! Sounds are mapping to [Sound_test]"
-		if (!admins_warned)
-			admins_warned = 1
-			spawn(25)
-				message_admins(msg)
-		stack_trace(msg)
+#define QDEL_IN(item, time) addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, item), time, TIMER_STOPPABLE)
 
 /proc/random_nukecode()
 	var/val = rand(0, 99999)
@@ -1326,19 +1308,20 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 /proc/weightclass2text(var/w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY)
-			. = "небольшой"
+			. = "РЅРµР±РѕР»СЊС€РѕР№"
 		if(WEIGHT_CLASS_SMALL)
-			. = "маленький"
+			. = "РјР°Р»РµРЅСЊРєРёР№"
 		if(WEIGHT_CLASS_NORMAL)
-			. = "обычный"
+			. = "РѕР±С‹С‡РЅС‹Р№"
 		if(WEIGHT_CLASS_BULKY)
-			. = "громоздкий"
+			. = "РіСЂРѕРјРѕР·РґРєРёР№"
 		if(WEIGHT_CLASS_HUGE)
-			. = "большой"
+			. = "Р±РѕР»СЊС€РѕР№"
 		if(WEIGHT_CLASS_GIGANTIC)
-			. = "огромный"
+			. = "РѕРіСЂРѕРјРЅС‹Р№"
 		else
 			. = ""
+
 
 /var/mob/dview/dview_mob = new
 

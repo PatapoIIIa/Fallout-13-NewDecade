@@ -1,5 +1,5 @@
 /obj/item/weapon/storage/book
-	name = "hollowed book"
+	name = "незаполненная книга"
 	desc = "I guess someone didn't like it."
 	icon = 'icons/obj/library.dmi'
 	icon_state ="book"
@@ -17,7 +17,7 @@ var/global/list/biblestates     = list("bible", "koran", "scrapbook", "burning",
 var/global/list/bibleitemstates = list("bible", "koran", "scrapbook", "bible",         "bible",       "bible",        "syringe_kit",   "syringe_kit", "syringe_kit", "syringe_kit",      "syringe_kit", "kingyellow",         "ithaqua", "scientology", "melted",       "necronomicon")
 
 /obj/item/weapon/storage/book/bible
-	name = "bible"
+	name = "библия"
 	desc = "Apply to head repeatedly."
 	icon = 'icons/obj/storage.dmi'
 	icon_state ="bible"
@@ -33,7 +33,7 @@ var/global/list/bibleitemstates = list("bible", "koran", "scrapbook", "bible",  
 		return
 	// If H is the Chaplain, we can set the icon_state of the bible (but only once!)
 	if(!SSreligion.Bible_icon_state && H.job == "Chaplain")
-		var/dat = "<html><head><title>Pick Bible Style</title></head><body><center><h2>Pick a bible style</h2></center><table>"
+		var/dat = "<html><meta charset=UTF-8><head><title>Pick Bible Style</title></head><body><center><h2>Pick a bible style</h2></center><table>"
 		var/i
 		for(i = 1, i < biblestates.len, i++)
 			var/icon/bibleicon = icon('icons/obj/storage.dmi', biblestates[i])

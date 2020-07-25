@@ -22,7 +22,7 @@ MASS SPECTROMETER
 /obj/item/device/t_scanner/attack_self(mob/user)
 
 	on = !on
-	icon_state = copytext(icon_state, 1, length(icon_state))+"[on]"
+	icon_state = copytext_char(icon_state, 1, length(icon_state))+"[on]"
 
 	if(on)
 		START_PROCESSING(SSobj, src)
@@ -169,16 +169,16 @@ MASS SPECTROMETER
 	// Species and body temperature
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		to_chat(user, "<span class='info'>Species: [H.dna.species.name]</span>")
-	to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
+		to_chat(user, "<span class='info'>Раса: [H.dna.species.name]</span>")
+	to_chat(user, "<span class='info'>Температура тела: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
 
 	// Time of death
 	if(M.tod && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
-		to_chat(user, "<span class='info'>Time of Death:</span> [M.tod]")
+		to_chat(user, "<span class='info'>Время смерти:</span> [M.tod]")
 		var/tdelta = round(world.time - M.timeofdeath)
 		if(tdelta < (DEFIB_TIME_LIMIT * 10))
-			to_chat(user, "<span class='danger'>Subject died [tdelta / 10] seconds \
-				ago, defibrillation may be possible!</span>")
+			to_chat(user, "<span class='danger'>Субъект умер [tdelta / 10] секунд \
+				назад, дефибрилляция еще возможна!</span>")
 
 	for(var/datum/disease/D in M.viruses)
 		if(!(D.visibility_flags & HIDDEN_SCANNER))
@@ -196,7 +196,11 @@ MASS SPECTROMETER
 			var/blood_percent =  round((C.blood_volume / BLOOD_VOLUME_NORMAL)*100)
 			var/blood_type = C.dna.blood_type
 			if(blood_id != "blood")//special blood substance
-				blood_type = blood_id
+				var/datum/reagent/R = chemical_reagents_list[blood_id]
+				if(R)
+					blood_type = R.name
+				else
+					blood_type = blood_id
 			if(C.blood_volume <= BLOOD_VOLUME_SAFE && C.blood_volume > BLOOD_VOLUME_OKAY)
 				to_chat(user, "<span class='danger'>LOW blood level [blood_percent] %, [C.blood_volume] cl,</span> <span class='info'>type: [blood_type]</span>")
 			else if(C.blood_volume <= BLOOD_VOLUME_OKAY)
@@ -360,7 +364,8 @@ MASS SPECTROMETER
 			else
 				blood_traces = params2list(R.data["trace_chem"])
 				break
-		var/dat = "<i><b>Trace Chemicals Found:</b>"
+		var/dat = {"<meta charset="UTF-8">"}
+		dat += "<i><b>Trace Chemicals Found:</b>"
 		if(!blood_traces.len)
 			dat += "<br>None"
 		else

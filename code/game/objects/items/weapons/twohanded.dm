@@ -39,9 +39,9 @@
 		force = force_unwielded
 	else
 		force = (force / 1.5)
-	var/sf = findtext(name," (Wielded)")
+	var/sf = findtext_char(name," (Wielded)")
 	if(sf)
-		name = copytext(name,1,sf)
+		name = copytext_char(name,1,sf)
 	else //something wrong
 		name = "[initial(name)]"
 	update_unwield_icon()
@@ -49,7 +49,7 @@
 	if(iscyborg(user))
 		to_chat(user, "<span class='notice'>You free up your module.</span>")
 	else
-		user.visible_message("<span class='warning'>[user] let's go of their other hand.")
+		user.visible_message("<span class='warning'>[user] освобождает свою вторую руку.")
 	if(unwieldsound)
 		playsound(loc, unwieldsound, 50, 1)
 	var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_held_item()
@@ -81,7 +81,7 @@
 	if(iscyborg(user))
 		user.visible_message("<span class='warning'>[user] dedicates a module to the [initial(name)]s.")
 	else
-		user.visible_message("<span class='warning'>[user] grabs the [initial(name)] with both hands.")
+		user.visible_message("<span class='warning'>[user] хватает [initial(name)] обеими руками.")
 	if(wieldsound)
 		playsound(loc, wieldsound, 50, 1)
 	var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
@@ -141,7 +141,7 @@
 
 ///////////OFFHAND///////////////
 /obj/item/weapon/twohanded/offhand
-	name = "offhand"
+	name = "занятая рука"
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
 	flags = ABSTRACT | NODROP
@@ -220,7 +220,7 @@
  */
 /obj/item/weapon/twohanded/fireaxe  // DEM AXES MAN, marker -Agouri
 	icon_state = "fireaxe0"
-	name = "fire axe"
+	name = "пожарный топор"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
 	force = 5
 	throwforce = 15

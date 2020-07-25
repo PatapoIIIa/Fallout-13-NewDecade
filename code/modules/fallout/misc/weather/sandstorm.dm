@@ -1,14 +1,13 @@
 #define SANDSTORM_CHANNEL 16
 
 /datum/weather_controller/sandstorm
-	name = "���������_����"
+	name = "песчанная_буря"
 	id = "sandstorm"
 	desc = "Sandstorm."
-
 	overlay = "sandstorm"
-	chance = 5
-	duration_min = 2000
-	duration_max = 5000
+	chance = 15
+	duration_min = 3 MINUTE
+	duration_max = 6 MINUTE
 	var/list/mobs = list()
 	var/list/currentrun = list()
 	var/started = FALSE
@@ -20,6 +19,7 @@
 		..()
 	for (var/area/A in SSweather.outside_areas)
 		for(var/mob/living/carbon/human/H in A)
+			to_chat(H, "<span class='userdanger'>Воздух вокруг становится сухим и поднимается сильный ветер</span>")
 			H.playsound_local(get_turf(H), 'sound/f13effects/sandstorm_transition.ogg', vol = 15, channel = SANDSTORM_CHANNEL, repeat = 1)
 	return TRUE
 
@@ -62,8 +62,8 @@
 		var/mob/living/M = currentrun[currentrun.len]
 		currentrun.len--
 		if(istype(M, /mob/living/carbon/human))
-			//if(prob(0.5))
-				//lightningstrike(get_turf(M))
+			if(prob(0.5))
+				lightningstrike(get_turf(M))
 			var/mob/living/carbon/human/H = M
 			if((!H.wear_mask || !(H.wear_mask.flags_inv & HIDEFACE)) && (!H.head || !(H.head.flags_inv & HIDEFACE)))
 				H.adjustOxyLoss(2)

@@ -51,7 +51,7 @@
 	var/armour_penetration = 0 //How much armour they ignore, as a flat reduction from the targets armour value
 	var/melee_damage_type = BRUTE //Damage type of a simple mob's melee attack, should it do damage.
 	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1) // 1 for full damage , 0 for none , -1 for 1:1 heal from that source
-	var/attacktext = "attacks"
+	var/attacktext = "–∞—Ç–∞–∫—É–µ—Ç"
 	var/attack_sound = null
 	var/friendly = "nuzzles" //If the mob does no damage with it's attack
 	var/environment_smash = 0 //Set to 1 to allow breaking of crates,lockers,racks,tables; 2 for walls; 3 for Rwalls
@@ -87,7 +87,6 @@
 
 	//domestication
 	var/tame = 0
-	var/saddled = 0
 	var/datum/riding/riding_datum = null
 
 	var/XP = 0
@@ -108,8 +107,7 @@
 	spawnPosition = loc
 
 /mob/living/simple_animal/Destroy()
-	..()
-	return QDEL_HINT_PUTINPOOL
+	. = ..()
 
 /mob/living/simple_animal/Login()
 	if(src && src.client)
@@ -363,7 +361,8 @@
 		if(deathmessage)
 			visible_message("<span class='danger'>[src] [deathmessage]</span>")
 		else if(!del_on_death)
-			visible_message("<span class='danger'>[src] ÔÂÂÒÚ‡ÂÚ ‰‚Ë„‡Ú¸Òˇ...</span>")
+			visible_message("<span class='danger'>[src.name] –ø–µ—Ä–µ—Å—Ç–∞—ë—Ç –¥–≤–∏–≥–∞—Ç—å—Å—è...</span>")
+
 	if(del_on_death)
 		ghostize()
 		//Prevent infinite loops if the mob Destroy() is overriden in such
@@ -586,7 +585,7 @@
 			client.screen |= l_hand
 
 //ANIMAL RIDING
-/mob/living/simple_animal/unbuckle_mob(mob/living/buckled_mob,force = 0)
+/mob/living/simple_animal/unbuckle_mob(mob/living/buckled_mob, force = 0, check_loc = 1)
 	if(riding_datum)
 		riding_datum.restore_position(buckled_mob)
 	. = ..()
@@ -597,15 +596,14 @@
 		if(user.incapacitated())
 			return
 		for(var/atom/movable/A in get_turf(src))
-			if(A.density)
-				if(A != src && A != M)
-					return
+			if(A != src && A != M && A.density)
+				return
 		M.forceMove(get_turf(src))
 		riding_datum.handle_vehicle_offsets()
 		riding_datum.ridden = src
 
 /mob/living/simple_animal/relaymove(mob/user, direction)
-	if(tame && saddled && riding_datum)
+	if(tame && riding_datum)
 		riding_datum.handle_ride(user, direction)
 
 /mob/living/simple_animal/Move(NewLoc,Dir=0,step_x=0,step_y=0)
@@ -615,7 +613,6 @@
 		riding_datum.handle_vehicle_offsets()
 
 
-/mob/living/simple_animal/buckle_mob()
-	..()
+/mob/living/simple_animal/buckle_mob(mob/living/buckled_mob, force = 0, check_loc = 1)
+	. = ..()
 	riding_datum = new/datum/riding/animal
-

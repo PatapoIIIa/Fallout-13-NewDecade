@@ -16,7 +16,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 8
 	melee_damage_upper = 12
-	attacktext = "attacks"
+	attacktext = "атакует"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	emote_taunt = list("growls")
 	speak_emote = list("creaks")
@@ -32,17 +32,18 @@
 
 // Aggro when you try to open them. Will also pickup loot when spawns and drop it when dies.
 /mob/living/simple_animal/hostile/mimic/crate
-	attacktext = "bites"
+	attacktext = "кусает"
 	speak_emote = list("clatters")
 	stop_automated_movement = 1
 	wander = 0
 	var/attempt_open = 0
 
 // Pickup loot
-/mob/living/simple_animal/hostile/mimic/crate/initialize()
+/mob/living/simple_animal/hostile/mimic/crate/Initialize(mapload)
 	..()
-	for(var/obj/item/I in loc)
-		I.forceMove(src)
+	if(mapload)	//eat shit
+		for(var/obj/item/I in loc)
+			I.forceMove(src)
 
 /mob/living/simple_animal/hostile/mimic/crate/DestroySurroundings()
 	..()

@@ -1,5 +1,5 @@
 /obj/item/weapon/reagent_containers/pill
-	name = "pill"
+	name = "таблетка"
 	desc = "A tablet or capsule."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "pill"
@@ -7,7 +7,7 @@
 	possible_transfer_amounts = list()
 	volume = 50
 	var/apply_type = INGEST
-	var/apply_method = "swallow"
+	var/apply_method = "проглатываете"
 	var/roundstart = 0
 	var/self_delay = 0 //pills are instant, this is because patches inheret their aplication from pills
 
@@ -28,11 +28,11 @@
 		return 0
 
 	if(M == user)
-		M.visible_message("<span class='notice'>[user] attempts to [apply_method] [src].</span>")
+		M.visible_message("<span class='notice'>[user] пытается применить [apply_method] [src].</span>")
 		if(self_delay)
 			if(!do_mob(user, M, self_delay))
 				return 0
-		to_chat(M, "<span class='notice'>You [apply_method] [src].</span>")
+		to_chat(M, "<span class='notice'>Вы [apply_method] [src].</span>")
 
 	else
 		M.visible_message("<span class='danger'>[user] attempts to force [M] to [apply_method] [src].</span>", \
@@ -98,7 +98,7 @@
 	name = "stimulant pill"
 	desc = "Often taken by overworked employees, athletes, and the inebriated. You'll snap to attention immediately!"
 	icon_state = "pill19"
-	list_reagents = list("ephedrine" = 10, "antihol" = 10, "coffee" = 30)
+	list_reagents = list("antihol" = 10, "coffee" = 30)
 	roundstart = 1
 /obj/item/weapon/reagent_containers/pill/salbutamol
 	name = "salbutamol pill"

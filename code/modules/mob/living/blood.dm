@@ -10,7 +10,7 @@
 		spawn(amount)
 			bleedsuppress = 0
 			if(stat != DEAD && bleed_rate)
-				to_chat(src, "<span class='warning'>Кровь протекает через ваши бинты.</span>")
+				to_chat(src, "<span class='warning'>РљСЂРѕРІСЊ РїСЂРѕС‚РµРєР°РµС‚ С‡РµСЂРµР· РІР°С€Рё Р±РёРЅС‚С‹.</span>")
 
 
 /mob/living/carbon/monkey/handle_blood()
@@ -153,7 +153,7 @@
 		for(var/datum/disease/D in viruses)
 			blood_data["viruses"] += D.Copy()
 
-		blood_data["blood_DNA"] = copytext(dna.unique_enzymes,1,0)
+		blood_data["blood_DNA"] = copytext_char(dna.unique_enzymes,1,0)
 		if(resistances && resistances.len)
 			blood_data["resistances"] = resistances.Copy()
 		var/list/temp_chem = list()
@@ -171,7 +171,7 @@
 
 		if(!suiciding)
 			blood_data["cloneable"] = 1
-		blood_data["blood_type"] = copytext(dna.blood_type,1,0)
+		blood_data["blood_type"] = copytext_char(dna.blood_type,1,0)
 		blood_data["gender"] = gender
 		blood_data["real_name"] = real_name
 		blood_data["features"] = dna.features
@@ -246,14 +246,14 @@
 				temp_blood_DNA |= drop.blood_DNA.Copy() //we transfer the dna from the drip to the splatter
 				qdel(drop)//the drip is replaced by a bigger splatter
 		else
-			drop = PoolOrNew(/obj/effect/decal/cleanable/blood/drip, T)
+			drop = new /obj/effect/decal/cleanable/blood/drip(T)
 			drop.transfer_mob_blood_dna(src)
 			return
 
 	// Find a blood decal or create a new one.
 	var/obj/effect/decal/cleanable/blood/B = locate() in T
 	if(!B)
-		B = PoolOrNew(/obj/effect/decal/cleanable/blood/splatter, T)
+		B = new /obj/effect/decal/cleanable/blood/splatter(T)
 	B.transfer_mob_blood_dna(src) //give blood info to the blood decal.
 	if(temp_blood_DNA)
 		B.blood_DNA |= temp_blood_DNA

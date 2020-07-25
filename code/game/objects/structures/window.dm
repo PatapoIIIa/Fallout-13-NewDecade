@@ -1,6 +1,6 @@
 /obj/structure/window
-	name = "window"
-	desc = "A window."
+	name = "РѕРєРЅРѕ"
+	desc = "РћРєРЅРѕ."
 	icon_state = "window"
 	density = 1
 	layer = ABOVE_OBJ_LAYER //Just above doors
@@ -105,7 +105,7 @@
 
 /obj/structure/window/attack_tk(mob/user)
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message("<span class='notice'>Что-то стучит в [src].</span>")
+	user.visible_message("<span class='notice'>Р§С‚Рѕ-С‚Рѕ СЃС‚СѓС‡РёС‚ РІ [src].</span>")
 	add_fingerprint(user)
 	playsound(loc, 'sound/effects/Glassknock.ogg', 50, 1)
 
@@ -118,7 +118,7 @@
 	if(!can_be_reached(user))
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message("[user] стучит в окно.")
+	user.visible_message("[user] СЃС‚СѓС‡РёС‚ РІ РѕРєРЅРѕ.")
 	add_fingerprint(user)
 	playsound(loc, 'sound/effects/Glassknock.ogg', 50, 1)
 
@@ -469,7 +469,7 @@
 	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
 	icon_state = "clockwork_window_single"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	max_integrity = 100
+	max_integrity = 80
 	armor = list(melee = 60, bullet = 25, laser = 0, energy = 0, bomb = 25, bio = 100, rad = 100, fire = 80, acid = 100)
 	explosion_block = 2 //fancy AND hard to destroy. the most useful combination.
 	glass_type = /obj/item/stack/tile/brass
@@ -484,13 +484,13 @@
 	var/amount_of_gears = 2
 	if(!fulltile)
 		if(direct)
-			var/obj/effect/E = PoolOrNew(/obj/effect/overlay/temp/ratvar/window/single, get_turf(src))
+			var/obj/effect/E = new /obj/effect/overlay/temp/ratvar/window/single(get_turf(src))
 			setDir(direct)
 			ini_dir = direct
 			E.setDir(direct)
 			made_glow = TRUE
 	else
-		PoolOrNew(/obj/effect/overlay/temp/ratvar/window, get_turf(src))
+		new /obj/effect/overlay/temp/ratvar/window(get_turf(src))
 		made_glow = TRUE
 		amount_of_gears = 4
 	for(var/i in 1 to amount_of_gears)
@@ -499,7 +499,7 @@
 
 /obj/structure/window/reinforced/clockwork/setDir(direct)
 	if(!made_glow)
-		var/obj/effect/E = PoolOrNew(/obj/effect/overlay/temp/ratvar/window/single, get_turf(src))
+		var/obj/effect/E = new /obj/effect/overlay/temp/ratvar/window/single(get_turf(src))
 		E.setDir(direct)
 		made_glow = TRUE
 	..()
@@ -509,8 +509,9 @@
 	return ..()
 
 /obj/structure/window/reinforced/clockwork/ratvar_act()
-	obj_integrity = max_integrity
-	update_icon()
+	if(ratvar_awakens)
+		obj_integrity = max_integrity
+		update_icon()
 
 /obj/structure/window/reinforced/clockwork/narsie_act()
 	take_damage(rand(25, 75), BRUTE)
@@ -529,7 +530,7 @@
 	canSmoothWith = null
 	fulltile = 1
 	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 150
+	max_integrity = 120
 	level = 3
 	glass_amount = 2
 	made_glow = TRUE

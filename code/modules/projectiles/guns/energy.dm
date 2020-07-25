@@ -43,7 +43,7 @@
 	var/obj/item/ammo_casing/energy/shot
 	ammo_instances = list()
 	for (var/shottype in ammo_type)
-		shot = PoolOrNew(shottype)
+		shot = new shottype(src)
 		ammo_instances += shot
 	shot = ammo_instances[select]
 	fire_sound = shot.fire_sound
@@ -77,7 +77,7 @@
 		power_supply = A
 		power_supply.forceMove(src)
 		recharge_newshot(1)
-		to_chat(user, "<span class='greenannounce'>Вы вставили новую ячейку в [src].</span>")
+		to_chat(user, "<span class='greenannounce'>Р’С‹ РІСЃС‚Р°РІРёР»Рё РЅРѕРІСѓСЋ СЏС‡РµР№РєСѓ РІ [src].</span>")
 		update_icon()
 
 		if(O)
@@ -93,7 +93,7 @@
 	if(power_supply)
 		unload_ammo(user)
 	else
-		to_chat(user, "<span class='warning'>Тут нет ячейки.</span>")
+		to_chat(user, "<span class='warning'>РўСѓС‚ РЅРµС‚ СЏС‡РµР№РєРё.</span>")
 
 /obj/item/weapon/gun/energy/proc/unload_ammo(mob/living/user)
 	if(power_supply)
@@ -101,7 +101,7 @@
 		user.put_in_hands(power_supply)
 		power_supply = null
 		update_icon()
-		to_chat(user, "<span class='notice'>Вы изъяли ячейку из [src].</span>")
+		to_chat(user, "<span class='notice'>Р’С‹ РёР·СЉСЏР»Рё СЏС‡РµР№РєСѓ РёР· [src].</span>")
 
 /obj/item/weapon/gun/energy/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() == src)
@@ -219,3 +219,31 @@
 				STOP_PROCESSING(SSobj, src)
 	. = ..()
 
+
+/obj/item/weapon/gun/energy/ignition_effect(atom/A, mob/living/user)
+	if(!can_shoot() || !ammo_type[select])
+		shoot_with_empty_chamber()
+		. = ""
+	else
+		var/obj/item/ammo_casing/energy/E = ammo_type[select]
+		var/obj/item/projectile/energy/BB = E.BB
+		if(!BB)
+			. = ""
+		else if(BB.nodamage || !BB.damage || BB.damage_type == STAMINA)
+			user.visible_message("<span class='danger'>[user] tries to light their [A.name] with [src], but it doesn't do anything. Dumbass.</span>")
+			playsound(user, E.fire_sound, 50, 1)
+			playsound(user, BB.hitsound, 50, 1)
+			power_supply.use(E.e_cost)
+			. = ""
+		else if(BB.damage_type != BURN)
+			user.visible_message("<span class='danger'>[user] tries to light their [A.name] with [src], but only succeeds in utterly destroying it. Dumbass.</span>")
+			playsound(user, E.fire_sound, 50, 1)
+			playsound(user, BB.hitsound, 50, 1)
+			power_supply.use(E.e_cost)
+			qdel(A)
+			. = ""
+		else
+			playsound(user, E.fire_sound, 50, 1)
+			playsound(user, BB.hitsound, 50, 1)
+			power_supply.use(E.e_cost)
+			. = "<span class='danger'>[user] casually lights their [A.name] with [src]. Damn.</span>"

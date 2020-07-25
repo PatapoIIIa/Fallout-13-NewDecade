@@ -9,7 +9,12 @@
 	max_integrity = 150
 	var/notices = 0
 
-/obj/structure/noticeboard/initialize()
+/obj/structure/noticeboard/Initialize(mapload)
+	..()
+
+	if(!mapload)
+		return
+
 	for(var/obj/item/I in loc)
 		if(notices > 4) break
 		if(istype(I, /obj/item/weapon/paper))
@@ -37,7 +42,8 @@
 
 /obj/structure/noticeboard/attack_hand(mob/user)
 	var/auth = allowed(user)
-	var/dat = "<B>[name]</B><BR>"
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += "<B>[name]</B><BR>"
 	for(var/obj/item/P in src)
 		if(istype(P, /obj/item/weapon/paper))
 			dat += "<A href='?src=\ref[src];read=\ref[P]'>[P.name]</A> [auth ? "<A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A>" : ""]<BR>"

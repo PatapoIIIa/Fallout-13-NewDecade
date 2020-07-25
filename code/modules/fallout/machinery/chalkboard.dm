@@ -5,7 +5,7 @@
 
 /obj/structure/chalkboard
 	name = "chalkboard"
-	desc = "Классическая доска для рисования всяких штук и научных диограмм.<br>Пожалуйста, не ешьте мел."
+	desc = "РљР»Р°СЃСЃРёС‡РµСЃРєР°СЏ РґРѕСЃРєР° РґР»СЏ СЂРёСЃРѕРІР°РЅРёСЏ РІСЃСЏРєРёС… С€С‚СѓРє Рё РЅР°СѓС‡РЅС‹С… РґРёРѕРіСЂР°РјРј.<br>РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РЅРµ РµС€СЊС‚Рµ РјРµР»."
 	icon = 'icons/fallout/machines/64x32.dmi'
 	icon_state = "board_clean"
 	flags = FPRINT
@@ -16,19 +16,19 @@
 
 /obj/structure/chalkboard/verb/honk()
 	set src in oview(1)
-	set name = "Рисовать"
-	set desc = "Рисовашки это весело."
+	set name = "Р РёСЃРѕРІР°С‚СЊ"
+	set desc = "Р РёСЃРѕРІР°С€РєРё СЌС‚Рѕ РІРµСЃРµР»Рѕ."
 	set category = "Object"
 
 	if (usr.stat != 0)
 		return
 
 	if(!ishuman(usr))
-		usr << "\red Ты хочешь, но не можешь. Ты пытаешься, но нет."
+		usr << "\red РўС‹ С…РѕС‡РµС€СЊ, РЅРѕ РЅРµ РјРѕР¶РµС€СЊ. РўС‹ РїС‹С‚Р°РµС€СЊСЃСЏ, РЅРѕ РЅРµС‚."
 		return
 
 	if(content)
-		usr << "\blue Доска вся изрисована, помойте чтобы использовать вновь."
+		usr << "\blue Р”РѕСЃРєР° РІСЃСЏ РёР·СЂРёСЃРѕРІР°РЅР°, РїРѕРјРѕР№С‚Рµ С‡С‚РѕР±С‹ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІРЅРѕРІСЊ."
 		return
 
 	add_fingerprint(usr)
@@ -40,19 +40,19 @@
 	var/found = 0
 	var/length = length(substring)
 
-	found = findtext(string, substring)
+	found = findtext_char(string, substring)
 
 	while(found)
 		count++
 		found += length
-		found = findtext(string, substring, found)
+		found = findtext_char(string, substring, found)
 
 	return count
 
 /obj/structure/chalkboard/verb/wrtite()
 	set src in oview(1)
-	set name = "Писать"
-	set desc = "Не пялься, пиши давай."
+	set name = "РџРёСЃР°С‚СЊ"
+	set desc = "РќРµ РїСЏР»СЊСЃСЏ, РїРёС€Рё РґР°РІР°Р№."
 	set category = "Object"
 
 	if (usr.stat != 0)
@@ -60,30 +60,30 @@
 
 
 	if(!ishuman(usr))
-		usr << "\red Ты хочешь, но не можешь. Ты пытаешься, но нет."
+		usr << "\red РўС‹ С…РѕС‡РµС€СЊ, РЅРѕ РЅРµ РјРѕР¶РµС€СЊ. РўС‹ РїС‹С‚Р°РµС€СЊСЃСЏ, РЅРѕ РЅРµС‚."
 		return
 
 	if(content)
-		usr << "\blue Доска вся изрисована, помойте чтобы использовать вновь."
+		usr << "\blue Р”РѕСЃРєР° РІСЃСЏ РёР·СЂРёСЃРѕРІР°РЅР°, РїРѕРјРѕР№С‚Рµ С‡С‚РѕР±С‹ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІРЅРѕРІСЊ."
 		return
 
 	//part wrom paper/write
-	var/t =  input("Что ты хочешь написать тут? максимум 2000 символов.", "Написать", null, null) as message
+	var/t =  input("Р§С‚Рѕ С‚С‹ С…РѕС‡РµС€СЊ РЅР°РїРёСЃР°С‚СЊ С‚СѓС‚? РјР°РєСЃРёРјСѓРј 2000 СЃРёРјРІРѕР»РѕРІ.", "РќР°РїРёСЃР°С‚СЊ", null, null) as message
 
 	if(length(t) > 2048)
-		usr << "\blue Твоя писанина не влезла на доску!"
+		usr << "\blue РўРІРѕСЏ РїРёСЃР°РЅРёРЅР° РЅРµ РІР»РµР·Р»Р° РЅР° РґРѕСЃРєСѓ!"
 		return
 
 	//t = checkhtml(t)
 	t = sanitize(t, list("\n"="\[br\]")) //"?"=LETTER_255
 
-	//t = replacetext(t, "\n", "<BR>")
+	//t = replacetext_char(t, "\n", "<BR>")
 	t = parsepencode(t) // Encode everything from pencode to html
 
 	if(!t)
 		return
 	if(count_occurrences(t, "<BR>") > 20)
-		usr << "\blue Вы не можете уместить всё на доске!"
+		usr << "\blue Р’С‹ РЅРµ РјРѕР¶РµС‚Рµ СѓРјРµСЃС‚РёС‚СЊ РІСЃС‘ РЅР° РґРѕСЃРєРµ!"
 		return
 
 	content = t
@@ -143,22 +143,22 @@
 
 /obj/structure/chalkboard/proc/parsepencode(var/t)
 
-	t = replacetext(t, "\[center\]", "<center>")
-	t = replacetext(t, "\[/center\]", "</center>")
-	t = replacetext(t, "\[br\]", "<BR>")
-	t = replacetext(t, "\[b\]", "<B>")
-	t = replacetext(t, "\[/b\]", "</B>")
-	t = replacetext(t, "\[i\]", "<I>")
-	t = replacetext(t, "\[/i\]", "</I>")
-	t = replacetext(t, "\[u\]", "<U>")
-	t = replacetext(t, "\[/u\]", "</U>")
-	t = replacetext(t, "\[large\]", "<font size=\"4\">")
-	t = replacetext(t, "\[/large\]", "</font>")
-	t = replacetext(t, "\[*\]", "<li>")
-	t = replacetext(t, "\[small\]", "<font size = \"1\">")
-	t = replacetext(t, "\[/small\]", "</font>")
-	t = replacetext(t, "\[list\]", "<ul>")
-	t = replacetext(t, "\[/list\]", "</ul>")
+	t = replacetext_char(t, "\[center\]", "<center>")
+	t = replacetext_char(t, "\[/center\]", "</center>")
+	t = replacetext_char(t, "\[br\]", "<BR>")
+	t = replacetext_char(t, "\[b\]", "<B>")
+	t = replacetext_char(t, "\[/b\]", "</B>")
+	t = replacetext_char(t, "\[i\]", "<I>")
+	t = replacetext_char(t, "\[/i\]", "</I>")
+	t = replacetext_char(t, "\[u\]", "<U>")
+	t = replacetext_char(t, "\[/u\]", "</U>")
+	t = replacetext_char(t, "\[large\]", "<font size=\"4\">")
+	t = replacetext_char(t, "\[/large\]", "</font>")
+	t = replacetext_char(t, "\[*\]", "<li>")
+	t = replacetext_char(t, "\[small\]", "<font size = \"1\">")
+	t = replacetext_char(t, "\[/small\]", "</font>")
+	t = replacetext_char(t, "\[list\]", "<ul>")
+	t = replacetext_char(t, "\[/list\]", "</ul>")
 
 	return t
 

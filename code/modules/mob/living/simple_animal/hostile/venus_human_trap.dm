@@ -3,8 +3,8 @@
 /obj/structure/alien/resin/flower_bud_enemy //inheriting basic attack/damage stuff from alien structures
 	name = "flower bud"
 	desc = "A large pulsating plant..."
-	icon = 'icons/effects/spacevines.dmi'
-	icon_state = "flower_bud"
+	icon = 'icons/effects/spacevines64.dmi'
+	icon_state = "seedling_fire"
 	layer = SPACEVINE_MOB_LAYER
 	opacity = 0
 	canSmoothWith = list()
@@ -71,6 +71,14 @@
 	var/grasp_range = 4
 	del_on_death = 1
 	XP = 5
+
+/mob/living/simple_animal/hostile/venus_human_trap/Destroy()
+	for(var/L in grasping)
+		var/datum/beam/B = grasping[L]
+		if(B)
+			qdel(B)
+	grasping = null
+	return ..()
 
 /mob/living/simple_animal/hostile/venus_human_trap/handle_automated_action()
 	if(..())

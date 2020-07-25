@@ -1,8 +1,8 @@
 //Fallout 13 deathclaw directory
 
 /mob/living/simple_animal/hostile/deathclaw
-	name = " Ó„ÓÚ¸ —ÏÂÚË"
-	desc = "¡≈√» ¡Àﬂ“‹."
+	name = "–ö–æ–≥–æ—Ç—å –°–º–µ—Ä—Ç–∏"
+	desc = "–ë–ï–ì–ò –ë–õ–Ø–¢–¨."
 	icon = 'icons/fallout/mobs/deathclaw.dmi'
 	icon_state = "deathclaw"
 	icon_living = "deathclaw"
@@ -41,7 +41,6 @@
 	idle_vision_range = 7
 	pixel_w = -16
 	mob_size = MOB_SIZE_LARGE
-	attacktext = "slashes"
+	attacktext = "–±—å—ë—Ç —Å —Ä–∞–∑–º–∞—Ö—É"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-
 	XP = 65

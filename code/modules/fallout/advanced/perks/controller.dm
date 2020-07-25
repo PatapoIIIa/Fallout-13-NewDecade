@@ -53,7 +53,7 @@
 
 /datum/perkController/proc/uiChoose()
 	if(count == 0)
-		to_chat(usr, "You need more experience to do this!")
+		to_chat(usr, "Вам необходимо больше опыта для этого!")
 		return
 
 	if(perkPool.len == 0)
@@ -102,8 +102,8 @@
 		<tr><td><img src='[first.icon_state].png' class='center'></td><td><img src='[second.icon_state].png' class='center'></td></tr>
 		<tr><td>[first.description]</td><td>[second.description]</td></tr>
 		<tr>
-			<td><a href='?src=\ref[src];perk=1'>�������/Choose</a></td>
-			<td><a href='?src=\ref[src];perk=2'>�������/Choose</a></td>
+			<td><a href='?src=\ref[src];perk=1'>Выбрать</a></td>
+			<td><a href='?src=\ref[src];perk=2'>Выбрать</a></td>
 		</tr>
 	</table'>"}
 

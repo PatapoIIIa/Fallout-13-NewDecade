@@ -107,7 +107,7 @@ AngleToHue(hue)
     Converts an angle to a hue in the valid range.
 RotateHue(hsv, angle)
     Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from 0 to 360.
-    (Rotating red by 60° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
+    (Rotating red by 60Â° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
     as the original, but a different hue.
 GrayScale(rgb)
     Takes an RGB or RGBA color and converts it to grayscale. Returns an RGB or RGBA string.
@@ -897,7 +897,7 @@ The _flatIcons list is a cache for generated icon files.
 	var/icon/atom_icon = new(A.icon, A.icon_state)
 
 	if(!letter)
-		letter = copytext(A.name, 1, 2)
+		letter = copytext_char(A.name, 1, 2)
 		if(uppercase == 1)
 			letter = uppertext(letter)
 		else if(uppercase == -1)
@@ -1072,5 +1072,5 @@ var/list/freeze_item_icons = list()
 //Assumes already frozed
 obj/proc/make_unfrozen()
 	icon = initial(icon)
-	name = replacetext(name, "frozen ", "")
+	name = replacetext_char(name, "frozen ", "")
 	is_frozen = FALSE

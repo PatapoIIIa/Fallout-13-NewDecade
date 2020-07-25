@@ -2,198 +2,231 @@
 //All of the items listed are useful only for crafting things.
 
 /obj/item/weaponcrafting/reciever
-	name = "modular receiver"
-	desc = "�������� ���������� ���������� ��������� ��� ������� ������."
+	name = "спусковой механизм"
+	desc = "Прототип модульного спускового механизма для всякого оружия."
 	icon = 'icons/fallout/objects/crafting.dmi'
 	icon_state = "reciever"
+	price = 850
 
 /obj/item/weaponcrafting/stock
-	name = "rifle stock"
-	desc = "A classic rifle stock that doubles as a grip, roughly carved out of wood."
+	name = "ружейная ложа"
+	desc = "Ложа для всякий ружий, автоматов и.т.п"
 	icon = 'icons/fallout/objects/crafting.dmi'
 	icon_state = "riflestock"
+	price = 250
 
 /obj/item/weaponcrafting/handle/rifle
-	name = "Handle"
-	desc = "������ ��������."
+	name = "винтовочная рукоятка"
+	desc = "Просто рукоятка."
 	icon = 'icons/fallout/objects/crafting.dmi'
 	icon_state = "handle_a_1"
+	price = 350
 
-/obj/item/weaponcrafting/handle/rifle/initialize()
+/obj/item/weaponcrafting/handle/rifle/Initialize()
 	..()
 	icon_state = "handle_a_[rand(1,2)]"
 
 /obj/item/weaponcrafting/handle/pistol
-	name = "Handle"
+	name = "пистолетная рукоятка"
 	icon_state = "handle_p_1"
+	price = 250
 
-/obj/item/weaponcrafting/handle/pistol/initialize()
+/obj/item/weaponcrafting/handle/pistol/Initialize()
 	..()
 	icon_state = "handle_p_[rand(1,3)]"
 
 //The following items are in "crafting" type just to keep code clean.
 /obj/item/crafting
-	name = "Shitspawn"
-	desc = "Why it's here?!<br>Badmins spawn shit!<br>Tell someone about it."
+	name = "бляздец"
+	desc = "сука, тут кто-то щитспавнит, напишите @woona#2803"
 	icon = 'icons/fallout/objects/crafting.dmi'
 	item_state = "null"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/crafting/diode
-	name = "diode"
-	desc = "It looks like something I saw in that useless broken television set once.<br>That thing is probably used in some electronic devices."
+	name = "диод"
+	desc = "Можно использовать для сборки каких-нибудь электронных приборов."
 	icon_state = "diode_1"
-/obj/item/crafting/diode/initialize()
+	price = 100
+
+/obj/item/crafting/diode/Initialize()
 	..()
 	icon_state = "diode_[rand(1,3)]"
 
 /obj/item/crafting/transistor
-	name = "transistor"
-	desc = "Popov would love it, but Tesla got to see it.<br>The most useful electrical component."
+	name = "транзистор"
+	desc = "Попов очень любил его. Но Тесла больше.<br>Наиболее полезный компонент."
 	icon_state = "transistor_1"
-/obj/item/crafting/transistor/initialize()
+	price = 150
+
+/obj/item/crafting/transistor/Initialize()
 	..()
 	icon_state = "transistor_[rand(1,3)]"
 
 /obj/item/crafting/capacitor
-	name = "capacitor"
-	desc = "It looks like something I saw inside of the radio once.<br>It seems like it's the most basic electrical component."
+	name = "конденсатор"
+	desc = "Можно использовать для сборки каких-нибудь электронных приборов."
 	icon_state = "capacitor_1"
-/obj/item/crafting/capacitor/initialize()
+	price = 200
+
+/obj/item/crafting/capacitor/Initialize()
 	..()
 	icon_state = "capacitor_[rand(1,3)]"
 
 /obj/item/crafting/fuse
-	name = "fuse"
-	desc = "A tiny glass tube with some wiring stuck inside of it.<br>I have no idea what it is."
+	name = "зажигатель"
+	desc = "Маленькая стеклянная трубка с проводами. Даже и не знаю что это..."
 	icon_state = "fuse_1"
-/obj/item/crafting/fuse/initialize()
+	price = 100
+
+/obj/item/crafting/fuse/Initialize()
 	..()
 	icon_state = "fuse_[rand(1,3)]"
 
 /obj/item/crafting/resistor
-	name = "resistor"
-	desc = "Tesla Warrior says, \"Stop right there, criminal electron!\"<br>Electron says, \"You'll never catch me!!!\"<br>*Zoom* *Zoom* *Pew* *Pew* *Pew*"
+	name = "резистор"
+	desc = "Тесла Воин говорит, \"Сдавайся, криминальнй электрон!\"<br>Электрон говорит, \"Ты никогда не поймаешь меня!\"<br>*вжжж!* *з-з-з!* *пиу!* *пиу!* *пиу!*"
 	icon_state = "resistor_1"
-/obj/item/crafting/resistor/initialize()
+	price = 250
+
+/obj/item/crafting/resistor/Initialize()
 	..()
 	icon_state = "resistor_[rand(1,3)]"
 
 /obj/item/crafting/switch
-	name = "switch"
-	desc = "A common switch, used to light up the flashlight or activate a bomb timer." //Why i code it?
+	name = "переключатель"
+	desc = "обычный переключатель, используется во всяких бытовых вещах, фонариках, выключателях, бомбах."
 	icon_state = "switch_1"
-/obj/item/crafting/switch/initialize()
+	price = 200
+
+/obj/item/crafting/switch/Initialize()
 	..()
 	icon_state = "switch_[rand(1,3)]"
 
 /obj/item/crafting/bulb
-	name = "bulb"
-	desc = "And at last I see the light,<br>And it's like the fog has lifted,<br>And at last I see the light,<br>And it's like the sky is new,<br>And it's warm and real and bright,<br>And the world has somehow shifted,<br>All at once everything looks different."
+	name = "лампочка"
+	desc = "Просто лампочка, недостаточно большая чтобы использовать где-либо кроме создания чего-либо."
 	icon_state = "bulb_1"
-/obj/item/crafting/bulb/initialize()
+	price = 100
+
+/obj/item/crafting/bulb/Initialize()
 	..()
 	icon_state = "bulb_[rand(1,3)]"
 
 /obj/item/crafting/board
-	name = "empty circuit board"
-	desc = "A plastic board used to hold all other electrical components together."
+	name = "пустая плата"
+	desc = "Пластиковая плата, используется для того чтобы держать все электронные части вместе."
 	icon_state = "board_1"
-/obj/item/crafting/board/initialize()
+	price = 350
+
+/obj/item/crafting/board/Initialize()
 	..()
 	icon_state = "board_[rand(1,3)]"
 
 /obj/item/crafting/buzzer
-	name = "buzzer"
-	desc = "I can almost hear it buzzing. Except it's not."
+	name = "жужжалка"
+	desc = "Я почти слышу это жужжание. Ну, почти."
 	icon_state = "buzzer"
+	price = 200
 
 /obj/item/crafting/frame
-	name = "circuit board assembly"
-	desc = "A printed circuit board - a complex electrical component."
+	name = "собранная плата"
+	desc = "Напечатанная и собранная плата для сложных электрических приборов."
 	icon_state = "frame"
+	price = 450
 
 /obj/item/crafting/small_gear
-	name = "small gear"
-	desc = "A litle part of a big mechanism."
+	name = "маленькая шестерня"
+	desc = "Маленькая часть большого механизма."
 	icon_state = "gear_small"
+	price = 150
 
 /obj/item/crafting/large_gear
-	name = "large gear"
-	desc = "A big part of a grand mechanism."
+	name = "большая шестерня"
+	desc = "Большая часть грандиозного механизма."
 	icon_state = "gear_large"
+	price = 200
 
 /obj/item/crafting/duct_tape
-	name = "duct tape"
-	desc = "A pinnacle of engineering - it fixes everything!"
+	name = "изолента"
+	desc = "Всё починит, синяя, серая, красная и черная - изолента!"
 	icon_state = "duct_tape"
+	price = 100
 
 /obj/item/crafting/kettle
-	name = "kettle"
-	desc = "������ ��� ���"
+	name = "чайничек"
+	desc = "Ну, ай оно уже не так хорошо хранит, мешают дырки в дне."
 	icon_state = "kettle"
+	price = 95
 
 /obj/item/crafting/toaster
-	name = "toaster"
-	desc = "The toaster is a pre-War kitchen appliance that was used to toast bread. It has a stainless steel casing with black painted levers and base, that has internal heating coils to toast the bread inside the two slots on the top."
+	name = "тостер"
+	desc = "Как починить тостер:<br>1. Будьте девушкой. <br>2. Найдите девушку.<br>3. Переспите."
 	icon_state = "toaster"
+	price = 90
 
 /obj/item/crafting/vacuum_cleaner
-	name = "vacuum cleaner"
-	desc = "��������� �������"
+	name = "вакуумный пылесос"
+	desc = "Кусочек космоса на земле!"
 	icon_state = "vacuum_cleaner"
+	price = 120
 
 /obj/item/crafting/sensor_module
-	name = "sensor module"
-	desc = "��������� ������"
+	name = "сенсорный модуль"
+	desc = "Позволяет отслеживать движение. Ну, вернее, когда-то позволял."
 	icon_state = "sensor_module"
+	price = 300
 
 /obj/item/crafting/cofee_pot
-	name = "Coffee pot"
-	desc = "The coffee pot is a large pot that gently slopes inwards. As indicated by the untarnished pot, it was originally chrome colored."
+	name = "кофейник"
+	desc = "Кофейник, разработан специанльно для того чтобы удобно хранить кофе литрами! Жаль дно дырявое..."
 	icon_state = "cofee_pot"
 
 /obj/item/crafting/cookpot
-	name = "Cookpot"
-	desc = "����������."
+	name = "кастрюля"
+	desc = "Ржавая кастрюля."
 	icon_state = "cookpot"
 
 /obj/item/crafting/Baseball_ball
-	name = "Baseball ball"
-	desc = "Baseball ball."
+	name = "бейсбольный мяч"
+	desc = "кожанный бейсбольный мяч."
 	icon_state = "Baseball_ball"
 
 /obj/item/crafting/wonderglue
-	name = "wonder glue"
-	desc = "A pre-War brand of glue that has retained its adhesive qualities.<br>A glue itself is a liquid acrylic adhesive, meant to fix broken plastics and ceramics or used in the assembly of a great assortment of items."
+	name = "чудо-клей"
+	desc = "Довоенный бренд клея, который вполне соответствует названию."
 	icon_state = "wonderglue1"
+	price = 500
 
-/obj/item/crafting/wonderglue/initialize()
+/obj/item/crafting/wonderglue/Initialize()
 	..()
 	icon_state = "wonderglue[rand(1,2)]"
 
 /obj/item/crafting/turpentine
-	name = "turpentine"
-	desc = "A flammable liquid distilled from pine resin, used as a solvent."
+	name = "скипидар" //Используется для обработки древесины и я сам неебу что это
+	desc = "Горючяя жидкость, перегнанная из сосновой смолы. Используется как растворитель."
 	icon_state = "turpentine"
+	price = 400
 
 /obj/item/crafting/abraxo
-	name = "abraxo"
-	desc = "A pre-War cleaning agent produced by Abraxodyne Chemical."
+	name = "чистящее средство абраско"
+	desc = "Довоенное чистящее средство производства Абраксодин Чемикалс."
 	icon_state = "abraxo"
+	price = 290
 
 /obj/item/crafting/reloader
-	name = "cartrige reloader"
-	desc = "This device allows to hand-load your own gun rounds using certain raw materials."
+	name = "перезарядчик гильз"
+	desc = "Этот нехитрый девайс, позволяет одной рукой переснаряжать гильзы. При наличии материала конечно же."
 	icon_state = "reloader"
-	var pow_loaded = 0
+	var/pow_loaded = 0
+	var/cartridges = 30
 
 //crc
 /obj/item/crafting/reloader/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/crafting/reloader_set))
-		if(pow_loaded < 100)
+		if(pow_loaded < 30)
 			visible_message("<span class='notice'>[user] put the materials in reloader</span>")
-			pow_loaded = 100
+			pow_loaded = 30
 			I.Del()
 
 	if(istype(I, /obj/item/ammo_casing))
@@ -216,83 +249,109 @@
 
 ///
 /obj/item/crafting/igniter
-	name = "igniter"
-	desc = "A small electronic device able to ignite combustable substances."
+	name = "зажигатель"
+	desc = "маленький девайс, способный поджигать субстанции."
 	icon_state = "igniter"
+	price = 200
 
 /obj/item/crafting/timer
-	name = "timer"
-	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
+	name = "таймер"
+	desc = "Используется для того чтобы отмерять промежутки времени. Тик-так Мориарти."
 	icon_state = "timer"
+	price = 210
 
 /obj/item/crafting/sensor
-	name = "proximity sensor"
-	desc = "Used for scanning and alerting when someone enters a certain proximity."
+	name = "сенсор движения"
+	desc = "Используется для обнаржуения кого-либо."
 	icon_state = "sensor"
+	price = 350
 
 
 /obj/item/crafting/lunchbox
-	name = "lunch box"
-	desc = "This was a promotional item created by Vault-Tec before the Great War and used in the company's advertisements. With the right schematics, it can be used to make bottlecap mines."
+	name = "ланчбокс"
+	desc = "Ланчбокс с рекламой Волт-Тек. Если знать как, из этого можно собрать мину."
 	icon_state = "lunchbox"
+	price = 750
 
 //crc
 
 /obj/item/crafting/reloader_set
-	name = "Reloader cartridges"
-	desc = "��������� ��� ������������ �����."
+	name = "картридж"
+	desc = "Материалы для переснарядки гильз."
 	icon_state = "reloader_set"
-//	var cartridges = 100
-/*
+	var/cartridges = 30
+
+
 /obj/item/crafting/reloader/examine()
 	..()
 	if(cartridges > 0)
-		usr << "<span class='notice'>There are [cartridges] cartridges left.</span>"
+		usr.show_message("<span class='notice'>There are [cartridges] cartridges left.</span>")
 	else
-		usr << "<span class='notice'>There are no cartridges left.</span>"
-*/
-
+		usr.show_message("<span class='notice'>There are no cartridges left.</span>")
 
 /obj/item/crafting/weapon_repair_kit
-	name = "Weapon repair kit"
-	desc = "� ��� ������� ����� ������ ������."
+	name = "набор для починки оружия"
+	desc = "С его помощью можно чинить оружие."
 	icon_state = "weapon_repair_set"
 	price = 500
 
 
-//������ ����� ����������� �������//
+//Делаем жизнь оружейников сложнее//
 
 /obj/item/crafting/weapon_parts
 	icon = 'icons/fallout/objects/crafting.dmi'
 	icon_state = "ballistic_weapon_parts_1"
 
 /obj/item/crafting/weapon_parts/ballistic
-	name = "Ballistic Weapon Parts"
-	desc = "��� ����� ��� �����, ����� ������ ������."
+	name = "части огнестрельного оружия"
+	desc = "Вам нужна эта штука, чтобы делать оружие."
 	icon = 'icons/fallout/objects/crafting.dmi'
 	icon_state = "ballistic_weapon_parts_1"
+	price = 1000
 /*
 /obj/item/crafting/weapon_parts/ballistic/initialize()
 	..()
 	icon_state = "ballistic_weapon_parts_[rand(1,3)]"
 */
 /obj/item/crafting/weapon_parts/energy
-	name = "Energy Weapon Parts"
-	desc = "��� ����� ��� �����, ����� ������ ������������."
+	name = "части лазерного оружия"
+	desc = "Вам нужна эта штука, чтобы делать энергооружие."
 	icon = 'icons/fallout/objects/crafting.dmi'
 	icon_state = "e_weapon_parts_1"
+	price = 2000
 /*
 /obj/item/crafting/weapon_parts/energy/initialize()
 	..()
 	icon_state = "weapon_parts/energy_[rand(1,3)]"
 */
 /obj/item/crafting/weapon_parts/plasma
-	name = "Plasma Weapon Parts"
-	desc = "��� ����� ��� �����, ����� ������ ���������� ������."
+	name = "части плазменного оружия"
+	desc = "Вам нужна эта штука, чтобы делать плазменное оружие."
 	icon = 'icons/fallout/objects/crafting.dmi'
 	icon_state = "p_weapon_parts_1"
+	price = 2600
 /*
 /obj/item/crafting/weapon_parts/plasma/initialize()
 	..()
 	icon_state = "weapon_parts/plasma_[rand(1,3)]"
 */
+
+/obj/item/crafting/instruments
+	name = "инструменты для работы по металлу"
+	desc = "Инструменты для резки по металлу."
+	icon = 'icons/fallout/objects/crafting.dmi'
+	icon_state = "instruments"
+
+/obj/item/crafting/barrel_l
+	name = "длинный barrel"
+	desc = "Просто ствол."
+	icon = 'icons/fallout/objects/crafting.dmi'
+	icon_state = "barrel_long"
+	price = 200
+
+/obj/item/crafting/barrel_s
+	name = "короткий ствол"
+	desc = "Просто ствол."
+	icon = 'icons/fallout/objects/crafting.dmi'
+	icon_state = "barrel_short"
+	price = 190

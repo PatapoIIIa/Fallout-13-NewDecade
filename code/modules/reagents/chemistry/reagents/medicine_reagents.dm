@@ -67,12 +67,12 @@
 	. = 1
 
 /datum/reagent/medicine/adminordrazine/nanites
-	name = "Nanites"
+	name = "Наниты"
 	id = "nanites"
 	description = "Tiny nanomachines capable of rapid cellular regeneration."
 
 /datum/reagent/medicine/synaptizine
-	name = "Synaptizine"
+	name = "Синаптизин"
 	id = "synaptizine"
 	description = "Increases resistance to stuns as well as reducing drowsiness and hallucinations."
 	color = "#FF00FF"
@@ -154,7 +154,7 @@
 
 
 /datum/reagent/medicine/rezadone
-	name = "Rezadone"
+	name = "Резадон"
 	id = "rezadone"
 	description = "A powder derived from fish toxin, Rezadone can effectively treat genetic damage as well as restoring minor wounds. Overdose will cause intense nausea and minor toxin damage."
 	reagent_state = SOLID
@@ -176,7 +176,7 @@
 	. = 1
 
 /datum/reagent/medicine/spaceacillin
-	name = "Spaceacillin"
+	name = "Спейсалин"
 	id = "spaceacillin"
 	description = "Spaceacillin will prevent a patient from conventionally spreading any diseases they are currently infected with."
 	color = "#C8A5DC" // rgb: 200, 165, 220
@@ -343,7 +343,7 @@
 	..()
 
 /datum/reagent/medicine/charcoal
-	name = "Charcoal"
+	name = "Активированный уголь"
 	id = "charcoal"
 	description = "Heals toxin damage as well as slowly removing any other chemicals the patient has in their bloodstream."
 	reagent_state = LIQUID
@@ -359,7 +359,7 @@
 	..()
 
 /datum/reagent/medicine/omnizine
-	name = "Omnizine"
+	name = "Омнизин"
 	id = "omnizine"
 	description = "Slowly heals all damage types. Overdose will cause damage in all types instead."
 	reagent_state = LIQUID
@@ -384,7 +384,7 @@
 	. = 1
 
 /datum/reagent/medicine/calomel
-	name = "Calomel"
+	name = "Каломел"
 	id = "calomel"
 	description = "Quickly purges the body of all chemicals. Toxin damage is dealt if the patient is in good condition."
 	reagent_state = LIQUID
@@ -458,7 +458,7 @@
 	..()
 
 /datum/reagent/medicine/salbutamol
-	name = "Salbutamol"
+	name = "Сальбутамол"
 	id = "salbutamol"
 	description = "Rapidly restores oxygen deprivation as well as preventing more of it to an extent."
 	reagent_state = LIQUID
@@ -559,7 +559,7 @@
 	..()
 
 /datum/reagent/medicine/morphine
-	name = "Morphine"
+	name = "Морфин"
 	id = "morphine"
 	description = "A painkiller that allows the patient to move at full speed even in bulky objects. Causes drowsiness and eventually unconsciousness in high doses. Overdose will cause a variety of effects, ranging from minor to lethal."
 	reagent_state = LIQUID
@@ -633,7 +633,7 @@
 	..()
 
 /datum/reagent/medicine/oculine
-	name = "Oculine"
+	name = "Окулин"
 	id = "oculine"
 	description = "Quickly restores eye damage, cures nearsightedness, and has a chance to restore vision to the blind."
 	reagent_state = LIQUID
@@ -661,7 +661,7 @@
 	..()
 
 /datum/reagent/medicine/atropine
-	name = "Atropine"
+	name = "Атропин"
 	id = "atropine"
 	description = "If a patient is in critical condition, rapidly heals all damage types as well as regulating oxygen in the body. Excellent for stabilizing wounded patients."
 	reagent_state = LIQUID
@@ -690,7 +690,7 @@
 	..()
 
 /datum/reagent/medicine/epinephrine
-	name = "Epinephrine"
+	name = "Эфедерин"
 	id = "epinephrine"
 	description = "Minor boost to stun resistance. Slowly heals damage if a patient is in critical condition, as well as regulating oxygen loss. Overdose causes weakness and toxin damage."
 	reagent_state = LIQUID
@@ -761,7 +761,7 @@
 	. = 1
 
 /datum/reagent/medicine/mannitol
-	name = "Mannitol"
+	name = "Маннитол"
 	id = "mannitol"
 	description = "Efficiently restores brain damage."
 	color = "#DCDCFF"
@@ -771,7 +771,7 @@
 	..()
 
 /datum/reagent/medicine/mutadone
-	name = "Mutadone"
+	name = "Мутадон"
 	id = "mutadone"
 	description = "Removes jitteriness and restores genetic defects."
 	color = "#5096C8"
@@ -783,7 +783,7 @@
 	..()
 
 /datum/reagent/medicine/antihol
-	name = "Antihol"
+	name = "Антипохмел"
 	id = "antihol"
 	description = "Purges alcoholic substance from the patient's body and eliminates its side effects."
 	color = "#00B4C8"
@@ -831,7 +831,7 @@
 	..()
 
 /datum/reagent/medicine/stimulants/longterm
-	name = "Stimulants"
+	name = "Стимулянты"
 	id = "stimulants_longterm"
 	description = "Increases stun resistance and movement speed in addition to restoring minor damage and weakness. Highly addictive."
 	color = "#78008C"
@@ -869,7 +869,7 @@
 	. = 1
 
 /datum/reagent/medicine/insulin
-	name = "Insulin"
+	name = "Инсулин"
 	id = "insulin"
 	description = "Increases sugar depletion rates."
 	reagent_state = LIQUID
@@ -885,7 +885,7 @@
 
 //Trek Chems, used primarily by medibots. Only heals a specific damage type, but is very efficient.
 /datum/reagent/medicine/bicaridine
-	name = "Bicaridine"
+	name = "Бикардин"
 	id = "bicaridine"
 	description = "Restores bruising. Overdose causes it instead."
 	reagent_state = LIQUID
@@ -903,7 +903,7 @@
 	. = 1
 
 /datum/reagent/medicine/dexalin
-	name = "Dexalin"
+	name = "Дексалин"
 	id = "dexalin"
 	description = "Restores oxygen loss. Overdose causes it instead."
 	reagent_state = LIQUID
@@ -921,7 +921,7 @@
 	. = 1
 
 /datum/reagent/medicine/kelotane
-	name = "Kelotane"
+	name = "Келотин"
 	id = "kelotane"
 	description = "Restores fire damage. Overdose causes it instead."
 	reagent_state = LIQUID
@@ -939,9 +939,9 @@
 	. = 1
 
 /datum/reagent/medicine/antitoxin
-	name = "Anti-Toxin"
+	name = "Анти-Радин"
 	id = "antitoxin"
-	description = "Heals toxin damage and removes toxins in the bloodstream. Overdose causes toxin damage."
+	description = "Помогает очистить организм от радиации. Передозировка вызывает асфиксию."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	overdose_threshold = 30
@@ -960,7 +960,7 @@
 	. = 1
 
 /datum/reagent/medicine/inaprovaline
-	name = "Inaprovaline"
+	name = "Инапровалин"
 	id = "inaprovaline"
 	description = "Stabilizes the breathing of patients. Good for those in critical condition."
 	reagent_state = LIQUID
@@ -972,7 +972,7 @@
 	..()
 
 /datum/reagent/medicine/tricordrazine
-	name = "Tricordrazine"
+	name = "Трикодразин"
 	id = "tricordrazine"
 	description = "Has a high chance to heal all types of damage. Overdose instead causes it."
 	reagent_state = LIQUID
@@ -1040,7 +1040,7 @@
 	. = 1
 
 /datum/reagent/medicine/haloperidol
-	name = "Haloperidol"
+	name = "Галоперидол"
 	id = "haloperidol"
 	description = "Increases depletion rates for most stimulating/hallucinogenic drugs. Reduces druggy effects and jitteriness. Severe stamina regeneration penalty, causes drowsiness. Small chance of brain damage."
 	reagent_state = LIQUID
@@ -1062,7 +1062,7 @@
 	. = 1
 
 /datum/reagent/medicine/miningnanites
-	name = "Nanites"
+	name = "Наниты"
 	id = "miningnanites"
 	description = "It's mining magic. We don't have to explain it."
 	color = "#C8A5DC" // rgb: 200, 165, 220
@@ -1083,7 +1083,7 @@
 
 //used for changeling's adrenaline power
 /datum/reagent/medicine/changelingAdrenaline
-	name = "Adrenaline"
+	name = "Адреналин"
 	id = "changelingAdrenaline"
 	description = "Reduces stun times. Also deals toxin damage at high amounts."
 	color = "#C8A5DC"
@@ -1103,7 +1103,7 @@
 	..()
 
 /datum/reagent/medicine/changelingAdrenaline2
-	name = "Adrenaline"
+	name = "Адреналин"
 	id = "changelingAdrenaline2"
 	description = "Drastically increases movement speed."
 	color = "#C8A5DC"

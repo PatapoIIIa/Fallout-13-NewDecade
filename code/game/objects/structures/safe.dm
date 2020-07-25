@@ -6,7 +6,7 @@ FLOOR SAFES
 
 //SAFES
 /obj/structure/safe
-	name = "safe"
+	name = "сейф"
 	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and assistant resistant.\""
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "safe"
@@ -32,7 +32,12 @@ FLOOR SAFES
 	tumbler_2_open = rand(0, 71)
 
 
-/obj/structure/safe/initialize()
+/obj/structure/safe/Initialize(mapload)
+	..()
+
+	if(!mapload)
+		return
+
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
 			return
@@ -76,7 +81,8 @@ FLOOR SAFES
 
 /obj/structure/safe/attack_hand(mob/user)
 	user.set_machine(src)
-	var/dat = "<center>"
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += "<center>"
 	dat += "<a href='?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a> | <a href='?src=\ref[src];decrement=1'>-</a> [dial * 5] <a href='?src=\ref[src];increment=1'>+</a>"
 	if(open)
 		dat += "<table>"
@@ -84,7 +90,7 @@ FLOOR SAFES
 			var/obj/item/P = contents[i]
 			dat += "<tr><td><a href='?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 		dat += "</table></center>"
-	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=safe;size=350x300")
+	user << browse("<html><meta charset=UTF-8><head><title>[name]</title></head><body>[dat]</body></html>", "window=safe;size=350x300")
 
 
 /obj/structure/safe/Topic(href, href_list)
@@ -185,11 +191,19 @@ FLOOR SAFES
 	layer = LOW_OBJ_LAYER
 
 
-/obj/structure/safe/floor/initialize()
+/obj/structure/safe/floor/Initialize(mapload)
 	..()
-	var/turf/T = loc
-	hide(T.intact)
+	if(mapload)
+		var/turf/T = loc
+		hide(T.intact)
 
 
 /obj/structure/safe/floor/hide(var/intact)
 	invisibility = intact ? INVISIBILITY_MAXIMUM : 0
+
+
+//small safes
+
+/obj/structure/safe/small
+	name = "table safe"
+	icon_state = "safe_small"

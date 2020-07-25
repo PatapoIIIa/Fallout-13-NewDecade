@@ -31,8 +31,8 @@
 	var/obj/item/device/gps/inserted_gps
 
 /obj/machinery/computer/telescience/New()
-	..()
 	recalibrate()
+	..()
 
 /obj/machinery/computer/telescience/Destroy()
 	eject()
@@ -45,10 +45,11 @@
 	..()
 	to_chat(user, "There are [crystals.len ? crystals.len : "no"] bluespace crystal\s in the crystal slots.")
 
-/obj/machinery/computer/telescience/initialize()
+/obj/machinery/computer/telescience/Initialize(mapload)
 	..()
-	for(var/i = 1; i <= starting_crystals; i++)
-		crystals += new /obj/item/weapon/ore/bluespace_crystal/artificial(null) // starting crystals
+	if(mapload)
+		for(var/i = 1; i <= starting_crystals; i++)
+			crystals += new /obj/item/weapon/ore/bluespace_crystal/artificial(null) // starting crystals
 
 /obj/machinery/computer/telescience/attack_paw(mob/user)
 	to_chat(user, "<span class='warning'>You are too primitive to use this computer!</span>")
@@ -102,9 +103,9 @@
 			t += "<span class='linkOff'>Set GPS memory</span>"
 		t += "<div class='statusDisplay'>[temp_msg]</div><BR>"
 		t += "<A href='?src=\ref[src];setrotation=1'>Set Bearing</A>"
-		t += "<div class='statusDisplay'>[rotation]°</div>"
+		t += "<div class='statusDisplay'>[rotation]В°</div>"
 		t += "<A href='?src=\ref[src];setangle=1'>Set Elevation</A>"
-		t += "<div class='statusDisplay'>[angle]°</div>"
+		t += "<div class='statusDisplay'>[angle]В°</div>"
 		t += "<span class='linkOn'>Set Power</span>"
 		t += "<div class='statusDisplay'>"
 

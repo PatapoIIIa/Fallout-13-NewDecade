@@ -31,7 +31,7 @@
 	self_weight = 150
 	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab = 6, /obj/item/stack/sheet/animalhide/generic=2)
 
-	attacktext = "бодает"
+	attacktext = "Р±РѕРґР°РµС‚"
 	melee_damage_lower = 15
 	melee_damage_upper = 45
 	attack_sound = 'sound/weapons/bite.ogg'
@@ -64,8 +64,8 @@
 /mob/living/simple_animal/hostile/commanded/bruhmin/show_inv(mob/user)
 	user.set_machine(src)
 	if(user.stat) return
-
-	var/dat = 	"<div align='center'><b>Inventory of [name]</b></div><p>"
+	var/dat = {"<meta charset="UTF-8">"}
+	dat += 	"<div align='center'><b>Inventory of [name]</b></div><p>"
 	if(inventory_back)
 		dat +=	"<br><b>Back:</b> [inventory_back] (<a href='?src=\ref[src];remove_inv=back'>Remove</a>)"
 	else

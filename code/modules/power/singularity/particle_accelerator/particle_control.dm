@@ -232,7 +232,7 @@
 			return
 	user.set_machine(src)
 
-	var/dat = ""
+	var/dat = {"<meta charset="UTF-8">"}
 	dat += "<A href='?src=\ref[src];close=1'>Close</A><BR><BR>"
 	dat += "<h3>Status</h3>"
 	if(!assembled)
@@ -288,14 +288,14 @@
 			else if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/CC = W
 				if(CC.use(1))
-					user.visible_message("[user.name] adds wires to the [name].", \
-						"You add some wires.")
+					user.visible_message("[user.name] добавляет провода в [name].", \
+						"Вы добавили проводов.")
 					construction_state = PA_CONSTRUCTION_PANEL_OPEN
 					did_something = TRUE
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			if(istype(W, /obj/item/weapon/wirecutters))//TODO:Shock user if its on?
-				user.visible_message("[user.name] removes some wires from the [name].", \
-					"You remove some wires.")
+				user.visible_message("[user.name] достает провода из [name].", \
+					"Вы достали провода.")
 				construction_state = PA_CONSTRUCTION_UNWIRED
 				did_something = TRUE
 			else if(istype(W, /obj/item/weapon/screwdriver))

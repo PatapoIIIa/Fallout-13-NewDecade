@@ -189,7 +189,7 @@
 	var/old_ex_level = explosion_level
 	var/old_ex_id = explosion_id
 
-	Destroy()	//❄
+	Destroy()	//вќ„
 	var/turf/W = new path(src)
 
 	W.proximity_checkers = old_checkers
@@ -345,10 +345,12 @@
 			A.ex_act(severity, target)
 			CHECK_TICK
 
-/turf/ratvar_act(force)
-	. = (prob(40) || force)
+/turf/ratvar_act(force, ignore_mobs, probability = 40)
+	. = (prob(probability) || force)
 	for(var/I in src)
 		var/atom/A = I
+		if(ignore_mobs && ismob(A))
+			continue
 		if(ismob(A) || .)
 			A.ratvar_act()
 

@@ -1,8 +1,8 @@
 // A mob which only moves when it isn't being watched by living beings.
 
 /mob/living/simple_animal/hostile/statue
-	name = "statue" // matches the name of the statue with the flesh-to-stone spell
-	desc = "An incredibly lifelike marble carving. Its eyes seems to follow you.." // same as an ordinary statue with the added "eye following you" description
+	name = "статуя"
+	desc = "Нехватает только деда и долговязого уебана."
 	icon = 'icons/obj/statue.dmi'
 	icon_state = "human_male"
 	icon_living = "human_male"
@@ -22,7 +22,7 @@
 	obj_damage = 100
 	melee_damage_lower = 68
 	melee_damage_upper = 83
-	attacktext = "claws"
+	attacktext = "сворачивает шею"
 	attack_sound = 'sound/hallucinations/growl1.ogg'
 
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -43,7 +43,6 @@
 
 	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
 	anchored = 1
-	status_flags = GODMODE // Cannot push also
 
 	var/cannot_be_seen = 1
 	var/mob/living/creator = null

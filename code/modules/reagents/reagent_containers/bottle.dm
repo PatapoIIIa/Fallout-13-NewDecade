@@ -150,9 +150,15 @@
 	icon_state = "bottle16"
 	list_reagents = list("polonium" = 30)
 
+/obj/item/weapon/reagent_containers/glass/bottle/antivenom
+	name = "противоядие"
+	desc = "Небольшая баночка содержащая противоядие."
+	icon_state = "bottle16"
+	list_reagents = list("antivenom" = 30)
+
 /obj/item/weapon/reagent_containers/glass/bottle/venom
-	name = "venom bottle"
-	desc = "A small bottle. Contains Venom."
+	name = "баночка с ядом"
+	desc = "Небольшая баночка, содержит яд."
 	icon_state = "bottle16"
 	list_reagents = list("venom" = 30)
 

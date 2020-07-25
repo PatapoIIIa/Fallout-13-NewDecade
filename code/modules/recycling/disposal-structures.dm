@@ -254,7 +254,7 @@
 	if(isfloorturf(T)) //intact floor, pop the tile
 		floorturf = T
 		if(floorturf.floor_tile)
-			PoolOrNew(floorturf.floor_tile, T)
+			new floorturf.floor_tile(T)
 		floorturf.make_plating()
 
 	if(direction)		// direction is specified
@@ -450,7 +450,7 @@
 		if(isnum(sortType))
 			sortTypes |= sortType
 		else if(istext(sortType))
-			var/list/sorts = splittext(sortType,";")
+			var/list/sorts = splittext_char(sortType,";")
 			for(var/x in sorts)
 				var/n = text2num(x)
 				if(n)
